@@ -1,0 +1,112 @@
+keyboard_allowmmf 1
+
+//Set console variables
+console_position 15 50
+console_color 255 255 0 0
+console_displayactivity 1
+console_fadedelay 3500
+console_chatopen 1
+console_screendir screenshots
+
+//Set game variables
+game_forceambientlight 0
+game_ambientlight 255 120 120 120
+game_gamma 50
+game_allowsetcursorpos 0
+game_exittype 1
+game_exitprompt 1
+game_allowresize 0
+
+//Set general variables
+//showfps 1
+// FPS Position - Use -75 1 to position it on the top right corner.
+//fps_position 5 5 //top left
+fps_position -75 1 //top right
+
+drawdistance set 10
+//Bind keys
+//Bind syntax is "bind <key> <up> <command>
+// ^ represents control- and ! is alt, eg !1 is alt-1
+bind !f10 drawdistance set 10
+bind ^f10 drawdistance set 1
+bind f11 game_forceambientlight
+bind f12 showfps
+bind sysrq screenshot png hide
+bind ^v paste
+echo Toggle Lighting = F11 (Bump mapping must be off to work properly)
+echo Toggle FPS = F12
+echo DrawDistance Lv 10: Alt-F10
+echo DrawDistance Lv 1: Ctrl-F10
+echo Paste Clipboard = Ctrl-V
+
+//Sets ConsoleBG Background Position
+consolebg position 15 50
+
+// *** ALLIANCE TARGET KEYS ***
+// This lets you push Alt+F1-6 and Ctrl+F1-6 to  to target Alliance members.
+bind ^f1 input /ta <a10>
+bind ^f2 input /ta <a11>
+bind ^f3 input /ta <a12>
+bind ^f4 input /ta <a13>
+bind ^f5 input /ta <a14>
+bind ^f6 input /ta <a15>
+bind !f1 input /ta <a20>
+bind !f2 input /ta <a21>
+bind !f3 input /ta <a22>
+bind !f4 input /ta <a23>
+bind !f5 input /ta <a24>
+bind !f6 input /ta <a25>
+
+// My edits
+//load DelayMeNot
+//load FFXIDB
+//load LightLuggage
+//lua load Debuffed
+//lua load DistancePlus
+//lua load DressUp
+//lua load dynamishelper
+//lua load GearSwap
+//lua load InfoBar
+//lua load ohShi
+//lua load Omen
+//lua load PetTP
+//lua load pointwatch
+//lua load reive
+//lua load salvage2
+//lua load scoreboard
+//lua load SpeedChecker
+//lua load TParty
+//lua load CurePlease_Addon
+lua load superwarp
+
+// NEXTGames Edits:
+// The below line is to enable DressUp BlinkMeNot Functionality.
+// du blinking all all on
+
+// The below four lines are to load these addons when FFXI loads.
+// lua load XIPivot
+// lua load PartyBuffs
+// lua load parse
+// lua load skillchains
+
+// The below four lines are to activate the different common texture packs.
+// Pivot a Amelila
+// Pivot a NextGames
+// Pivot a AshenbubsHD-Basic
+// Pivot a AshenbubsHD-Prime
+
+// The below command will make sure scoreboard is visible when you load the game
+// sb visible
+
+// The below commands are to set the location of equipviewer.  The first one is for 1920x1080 resolutions, the second is for 4k Resotuions.  Only use one!   
+// equipviewer pos 1650 748
+// equipviewer pos 2192 990
+
+// The below wait command is to make sure that any further commands run LAST and 30 seconds after we login.
+// wait 30
+
+// The below command loads GearInfo.  If it's loaded before this step it has problems.
+// lua load GearInfo
+
+// The below command uncaps FPS to 60.  Setting it to 0 uncaps it and setting it to 2 is the default setting of 30.
+// config FrameRateDivisor 1

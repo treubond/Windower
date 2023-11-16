@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <autoload>
+    <addon>battlemod</addon>
+    <addon>Debuffed</addon>
+    <addon>dynamishelper</addon>
+    <addon>GearSwap</addon>
+    <addon>InfoBar</addon>
+    <addon>NyzulHelper</addon>
+    <addon>ohShi</addon>
+    <addon>Omen</addon>
+    <addon>PetTP</addon>
+    <addon>pointwatch</addon>
+    <addon>reive</addon>
+    <addon>salvage2</addon>
+    <addon>SpeedChecker</addon>
+    <addon>thtracker</addon>
+    <addon>TParty</addon>
+    <addon>vwhl</addon>
+    <addon>DistancePlus</addon>
+    <addon>send</addon>
+    <addon>findAll</addon>
+    <addon>checkparam</addon>
+    <addon>shortcuts</addon>
+    <addon>azureSets</addon>
+    <addon>indinope</addon>
+    <addon>scoreboard</addon>
+    <plugin>DelayMeNot</plugin>
+    <plugin>FFXIDB</plugin>
+    <plugin>Guildwork</plugin>
+    <plugin>LightLuggage</plugin>
+    <plugin>Timers</plugin>
+    <plugin>Sandbox</plugin>
+  </autoload>
+  <profile name="">
+    <consolekey>Insert</consolekey>
+    <gamma>0.2086957</gamma>
+    <uiscale>1</uiscale>
+    <hardwaremouse>false</hardwaremouse>
+    <supersampling>2</supersampling>
+    <alwaysplaysound>false</alwaysplaysound>
+    <alwaysenablegamepad>false</alwaysenablegamepad>
+  </profile>
+  <profile name="DualBox">
+    <consolekey>Insert</consolekey>
+    <windowmode>Window</windowmode>
+    <width>1280</width>
+    <height>720</height>
+    <gamma>0.173913</gamma>
+    <uiscale>1</uiscale>
+    <hardwaremouse>false</hardwaremouse>
+    <alwaysplaysound>false</alwaysplaysound>
+    <alwaysenablegamepad>false</alwaysenablegamepad>
+  </profile>
+</settings>
