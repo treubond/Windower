@@ -88,8 +88,6 @@
 res = require('resources')
 texts = require('texts')
 include('Modes.lua')
---[[ mote_include_version = 2
-include('Mote-Include.lua') ]]
 
 -- Define your modes: 
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
@@ -238,6 +236,12 @@ function get_sets()
     sets.me = {}        		-- leave this empty
     sets.buff = {} 				-- leave this empty
     sets.me.idle = {}			-- leave this empty
+
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
     -- Your idle set
     sets.me.idle.refresh = {
@@ -516,8 +520,8 @@ function get_sets()
 
 	sets.midcast["Sublimation"] = {
 	--[[ head="Acad. Mortar. +1", 
-	body="Pedagogy gown",
-	waist="Embla Sash" ]]
+	body="Pedagogy gown", ]]
+	    waist="Embla Sash",
 	}
     
     sets.midcast.nuking.normal = {
@@ -654,8 +658,12 @@ function get_sets()
     sets.midcast.enhancing = set_combine(sets.midcast.casting,{
         main="Daybreak",
         sub="Ammurapi Shield",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+        head=Telchine_ENH_head,
+        body=Telchine_ENH_body,
+        hands=Telchine_ENH_hands,
+        legs=Telchine_ENH_legs,
+        feet=Telchine_ENH_feet,
+        waist="Embla Sash",
     --[[ head="Arbatel bonnet +1",
     body="Pedagogy gown",
     hands="Arbatel Bracers +1",
@@ -679,11 +687,12 @@ function get_sets()
     })
     sets.midcast.refresh = set_combine(sets.midcast.enhancing,{
 	--head="Amalric Coif",
-		
+        waist="Embla Sash",
     })
     sets.midcast.aquaveil = sets.midcast.refresh
 	
     sets.midcast["Drain"] = set_combine(sets.midcast.nuking, {
+        left_ring="Kishar Ring",
         right_ring="Excelsis Ring",
 	--[[ main="Daybreak",
     sub="Culminus",
@@ -711,7 +720,7 @@ function get_sets()
         ammo="Clarus Stone",
         head="Jhakri Coronal +2",
         body="Jhakri Robe +2",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}, --10
+        hands=Telchine_ENH_hands, --10
         legs="Jhakri Slops +2",
         feet="Mallquis Clogs",
         neck="Phalaina Locket", --4
@@ -736,8 +745,11 @@ function get_sets()
         main="Daybreak",
         sub="Ammurapi Shield",
         head="Arbatel Bonnet +2",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+        body=Telchine_ENH_body,
+        hands=Telchine_ENH_hands,
+        legs=Telchine_ENH_legs,
+        feet=Telchine_ENH_feet,
+        waist="Embla Sash",
     }
 	-- Focus on Regen Duration 	
     sets.midcast.regen.duration = set_combine(sets.midcast.regen.hybrid,{

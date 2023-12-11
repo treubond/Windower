@@ -1,0 +1,17 @@
+sets.exported={
+    main="Daybreak",
+    sub="Genbu's Shield",
+    ammo="Staunch Tathlum",
+    head={ name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}},
+    body={ name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}},
+    hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+    legs={ name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}},
+    feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+    neck={ name="Loricate Torque +1", augments={'Path: A',}},
+    waist="Penitent's Rope",
+    left_ear="Eabani Earring",
+    right_ear="Magnetic Earring",
+    left_ring="Shneddick Ring",
+    right_ring="Defending Ring",
+    back="Solemnity Cape",
+}

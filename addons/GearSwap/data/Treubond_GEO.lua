@@ -199,7 +199,7 @@ function get_sets()
 	RELIC.Body = "Bagua Tunic"
 	RELIC.Hands = "Bagua Mitaines"
 	RELIC.Legs = "Bagua Pants"
-	RELIC.Feet = "Bagua Sandals"
+	RELIC.Feet = "Bagua Sandals +1"
 	
 	EMPY.Head = "Azimuth Hood +2"
 	EMPY.Body = "Azimuth Coat"
@@ -214,6 +214,12 @@ function get_sets()
 	GEOCape.Nuke = {}
 	GEOCape.FC = {}
 	
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+
     -- My formatting is very easy to follow. All sets that pertain to my character doing things are under 'me'.
     -- All sets that are equipped to faciliate my.pan's behaviour or abilities are under .pan', eg, Perpetuation, Blood Pacts, etc
       
@@ -233,7 +239,7 @@ function get_sets()
 		head="Befouled Crown",
 		body="Jhakri Robe +2",
 		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet="Nyame Sollerets",
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Hierarch Belt",
@@ -271,7 +277,7 @@ function get_sets()
 		head="Nyame Helm",
 		body="Jhakri Robe +2",
 		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet="Nyame Sollerets",
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Penitent's Rope",
@@ -311,7 +317,7 @@ function get_sets()
 		head = EMPY.Head,
 		body="Jhakri Robe +2",
 		hands=AF.Hands,
-		legs="Nyame Flanchard",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet=RELIC.Feet,
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Penitent's Rope",
@@ -586,7 +592,7 @@ function get_sets()
 		head="Ea Hat", --6/6
 		body="Ea Houppelande", --8/8
 		hands="Ea Cuffs", --5/5
-		legs="Nyame Flanchard", --6/0  
+		legs={ name="Nyame Flanchard", augments={'Path: B',}}, --6/0  
 		feet="Jhakri Pigaches +2", --7/0
 		neck="Saevus Pendant +1",
 		waist="Olympus Sash",

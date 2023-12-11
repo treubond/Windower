@@ -211,7 +211,7 @@ function init_gear_sets()
         legs="Ebers Pant. +1",
         feet="Aya. Gambieras +1",
         neck="Phalaina Locket",
-        waist="Penitent's Rope",
+        waist="Embla Sash",
         left_ear="Malignance Earring",
         right_ear="Magnetic Earring",
         left_ring="Omega Ring",
@@ -237,7 +237,7 @@ function init_gear_sets()
     sets.precast.FC.Curaga = sets.precast.FC.Cure
     sets.precast.FC.CureSolace = sets.precast.FC.Cure
     sets.precast.FC.Impact = set_combine(sets.precast.FC, {--[[ head=empty, body="Twilight Cloak", waist="Shinjutsu-no-Obi +1" ]]})
-    sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {--[[ main="Daybreak", sub="Ammurapi Shield" ]]})
+    sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak", sub="Ammurapi Shield"})
 
     -- Precast sets to enhance JAs
     --sets.precast.JA.Benediction = {}
@@ -391,9 +391,13 @@ function init_gear_sets()
 
     -- 110 total Enhancing Magic Skill; caps even without Light Arts
     sets.midcast['Enhancing Magic'] = {
-        sub="Culminus",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+        sub="Ammurapi Shield",
+        head=gear.Telchine_ENH_head,
+        body=gear.Telchine_ENH_body,
+        hands=gear.Telchine_ENH_hands,
+        legs=gear.Telchine_ENH_legs,
+        feet=gear.Telchine_ENH_feet,
+        waist="Embla Sash",
         --[[ main="Gada",
         sub="Ammurapi Shield",
         head=gear.Telchine_ENH_head,
@@ -411,33 +415,34 @@ function init_gear_sets()
         }
 
     sets.midcast.EnhancingDuration = {
-        sub="Culminus",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
-        --[[ main="Gada",
         sub="Ammurapi Shield",
         head=gear.Telchine_ENH_head,
         body=gear.Telchine_ENH_body,
         hands=gear.Telchine_ENH_hands,
         legs=gear.Telchine_ENH_legs,
+        feet=gear.Telchine_ENH_feet,
+        waist="Embla Sash",
+        --[[ main="Gada",
+        sub="Ammurapi Shield",
         feet="Theo. Duckbills +3",
         waist="Embla Sash", ]]
         }
 
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         --main="Bolelabunga",
-        sub="Culminus",
+        sub="Ammurapi Shield",
         head="Inyanga Tiara +1",
-        hands="Ebers Mitts",
+        body=gear.Telchine_ENH_body,
+        hands=gear.Telchine_ENH_hands,
+        legs=gear.Telchine_ENH_legs,
+        feet=gear.Telchine_ENH_feet,
         --body="Piety Briault +3",
-        --hands=gear.Telchine_ENH_hands,
-        --legs=gear.Telchine_ENH_legs,
-        --feet=gear.Telchine_ENH_feet,
+        
         })
 
     sets.midcast.RegenDuration = set_combine(sets.midcast.EnhancingDuration, {
-        --body=gear.Telchine_ENH_body,
-        hands="Ebers Mitts",
+        body=gear.Telchine_ENH_body,
+        hands=gear.Telchine_ENH_hands,
         --legs="Th. Pant. +3",
         --feet="Theo. Duckbills +2",
         })
@@ -454,8 +459,8 @@ function init_gear_sets()
 
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
         main="Vadose Rod",
-        --[[sub="Ammurapi Shield",
-        ammo="Staunch Tathlum +1",
+        sub="Ammurapi Shield",
+        --[[ammo="Staunch Tathlum +1",
         hands="Regal Cuffs",
         ear1="Halasz Earring",
         ear2="Magnetic Earring",
@@ -601,7 +606,7 @@ function init_gear_sets()
         head="Befouled Crown",
         body="Orison Bliaut +1",
         hands="Nyame Gauntlets",
-        legs="Nyame Flanchard",
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet="Nyame Sollerets",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Penitent's Rope",

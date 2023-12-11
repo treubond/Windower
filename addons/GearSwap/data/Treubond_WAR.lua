@@ -223,7 +223,7 @@ function init_gear_sets()
         head="Agoge Mask +2",
         body="Pumm. Lorica +3",
         hands="Boii Mufflers +2",
-        legs="Boii Cuisses +2",
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet="Sulev. Leggings +2",
         neck="Asperity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -345,7 +345,7 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
  
     sets.engaged = {
-        head="Flam. Zucchetto +2",
+        head="Boii Mask +3",
         body="Boii Lorica +2",
         hands="Sulev. Gauntlets +2",
         legs="Sulev. Cuisses +2",
@@ -356,7 +356,7 @@ function init_gear_sets()
         right_ear="Boii Earring",
         left_ring="Chirich Ring",
         --right_ring="Sroda Ring",
-        right_ring="Flamma Ring",
+        right_ring="Niqmaddu Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }	
     sets.engaged.MidAcc = set_combine(sets.engaged, { })

@@ -23,6 +23,13 @@ function define_global_sets()
 	gear.Staff.HMP = 'Chatoyant Staff'
 	gear.Staff.PDT = 'Earth Staff'
 	
+	-- Telchine Enhancing duration
+	gear.Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
+	gear.Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+	gear.Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+	gear.Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+	gear.Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+
 	-- Dark Rings
 	gear.DarkRing = {}
 	gear.DarkRing.physical = {name="Dark Ring",augments={'Magic dmg. taken -3%','Spell interruption rate down -5%','Phys. dmg. taken -6%'}}
@@ -45,7 +52,7 @@ end
 
 -- Function to bind GearSwap binds when loading a GS script.
 function global_on_load()
-	send_command('bind f9 gs c cycle OffenseMode')
+	--[[ send_command('bind f9 gs c cycle OffenseMode')
 	send_command('bind ^f9 gs c cycle HybridMode')
 	send_command('bind !f9 gs c cycle RangedMode')
 	send_command('bind @f9 gs c cycle WeaponskillMode')
@@ -59,12 +66,12 @@ function global_on_load()
 	send_command('bind !f12 gs c reset DefenseMode')
 
 	send_command('bind ^- gs c toggle selectnpctargets')
-	send_command('bind ^= gs c cycle pctargetmode')
+	send_command('bind ^= gs c cycle pctargetmode') ]]
 end
 
 -- Function to revert binds when unloading.
 function global_on_unload()
-	send_command('unbind f9')
+	--[[ send_command('unbind f9')
 	send_command('unbind ^f9')
 	send_command('unbind !f9')
 	send_command('unbind @f9')
@@ -79,7 +86,7 @@ function global_on_unload()
 	send_command('unbind !f12')
 
 	send_command('unbind ^-')
-	send_command('unbind ^=')
+	send_command('unbind ^=') ]]
 end
 
 -------------------------------------------------------------------------------------------------------------------

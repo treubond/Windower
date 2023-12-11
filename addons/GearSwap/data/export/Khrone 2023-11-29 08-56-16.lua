@@ -1,0 +1,17 @@
+sets.exported={
+    main="Kaja Sword",
+    sub="Ammurapi Shield",
+    range="Daurdabla",
+    head="Fili Calot +2",
+    body="Weather. Robe +1",
+    hands="Fili Manchettes +2",
+    legs="Fili Rhingrave +1",
+    feet="Fili Cothurnes +2",
+    neck="Moonbow Whistle",
+    waist="Embla Sash",
+    left_ear="Aredan Earring",
+    right_ear="Ethereal Earring",
+    left_ring="Defending Ring",
+    right_ring="Stikini Ring",
+    back="Solemnity Cape",
+}

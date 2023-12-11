@@ -63,6 +63,8 @@ res = require('resources')
 texts = require('texts')
 include('Modes.lua')
 
+
+
 -- Define your modes: 
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
@@ -150,6 +152,12 @@ function get_sets()
     Taranus.INT_MAB     = { name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}}
     Taranus.MND_FC_MEVA = { name="Taranus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Mag. Evasion+15',}}
     Taranus.INT_STP     = { name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+5','"Store TP"+10','Phys. dmg. taken-10%',}} ]]
+    -- Telchine Enhancing duration
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
       
     sets.me = {}       -- leave this empty
     sets.buff = {}     -- leave this empty
@@ -467,7 +475,7 @@ function get_sets()
       legs="Jhakri Slops +2",
       feet="Jhakri Pigaches +2",
       neck="Saevus Pendant +1",
-      waist="Rumination Sash",
+      waist="Embla Sash",
       left_ear="Malignance Earring",
       right_ear="Loquac. Earring",
       left_ring="Jhakri Ring",
@@ -507,11 +515,12 @@ function get_sets()
 
    -- Enhancing Magic, eg. Siegal Sash, etc
    sets.precast.enhancing = set_combine(sets.precast.casting, {
-    waist="Siegel Sash",
+    waist="Embla Sash",
    })
     
    -- Stoneskin casting time -, works off of enhancing -
    sets.precast.stoneskin = set_combine(sets.precast.enhancing, {
+    waist="Siegel Sash",
    })
       
    -- Curing Precast, Cure Spell Casting time -
@@ -799,8 +808,12 @@ function get_sets()
    }
 
     sets.midcast.enhancing = set_combine(sets.midcast.casting, {
-      hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-      feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+      head=Telchine_ENH_head,
+      body=Telchine_ENH_body,
+      hands=Telchine_ENH_hands,
+      legs=Telchine_ENH_legs,
+      feet=Telchine_ENH_feet,
+      waist="Embla Sash",
       --[[ body="Telchine Chas.",
       head="Telchine Cap",
       hands="Telchine Gloves",

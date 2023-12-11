@@ -375,7 +375,7 @@ function init_gear_sets()
         head="Hashishin Kavuk +2",
         body="Assim. Jubbah +2",
         hands="Jhakri Cuffs +2",
-        legs="Luhlaza Shalwar +2",
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet="Hashi. Basmak +2",
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -396,7 +396,7 @@ function init_gear_sets()
     sets.precast.WS['Vorpal Blade'].Acc = sets.precast.WS['Chant du Cygne'].Acc
 
     sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, { -- 50% STR/50% MND
-        legs="Jhakri Slops +2",}) 
+        }) 
 
     sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], {})
 
