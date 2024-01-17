@@ -1,20 +1,27 @@
-2023-12-07 11:07:46.5782 EasyFarm.Logging.NLogTextFileLogger EasyFarm Started ...
-2023-12-07 11:34:46.2356 EasyFarm.Logging.NLogTextFileLogger FSM thread interrupted
+2024-01-15 16:48:23.6451 EasyFarm.Logging.NLogTextFileLogger EasyFarm Started ...
+2024-01-15 21:06:56.2177 EasyFarm.Logging.NLogTextFileLogger FSM thread interrupted
 System.Threading.ThreadInterruptedException: Thread was interrupted from a waiting state.
-   at System.Threading.WaitHandle.WaitOneNative(SafeHandle waitableSafeHandle, UInt32 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
-   at System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
-   at System.Threading.WaitHandle.WaitOne(TimeSpan timeout, Boolean exitContext)
-   at System.Windows.Threading.DispatcherOperation.DispatcherOperationEvent.WaitOne()
-   at System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
-   at System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
-   at System.Windows.Threading.Dispatcher.Invoke(Action callback, DispatcherPriority priority, CancellationToken cancellationToken, TimeSpan timeout)
-   at System.Windows.Threading.Dispatcher.Invoke(Action callback)
-   at EasyFarm.Classes.LogEntries.RecordLogItemOnUiThread(String message) in C:\projects\easyfarm\EasyFarm\Classes\LogEntries.cs:line 57
-   at EasyFarm.ViewModels.LogViewModel.Write(String message) in C:\projects\easyfarm\EasyFarm\ViewModels\LogViewModel.cs:line 44
-   at EasyFarm.States.SetTargetState.Check() in C:\projects\easyfarm\EasyFarm\States\SetTargetState.cs:line 58
-   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 161
+   at System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   at System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   at EasyFarm.Classes.Executor.MonitorCast() in C:\projects\easyfarm\EasyFarm\Classes\Executor.cs:line 175
+   at EasyFarm.Classes.Executor.UseTargetedActions(IEnumerable`1 actions, IUnit target) in C:\projects\easyfarm\EasyFarm\Classes\Executor.cs:line 101
+   at EasyFarm.States.BattleState.Run() in C:\projects\easyfarm\EasyFarm\States\BattleState.cs:line 76
+   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 171
    at EasyFarm.States.FiniteStateMachine.<RunFiniteStateMainWithThread>b__9_0() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 99
-2023-12-07 11:54:53.7603 EasyFarm.Logging.NLogTextFileLogger FSM thread cancelled
+2024-01-16 08:15:55.8059 EasyFarm.Logging.NLogTextFileLogger FSM thread cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 154
+   at EasyFarm.States.FiniteStateMachine.<RunFiniteStateMainWithThread>b__9_0() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 99
+2024-01-16 08:16:00.2214 EasyFarm.Logging.NLogTextFileLogger FSM thread interrupted
+System.Threading.ThreadInterruptedException: Thread was interrupted from a waiting state.
+   at System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   at System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   at EasyFarm.States.ZoneState.<>c.<.ctor>b__1_0() in C:\projects\easyfarm\EasyFarm\States\ZoneState.cs:line 34
+   at EasyFarm.States.ZoneState.Run() in C:\projects\easyfarm\EasyFarm\States\ZoneState.cs:line 55
+   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 171
+   at EasyFarm.States.FiniteStateMachine.<RunFiniteStateMainWithThread>b__9_0() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 99
+2024-01-16 08:16:04.8060 EasyFarm.Logging.NLogTextFileLogger FSM thread cancelled
 System.OperationCanceledException: The operation was canceled.
    at System.Threading.CancellationToken.ThrowOperationCanceledException()
    at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 154

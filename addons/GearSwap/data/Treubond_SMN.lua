@@ -537,7 +537,7 @@ function get_sets()
 		feet="Beck. Pigaches +2",
 		neck="Adad Amulet",
 		waist="Hierarch Belt",
-		left_ear="Malignance Earring",
+		left_ear="Enmerkar Earring",
 		right_ear={ name="Beck. Earring", augments={'System: 1 ID: 1676 Val: 0','Pet: Accuracy+6 Pet: Rng. Acc.+6','Pet: Mag. Acc.+6',}},
 		left_ring="Tali'ah Ring",
 		right_ring="Evoker's Ring",
@@ -720,7 +720,7 @@ function get_sets()
 	})
 
 	sets.aftercast.MEva.Avatar = set_combine(sets.aftercast.MEva, {
-		-- ear1="Enmerkar Earring",
+		ear1="Enmerkar Earring",
 		-- waist="Isa Belt",
 		-- back={ name="Campestres's Cape", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Eva.+20 /Mag. Eva.+20','Pet: Attack+10 Pet: Rng.Atk.+10','Pet: "Regen"+10','Pet: Damage taken -5%',}},
 	})

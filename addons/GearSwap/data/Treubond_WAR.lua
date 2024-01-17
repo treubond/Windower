@@ -177,7 +177,7 @@ function init_gear_sets()
 	-- Job Abilities
     sets.precast.JA['Berserk']              = { body="Pumm. Lorica +3",}
     sets.precast.JA['Retaliation'] 			= { --[[ hands = WARAF.Hands, ]] feet = "Boii Calligae +2" }
-    sets.precast.JA['Restraint'] 			= { hands = "Boii Mufflers +2", }
+    sets.precast.JA['Restraint'] 			= { hands = "Boii Mufflers +3", }
     sets.precast.JA['Warcry'] 				= { head = "Agoge Mask +2" }
 --[[     sets.precast.JA['Blood Rage'] 			= { body = WAREmpy.Body }
     sets.precast.JA['Provoke'] 				= set_combine(sets.TreasureHunter, { hands = WARAF.Hands })
@@ -220,19 +220,20 @@ function init_gear_sets()
 
     -- General Set
     sets.precast.WS = {
+        ammo="Knobkierrie",
         head="Agoge Mask +2",
         body="Pumm. Lorica +3",
-        hands="Boii Mufflers +2",
+        hands="Boii Mufflers +3",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet="Sulev. Leggings +2",
-        neck="Asperity Necklace",
+        { name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Thrud Earring",
         right_ear="Moonshade Earring",
         left_ring="Niqmaddu Ring",
         --right_ring="Sroda Ring",
         right_ring="Rajas Ring",
-        back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+        back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
     }
     sets.precast.WS.MidAcc = set_combine(sets.precast.WS, { })
     sets.precast.WS.FullAcc = set_combine(sets.precast.WS.MidAcc, { })
@@ -248,37 +249,37 @@ function init_gear_sets()
 
     
 	--Great Axe
-    sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, { })  -- VIT 73%+
     sets.precast.WS['Upheaval'].MidAcc = set_combine(sets.precast.WS['Upheaval'], { })
     sets.precast.WS['Upheaval'].FullAcc = set_combine(sets.precast.WS['Upheaval'].MidAcc, { })
 	
-    sets.precast.WS['Ukko\'s Fury'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Ukko\'s Fury'] = set_combine(sets.precast.WS, { })  -- STR 80%
     sets.precast.WS['Ukko\'s Fury'].MidAcc = set_combine(sets.precast.WS['Ukko\'s Fury'], { })
     sets.precast.WS['Ukko\'s Fury'].FullAcc = set_combine(sets.precast.WS['Ukko\'s Fury'].MidAcc, { })
 
-    sets.precast.WS['King\'s Justice'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['King\'s Justice'] = set_combine(sets.precast.WS, { })  -- STR 50%
     sets.precast.WS['King\'s Justice'].MidAcc = set_combine(sets.precast.WS['King\'s Justice'], { })
     sets.precast.WS['King\'s Justice'].FullAcc = set_combine(sets.precast.WS['King\'s Justice'].MidAcc, { })
 
 	--Polearm
-    sets.precast.WS['Stardiver'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Stardiver'] = set_combine(sets.precast.WS, { })  -- STR 73%+
     sets.precast.WS['Stardiver'].MidAcc = set_combine(sets.precast.WS['Stardiver'], { })
     sets.precast.WS['Stardiver'].FullAcc = set_combine(sets.precast.WS['Stardiver'].MidAcc, { })
 	
-    sets.precast.WS['Impulse Drive'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Impulse Drive'] = set_combine(sets.precast.WS, { })  -- STR 100%
     sets.precast.WS['Impulse Drive'].MidAcc = set_combine(sets.precast.WS['Impulse Drive'], { })
     sets.precast.WS['Impulse Drive'].FullAcc = set_combine(sets.precast.WS['Impulse Drive'].MidAcc, { })
 	
 	--Sword
-    sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, { })  -- STR 50% MND 50%
     sets.precast.WS['Savage Blade'].MidAcc = set_combine(sets.precast.WS['Savage Blade'], { })
     sets.precast.WS['Savage Blade'].FullAcc = set_combine(sets.precast.WS['Savage Blade'].MidAcc, { })
 	
-    sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, { })  -- STR 30% MND 50%
     sets.precast.WS['Sanguine Blade'].MidAcc = set_combine(sets.precast.WS['Sanguine Blade'], { })
     sets.precast.WS['Sanguine Blade'].FullAcc = set_combine(sets.precast.WS['Sanguine Blade'].MidAcc, { })
 
-    sets.precast.WS['Requiscat'] = set_combine(sets.precast.WS, { })
+    sets.precast.WS['Requiscat'] = set_combine(sets.precast.WS, { })  -- MND 73%+
     sets.precast.WS['Requiscat'].MidAcc = set_combine(sets.precast.WS['Requiscat'], { })
     sets.precast.WS['Requiscat'].FullAcc = set_combine(sets.precast.WS['Requiscat'].MidAcc, { })
 
@@ -298,14 +299,14 @@ function init_gear_sets()
     sets.idle.Town = {
         head="Boii Mask +3",
         body="Boii Lorica +2",
-        hands="Boii Mufflers +2",
+        hands="Boii Mufflers +3",
         legs="Sulev. Cuisses +2",
         feet="Boii Calligae +2",
         neck="Sanctity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
         right_ear="Boii Earring",
-        left_ring="Chirich Ring",
+        left_ring="Chirich Ring +1",
         right_ring="Shneddick Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
@@ -325,13 +326,13 @@ function init_gear_sets()
         head="Boii Mask +3", --10
         body="Boii Lorica +2", --13
         hands="Sulev. Gauntlets +2", --5
-        legs="Sulev. Cuisses +2", --7
+        legs="Sakpata's Gauntlets", --8
         feet="Boii Calligae +2", --9
-        neck="Asperity Necklace",
+        neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
         right_ear="Boii Earring",
-        left_ring="Chirich Ring",
+        left_ring="Chirich Ring +1",
         right_ring="Defending Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
@@ -345,16 +346,17 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
  
     sets.engaged = {
+        ammo="Ginsen",
         head="Boii Mask +3",
         body="Boii Lorica +2",
-        hands="Sulev. Gauntlets +2",
-        legs="Sulev. Cuisses +2",
-        feet="Boii Calligae +2",
-        neck="Asperity Necklace",
+        hands="Sakpata's Gauntlets",
+        legs="Boii Cuisses +2",
+        feet="Pumm. Calligae +3",
+        neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
         right_ear="Boii Earring",
-        left_ring="Chirich Ring",
+        left_ring="Chirich Ring +1",
         --right_ring="Sroda Ring",
         right_ring="Niqmaddu Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -368,7 +370,11 @@ function init_gear_sets()
 -- Hybrid Sets
 -------------------------------------------------------------------------------------------------------------------    
 
-	sets.Hybrid = set_combine(sets.engaged, { })
+	sets.Hybrid = set_combine(sets.engaged, { 
+        legs="Sulev. Cuisses +2",
+        feet="Boii Calligae +2",
+        
+    })
     sets.Hybrid.MidAcc = set_combine(sets.engaged, { })
     sets.Hybrid.FullAcc = set_combine(sets.engaged, { })
 

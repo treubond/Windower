@@ -33,7 +33,6 @@ lua load PetTP;
 lua load pointwatch;
 lua load reive;
 lua load salvage2;
-lua load scoreboard;
 lua load send;
 lua load shortcuts;
 lua load SpeedChecker;

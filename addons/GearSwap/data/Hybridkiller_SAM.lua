@@ -138,8 +138,8 @@ function user_setup()
 	send_command('bind @t gs c cycle TreasureMode')
 	send_command('bind @c gs c toggle CP')
 	send_command('bind @r gs c toggle Reraise')
-    send_command('bind ^` input /ja "Hasso" <me>')
-	send_command('bind !` input /ja "Seigan" <me>')
+	send_command('bind ![ input /ja "Hasso" <me>')
+	send_command('bind !] input /ja "Seigan" <me>')
 	
 	--Command to show global binds in game[ CTRL + numpad- ]
 --[[ 	send_command(bind ^numpad- 
@@ -286,6 +286,8 @@ function user_unload()
 	send_command('unbind @`')
 	send_command('unbind @-')
 	send_command('unbind @=')
+	send_command('unbind ![')
+    send_command('unbind !]')
 	
 	--Remove Weapon Set binds
 	

@@ -1,0 +1,22 @@
+2024-01-14 10:34:31.8208 EasyFarm.Logging.NLogTextFileLogger EasyFarm Started ...
+2024-01-15 08:36:54.4528 EasyFarm.Logging.NLogTextFileLogger FSM thread interrupted
+System.Threading.ThreadInterruptedException: Thread was interrupted from a waiting state.
+   at System.Threading.Thread.SleepInternal(Int32 millisecondsTimeout)
+   at System.Threading.Thread.Sleep(Int32 millisecondsTimeout)
+   at MemoryAPI.Memory.EliteMmoWrapper.NavigationTools.MoveForwardTowardsPosition(Func`1 targetPosition, Boolean useObjectAvoidance) in C:\projects\easyfarm\MemoryAPI\Memory\EliteMMOWrapper.cs:line 126
+   at MemoryAPI.Memory.EliteMmoWrapper.NavigationTools.GotoNPC(Int32 id, Boolean useObjectAvoidance) in C:\projects\easyfarm\MemoryAPI\Memory\EliteMMOWrapper.cs:line 99
+   at EasyFarm.Classes.Executor.MoveIntoActionRange(IUnit target, BattleAbility action) in C:\projects\easyfarm\EasyFarm\Classes\Executor.cs:line 120
+   at EasyFarm.Classes.Executor.UseTargetedActions(IEnumerable`1 actions, IUnit target) in C:\projects\easyfarm\EasyFarm\Classes\Executor.cs:line 92
+   at EasyFarm.States.WeaponskillState.Run() in C:\projects\easyfarm\EasyFarm\States\WeaponskillState.cs:line 55
+   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 171
+   at EasyFarm.States.FiniteStateMachine.<RunFiniteStateMainWithThread>b__9_0() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 99
+2024-01-15 08:37:29.3912 EasyFarm.Logging.NLogTextFileLogger FSM thread cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 154
+   at EasyFarm.States.FiniteStateMachine.<RunFiniteStateMainWithThread>b__9_0() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 99
+2024-01-15 08:37:34.9521 EasyFarm.Logging.NLogTextFileLogger FSM thread cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at EasyFarm.States.FiniteStateMachine.RunStateMachine() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 154
+   at EasyFarm.States.FiniteStateMachine.<RunFiniteStateMainWithThread>b__9_0() in C:\projects\easyfarm\EasyFarm\States\FiniteStateMachine.cs:line 99

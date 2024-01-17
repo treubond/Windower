@@ -22,7 +22,7 @@ nukeModes 	= M('normal', 'acc')
 -- You can put specific weapons in the midcasts and precast sets for spells, but after a spell is 
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
-mainWeapon = M('Kaja Sword','Kali','Sangoma')
+mainWeapon = M('Naegling','Kali','Sangoma')
 subWeapon = M('Ammurapi shield','Kali','Legato Dagger','Fusetto +2')
 --mainWeapon = M('Carnwenhan','Tauret','Naegling','Sangoma','Twashtar','Marin Staff +1','Daybreak')
 --subWeapon = M('Ammurapi shield','Tauret','Gleti\'s Knife','Fusetto +2','Genmei Shield','Duplus Grip')
@@ -213,7 +213,7 @@ function get_sets()
 		ART.BOD	= ""--"Brioso Justaucorps +3"
 		ART.HND	= ""--"Brioso Cuffs +3"
 		ART.LEG	= ""--"Brioso Cannions +3"
-		ART.FEE	= "Brioso Slippers +1"
+		ART.FEE	= "Brioso Slippers +3"
 
 --------------------
 --[RELIC ARMOR]-[REL]
@@ -230,7 +230,7 @@ function get_sets()
 --------------------    
 	EMP = {}		--Leave This Empty
 		EMP.HED	= "Fili Calot +2"
-		EMP.BOD	= "Fili Hongreline +2"
+		EMP.BOD	= "Fili Hongreline +3"
 		EMP.HND	= "Fili Manchettes +2"
 		EMP.LEG	= "Fili Rhingrave +1"
 		EMP.FEE	= "Fili Cothurnes +2"
@@ -240,7 +240,7 @@ function get_sets()
 	JSE = {}		--Leave This Empty
 --[WS CAPES]
 	JSE.WSD={}
-		JSE.WSD.STR	= "" --STR WS damage Cape
+		JSE.WSD.STR	= { name="Intarabus's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}} --STR WS damage Cape
 		JSE.WSD.DEX = "" --DEX WS damage Cape	
 		JSE.WSD.AGI	= "" --AGI WS damage Cape
 		JSE.WSD.CHR = ""--{name="Intarabus's Cape", augments={'CHR+20','Accuracy+20 Attack+20','CHR+10','Weapon skill damage +10%',}} --CHR WS damage Cape
@@ -262,7 +262,7 @@ function get_sets()
 		JSE.STP		= ""--{name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}} --STORE TP CAPE
 		JSE.DWL		= "" --Dual wield Cape
 		JSE.HAS		= "" --HASTE CAPE
-		JSE.DBL		= ""--{name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}} --Double Attack TP Cape
+		JSE.DBL		= { name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}} --{name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}} --Double Attack TP Cape
 --[IDLE CAPES]
 	JSE.IDL={}	
 		JSE.IDL.REG	= "" --REGEN CAPE
@@ -317,11 +317,11 @@ function get_sets()
 ---------------
  	sets.me.idle.refresh = {
 		range="Daurdabla",
-		head="Fili Calot +2",
-		body="Fili Hongreline +2",
-		hands="Fili Manchettes +2",
-		legs="Inyanga Shalwar +2",
-		feet="Fili Cothurnes +2",
+		head=EMP.HED,
+		body="Artsieq Jubbah",
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
 		neck="Sanctity Necklace",
 		waist="Embla Sash",
 		left_ear="Mache Earring",
@@ -348,11 +348,11 @@ function get_sets()
 ---------------
 	sets.me.idle.dt = {
 		range="Daurdabla",
-		head="Fili Calot +2",
-		body="Fili Hongreline +2",
-		hands="Fili Manchettes +2",
-		legs="Inyanga Shalwar +2",
-		feet="Fili Cothurnes +2",
+		head=EMP.HED,
+		body=EMP.BOD,
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
 		neck="Sanctity Necklace",
 		waist="Embla Sash",
 		left_ear="Mache Earring",
@@ -475,6 +475,19 @@ function get_sets()
 -- E.G.  your "Normal" "Dualwield" set would be "normaldw"
 --Set combine flow is  NormalSW > NormalDW & NormalSWDT > NormalDWDT
     sets.me.melee.normalsw 		={
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		head=EMP.HED,
+		body="Ayanmo Corazza +2",
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
+		neck={ name="Bard's Charm +1", augments={'Path: A',}},
+		waist="Sailfi Belt +1",
+		left_ear="Mache Earring",
+		right_ear="Crep. Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Rajas Ring",
+		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head="Ayanmo zucchetto +2",
 		neck="bard's charm +1",
@@ -491,6 +504,7 @@ function get_sets()
 	}
 	
     sets.me.melee.normalswdt 	=set_combine(sets.me.melee.normalsw,{
+		ring2="Defending Ring",
 		--[[ ring1="Defending Ring",
 		ring2="Moonlight Ring" ]]
 	}) --45 PDT :: 35 MDT
@@ -518,6 +532,8 @@ function get_sets()
 --[MELEE]-[AFTERMATH]
 ---------------
     sets.me.melee.aftermathsw 	= {
+		waist="Sailfi Belt +1",
+		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+14','"Store TP"+4','Quadruple Attack +3',}},
 		head=AYA.HED,
 		neck=REL.NEK,
@@ -555,6 +571,8 @@ function get_sets()
 --[MELEE]-[ACC]
 ---------------
     sets.me.melee.ACCsw 	= {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
 		body="Ashera Harness",
@@ -587,6 +605,9 @@ function get_sets()
 --[MELEE]-[DT]
 ---------------
     sets.me.melee.dtsw 		= {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head="Bunzi's Hat",
 		body="Ashera Harness",
@@ -617,6 +638,9 @@ function get_sets()
 --[MELEE]-[SUBTLE BLOW]
 ---------------
     sets.me.melee.SubtleBlowsw 		= {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
 		body="Ashera Harness",
@@ -654,6 +678,10 @@ function get_sets()
 --[WEAPONSKILL]-[SWORD]-[SAVAGE BLADE]-[MOD:50%MND/50%STR/P.ATTK]-[ELEMENT:Fragmentation/Scission]
 ---------------
     sets.me["Savage Blade"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		right_ring="Rajas Ring",
+		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body="Bihu Jstcorps. +3",
@@ -673,6 +701,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[]-[]  
 ---------------
     sets.me["Mordant Rime"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head=REL.HED,
 		body=REL.BOD,
@@ -692,6 +723,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[]-[MOD:80%DEX/P.ATTK]
 ---------------
     sets.me["Rudra's Storm"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -711,6 +745,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[EXTENERATOR]-[MOD:85%AGI/P.ATTK/GORGET]-[ELEMENT:FRAGMENTATION/SCISSION]
 ---------------
     sets.me["Exenterator"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=REL.HED,
 		body=REL.BOD,
@@ -730,6 +767,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[EVISCERATION]-[MOD:50%DEX/P.ATTK/GORGET]-[ELEMENT:GRAVITATION/TRANSFIXION]
 ---------------
     sets.me["Evisceration"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
 		body=REL.BOD,
@@ -749,6 +789,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[AEOLIAN EDGE]-[MOD:40%DEX/40%INT/M.ATTK]-[ELEMENT: IMPACTION/SCISSION/DETONATION]
 ---------------
     sets.me["Aeolian Edge"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head="Nyame Helm",
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -768,6 +811,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[ENERGY DRAIN]-[MOD:100%MND/NO ATTK MOD]-[ELEMENT:DARK (NO SC ELEMENT)]
 ---------------
     sets.me["Energy Drain"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head=ART.HED,
 		body=REL.BOD,
@@ -787,6 +833,9 @@ function get_sets()
 --[WEAPONSKILL]-[DAGGER]-[ENERGY STEAL]-[MOD:100%MND/NO ATTK MOD]-[ELEMENT:DARK (NO SC ELEMENT)]
 ---------------
     sets.me["Energy Steal"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head=ART.HED,
 		body=REL.BOD,
@@ -806,6 +855,9 @@ function get_sets()
 --[WEAPONSKILL]-[STAFF]-[SHELL CRUSHER]-[MOD:100%STR]-[DETONATION)]
 ---------------
     sets.me["Shell Crusher"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head={ name="Bihu Roundlet +3", augments={'Enhances "Con Anima" effect',}},
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -826,6 +878,9 @@ function get_sets()
 --[WEAPONSKILL]-[STAFF]-[SHATTERSOUL]-[MOD:73~85%INT]-[GRAVITATION/INDURATION)]
 ---------------
     sets.me["Shattersoul"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head={ name="Bihu Roundlet +3", augments={'Enhances "Con Anima" effect',}},
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -846,6 +901,9 @@ function get_sets()
 --[WEAPONSKILL]-[STAFF]-[RETRIBUTION]-[MOD:50% MND/30% STR]-[GRAVITATION/RREVERBERATION)]
 ---------------
     sets.me["Retribution"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -865,6 +923,9 @@ function get_sets()
 --[WEAPONSKILL]-[STAFF]-[CATACLYSM]-[MOD:30% STR/30% INT]-[GRAVITATION/REVERBERATION)]
 ---------------
     sets.me["Cataclysm"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head="Pixie Hairpin +1",
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -884,6 +945,9 @@ function get_sets()
 --[WEAPONSKILL]-[CLUB]-[FLASH NOVA]-[MOD:50% STR/50% MND]-[REVERBERATION/INDURATION)]
 ---------------
     sets.me["Flash Nova"] = {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		waist="Sailfi Belt +1",
+		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head="Nyame Helm",
 		body={ name="Bihu Jstcorps. +3", augments={'Enhances "Troubadour" effect',}},
@@ -973,6 +1037,20 @@ function get_sets()
     }	--68 FC in gear
 	
     sets.precast.songs = {
+		sub="Culminus",
+		range="Gjallarhorn",
+		head="Fili Calot +2",
+		body="Fili Hongreline +3",
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		legs="Inyanga Shalwar +2",
+		feet="Fili Cothurnes +2",
+		neck="Moonbow Whistle",
+		waist="Embla Sash",
+		left_ear="Aredan Earring",
+		right_ear="Ethereal Earring",
+		left_ring="Metamorph Ring",
+		right_ring="Stikini Ring",
+		back="Solemnity Cape",
 		--[[ sub="Genmei Shield",
 		range="Gjallarhorn",
 		head="Fili Calot +3",
@@ -1340,6 +1418,8 @@ function get_sets()
 --[MIDCASTING]-[ENHANCING DURATION (SELF)]
 ---------------
     sets.midcast.enhancing.duration = {
+		sub="Ammurapi Shield",
+		waist="Embla Sash",
 		--[[ main=Carnwenhan,
 		sub="Ammurapi Shield",
 		range={ name="Linos", augments={'Mag. Evasion+13','Phys. dmg. taken -4%','HP+15',}},
@@ -1461,7 +1541,7 @@ function get_sets()
 --RDM CAN GET REGEN 2 UP TO 30 HP PER TIC, WHICH IS INCREDIBLY STRONG - ALMOST AS STRONG AS A FULL POWER REGEN 5  
 ---------------
 	sets.midcast.regen = set_combine(sets.midcast.enhancing.duration, {
-		--main="Bolelabunga",
+		main="Bolelabunga",
 		head=INY.HED,
 		--body={ name="Telchine Chas.", augments={'"Waltz" potency +5%','Enh. Mag. eff. dur. +10',}},
     })
@@ -1484,7 +1564,7 @@ function get_sets()
 		right_ear="Ethereal Earring",
 		left_ring="Defending Ring",
 		right_ring="Stikini Ring",
-		back="Solemnity Cape",
+		back=JSE.DBL,
 		--[[ main="Carnwenhan",
 		sub="Genmei Shield",
 		-- range="Gjallarhorn",
@@ -1529,7 +1609,7 @@ function get_sets()
 		right_ear="Ethereal Earring",
 		left_ring="Defending Ring",
 		right_ring="Stikini Ring",
-		back="Solemnity Cape",
+		back=JSE.DBL,
 		--[[ main={ name="Carnwenhan", augments={'Path: A',}},
 		sub="Ammurapi Shield",
 		range="Gjallarhorn",
@@ -1639,8 +1719,7 @@ function get_sets()
 	})
 		
 	sets.midcast.Threnody 	= set_combine(sets.midcast.songs.debuff, {
-		--[[ range="Gjallarhorn +1",
-		body="Fili Hongreline +3",	 ]]	
+		range="Gjallarhorn",
 		body=EMP.BOD,
 	})
 	

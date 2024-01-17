@@ -24,7 +24,6 @@
     <addon>shortcuts</addon>
     <addon>azureSets</addon>
     <addon>indinope</addon>
-    <addon>scoreboard</addon>
     <plugin>DelayMeNot</plugin>
     <plugin>FFXIDB</plugin>
     <plugin>Guildwork</plugin>

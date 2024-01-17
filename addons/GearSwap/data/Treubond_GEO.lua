@@ -240,7 +240,7 @@ function get_sets()
 		body="Jhakri Robe +2",
 		hands="Nyame Gauntlets",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet="Nyame Sollerets",
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Hierarch Belt",
 		left_ear="Odnowa Earring +1",
@@ -278,7 +278,7 @@ function get_sets()
 		body="Jhakri Robe +2",
 		hands="Nyame Gauntlets",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet="Nyame Sollerets",
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Penitent's Rope",
 		left_ear="Odnowa Earring +1",
@@ -325,7 +325,7 @@ function get_sets()
 		right_ear="Eabani Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",
-		back="Solemnity Cape",
+		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
 		--[[ main = "Solstice",
 		sub = "Culminus",
 		range = "Dunna",
@@ -366,8 +366,8 @@ function get_sets()
 		waist = "Potent Belt",
 		left_ear = "Mache Earring",
 		right_ear = "Cessance Earring",
-		left_ring = "Chirich Ring",
-		right_ring = "Rajas Ring",
+		left_ring = "Chirich Ring +1",
+		right_ring = "Chirich Ring",
 		--[[ neck = "Lissome Necklace",
 		waist = "Goading Belt",
 		left_ear = "Suppanomimi",
@@ -378,7 +378,7 @@ function get_sets()
 	
     -- Luopan is out
 	sets.pan.melee = set_combine(sets.pan.idle[idleMode],{
-
+		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
     }) 
     
     -- Weapon Skill sets
@@ -585,7 +585,7 @@ function get_sets()
 
 
     })
-	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  44/19
+	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  43/19
 		main="Bunzi's Rod", --10
 		sub="Culminus",
 		ammo="Ghastly Tathlum +1",
@@ -593,7 +593,7 @@ function get_sets()
 		body="Ea Houppelande", --8/8
 		hands="Ea Cuffs", --5/5
 		legs={ name="Nyame Flanchard", augments={'Path: B',}}, --6/0  
-		feet="Jhakri Pigaches +2", --7/0
+		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6/0
 		neck="Saevus Pendant +1",
 		waist="Olympus Sash",
 		left_ear="Malignance Earring",
@@ -648,7 +648,9 @@ function get_sets()
 	})
 	
 	sets.midcast["Drain"] = set_combine(sets.midcast.IntEnfeebling, {
+		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
 		left_ring="Excelsis Ring",
+		right_ring = "Archon Ring",
 		--[[ -- Sinister Reign Club
 		-- Omen Shield
 		head = RELIC.Head,
@@ -669,7 +671,7 @@ function get_sets()
 		main = "Daybreak",
 		sub = "Culminus",
 		hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-		--right_ring="Metamorph Ring",
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     })
     sets.midcast.cure.weather = set_combine(sets.midcast.cure.normal,{
 

@@ -24,11 +24,14 @@
                 <target>false</target>
             </party>
             <self>
-                <always>false</always>
-                <combat>false</combat>
-                <target>false</target>
+                <always>true</always>
+                <combat>true</combat>
+                <target>true</target>
             </self>
         </blinking>
+        <khrone>
+
+        </khrone>
         <others>
 
         </others>

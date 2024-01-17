@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GlobalConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Port>2025</Port>
+  <Positions />
+  <Reflection />
+  <Always_On_Top_Main>true</Always_On_Top_Main>
+  <Always_On_Top_Config>true</Always_On_Top_Config>
+  <Always_On_Top_Log>true</Always_On_Top_Log>
+  <Always_On_Top_Error>true</Always_On_Top_Error>
+  <Always_On_Top_Warning>true</Always_On_Top_Warning>
+  <Always_On_Top_Debug>true</Always_On_Top_Debug>
+  <Verbose_Logs>false</Verbose_Logs>
+  <Fast_Follow_Log>false</Fast_Follow_Log>
+  <Single_use>true</Single_use>
+  <Allow_Trades>false</Allow_Trades>
+  <Allow_Vendors>false</Allow_Vendors>
+  <Engage_Delay>2</Engage_Delay>
+  <Disengage_Delay>2</Disengage_Delay>
+  <Switch_Delay>1</Switch_Delay>
+  <Message_Delay>0</Message_Delay>
+  <Blacklists>
+    <Mirror_Blacklists>
+      <Mirror_Blacklist>
+        <Name>Veridical Conflux</Name>
+        <Zone>247</Zone>
+        <Index>147</Index>
+        <Comment>Odyssey Entry</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Diaphanous Transposer</Name>
+        <Zone>267</Zone>
+        <Index>411</Index>
+        <Comment>Sortie Entry</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Ambuscade Tome</Name>
+        <Zone>249</Zone>
+        <Index>150</Index>
+        <Comment>Ambuscade Entry</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Veridical Conflux</Name>
+        <Zone>248</Zone>
+        <Index>125</Index>
+        <Comment>HTB Entry (Selbina)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Entry Gate</Name>
+        <Zone>78</Zone>
+        <Index>638</Index>
+        <Comment>Einherjar</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Nareema</Name>
+        <Zone>79</Zone>
+        <Index>563</Index>
+        <Comment>Assault NPC (Leujaoam Sanctum)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Daswil</Name>
+        <Zone>52</Zone>
+        <Index>428</Index>
+        <Comment>Assault NPC (Mamool Ja Training Grounds)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Waudeen</Name>
+        <Zone>61</Zone>
+        <Index>488</Index>
+        <Comment>Assault NPC (Lebros Cavern)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Nahshib</Name>
+        <Zone>79</Zone>
+        <Index>562</Index>
+        <Comment>Assault NPC (Periqia)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Meyaada</Name>
+        <Zone>54</Zone>
+        <Index>647</Index>
+        <Comment>Assault NPC (Ilrusi Atoll)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Shahayl</Name>
+        <Zone>72</Zone>
+        <Index>243</Index>
+        <Comment>Assault NPC (Nyzul Isle)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coelestrox</Name>
+        <Zone>291</Zone>
+        <Index>886</Index>
+        <Comment>AF3 Upgrade Goblin</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Earthly Concrescence</Name>
+        <Zone>291</Zone>
+        <Index>888</Index>
+        <Comment>Omen Entry</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Ethereal Ingress</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Omen Warps</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Temprix</Name>
+        <Zone>291</Zone>
+        <Index>885</Index>
+        <Comment>Aeonic Goblin</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Runic Seal</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Assault Entry</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Enigmatic Footprints</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Dynamis Divergence Entry</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Sturdy Pyxis</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Abyssea Chests</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Emblazonded Reliquary</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Reisenjima Chests</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Rediroq</Name>
+        <Zone>129</Zone>
+        <Index>97</Index>
+        <Comment>Moblin Maze Mongers</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Odyssey Chests</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Odyssey Coffer</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Aurum Strongbox</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Odyssey Aurum Strongbox</Comment>
+      </Mirror_Blacklist>
+    </Mirror_Blacklists>
+  </Blacklists>
+  <Protection>
+    <Enabled>false</Enabled>
+    <Dress_Up>false</Dress_Up>
+    <Random>false</Random>
+    <Original_Party>
+      <Player_1 />
+      <Player_2 />
+      <Player_3 />
+      <Player_4 />
+      <Player_5 />
+      <Player_6 />
+    </Original_Party>
+    <Protect_Party>
+      <Player_1 />
+      <Player_2 />
+      <Player_3 />
+      <Player_4 />
+      <Player_5 />
+      <Player_6 />
+    </Protect_Party>
+    <Original_Linkshell>
+      <Linkshell_1 />
+      <Linkshell_2 />
+    </Original_Linkshell>
+    <Protect_Linkshell>
+      <Linkshell_1 />
+      <Linkshell_2 />
+    </Protect_Linkshell>
+  </Protection>
+</GlobalConfig>

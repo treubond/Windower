@@ -381,7 +381,7 @@ function get_sets()
       body="Wicce Coat +2",
       hands="Nyame Gauntlets",
       legs="Wicce Chausses +2",
-      feet="Nyame Sollerets",
+      feet={ name="Nyame Sollerets", augments={'Path: B',}},
       neck="Morgana's Choker",
       waist="Hierarch Belt",
       left_ear="Loquac. Earring",
@@ -498,7 +498,7 @@ function get_sets()
 
    sets.precast["Dispelga"] = set_combine(sets.precast.casting, {
      main="Daybreak",
-     --sub="Ammurapi Shield"
+     sub="Ammurapi Shield"
    })
    
    sets.precast["Impact"] = set_combine(sets.precast.casting, {
@@ -548,7 +548,7 @@ function get_sets()
     sets.midcast.Obi             = { waist="Hachirin-no-Obi"   }
     sets.midcast.Orpheus         = { waist="Orpheus's Sash"    }
     sets.midcast.MPReturn        = { --[[ body="Spaekona's Coat +3" ]] }
-    sets.midcast.JaSpellDuration = { --[[ legs="Wicce Chausses +3" ]]  }
+    sets.midcast.JaSpellDuration = { legs="Wicce Chausses +2"  }
 
     -----------------------------------------------------------------------------------------------
     -- Helix sets automatically derives from casting sets. SO DONT PUT ANYTHING IN THEM other than:
@@ -700,9 +700,9 @@ function get_sets()
     ammo="Ghastly Tathlum +1",
     head="Ea Hat",
     body="Ea Houppelande",
-    hands="Ea Cuffs",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Wicce Chausses +2",
-    feet="Jhakri Pigaches +2",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck="Saevus Pendant +1",
     waist="Penitent's Rope",
     left_ear="Malignance Earring",
@@ -781,7 +781,7 @@ function get_sets()
    
    sets.midcast.Dispelga = set_combine(sets.midcast.IntEnfeebling, {
      main="Daybreak",
-     --sub="Ammurapi Shield"
+     sub="Ammurapi Shield"
    })
    
    sets.midcast.Impact = set_combine(sets.midcast.IntEnfeebling, {
@@ -846,7 +846,9 @@ function get_sets()
     })
 
     sets.midcast.Drain = set_combine(sets.midcast.nuking.normal, {
+      left_ring="Archon ring",
       right_ring="Excelsis Ring",
+      feet={ name="Agwu's Pigaches", augments={'Path: A',}},
       --[[ ammo="Pemphredo tathlum",
       head="Pixie hairpin +1",
       neck="Erra pendant",

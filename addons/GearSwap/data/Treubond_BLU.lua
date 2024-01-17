@@ -206,7 +206,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT', 'MDT')
     state.IdleMode:options('Normal', 'DT')--, 'Learning')
 
-    state.WeaponSet = M{['description']='Weapon Set', 'Almace', 'Naegling', 'Maxentius', 'Nuking'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Tizona', 'Nuking',} -- 'Maxentius', 'Almace', 'Nuking'}
     state.WeaponLock = M(false, 'Weapon Lock')
     state.MagicBurst = M(false, 'Magic Burst')
     -- state.CP = M(false, "Capacity Points Mode")
@@ -216,7 +216,9 @@ function user_setup()
     -- include('Global-GEO-Binds.lua') -- OK to remove this line
 
     -- send_command('lua l azureSets')
-
+    send_command('bind f9 gs c cycle offensemode')
+    send_command('bind ^f9 gs c cycle hybridmode')
+    
     send_command('bind @t gs c cycle treasuremode')
     send_command('bind @w gs c toggle WeaponLock')
     -- send_command('bind @c gs c toggle CP')
@@ -276,6 +278,9 @@ end
 
 -- Called when this job file is unloaded (eg: job change)
 function user_unload()
+    send_command('unbind f9')
+    send_command('unbind ^f9')
+    
     send_command('unbind @t')
     send_command('unbind !`')
     send_command('unbind ^-')
@@ -376,7 +381,7 @@ function init_gear_sets()
         body="Assim. Jubbah +2",
         hands="Jhakri Cuffs +2",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet="Hashi. Basmak +2",
+        feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Moonshade Earring",
@@ -584,26 +589,31 @@ function init_gear_sets()
     -- If you create a set with both offense and defense modes, the offense mode should be first.
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
 
-    sets.engaged = {
-        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
-        body="Ayanmo Corazza +2",
-        hands={ name="Herculean Gloves", augments={'AGI+10','Attack+19','Accuracy+20 Attack+20','Mag. Acc.+20 "Mag.Atk.Bns."+20',}},
+    sets.engaged = { -- DW 22% + DW3 25%
+        ammo="Ginsen",
+        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
+        body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
+        hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
         legs="Jhakri Slops +2",
         feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Eabani Earring",
-        right_ear="Suppanomimi",
-        left_ring="Chirich Ring",
-        right_ring="Rajas Ring",
+        left_ear="Eabani Earring", -- 4
+        right_ear="Suppanomimi", -- 5
+        left_ring="Chirich Ring +1",
+        right_ring="Chirich Ring",
         back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
 
-    sets.engaged.LowAcc = set_combine(sets.engaged, {neck={ name="Mirage Stole +1", augments={'Path: A',}},})
+    sets.engaged.LowAcc = set_combine(sets.engaged, {
+        hands={ name="Herculean Gloves", augments={'AGI+10','Attack+19','Accuracy+20 Attack+20','Mag. Acc.+20 "Mag.Atk.Bns."+20',}},
+        neck={ name="Mirage Stole +1", augments={'Path: A',}},
+        left_ear="Mache Earring",
+    })
 
-    sets.engaged.MidAcc = set_combine(sets.engaged.LowAcc, {neck={ name="Mirage Stole +1", augments={'Path: A',}},})
+    sets.engaged.MidAcc = set_combine(sets.engaged.LowAcc, {})
 
-    sets.engaged.HighAcc = set_combine(sets.engaged.MidAcc, {head="Aya. Zucchetto +2", left_ear="Mache Earring",})
+    sets.engaged.HighAcc = set_combine(sets.engaged.MidAcc, {head="Aya. Zucchetto +2", })
 
     sets.engaged.STP = set_combine(sets.engaged, {})
 
@@ -616,7 +626,21 @@ function init_gear_sets()
     -- * DW1: +10%
 
     -- No Magic Haste (74% DW to cap)
-    sets.engaged.DW = set_combine(sets.engaged, {})
+    sets.engaged.DW = set_combine(sets.engaged, { -- DW 22% + DW3 25%
+        ammo="Ginsen",
+        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
+        body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
+        hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
+        legs="Jhakri Slops +2",
+        feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+        neck={ name="Mirage Stole +1", augments={'Path: A',}},
+        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        left_ear="Eabani Earring", -- 4
+        right_ear="Suppanomimi", -- 5
+        left_ring="Chirich Ring +1",
+        right_ring="Chirich Ring",
+        back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+    })
 
     sets.engaged.DW.LowAcc = set_combine(sets.engaged.DW, {})
 
@@ -660,7 +684,21 @@ function init_gear_sets()
     sets.engaged.DW.STP.HighHaste = set_combine(sets.engaged.DW.HighHaste, {})
 
     -- 45% Magic Haste (36% DW to cap)
-    sets.engaged.DW.MaxHaste = set_combine(sets.engaged, {}) -- 6%
+    sets.engaged.DW.MaxHaste = set_combine(sets.engaged, {--DW3 (25%) + 12 gear
+        ammo="Ginsen",
+        head="Hashishin Kavuk +2",
+        body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
+        hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
+        legs="Jhakri Slops +2",
+        feet="Hashi. Basmak +2",
+        neck={ name="Mirage Stole +1", augments={'Path: A',}},
+        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        left_ear="Eabani Earring", -- 4
+        right_ear="Cessance Earring",
+        left_ring="Chirich Ring +1",
+        right_ring="Chirich Ring",
+        back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+    }) -- 6%
 
     sets.engaged.DW.LowAcc.MaxHaste = set_combine(sets.engaged.DW.MaxHaste, {})
 
@@ -675,6 +713,7 @@ function init_gear_sets()
     ------------------------------------------------------------------------------------------------
 
     sets.engaged.Hybrid = {
+        ammo="Staunch Tathlum",
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         body="Hashishin Mintan +2",
         hands="Hashi. Bazu. +2",
@@ -684,7 +723,7 @@ function init_gear_sets()
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Eabani Earring",
         right_ear="Suppanomimi",
-        left_ring="Chirich Ring",
+        left_ring="Chirich Ring +1",
         right_ring="Defending Ring",
         back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
@@ -750,9 +789,10 @@ function init_gear_sets()
     --sets.Reive = {neck="Ygnas's Resolve +1"}
 
     sets.Almace = {--[[ main="Almace", sub="Sequence" ]]}
-    sets.Naegling = {--[[ main="Naegling", sub="Thibron" ]]}
+    sets.Naegling = {main="Naegling", sub="Thibron"}
     sets.Maxentius = {--[[ main="Maxentius", sub="Thibron" ]]}
-    sets.Nuking = {--[[ main="Maxentius", sub="Naegling" ]]}
+    sets.Nuking = {main="Kaja Rod", sub="Bunzi's Rod"}
+    sets.Tizona = {main={ name="Tizona", augments={'Path: A',}}, sub="Thibron"}
 
 end
 

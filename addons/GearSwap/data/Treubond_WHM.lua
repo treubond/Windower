@@ -429,7 +429,7 @@ function init_gear_sets()
         }
 
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
-        --main="Bolelabunga",
+        main="Bolelabunga",
         sub="Ammurapi Shield",
         head="Inyanga Tiara +1",
         body=gear.Telchine_ENH_body,
@@ -607,7 +607,7 @@ function init_gear_sets()
         body="Orison Bliaut +1",
         hands="Nyame Gauntlets",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet="Nyame Sollerets",
+        feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Penitent's Rope",
         left_ear="Eabani Earring",

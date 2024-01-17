@@ -22,6 +22,8 @@ return {
   },
 ["wardrobe6"] = {
   },
+["slip 31"] = {
+  },
 ["wardrobe2"] = {
   },
 ["case"] = {
