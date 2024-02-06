@@ -661,7 +661,7 @@ function init_gear_sets()
 		hands="Nyame Gauntlets",
 		legs="Wakido Haidate +3",
 		feet="Nyame Sollerets",
-		neck={ name="Sam. Nodowa +1", augments={'Path: A',}},
+		neck="Elite Royal Collar",
 		waist="Ioskeha Belt +1",
 		left_ear="Cessance Earring",
 		right_ear="Ethereal Earring",

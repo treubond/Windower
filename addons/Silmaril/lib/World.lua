@@ -29,10 +29,10 @@ do
             end
             if enemy and enemy.is_npc and enemy.valid_target and not enemy.in_party and not enemy.charmed and enemy.spawn_type == 16 then
                     formattedString = formattedString..enemy.name..'|'..round(enemy.distance:sqrt(),2)..'|'..enemy.hpp..'|'..enemy.id..'|'..enemy.index..'|'..enemy.status..'|'
-                ..round(enemy.x,3)..'|'..round(enemy.y,3)..'|'..round(enemy.z,3)..'|'..enemy.spawn_type..'|'..enemy.claim_id..'|'..world.zone..'|'..enemy.model_size..','
+                ..round(enemy.x,3)..'|'..round(enemy.y,3)..'|'..round(enemy.z,3)..'|'..enemy.spawn_type..'|'..enemy.claim_id..'|'..world.zone..'|'..round(enemy.model_size,1)..','
             elseif enemy and enemy.valid_target and not enemy.in_party and enemy.spawn_type == 1 then
                 formattedString2 = formattedString2..enemy.name..'|'..round(enemy.distance:sqrt(),2)..'|'..enemy.hpp..'|'..enemy.id..'|'..enemy.index..'|'..enemy.status..'|'
-                ..round(enemy.x,3)..'|'..round(enemy.y,3)..'|'..round(enemy.z,3)..'|'..enemy.spawn_type..'|'..enemy.claim_id..'|'..world.zone..'|'..enemy.model_size..'|'
+                ..round(enemy.x,3)..'|'..round(enemy.y,3)..'|'..round(enemy.z,3)..'|'..enemy.spawn_type..'|'..enemy.claim_id..'|'..world.zone..'|'..round(enemy.model_size,1)..'|'
                 ..enemy.target_index..'|'..tostring(enemy.in_party)..'|'..tostring(enemy.in_alliance)..'|'..tostring(enemy.is_npc)..','
             end
         end

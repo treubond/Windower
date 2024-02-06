@@ -4,6 +4,48 @@
         <setmode>PreserveTraits</setmode>
         <setspeed>0.65</setspeed>
         <spellsets>
+            <DD>
+                <slot01>delta thrust</slot01>
+                <slot02>barbed crescent</slot02>
+                <slot03>thrashing assault</slot03>
+                <slot04>heavy strike</slot04>
+                <slot05>acrid stream</slot05>
+                <slot06>paralyzing triad</slot06>
+                <slot07>sinker drill</slot07>
+                <slot08>erratic flutter</slot08>
+                <slot09>sudden lunge</slot09>
+                <slot10>fantod</slot10>
+                <slot11>diffusion ray</slot11>
+                <slot12>magic fruit</slot12>
+                <slot13>cocoon</slot13>
+                <slot14>tail slap</slot14>
+                <slot15>sickle slash</slot15>
+                <slot16>searing tempest</slot16>
+                <slot17>subduction</slot17>
+                <slot18>occultation</slot18>
+                <slot19>nat. meditation</slot19>
+            </DD>
+            <Nuking>
+                <slot01>delta thrust</slot01>
+                <slot02>barbed crescent</slot02>
+                <slot03>acrid stream</slot03>
+                <slot04>spectral floe</slot04>
+                <slot05>sound blast</slot05>
+                <slot06>memento mori</slot06>
+                <slot07>silent storm</slot07>
+                <slot08>erratic flutter</slot08>
+                <slot09>entomb</slot09>
+                <slot10>tenebral crush</slot10>
+                <slot11>cursed sphere</slot11>
+                <slot12>magic fruit</slot12>
+                <slot13>cocoon</slot13>
+                <slot14>magic hammer</slot14>
+                <slot15>regurgitation</slot15>
+                <slot16>searing tempest</slot16>
+                <slot17>subduction</slot17>
+                <slot18>occultation</slot18>
+                <slot19>water bomb</slot19>
+            </Nuking>
             <default>
 
             </default>

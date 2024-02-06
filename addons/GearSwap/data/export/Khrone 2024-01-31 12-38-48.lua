@@ -1,0 +1,17 @@
+sets.exported={
+    main="Naegling",
+    sub="Ammurapi Shield",
+    range="Daurdabla",
+    head={ name="Chironic Hat", augments={'Pet: Attack+11 Pet: Rng.Atk.+11','STR+9','"Refresh"+2','Accuracy+6 Attack+6','Mag. Acc.+9 "Mag.Atk.Bns."+9',}},
+    body="Artsieq Jubbah",
+    hands="Fili Manchettes +2",
+    legs="Inyanga Shalwar +2",
+    feet="Fili Cothurnes +2",
+    neck="Sanctity Necklace",
+    waist="Embla Sash",
+    left_ear="Mache Earring",
+    right_ear="Ethereal Earring",
+    left_ring="Defending Ring",
+    right_ring="Stikini Ring",
+    back="Solemnity Cape",
+}

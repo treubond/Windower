@@ -1,6 +1,7 @@
 do
     local party_position = {p0='0',p1='1',p2='2',p3='3',p4='4',p5='5',a10='6',a11='7',a12='8',a13='9',a14='10',a15='11',a20='12',a21='13',a22='14',a23='15',a24='16',a25='17'}
     local party_ids = {}
+    local alliance_ids = {}
     local party_location = {}
 
     function get_party_data()
@@ -10,30 +11,29 @@ do
         local p = get_player()
         if not p then return end
 
-        -- get the world data
-        local w = get_world()
-        if not w then return end
-
         party_ids = {}
         local party = windower.ffxi.get_party() -- Update the table of the party
         if not party then return end
         for position, member in pairs(party) do
             if type(member) == "table" and member.name and member.name ~= '' then
-                local formattedString = "party_"..party_position[position]..'_'..tostring(member.name)..','
+                local formattedString = "party_"..party_position[position]..'_'..member.name..','
                 ..tostring(member.hp)..','..tostring(member.hpp)..','..tostring(member.mp)..','
                 ..tostring(member.mpp)..','..tostring(member.tp)..','..tostring(member.zone)
                 if member.mob then
                     local mob = {}
-                    local local_player = party_location[tonumber(member.mob.id)]
-                    if tonumber(party_position[position]) < 6 and not member.mob.is_npc then
-                        party_ids[member.mob.id] = position
+                    local local_player = party_location[member.mob.id]
+                    if not member.mob.is_npc then
+                        if tonumber(party_position[position]) < 6 then
+                            party_ids[member.mob.id] = position
+                        end
+                        alliance_ids[member.mob.id] = position
                     end
                     if local_player then -- update with local IPC information
                         member.mob.x = local_player.x
                         member.mob.y = local_player.y
                         member.mob.z = local_player.z
                         member.mob.heading = local_player.heading
-                        if local_player.name == p.name then
+                        if local_player.id == p.id then
                             member.mob.target_index = p.target_index
                             member.mob.status = p.status
                         end
@@ -76,7 +76,7 @@ do
                                 pet.tp = 0
                             end
                             local pet_string = pet.name..'|'..tostring(pet.id)..'|'..tostring(pet.index)..'|'..tostring(pet.hpp)..'|'..tostring(pet.tp)..'|'
-                            ..tostring(round(pet.x,2))..'|'..tostring(round(pet.y,2))..'|'..tostring(round(pet.z,2))..'|'..tostring(w.zone)
+                            ..tostring(round(pet.x,2))..'|'..tostring(round(pet.y,2))..'|'..tostring(round(pet.z,2))..'|'..tostring(member.zone)
                             mob[11] = pet_string
                         end
                     end
@@ -123,6 +123,10 @@ do
 
     function get_party_ids()
         return party_ids
+    end
+
+    function get_alliance_ids()
+        return alliance_ids
     end
 
     function get_party_location()

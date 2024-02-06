@@ -7,7 +7,7 @@ include('Modes.lua')
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
-idleModes 	= M('refresh','dt','Phalanx','MEVA','Reraise','town','test')
+idleModes 	= M('refresh','dt') --,'Phalanx','MEVA','Reraise','town','test')
 meleeModes 	= M('normal','aftermath','dt','ACC','SubtleBlow')
 THMode 		= M('OFF','ON')
 HYBRIDmode 	= M('OFF','ON')
@@ -278,7 +278,7 @@ function get_sets()
 --------------------    
 	INY = {}		--Leave This Empty
 		INY.HED	= "Inyanga Tiara +1"
-		INY.BOD	= ""--"Inyanga Jubbah +2"
+		INY.BOD	= "Inyanga Jubbah +2"
 		INY.HND	= ""--"Inyanga Dastanas +2"
 		INY.LEG	= "Inyanga Shalwar +2"
 		INY.FEE	= ""--"Inyanga Crackows +2"
@@ -317,7 +317,7 @@ function get_sets()
 ---------------
  	sets.me.idle.refresh = {
 		range="Daurdabla",
-		head=EMP.HED,
+		head={ name="Chironic Hat", augments={'Pet: Attack+11 Pet: Rng.Atk.+11','STR+9','"Refresh"+2','Accuracy+6 Attack+6','Mag. Acc.+9 "Mag.Atk.Bns."+9',}},
 		body="Artsieq Jubbah",
 		hands=EMP.HND,
 		legs=INY.LEG,
@@ -532,7 +532,18 @@ function get_sets()
 --[MELEE]-[AFTERMATH]
 ---------------
     sets.me.melee.aftermathsw 	= {
+		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		head=EMP.HED,
+		body="Ayanmo Corazza +2",
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
+		neck={ name="Bard's Charm +1", augments={'Path: A',}},
 		waist="Sailfi Belt +1",
+		left_ear="Mache Earring",
+		right_ear="Crep. Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Rajas Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+14','"Store TP"+4','Quadruple Attack +3',}},
 		head=AYA.HED,
@@ -572,6 +583,17 @@ function get_sets()
 ---------------
     sets.me.melee.ACCsw 	= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		head=EMP.HED,
+		body="Ayanmo Corazza +2",
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
+		neck={ name="Bard's Charm +1", augments={'Path: A',}},
+		waist="Sailfi Belt +1",
+		left_ear="Mache Earring",
+		right_ear="Crep. Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Rajas Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
@@ -606,7 +628,17 @@ function get_sets()
 ---------------
     sets.me.melee.dtsw 		= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		head=EMP.HED,
+		body="Ayanmo Corazza +2",
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
+		neck={ name="Bard's Charm +1", augments={'Path: A',}},
 		waist="Sailfi Belt +1",
+		left_ear="Mache Earring",
+		right_ear="Crep. Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Rajas Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head="Bunzi's Hat",
@@ -639,7 +671,17 @@ function get_sets()
 ---------------
     sets.me.melee.SubtleBlowsw 		= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		head=EMP.HED,
+		body="Ayanmo Corazza +2",
+		hands=EMP.HND,
+		legs=INY.LEG,
+		feet=EMP.FEE,
+		neck={ name="Bard's Charm +1", augments={'Path: A',}},
 		waist="Sailfi Belt +1",
+		left_ear="Mache Earring",
+		right_ear="Crep. Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Rajas Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
@@ -1021,6 +1063,20 @@ function get_sets()
 --TL/DR GET 20-24 HASTE, AND CAP FASTCAST ON THIS SET NO MATTER WHAT. 
 ---------------
     sets.precast.casting = {
+		sub="Culminus",
+		range="Gjallarhorn",
+		head=EMP.HED,
+		body=INY.BOD,
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		legs=INY.LEG,
+		feet=EMP.FEE,
+		neck="Moonbow Whistle",
+		waist="Embla Sash",
+		left_ear="Aredan Earring",
+		right_ear="Ethereal Earring",
+		left_ring="Metamorph Ring",
+		right_ring="Stikini Ring",
+		back="Solemnity Cape",
 		--[[ range={ name="Linos", augments={'Attack+15','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head="Fili Calot +3",
 		body=INY.BOD, --14
@@ -1039,11 +1095,11 @@ function get_sets()
     sets.precast.songs = {
 		sub="Culminus",
 		range="Gjallarhorn",
-		head="Fili Calot +2",
-		body="Fili Hongreline +3",
+		head=EMP.HED,
+		body=INY.BOD,
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
-		legs="Inyanga Shalwar +2",
-		feet="Fili Cothurnes +2",
+		legs=INY.LEG,
+		feet=EMP.FEE,
 		neck="Moonbow Whistle",
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
@@ -1643,7 +1699,7 @@ function get_sets()
 	
 	sets.midcast.songs.dummy = {
 		head=EMP.HED,
-		body="Weather. Robe +1",
+		body="Nyame Mail",
 		hands=EMP.HND,
 		legs=EMP.LEG,
 		feet=EMP.FEE,

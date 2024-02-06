@@ -1,6 +1,6 @@
 _addon.name = 'Silmaril'
 _addon.author = 'Mirdain'
-_addon.version = '2.8.2'
+_addon.version = '2.9'
 _addon.description = 'A multi-boxer tool'
 _addon.commands = {'silmaril','sm'}
 
@@ -51,18 +51,21 @@ windower.register_event('incoming chunk', function (id, data, modified, injected
     
     -- process the packets via Packets.lua
     message_in(id, data)
+
+    -- block the menu if you are injecting
     if get_injecting() then
         if id == 0x032 then 
-            log("Blocking on the 0x032 Packet") -- NPC Interaction Type 1
+            log("Blocking on the 0x032 Packet [Type 1]")
             return true
         elseif id == 0x033 then 
-            log("Blocking on the 0x033 Packet") -- String NPC Interaction
+            log("Blocking on the 0x033 Packet [String]")
             return true
         elseif id == 0x034 then 
-            log("Blocking on the 0x034 Packet") -- NPC Interaction Type 2
+            log("Blocking on the 0x034 Packet [Type 2]")
             return true
         end
     end
+
     return protection_in(id, modified)
 end)
 
@@ -71,8 +74,21 @@ windower.register_event('outgoing chunk', function (id, data, modified, injected
 
     -- process the packets via Packets.lua
     message_out(id, data)
+
+    -- Used with automatic dialogs like warps/doors
+    if get_block_release() and id == 0x05B then
+        local packet = packets.parse('incoming', data)
+        set_block_release(false)
+        log('Calling npc_inject from the blocked outoing 0x05B')
+        set_injecting(true)
+        set_menu_id(packet['Menu ID'])
+        npc_inject()
+        return true
+    end
+
     -- Process Tells via Protection.lua
     return protection_out(id, modified)
+
 end)
 
 --IPC messaging between characters for fast data transfer

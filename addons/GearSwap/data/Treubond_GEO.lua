@@ -568,7 +568,7 @@ function get_sets()
 		neck="Saevus Pendant +1",
 		waist="Olympus Sash",
 		left_ear="Malignance Earring",
-		right_ear="Moldavite Earring",
+		right_ear = "Azimuth Earring",
 		left_ring="Jhakri Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back="Izdubar Mantle",
@@ -597,7 +597,7 @@ function get_sets()
 		neck="Saevus Pendant +1",
 		waist="Olympus Sash",
 		left_ear="Malignance Earring",
-		right_ear="Moldavite Earring",
+		right_ear = "Azimuth Earring",
 		left_ring="Jhakri Ring", --2/0
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back="Izdubar Mantle",

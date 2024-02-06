@@ -1,7 +1,6 @@
 do
 
-	local last_skillchain = {}
-	local last_skillchain_time = os.clock()
+	local last_skillchain_id = 0
 
 	local skillchains = {
 		[288] = {id=288,english='Light',elements={'Light','Thunder','Wind','Fire'}},
@@ -42,22 +41,22 @@ do
 
 		local action = data.targets[1].actions[1]
 
-		if	   (action.add_effect_message > 287 and action.add_effect_message < 302) -- Normal SC DMG
-			or (action.add_effect_message > 384 and action.add_effect_message < 399) -- SC Heals
-			or (action.add_effect_message > 766 and action.add_effect_message < 771) -- Umbra/Radiance
-			then
+		if (action.add_effect_message > 287 and action.add_effect_message < 302) -- Normal SC DMG
+		or (action.add_effect_message > 384 and action.add_effect_message < 399) -- SC Heals
+		or (action.add_effect_message > 766 and action.add_effect_message < 771) -- Umbra/Radiance
+		then
 
 			-- Get the party id's to validate the target from Party.lua
 			local pt_ids = get_party_ids()
+			local alliance_ids = get_alliance_ids()
 
 			local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
 
 			-- valid party target and within range
-			if t and t.spawn_type == 16 and t.distance:sqrt() < 21 and pt_ids[t.claim_id] then
+			if t and t.spawn_type == 16 and t.distance:sqrt() < 21 and alliance_ids[t.claim_id] then
 
-				-- Update the information to track
-				last_skillchain = data
-				last_skillchain_time = os.clock()
+				-- Update the enemy to track
+				last_skillchain_id = t.id
 
 				-- get the type of skillchain
 				local skillchain = skillchains[action.add_effect_message]
@@ -111,15 +110,17 @@ do
 				windower.send_command('timers c "Skillchain: '..skillchain.english..'" 5 down')
 
 				-- Send the information
-				send_packet(get_player_name()..';burst_'..skillchain.english..'_'..elements..'_'..t.id)
+				send_packet(get_player_id()..';burst_'..skillchain.english..'_'..elements..'_'..t.id)
 			end
-		elseif data.category == 3 and data.param ~= 0 and last_skillchain and last_skillchain.targets and #last_skillchain.targets > 0 then
+		elseif data.category == 3 and data.param ~= 0 then
+
+			local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
 
 			-- This is used to stop bursting if a ws happened to close the window
-			if data.targets[1] and data.targets[1].id == last_skillchain.targets[1].id then
-				log('Skillchain is closed for ['..last_skillchain.targets[1].id..']')
-				local action = get_player_name()..';burst_closed_none_'..data.targets[1].id
-				last_skillchain = {}
+			if t and t.id == last_skillchain_id then
+				log('Skillchain is closed for ['..last_skillchain_id..']')
+				local action = get_player_id()..';burst_closed_none_'..last_skillchain_id
+				last_skillchain_id = 0
 				send_packet(action)
 			end
 		end

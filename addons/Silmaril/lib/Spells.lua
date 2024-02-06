@@ -4,7 +4,7 @@ do
 
     -- Used once via sync request Sync.lua
     function get_all_spells() 
-        local formattedString = get_player_name()..";spelldata_"
+        local formattedString = get_player_id()..";spelldata_"
         local all_spell_count = 0
         for id, spell in pairs(all_spells) do
             local player_spell = false
@@ -31,7 +31,7 @@ do
         if not spell_recasts then return formattedString end
 
         for index, recast in pairs(player_spells) do
-            formattedString = formattedString..recast..'|'..spell_recasts[recast]..','
+            formattedString = formattedString..recast..'|'..round(spell_recasts[recast],2)..','
         end
         formattedString = formattedString:sub(1, #formattedString - 1)
         --log(formattedString)

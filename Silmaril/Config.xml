@@ -17,7 +17,7 @@
   <Engage_Delay>2</Engage_Delay>
   <Disengage_Delay>2</Disengage_Delay>
   <Switch_Delay>1</Switch_Delay>
-  <Message_Delay>0</Message_Delay>
+  <Message_Delay>2</Message_Delay>
   <Blacklists>
     <Mirror_Blacklists>
       <Mirror_Blacklist>
@@ -49,6 +49,12 @@
         <Zone>78</Zone>
         <Index>638</Index>
         <Comment>Einherjar</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Armory Crate</Name>
+        <Zone>78</Zone>
+        <Index>0</Index>
+        <Comment>Einherjar Reward</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Nareema</Name>
@@ -153,10 +159,400 @@
         <Comment>Odyssey Coffer</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
+        <Name>Nomad Moogle</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Nomad Moogle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Porter Moogle</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Porter Moogle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
         <Name>Aurum Strongbox</Name>
         <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Odyssey Aurum Strongbox</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Door: Chamber of Passage</Name>
+        <Zone>50</Zone>
+        <Index>0</Index>
+        <Comment>Aht Urhgan Whitegate</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Door: Commissions Agency</Name>
+        <Zone>50</Zone>
+        <Index>0</Index>
+        <Comment>Aht Urhgan Whitegate</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Door: Walahra Temple</Name>
+        <Zone>50</Zone>
+        <Index>0</Index>
+        <Comment>Aht Urhgan Whitegate</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>185</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>186</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>187</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>188</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>189</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>190</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>191</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>192</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #A1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #A2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #A3</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #A4</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #A5</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #A1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #A2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #A</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #B1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #B2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #B3</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #B4</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #B5</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #B1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #B2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #B</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #C1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #C2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #C3</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #C4</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #C5</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #C1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #C2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #C</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #D1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #D2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #D3</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #D4</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #D5</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #D1</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #D2</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #D</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Aurum Coffer</Name>
+        <Zone>133</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #E</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #E1</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #E2</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #E</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #F</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #F1</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #F2</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #F</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #G</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #G1</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #G2</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #G</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest #H</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #H1</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Casket #H2</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer #H</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Chest</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Aurum Coffer</Name>
+        <Zone>189</Zone>
+        <Index>0</Index>
+        <Comment>Sortie Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Runic Lamp</Name>
+        <Zone>77</Zone>
+        <Index>0</Index>
+        <Comment>Nyzle Isle Lamps</Comment>
       </Mirror_Blacklist>
     </Mirror_Blacklists>
   </Blacklists>

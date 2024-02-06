@@ -7,17 +7,20 @@ do
 
     -- Called from Silmaril.lua
     function connect()
+
         initialize() -- via Sync.lua
         udp = assert(socket.udp())
         udp:settimeout(0)
         udp:setpeername(ip, port)
-        main_engine() -- start the main proecess via Engine.lua
+
+        -- start the main proecess via Engine.lua
+        main_engine() 
+
     end
 
     -- Called from Engine.lua
     function request()
-        local formattedString = get_player_name()..";request_".._addon.version
-        send_packet(formattedString)
+        send_packet(get_player_id()..";request;".._addon.version..';'..get_player_name())
     end
 
     --Send the outgoing packet
@@ -43,10 +46,14 @@ do
             data, msg = udp:receive()
             if data then
 
-                log(data)
                 local message = data:split('_')
-                if not validate_message(message[1]) then return end
                 local cmd = message[2]
+
+                -- Do not display the results of mirroring
+                if cmd ~= "results" then log(data) end
+
+                -- Check if valid message
+                if tonumber(message[1]) ~= get_player_id() then log('Wrong Message ['..cmd..']') return end
 
                 if cmd == "accepted" then
                     windower.add_to_chat(1, ('\31\200[\31\05Silmaril Addon\31\200]\31\207 '..message[3]))
@@ -57,13 +64,13 @@ do
                     info('Version miss match!')
                     windower.send_command('lua u silmaril')
                 elseif cmd == "reset" then
-                    log('Reset Request')
-                    set_connected(false)
-                    set_sync(false)
+                    reset_request(message[3])
                 elseif cmd == "on" then
                     on_cmd()
                 elseif cmd == "off" then
                     off_cmd()
+                elseif cmd == "results" then
+                    mirror_results(message[3])
                 elseif cmd == "input" then
                     input_message(message[3],message[4],message[5],message[6])
                 elseif cmd == "script" then
@@ -82,6 +89,7 @@ do
                     add_black_list(message[3])
                 elseif cmd == "protection" then
                     set_protection(message[3])
+                    load_command("")
                 elseif cmd == "protectlist" then
                     protectlist(message[3], message[4], message[5], message[6])
                 end
@@ -141,7 +149,31 @@ do
 
         set_ls_cache(name_cache)
         set_reverse_ls_cache(reverse_name_cache)
+    end
 
+    function reset_request(param)
+        log('Reset Request')
+        set_connected(false)
+        set_enabled(false)
+        set_mirror_on(false)
+
+        -- set to reload the file unless a clear is sent
+        if param == "clear" then
+            set_auto_load(false)
+        else
+            set_auto_load(true)
+        end
+    end
+
+    -- Updates the display of the mirroring
+    function mirror_results(param)
+        local all_results = {}
+        for item in string.gmatch(param, "([^|]+)") do
+            local result = string.split(item,",",2)
+            all_results[result[1]] = result[2]
+        end
+        set_status_time()
+        npc_box_status(all_results)
     end
 
     -- Sets the global environment after start up
@@ -161,32 +193,7 @@ do
 
     function sync_cmd(param)
         if not param then return end
-        sync_in_progress() -- Stop the engine from sending requests via Engine.lua
         sync_data(param) -- method called via Sync.lua
-    end
-
-    function validate_message(param)
-        -- Check if it is for right player
-        if param == get_player_name() then return true end
-
-        -- If protection is not on its wrong character
-        if not get_protection() then return false end
-
-        -- Protection is on so check the cache
-        local cache = get_name_cache()
-
-        -- Empty cache
-        if not cache then return false end
-
-        -- Right player in cache
-        if cache[get_player_name()] == param then return true end
-
-        log(cache)
-
-        -- Correct player was never found
-        info("Wrong message to ["..get_player_name()..'] from ['..param..']')
-        send_packet(get_player_name()..";protect")
-        return false
     end
 
     function on_cmd()
@@ -195,8 +202,8 @@ do
     end
 
     function off_cmd()
-        set_enabled(false)
         runstop()
+        set_enabled(false)
         windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Actions: \31\03[OFF]'))
     end
 end

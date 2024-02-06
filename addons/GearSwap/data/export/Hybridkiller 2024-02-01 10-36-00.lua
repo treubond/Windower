@@ -1,0 +1,18 @@
+sets.exported={
+    main="Naegling",
+    sub="Gleti's Knife",
+    range={ name="Compensator", augments={'DMG:+15','Rng.Acc.+15','Rng.Atk.+15',}},
+    ammo="Decimating Bullet",
+    head="Nyame Helm",
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet="Malignance Boots",
+    neck="Elite Royal Collar",
+    waist="Aquiline Belt",
+    left_ear="Crep. Earring",
+    right_ear={ name="Chas. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
+    left_ring="Shneddick Ring",
+    right_ring="Defending Ring",
+    back={ name="Gunslinger's Cape", augments={'Enmity-3','"Mag.Atk.Bns."+3','"Phantom Roll" ability delay -3',}},
+}

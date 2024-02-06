@@ -106,6 +106,8 @@ function user_setup()
     send_command('bind @e gs c cycleback WeaponSet')
     send_command('bind @r gs c cycle WeaponSet')
 	send_command('bind @p gs c toggle Pause')
+    send_command('bind f9 gs c cycle OffenseMode')
+    send_command('bind ^f9 gs c cycle HybridMode')
 
     -- Ability Binds
     send_command('bind ^numpad/ input /ja "Berserk" <me>')
@@ -153,6 +155,8 @@ function file_unload()
     send_command('unbind !]')
 	send_command('unbind !t')
     send_command('unbind !w')
+    send_command('unbind f9')
+    send_command('unbind ^f9')
     send_command('unbind ^numpad7')
     send_command('unbind ^numpad9')
 	send_command('unbind ^numpad4')
@@ -226,13 +230,13 @@ function init_gear_sets()
         hands="Boii Mufflers +3",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet="Sulev. Leggings +2",
-        { name="War. Beads +1", augments={'Path: A',}},
+        neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Thrud Earring",
         right_ear="Moonshade Earring",
-        left_ring="Niqmaddu Ring",
-        --right_ring="Sroda Ring",
-        right_ring="Rajas Ring",
+        left_ring="Rajas Ring",
+        --left_ring="Sroda Ring",
+        right_ring="Niqmaddu Ring",
         back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
     }
     sets.precast.WS.MidAcc = set_combine(sets.precast.WS, { })

@@ -1,54 +1,31 @@
 do
-	local autorun = false
-	local autorun_target = {}
-	local autorun_distance = .25
-	local autorun_tofrom = 0
+	local autorun_target = nil
+	local fast_follow_target = nil
+	local autorun_type = 0
+	local autorun_distance = .5
 	local face_follower = false
 	local move_to_exit= false
 	local following = false
+	local lock_time = os.clock()
+	local move_time = os.clock()
+	local now = os.clock()
 
 	function movement()
 
-		-- no actin needed
-		if not autorun then return end
+		if not autorun_target then return end
 
-		if not autorun_target then runstop() return end
+		now = os.clock()
+
+		if now - move_time > .5 then runstop() return end
 
 		-- Get the player
 		local p = get_player()
 		if not p then runstop() return end
 
-		-- Get the player location
-		local p_loc = get_player_location()
-		if not p_loc then runstop() return end
-
-		-- Get the party table that contains IPC data
-		local pt_loc = get_party_location()
-		if not pt_loc then runstop() return end
-
-		-- Get the world data to check for zones
-		local w = get_world()
-		if not w then runstop() return end
-
-		-- Don't update the target if it's a run to location command
-		if autorun_tofrom ~= 3 then
-			-- Check if IPC data is availible
-			t = pt_loc[tonumber(autorun_target.id)]
-			if t and t.zone == w.zone then
-				t.distance = (p_loc.x-t.x)^2 + (p_loc.y-t.y)^2
-			else
-				t = windower.ffxi.get_mob_by_id(autorun_target.id)
-			end
-		end
-
-		if not t then runstop() return end
-
-		t.distance = t.distance:sqrt()
-
-		if t.distance > 50 then runstop() return end
-
+		-- Silmaril not connected
 		if not get_connected() then runstop() return end
 
+		-- Turned off actions
 		if not get_enabled() and not following then runstop() return end
 
 		-- Don't move because you are in injecting
@@ -57,82 +34,118 @@ do
 		-- Player not able to move
 		if p.status ~= 0 and p.status ~=1 and p.status ~=5 and p.status ~=85 then runstop() return end
 
-		-- Target is not followable
-		if t.status ~= 0 and t.status ~= 1 and t.status ~= 5 and t.status ~= 85 then runstop() return end
+		-- Get the player location
+		local p_loc = get_player_location()
+		if not p_loc then runstop() return end
 
-		-- Ensure following distance is large enough
-		if autorun_distance < .5 then autorun_distance = .5 end
+		-- Get the world data to check for zones
+		local w = get_world()
+		if not w then runstop() return end
 
-		-- Enemy dead
-		if t.spawn_type == 16 and t.status > 1 then log('Stopping because enemy is dead') runstop() end
+		-- Assign the target
+		t = autorun_target
 
-		-- You are within distance so stop running
-		if t.distance > autorun_distance + .05 and autorun_tofrom == 2 then runstop() return end
-		if t.distance + .05 < autorun_distance and autorun_tofrom == 1 then runstop() return end
-
-		-- Perform the movement
-		if autorun_tofrom == 1 or autorun_tofrom == 3 then -- run towards
-			local angle = math.atan2((t.y - p_loc.y), (t.x - p_loc.x))*-1
-			windower.ffxi.run(angle)
-		elseif autorun_tofrom == 2 then -- run away from
-			-- If player is locked on then remove it
-			if p.target_locked then windower.send_command("input /lockon") end
-			local angle = math.atan2((t.y - p_loc.y), (t.x - p_loc.x))*-1
-			windower.ffxi.run(angle + math.pi)
+		-- Check for IPC data
+		if autorun_type ~= 3 then 
+			local pt_loc = get_party_location()
+			if not pt_loc then runstop() return end
+			local local_player = pt_loc[t.id]
+			if local_player and local_player.zone == w.zone then
+				t = local_player
+			end
 		end
 
+		-- Target is not followable
+		if t.status ~= 0 and t.status ~= 1 and t.status ~= 4 and t.status ~= 5 and t.status ~= 85 then runstop() return end
+
+		-- Enemy dead
+		if t.spawn_type == 16 and t.status > 1 then runstop() end
+
+		-- Calculate distance
+		t.distance = ((p_loc.x-t.x)^2 + (p_loc.y-t.y)^2):sqrt()
+
+		if t.distance > 50 then runstop() return end
+
+		-- You are far enough away so stop running
+		if t.distance >= autorun_distance and autorun_type == 1 then runstop() return end
+
+		-- You are within distance so stop running
+		if t.distance <= autorun_distance and autorun_type > 1 then runstop() return end
+
+		-- Handle the lock on issue
+		if p.target_locked and now - lock_time > .5 then 
+			windower.send_command("input /lockon")
+			lock_time = now
+			return
+		end
+
+		local angle = math.atan2((t.y - p_loc.y), (t.x - p_loc.x))*-1
+
+		if autorun_type == 1 then -- run away from a target
+			angle = angle + math.pi
+		end
+
+		-- Perform the movement
+		windower.ffxi.run(angle)
 	end
 
 	-- Command to stop
 	function runstop()
 		if move_to_exit then return end
-		autorun = false
-		autorun_tofrom = 0
+		autorun_type = 0
+		autorun_target = nil
 		windower.ffxi.run(false)
 	end
 
-	-- Close distance #1
-	function runto(target,distance)
-		if move_to_exit then return end
-		autorun = true
-		autorun_target = target
-		autorun_distance = tonumber(distance)
-		autorun_tofrom = 1
-		runsstart = os.clock()
-	end
-
-	-- Run away #2
+	-- Run away #1
 	function runaway(target, distance) 
 		if move_to_exit then return end
-		autorun = true
+		autorun_type = 1
 		autorun_target = target
 		autorun_distance = tonumber(distance)
-		autorun_tofrom = 2
-		runsstart = os.clock()
+		move_time = os.clock()
+	end
+
+	-- Close distance #2
+	function runto(target, distance)
+		if move_to_exit then return end
+		autorun_type = 2
+		autorun_target = target
+		autorun_distance = tonumber(distance)
+		move_time = os.clock()
 	end
 
 	-- Move to a specified location #3
 	function runtolocation(target,distance,option)
 		if move_to_exit then return end
+		autorun_type = 3
+		autorun_target = target
+		autorun_distance = tonumber(distance)
+		move_time = os.clock()
+
+		-- Modify the target so you can just use runto()
 		run_to_location = {}
 	    for item in string.gmatch(option, "([^,]+)") do
             table.insert(run_to_location, item)
         end
 
-		-- Modify the target so you can just use runto()
-		target.x = run_to_location[1]
-		target.y = run_to_location[2]
-		target.z = run_to_location[3]
+		autorun_target.x = tonumber(run_to_location[1])
+		autorun_target.y = tonumber(run_to_location[2])
+		autorun_target.z = tonumber(run_to_location[3])
 
-		autorun = true
-		autorun_target = target
-		autorun_distance = tonumber(distance)
-		autorun_tofrom = 3
-		runsstart = os.clock()
+		-- Change from the player ID
+		autorun_target.id = 0
 	end
 
 	function face_target(target, direction)
 		if move_to_exit then return end
+
+		-- Get the world data to check for zones
+		local w = get_world()
+		if not w then runstop() return end
+
+		if target.zone and target.zone ~= w.zone then return end
+
 		-- Get the player location
 		local p_loc = get_player_location()
 		if not p_loc then return end
@@ -150,16 +163,17 @@ do
 			return
 		end
 		windower.ffxi.turn(angle)
-
 	end
 
-	function set_fast_follow (state)
+	function set_fast_follow (state, target)
 		if state then
 			following = true
 			windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\06[ON]'))
+			fast_follow_target = target
 		else
 			following = false
 			windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]'))
+			fast_follow_target = nil
 			runstop()
 		end
 	end
@@ -190,17 +204,33 @@ do
 		-- Check if following is on - if not return
 		if not following then return end
 
-		-- Wrong member zoned so disregard+
-		if autorun_target.id ~= tonumber(player_id) then log("Wrong Player") return end
+		if move_to_exit then return end
+
+		if not fast_follow_target then return end
+
+		-- Wrong member zoned so disregard
+		if tonumber(fast_follow_target.id) ~= tonumber(player_id) then log("Wrong Player ["..player_id.."]") return end
+
+		-- Get the player location
+		local p_loc = get_player_location()
+		if not p_loc then return end
 
 		-- Get the world data and retun is not correct zone
 		local w = get_world()
 		if not w then return end
-		if w.zone ~= tonumber(zone) then return end
+		if tonumber(w.zone) ~= tonumber(zone) then log("Wrong Zone") return end
+
+		local distance = ((p_loc.x-player_x)^2 + (p_loc.y-player_y)^2):sqrt()
+
+		if distance > 25 then log("You are too far to zone") return end
+
+		-- Reset zone targets
+		runstop()
+
+		move_to_exit = true
 
 		if w.mog_house then
-			runstop()
-			log("Mog House zone packet injected")
+			log("Mog House zone packet injected with zone line of ["..zone_line.."]")
 			local packet = packets.new('outgoing', 0x05E, 
 				{
 					['Zone Line'] = zone_line, 
@@ -208,14 +238,9 @@ do
 				})
 			packets.inject(packet)
 		else
-			-- Get the player location
-			local p_loc = get_player_location()
-			if not p_loc then return end
 			log('Zone Detected - turning and running towards zone')
-			move_to_exit = true
-			local angle = (math.atan2((player_y - p_loc.y), (player_x - p_loc.x))*180/math.pi)*-1
-			autorun = false
-			windower.ffxi.run((angle):radian())
+			local angle = math.atan2((player_y - p_loc.y), (player_x - p_loc.x))*-1
+			windower.ffxi.run(angle)
 		end
 	end
 
@@ -224,16 +249,24 @@ do
 		move_to_exit = false
 	end
 
+	function set_following(value)
+		following = value
+	end
+
 	function get_following()
 		return following
 	end
 
-	function get_autorun()
-		return autorun
+	function get_autorun_target()
+		if autorun_target then
+			return autorun_target.id
+		else
+			return 0
+		end
 	end
 
-	function set_following(value)
-		following = value
+	function get_autorun_type()
+		return autorun_type
 	end
 
 end

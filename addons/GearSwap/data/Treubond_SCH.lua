@@ -276,7 +276,7 @@ function get_sets()
         hands="Jhakri Cuffs +2",
         legs="Jhakri Slops +2",
         feet="Mallquis Clogs", --7% dmg to MP
-        neck="Twilight Torque", --5
+        neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
         waist="Hierarch Belt",
         left_ear="Magnetic Earring",
         right_ear="Eabani Earring",
@@ -453,7 +453,7 @@ function get_sets()
   
     -- Stoneskin casting time -, works off of enhancing -
     sets.precast.stoneskin = set_combine(sets.precast.enhancing,{
-
+        head="Umuthi Hat",
     })
       
     -- Curing Precast, Cure Spell Casting time -
@@ -506,11 +506,11 @@ function get_sets()
 	-----------------------------------------------------------------------------------------------
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
     sets.midcast.DarkHelix = {
-
+        neck={ name="Argute Stole +1", augments={'Path: A',}},
     }
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
     sets.midcast.Helix = {
-
+        neck={ name="Argute Stole +1", augments={'Path: A',}},
     }	
 
     -- Whatever you want to equip mid-cast as a catch all for all spells, and we'll overwrite later for individual spells
@@ -524,22 +524,22 @@ function get_sets()
 	    waist="Embla Sash",
 	}
     
-    sets.midcast.nuking.normal = {
-        main="Daybreak",
-        sub="Ammurapi Shield",
+    sets.midcast.nuking.normal = {  --MAB 345, MACC 303, MB 26/0
+        main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
+        sub="Enki Strap",
         ammo="Ghastly Tathlum +1",
         head="Arbatel Bonnet +2",
         body="Arbatel Gown +2",
-        hands="Arbatel Bracers +2",
+        hands={ name="Agwu's Gages", augments={'Path: A',}},
         legs="Arbatel Pants +2",
-        feet="Arbatel Loafers +2",
+        feet={ name="Agwu's Pigaches", augments={'Path: A',}},
         neck="Saevus Pendant +1",
-        waist="Olympus Sash",
-        left_ear="Moldavite Earring",
-        right_ear="Malignance Earring",
+        waist="Penitent's Rope",
+        left_ear="Malignance Earring",
+        right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         right_ring="Jhakri Ring",
-        back="Izdubar Mantle",
+        back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
 	    --[[
         legs="Amalric Slops",
         feet="Jhakri Pigaches +2",
@@ -553,8 +553,23 @@ function get_sets()
     }
     -- used with toggle, default: F10
     -- Pieces to swap from freen nuke to Magic Burst
-    sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, {
-	    main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
+    sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MAB 327, MACC 334, MB 33/3
+        main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
+        sub="Elan Strap",
+        ammo="Ghastly Tathlum +1",
+        head="Arbatel Bonnet +2",
+        body="Arbatel Gown +2",
+        hands={ name="Agwu's Gages", augments={'Path: A',}},
+        legs="Arbatel Pants +2",
+        feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+        neck={ name="Argute Stole +1", augments={'Path: A',}},
+        waist="Penitent's Rope",
+        left_ear="Malignance Earring",
+        right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
+        left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+        right_ring="Jhakri Ring",
+        back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
+	    --[[ main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
         sub="Elan Strap",
         ammo="Ghastly Tathlum +1",
         head="Arbatel Bonnet +2",
@@ -568,19 +583,33 @@ function get_sets()
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring="Jhakri Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        back="Izdubar Mantle",
+        back="Izdubar Mantle", ]]
     })
 	
-    sets.midcast.nuking.acc = {
-        sub="Enki Strap",
+    sets.midcast.nuking.acc = {  -- MAB 321, MACC 371, MAB 19/4
+        main="Daybreak",
+        sub="Culminus",
+        ammo="Ghastly Tathlum +1",
+        head="Arbatel Bonnet +2",
+        body="Arbatel Gown +2",
+        hands="Arbatel Bracers +2",
+        legs="Arbatel Pants +2",
+        feet="Arbatel Loafers +2",
         neck={ name="Argute Stole +1", augments={'Path: A',}},
+        waist="Olympus Sash",
+        left_ear="Malignance Earring",
+        right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
+        left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+        right_ring="Jhakri Ring",
+        back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
     }
     
     -- used with toggle, default: F10
     -- Pieces to swap from freen nuke to Magic Burst
-    sets.midcast.MB.acc = set_combine(sets.midcast.nuking.normal, {
-        sub="Enki Strap",
-        neck={ name="Argute Stole +1", augments={'Path: A',}},
+    sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {  -- MAB 314, MACC , MB 29/4
+        sub="Kaja Grip",
+        hands="Arbatel Bracers +2",
+        feet="Arbatel Loafers +2",
     })	
 	
     -- Enfeebling
@@ -603,7 +632,7 @@ function get_sets()
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring="Omega Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        back="Refraction Cape",
+        back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
 	--[[ main="Daybreak",
     sub="Culminus",
     ammo="Oreiad's Tathlum",
@@ -692,6 +721,7 @@ function get_sets()
     sets.midcast.aquaveil = sets.midcast.refresh
 	
     sets.midcast["Drain"] = set_combine(sets.midcast.nuking, {
+        feet={ name="Agwu's Pigaches", augments={'Path: A',}},
         left_ring="Kishar Ring",
         right_ring="Excelsis Ring",
 	--[[ main="Daybreak",
@@ -725,8 +755,8 @@ function get_sets()
         feet="Mallquis Clogs",
         neck="Phalaina Locket", --4
         waist="Penitent's Rope",
-        left_ear="Magnetic Earring",
-        right_ear="Malignance Earring",
+        left_ear="Malignance Earring",
+        right_ear="Magnetic Earring",
         left_ring="Omega Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         back="Solemnity Cape", --7
@@ -742,7 +772,7 @@ function get_sets()
 	sets.midcast.regen = {} 	-- leave this empty
 	-- Normal hybrid well rounded Regen
     sets.midcast.regen.hybrid = {
-        main="Daybreak",
+        main="Bolelabunga",
         sub="Ammurapi Shield",
         head="Arbatel Bonnet +2",
         body=Telchine_ENH_body,

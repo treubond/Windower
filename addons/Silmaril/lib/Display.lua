@@ -44,6 +44,7 @@ do
 	function update_display()
 		-- used to fade the mirror screen
         mirror_fade() 
+
         -- Main UI window
         if settings.display and (get_enabled() or get_following() or get_mirror_on()) then
             sm_display:show()
@@ -51,17 +52,20 @@ do
         else
             sm_display:hide()
         end
+
         -- Debug window
         if settings.debug then
             sm_debug:text(debug_box_refresh())
         end
+
         -- Mirroring Window
-        if (get_mirroring() or get_injecting()) and not get_blacklisted() then
+        if get_mirroring() or get_injecting() then
             sm_npc:text(npc_box_refresh())
             sm_npc:show()
         else
             sm_npc:hide()
         end
+
     end
 
 	-- Used to show if Silmaril is running
@@ -89,7 +93,7 @@ do
 			sm_display:bg_color(0,0,0)
 		end
 		for index, member in pairs(pt_loc) do
-			if member.zone == w.zone and p_loc and member.name ~= get_player_name() then
+			if member.zone == w.zone and p_loc and member.id ~= get_player_id() then
 				local delta = {x = member.x - p_loc.x, y = member.y - p_loc.y}
 				local distance = math.round(math.sqrt(delta.x^2 + delta.y^2),2)
 				lines:insert('  '..member.name..string.format('[%s]',tostring(distance)):lpad(' ',maxWidth - string.len(member.name) - 2))
@@ -107,10 +111,10 @@ do
 		lines = T{}
 		lines:insert('Enabled' ..string.format('[%s]',tostring(get_enabled())):lpad(' ',13))
 		lines:insert('Following' ..string.format('[%s]',tostring(get_following())):lpad(' ',11))
-		lines:insert('Auto Run' ..string.format('[%s]',tostring(get_autorun())):lpad(' ',12))
 		lines:insert('injecting' ..string.format('[%s]',tostring(get_injecting())):lpad(' ',11))
 		lines:insert('mirroring' ..string.format('[%s]',tostring(get_mirror_on())):lpad(' ',11))
 		lines:insert('protection' ..string.format('[%s]',tostring(get_protection())):lpad(' ',10))
+		lines:insert('Delay' ..string.format('[%s]',tostring(get_delay_time())):lpad(' ',15))
 		for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth) end
 		sm_debug:text(lines:concat('\n'))
 	end
@@ -173,7 +177,7 @@ do
 		if status_time then
 			local opacity = 1
 			local fade_duration = 2
-			local fade = 10
+			local fade = 6
 			local diff = os.clock() - status_time
 			local alpha = 110
 			if diff < fade then

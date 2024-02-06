@@ -1,68 +1,101 @@
 do
-    local sync = false
-    local sync_time = os.clock()
     local enabled = false
     local connected = false
+    local old_status = 0
+    local auto_load = true
 
     function main_engine()
 
-        local last_request = os.clock()
-        local last_inventory = os.clock()
-        local last_sync = os.clock()
+        local engine_speed = 1/60
         local now = os.clock()
-        local auto_load = true
+        local last_request = now
+        local last_sync = now
+        local last_send = now
+        local last_display = now
 
 	    while true do
+
             now = os.clock() -- used to determine the elapsed time
             receive_info() --check the UDP port for incoming traffic
 
             if not connected then
-                auto_load = true
-                if now - last_request > 1 then -- Send a requst to client every second
-                    if now - sync_time > 2 then
-                        sync = false
-                    end
-                    if not sync then
-                        set_following(false)
-                        enabled = false
-                        request() -- Send the request to connect to silmaril via Connection.lua
-                        last_request = now
-                    end
+                -- Send a requst to client every second
+                if now - last_request > 1 then
+                    request() -- Send the request to connect to silmaril via Connection.lua
+                    last_request = now
                 end
             else
+
                 -- Update the player location, player info, and the world
                 update_player_info()
-                -- Update the in game display
-                update_display() 
-                -- Check if the player needs to move (before first sleep)
-                movement()
-                -- updates the player environment Via Update.lua
-                send_silmaril() 
-                coroutine.sleep(.05)
-                receive_info()
 
-                --Update the inventory if 2 seconds have elapsed
-                if now - last_inventory > 2 then 
-                    get_inventory()
-                    last_inventory = now
+                -- Process player movement
+                movement()
+
+                -- updates the player environment Via Update.lua
+                if now - last_send > 1/30 then
+                    send_silmaril()
+                    last_send = now
                 end
 
-                -- Update the spells every 30 seconds
+                -- Update the in game display
+                if now - last_display > .25 then
+                    update_display()
+                    last_display = now
+                end
+
+                -- Update the spells the player has every 30 seconds
                 if now - last_sync > 30 then 
                     get_player_spells() -- Spells.lua
                     log("Updated Sync")
                     last_sync = now
                 end
 
+                -- Player was mirroring and recieved a release packet.  Now just wait till status ~= 4
+                if get_mirror_on() and get_mirroring() then
+                    local p = get_player()
+                    if old_status == 4 and p.status == 0 and get_mirror_release() then
+                        -- Player is released via status change (non standard)
+                        log("Mirror sequence completed via status change")
+                        npc_mirror_complete()
+                        clear_npc_data()
+                    end
+                    old_status = p.status
+                end
+
                 -- Mirroring 
                 if get_injecting() then 
-                    if now - get_message_time() > get_retry_count() / 2 and not get_menu_id() and get_injecting() then -- Retries the NPC poke after 2 seconds
-                        log("No Response from poke so retrying")
-                        npc_retry()
-                    elseif now - get_message_time() > 15 and get_injecting() then -- Resets if you are still injecting and time out
-                        log("Time out of mirror reached - Trying to reset.")
-                        npc_reset()
+
+                    -- Try to get a Menu ID with a poke
+                    local retry_count = get_retry_count()
+                    if now - get_poke_time() > (retry_count + 1)/2 and not get_menu_id() then
+                        if retry_count < 5 then
+                            retry_count = retry_count +1
+                            log("Retry Menu ["..retry_count..'/5] - Time Out')
+                            send_packet(get_player_id()..";mirror_status_retry_"..tostring(retry_count))
+                            npc_retry()
+                        else
+                            info("Timed out - Unable to Poke NPC.")
+                            send_packet(get_player_id()..";mirror_status_failed")
+                            npc_reset()
+                        end
                     end
+
+                    -- Mid injection and no response so follow up with injection
+                    if get_mid_inject() and now - get_message_time() > 2 and get_menu_id() then
+                        local p = get_player()
+                        if p and p.status == 4 then
+                            if not get_mirror_message() then
+                                info("Timed out and all message are sent - Consider complete and reseting.")
+                                send_packet(get_player_id()..";mirror_status_failed")
+                                npc_reset()
+                            else
+                                log("Continue the injection.")
+                                npc_inject()
+                            end
+                        end
+                    end
+
                 end
 
                 -- load the initial settings
@@ -70,26 +103,9 @@ do
                     load_command("")
                     auto_load = false;
                 end
-
             end
-            -- Check if the player needs to move (after first sleep)
-            movement()
-            -- Determines update rate
-		    coroutine.sleep(.05)
+            coroutine.sleep(engine_speed)
         end
-    end
-
-    function sync_in_progress()
-        sync_time= os.clock()
-        sync = true
-    end
-
-    function set_sync(value)
-        sync = value
-    end
-
-    function get_sync()
-        return sync
     end
 
     function get_enabled()
@@ -108,6 +124,10 @@ do
 
     function get_connected()
         return connected
+    end
+
+    function set_auto_load(value)
+        auto_load = value
     end
 
 end

@@ -277,16 +277,16 @@ do
             if not protection then
                 protection = true
                 windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Protection: \31\06[ON]'))
-            end
-            if dressup_enable then dressup = true end
-            info("Please zone to finish protection.")
-        else
-            if protection then
-                windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]'))
+                if dressup_enable then dressup = true end
                 info("Please zone to finish protection.")
             end
-            if dressup_enable then dressup = true end
-            protection = false
+        else
+            if protection then
+                protection = false
+                windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]'))
+                if dressup_enable then dressup = true end
+                info("Please zone to finish protection.")
+            end
         end
     end
 

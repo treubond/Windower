@@ -15,14 +15,14 @@ do
                 for index, value in pairs(ability) do
                     local recast_time = ability_recasts[all_job_abilities[value].recast_id]
                     if recast_time then
-                        formattedString = formattedString..all_job_abilities[value].id..'|'..recast_time..','
+                        formattedString = formattedString..all_job_abilities[value].id..'|'..round(recast_time,2)..','
                     end
                 end
             elseif index == "pet_commands" then
                 for index, value in pairs(ability) do
                     local recast_time = ability_recasts[all_job_abilities[value].recast_id]
                     if recast_time then
-                        formattedString = formattedString..all_job_abilities[value].id..'|'..recast_time..','
+                        formattedString = formattedString..all_job_abilities[value].id..'|'..round(recast_time,2)..','
                     end
                 end
             end
@@ -33,11 +33,11 @@ do
     end
 
     function get_all_abilities() -- -- used once via sync request Sync.lua
-        local formattedString = get_player_name()..";abilitydata_"
+        local formattedString = get_player_id()..";abilitydata_"
         local all_ability_count = 0
         for id, ability in pairs(all_job_abilities) do
             formattedString = formattedString..ability.id..'|'..ability.en..'|'..ability.mp_cost..'|'..ability.tp_cost..'|'..ability.range..'|'..targets_table(ability.targets)..'|'..ability.type..','
-            if ability.id and tonumber(ability.id) > tonumber(all_ability_count) then
+            if ability.id and ability.id > all_ability_count then
                 all_ability_count = ability.id
             end
         end

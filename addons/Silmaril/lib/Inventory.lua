@@ -34,18 +34,6 @@ do
         return formattedString
     end
 
-    function item_warning(param, option)
-        if option == "Party" then
-            log("Warn Party")
-            command = 'input /party Item Warning ['..all_items[tonumber(param)].en..']!'
-            windower.send_command(command)
-        elseif option ~= "" then
-            log("Warn Player: "..option)
-            command = 'input /tell '..option..' Item Warning ['..all_items[tonumber(param)].en..']!'
-            windower.send_command(command)
-        end
-    end
-
     function get_item(id)
         return all_items[id]
     end

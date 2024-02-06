@@ -2,7 +2,7 @@ do
     local all_weaponskills = res.weapon_skills
 
     function get_all_weaponskills()
-        local formattedString = get_player_name()..";weaponskilldata_"
+        local formattedString = get_player_id()..";weaponskilldata_"
         local all_weaponskill_count = 0
         for id, ws in pairs(all_weaponskills) do
             if ws.skill then

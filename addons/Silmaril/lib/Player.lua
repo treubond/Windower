@@ -1,9 +1,11 @@
 do
     local old_pos = {x=0, y=0, z=0} -- Stores last movement location
     local player_buffs = "playerbuffs_"
-    local moving = false
+    local motion = false
     local player = {}
     local player_location = {}
+    local stop_time = os.clock()
+    local player_moving = false
 
     -- Used to calculate buff durations
     local epoc_now = os.time() -- Offset from 
@@ -16,24 +18,34 @@ do
     function update_player_info()
 
         -- This is updated at high speed
+        local now = os.clock()
 
-        -- get the world data
-        set_world(windower.ffxi.get_info())
-        local w = get_world()
+        -- get/set the world data
+        local w = windower.ffxi.get_info()
+        set_world(w)
         if not w then return end
 
         player = windower.ffxi.get_player()
-        if not player then return player_info end
+        if not player then return end
 
         player_location = windower.ffxi.get_mob_by_id(player.id)
-        if not player_location then return player_info end
+        if not player_location then return end
 
-        --Determine if player is moving
+        -- Determine if player is moving
         local movement = math.sqrt((player_location.x-old_pos.x)^2 + (player_location.y-old_pos.y)^2 + (player_location.z-old_pos.z)^2 ) > 0.025
-        if movement and not moving then
-	        moving = true
-        elseif not movement and moving then
-	        moving = false
+
+        -- Change of state
+        if movement and not motion then
+	        motion = true
+        elseif not movement and motion then
+            stop_time = now
+	        motion = false
+        end
+
+        if not motion and now - stop_time > .25 then 
+            player_moving = false
+        else
+            player_moving = true
         end
 
         -- Store the old location
@@ -98,8 +110,12 @@ do
             tostring(player.sub_job_level)..','..
             tostring(jp_spent)..','..
             tostring(locked_on)..','..
-            tostring(moving)..','..
-            tostring(get_following())..','
+            tostring(player_moving)..','..
+            tostring(get_following())..','..
+            tostring(get_autorun_target())..','..
+            tostring(get_autorun_type())..','..
+            tostring(get_mirroring())..','..
+            tostring(get_injecting())..','
 
         return player_info
     end
@@ -130,7 +146,6 @@ do
                 local buff_id = packet[buff]
                 local end_time = bufftime(packet[duration])
                 formattedString = formattedString..buff_id..','..end_time..'|'
-                --log('Buff ['..buff_id..'] End Time ['..end_time..']')
             end
         end
         player_buffs = formattedString:sub(1, #formattedString - 1)
@@ -171,8 +186,6 @@ do
         -- Protection is on so get the reverse name
         local cache = get_name_cache()
 
-        log(cache)
-
         -- No table is set so return default name
         if not cache then log("No name cache set") return player.name end
 
@@ -181,6 +194,14 @@ do
         -- Wasn't found in table so return normal name anyway
         log("Couldn't find the name in the protection cache")
         return player.name
+    end
+
+    function get_player_id()
+        if player and player.id then
+            return player.id
+        else
+            return 0
+        end
     end
 
 end
