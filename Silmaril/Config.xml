@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GlobalConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Port>2025</Port>
-  <Positions />
+  <Positions>
+    <Position>
+      <ID>421858</ID>
+      <Index>0</Index>
+    </Position>
+    <Position>
+      <ID>403618</ID>
+      <Index>1</Index>
+    </Position>
+    <Position>
+      <ID>369178</ID>
+      <Index>2</Index>
+    </Position>
+  </Positions>
   <Reflection />
   <Always_On_Top_Main>true</Always_On_Top_Main>
   <Always_On_Top_Config>true</Always_On_Top_Config>

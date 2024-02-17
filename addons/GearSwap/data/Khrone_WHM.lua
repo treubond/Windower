@@ -426,7 +426,7 @@ function init_gear_sets()
         }
 
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
-        --main="Bolelabunga",
+        main="Bolelabunga",
         sub="Ammurapi Shield",
         head="Inyanga Tiara +1",
         hands="Ebers Mitts +2",

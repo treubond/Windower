@@ -292,7 +292,7 @@ function get_sets()
 
     }
     
-    sets.me.latent_refresh = {--[[ waist="Fucho-no-obi" ]]}     
+    sets.me.latent_refresh = {waist="Fucho-no-obi"}     
     
 	-- Combat Related Sets
     sets.me.melee = set_combine(sets.me.idle[idleModes.current],{
@@ -629,7 +629,7 @@ function get_sets()
         neck={ name="Argute Stole +1", augments={'Path: A',}},
         waist="Penitent's Rope",
         left_ear="Malignance Earring",
-        right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
+        right_ear="Regal Earring",
         left_ring="Omega Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
@@ -662,7 +662,7 @@ function get_sets()
         neck={ name="Argute Stole +1", augments={'Path: A',}},
         waist="Penitent's Rope",
         left_ear="Malignance Earring",
-        right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
+        right_ear="Regal Earring",
         left_ring="Omega Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         back="Refraction Cape",
@@ -756,7 +756,7 @@ function get_sets()
         neck="Phalaina Locket", --4
         waist="Penitent's Rope",
         left_ear="Malignance Earring",
-        right_ear="Magnetic Earring",
+        right_ear="Regal Earring",
         left_ring="Omega Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         back="Solemnity Cape", --7

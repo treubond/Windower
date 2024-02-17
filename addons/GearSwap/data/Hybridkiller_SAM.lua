@@ -135,11 +135,13 @@ function user_setup()
 	
 	send_command('bind @u input //gi ugs')
 	--send_command('bind @d input //lua u dressup; wait 10; input //lua l dressup')	
+	send_command('bind ^f9 gs c cycle HybridMode')
 	send_command('bind @t gs c cycle TreasureMode')
 	send_command('bind @c gs c toggle CP')
 	send_command('bind @r gs c toggle Reraise')
 	send_command('bind ![ input /ja "Hasso" <me>')
 	send_command('bind !] input /ja "Seigan" <me>')
+
 	
 	--Command to show global binds in game[ CTRL + numpad- ]
 --[[ 	send_command(bind ^numpad- 
@@ -271,6 +273,8 @@ function user_unload()
 	enable('main','sub','range','ammo','head','body','hands','legs','feet','neck','waist','left_ear','right_ear','left_ring','right_ring','back')
 
 	--Remove Global Samurai Binds
+
+	send_command('unbind ^f9')
 
 	send_command('unbind @u')
 	send_command('unbind @d')	

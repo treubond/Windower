@@ -171,7 +171,7 @@ validateTextInformation()
 
 -- Optional. Swap to your geo macro sheet / book
 set_macros(1,7) -- Sheet, Book 
---send_command('wait 6;input /lockstyleset 2')
+send_command('wait 6;input /lockstyleset 10')
     
 -- Setup your Gear Sets below:
 function get_sets()
@@ -199,7 +199,7 @@ function get_sets()
 	RELIC.Body = "Bagua Tunic"
 	RELIC.Hands = "Bagua Mitaines"
 	RELIC.Legs = "Bagua Pants"
-	RELIC.Feet = "Bagua Sandals +1"
+	RELIC.Feet = "Bagua Sandals +2"
 	
 	EMPY.Head = "Azimuth Hood +2"
 	EMPY.Body = "Azimuth Coat"
@@ -233,7 +233,7 @@ function get_sets()
 
     -- Your idle set when you DON'T have a luopan out
     sets.me.idle.normal = {
-		main="Daybreak",
+		main="Bolelabunga",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
 		head="Befouled Crown",
@@ -271,7 +271,7 @@ function get_sets()
 	
     -- Your idle MasterDT set (Notice the sets.me, means no Luopan is out)
     sets.me.idle.dt = set_combine(sets.me.idle.normal,{
-		main="Daybreak",
+		main="Bolelabunga",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
 		head="Nyame Helm",
@@ -301,7 +301,7 @@ function get_sets()
 
     }
 	
-	sets.me.latent_refresh = {--[[ waist="Fucho-no-obi" ]]}
+	sets.me.latent_refresh = {waist="Fucho-no-obi"}
 	
 	
     -----------------------
@@ -311,7 +311,7 @@ function get_sets()
     -- Luopan's Out --  notice sets.pan 
     -- This is the base for all perpetuation scenarios, as seen below
     sets.pan.idle.normal = {
-		main="Daybreak",
+		main="Idris",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
 		head = EMPY.Head,
@@ -319,8 +319,8 @@ function get_sets()
 		hands=AF.Hands,
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet=RELIC.Feet,
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Penitent's Rope",
+		neck={ name="Bagua Charm +2", augments={'Path: A',}},
+		waist="Isa Belt",
 		left_ear="Odnowa Earring +1",
 		right_ear="Eabani Earring",
 		left_ring="Shneddick Ring",
@@ -378,6 +378,7 @@ function get_sets()
 	
     -- Luopan is out
 	sets.pan.melee = set_combine(sets.pan.idle[idleMode],{
+		waist="Isa Belt",
 		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
     }) 
     
@@ -466,7 +467,7 @@ function get_sets()
     }   
 
     sets.precast.geomancy = set_combine(sets.precast.casting,{
-        
+        neck={ name="Bagua Charm +2", augments={'Path: A',}},
     })
     -- Enhancing Magic, eg. Siegal Sash, etc
     sets.precast.enhancing = set_combine(sets.precast.casting,{
@@ -529,8 +530,10 @@ function get_sets()
 	
 	-- For Geo spells /
     sets.midcast.geo = set_combine(sets.midcast.casting,{
+		main = "Idris",
 		head = EMPY.Head,
 		feet = EMPY.Feet,
+		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		--[[ main = "Solstice",
 		sub = "Culminus",
 		range = "Dunna",
@@ -628,10 +631,11 @@ function get_sets()
 	
     -- Enhancing
     sets.midcast.enhancing = set_combine(sets.midcast.casting,{
-		hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
-		--[[ head	=	"Telchine Cap",
-		legs	=	"Telchine Braconi", ]]
+		head=Telchine_ENH_head,
+		body=Telchine_ENH_body,
+		hands=Telchine_ENH_hands,
+		legs=Telchine_ENH_legs,
+        feet=Telchine_ENH_feet,
     })
 	
     -- Stoneskin
@@ -641,6 +645,7 @@ function get_sets()
     })
     sets.midcast.refresh = set_combine(sets.midcast.enhancing,{
     })
+
     sets.midcast.aquaveil = set_combine(sets.midcast.refresh, {
 		main = "Vadose Rod",
 		sub = "Culminus",
@@ -670,14 +675,14 @@ function get_sets()
     sets.midcast.cure.normal = set_combine(sets.midcast.casting,{
 		main = "Daybreak",
 		sub = "Culminus",
-		hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+		hands=Telchine_ENH_hands,
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     })
     sets.midcast.cure.weather = set_combine(sets.midcast.cure.normal,{
 
     })    
     sets.midcast.regen = set_combine(sets.midcast.enhancing,{
-
+		main="Bolelabunga",
     }) 
    
     ------------

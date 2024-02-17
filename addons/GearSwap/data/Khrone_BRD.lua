@@ -1063,7 +1063,7 @@ function get_sets()
 --TL/DR GET 20-24 HASTE, AND CAP FASTCAST ON THIS SET NO MATTER WHAT. 
 ---------------
     sets.precast.casting = {
-		sub="Culminus",
+		--sub="Culminus",
 		range="Gjallarhorn",
 		head=EMP.HED,
 		body=INY.BOD,
@@ -1093,7 +1093,7 @@ function get_sets()
     }	--68 FC in gear
 	
     sets.precast.songs = {
-		sub="Culminus",
+		--sub="Culminus",
 		range="Gjallarhorn",
 		head=EMP.HED,
 		body=INY.BOD,
@@ -1607,7 +1607,7 @@ function get_sets()
 --------------
 
 	sets.midcast.songs.normal = {
-		sub="Ammurapi Shield",
+		--sub="Ammurapi Shield",
 		range="Daurdabla",
 		head=EMP.HED,
 		body=EMP.BOD,
@@ -1652,7 +1652,7 @@ function get_sets()
 	}
 	
 	sets.midcast.songs.debuff = {
-		sub="Ammurapi Shield",
+		--sub="Ammurapi Shield",
 		range="Gjallarhorn",
 		head=EMP.HED,
 		body=EMP.BOD,

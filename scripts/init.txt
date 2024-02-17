@@ -79,6 +79,7 @@ bind !f6 input /ta <a25>
 //lua load CurePlease_Addon
 lua load superwarp
 lua load fastfollow
+lua load silmaril
 
 // NEXTGames Edits:
 // The below line is to enable DressUp BlinkMeNot Functionality.

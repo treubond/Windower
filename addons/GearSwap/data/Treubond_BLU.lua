@@ -448,7 +448,7 @@ function init_gear_sets()
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist="Penitent's Rope",
         left_ear="Moldavite Earring",
-        right_ear="Magnetic Earring",
+        right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Jhakri Ring",
         right_ring="Omega Ring",
         back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}},
@@ -506,7 +506,11 @@ function init_gear_sets()
     sets.midcast['Blue Magic'].Refresh = set_combine(sets.midcast['Blue Magic'], {})
     sets.midcast['Blue Magic'].SkillBasedBuff = sets.midcast['Blue Magic']
 
-    sets.midcast['Blue Magic']['Occultation'] = set_combine(sets.midcast['Blue Magic'], {body="Assim. Jubbah +1", legs="Hashishin Tayt +2"}) -- 1 shadow per 50 skill
+    sets.midcast['Blue Magic']['Occultation'] = set_combine(sets.midcast['Blue Magic'], {
+        body="Assim. Jubbah +1", 
+        legs="Hashishin Tayt +2", 
+        right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
+    }) -- 1 shadow per 50 skill
 
     sets.midcast['Blue Magic']['Carcharian Verve'] = set_combine(sets.midcast['Blue Magic'].Buff, {})
 
@@ -557,7 +561,7 @@ function init_gear_sets()
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Flume Belt",
         left_ear="Eabani Earring",
-        right_ear="Suppanomimi",
+        right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Shneddick Ring",
         right_ring="Defending Ring",
         back={ name="Rosmerta's Cape", augments={'STR+30','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
@@ -609,6 +613,7 @@ function init_gear_sets()
         hands={ name="Herculean Gloves", augments={'AGI+10','Attack+19','Accuracy+20 Attack+20','Mag. Acc.+20 "Mag.Atk.Bns."+20',}},
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         left_ear="Mache Earring",
+        right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
     })
 
     sets.engaged.MidAcc = set_combine(sets.engaged.LowAcc, {})
@@ -694,7 +699,7 @@ function init_gear_sets()
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Eabani Earring", -- 4
-        right_ear="Cessance Earring",
+        right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Chirich Ring +1",
         right_ring="Chirich Ring",
         back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},

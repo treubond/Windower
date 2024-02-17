@@ -170,7 +170,7 @@ end
 
 function init_gear_sets()
     sets.WSDayBonus      					= { --[[ head = "Gavialis Helm" ]] }
-    sets.TreasureHunter 					= { ammo = "Per. Lucky Egg", --[[ waist = "Chaac Belt" ]] }
+    sets.TreasureHunter 					= { head = "Wh. Rarab Cap +1", ammo = "Per. Lucky Egg", --[[ waist = "Chaac Belt" ]] }
     sets.reive 								= { neck = "Ygnas's Resolve +1"}
     sets.Organizer 							= { }
 
@@ -183,6 +183,7 @@ function init_gear_sets()
     sets.precast.JA['Retaliation'] 			= { --[[ hands = WARAF.Hands, ]] feet = "Boii Calligae +2" }
     sets.precast.JA['Restraint'] 			= { hands = "Boii Mufflers +3", }
     sets.precast.JA['Warcry'] 				= { head = "Agoge Mask +2" }
+    sets.precast.JA['Provoke'] 				= set_combine(sets.TreasureHunter, { --[[ hands = WARAF.Hands ]] })
 --[[     sets.precast.JA['Blood Rage'] 			= { body = WAREmpy.Body }
     sets.precast.JA['Provoke'] 				= set_combine(sets.TreasureHunter, { hands = WARAF.Hands })
     sets.precast.JA['Berserk'] 				= { body = WARAF.Body, hands = WARRelic.Hands, back = Cichols.TP, feet = WARRelic.Feet}

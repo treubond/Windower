@@ -148,7 +148,7 @@ function user_setup()
 
     AF = {}
     AF.Head="Laksa. Tricorne"
-    AF.Body="Laksa. Frac +2"
+    AF.Body="Laksa. Frac +3"
     AF.Hands="Laksa. Gants"
     AF.Legs="Laksa. Trews +2"
     AF.Feet="Laksa. Bottes +1"

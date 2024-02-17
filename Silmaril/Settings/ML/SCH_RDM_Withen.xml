@@ -4,11 +4,15 @@
   <Priority>
     <Priority_List>
       <string>Auto Raising</string>
-      <string>Combat Script</string>
+      <string>Combat</string>
       <string>Cura</string>
-      <string>Curaga</string>
       <string>Curing Waltz</string>
+      <string>Debuff (High Priority)</string>
+      <string>Debuff (Low Priority)</string>
+      <string>Debuff (Normal Priority)</string>
+      <string>Dispelling</string>
       <string>Divine Waltz</string>
+      <string>Enfeebling (High Priority)</string>
       <string>Enfeebling (Low Priority)</string>
       <string>Enfeebling (Normal Priority)</string>
       <string>Follow</string>
@@ -16,7 +20,6 @@
       <string>Geomancy (Entrust)</string>
       <string>Geomancy (Indi)</string>
       <string>Geomancy (Luopan)</string>
-      <string>Magic Bursts</string>
       <string>Medicine</string>
       <string>Ninja Tools</string>
       <string>Shooting</string>
@@ -25,48 +28,45 @@
       <string>Skillchain (Follower 3)</string>
       <string>Skillchain (Follower 4)</string>
       <string>Skillchain (Leader)</string>
+      <string>Songs</string>
+      <string>Weaponskills</string>
+      <string>Curaga</string>
+      <string>Fighting</string>
     </Priority_List>
     <Priority_Rank>
-      <string>Combat</string>
-      <string>Cure</string>
-      <string>Songs</string>
-      <string>Enfeebling (High Priority)</string>
-      <string>Enhancing (High Priority)</string>
-      <string>Enhancing (Low Priority)</string>
-      <string>Enhancing (Normal Priority)</string>
       <string>Job Abilities</string>
-      <string>Dispelling</string>
-      <string>Debuff (High Priority)</string>
-      <string>Debuff (Low Priority)</string>
-      <string>Debuff (Normal Priority)</string>
-      <string>Fighting</string>
-      <string>Weaponskills</string>
+      <string>Cure</string>
+      <string>Enhancing (High Priority)</string>
+      <string>Enhancing (Normal Priority)</string>
+      <string>Enhancing (Low Priority)</string>
+      <string>Magic Bursts</string>
+      <string>Combat Script</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
     <Combat_Action>
       <Combat>
-        <Enabled>true</Enabled>
+        <Enabled>false</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name>Hybridkiller</Name>
+        <Name />
         <Engage>false</Engage>
-        <Run>true</Run>
-        <Face_Toward>true</Face_Toward>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Max_Distance>3</Max_Distance>
         <Min_Distance>0</Min_Distance>
       </Combat>
       <Combat_Script>
-        <Enabled>false</Enabled>
-        <Reset>false</Reset>
-        <Name>Treubond</Name>
+        <Enabled>true</Enabled>
+        <Reset>true</Reset>
+        <Name>Swifman</Name>
         <Command>/ma "Dia II"</Command>
         <Category>Magic</Category>
-        <Type>Bard Song</Type>
-        <Action>Army's Paeon IV</Action>
+        <Type>Black Magic</Type>
+        <Action>Aero II</Action>
         <Delay>0</Delay>
-        <Repeat>120</Repeat>
+        <Repeat>0</Repeat>
       </Combat_Script>
       <Shooting>
         <Enabled>false</Enabled>
@@ -76,15 +76,15 @@
       </Shooting>
     </Combat_Action>
     <Weaponskills>
-      <Enabled>true</Enabled>
-      <WeaponType>Sword</WeaponType>
-      <WeaponSkill>Savage Blade</WeaponSkill>
+      <Enabled>false</Enabled>
+      <WeaponType />
+      <WeaponSkill />
       <Script />
       <TP_Threshold>1000</TP_Threshold>
       <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>10</High_HP_Threshold>
+      <High_HP_Threshold>100</High_HP_Threshold>
       <Cycle>0</Cycle>
-      <AM_Enabled>true</AM_Enabled>
+      <AM_Enabled>false</AM_Enabled>
       <AM_Level>0</AM_Level>
       <AM_Type />
       <AM_Skill />
@@ -177,7 +177,7 @@
       </Follower4>
     </Skillchains>
     <Burst>
-      <Enabled>false</Enabled>
+      <Enabled>true</Enabled>
       <MP>20</MP>
       <Time_Out>10</Time_Out>
       <Burst_Helix>false</Burst_Helix>
@@ -185,23 +185,23 @@
       <Demote>false</Demote>
       <Kaustra>false</Kaustra>
       <Burst_I>
-        <Enabled>false</Enabled>
+        <Enabled>true</Enabled>
         <Ebullience>false</Ebullience>
         <Delay>0</Delay>
-        <Mode />
-        <Element />
-        <Type />
-        <Tier>0</Tier>
+        <Mode>Priority Element</Mode>
+        <Element>Ice</Element>
+        <Type>Spell</Type>
+        <Tier>2</Tier>
         <Command />
       </Burst_I>
       <Burst_II>
         <Enabled>false</Enabled>
         <Ebullience>false</Ebullience>
         <Delay>0</Delay>
-        <Mode />
+        <Mode>Any Element</Mode>
         <Element />
-        <Type />
-        <Tier>0</Tier>
+        <Type>Spell</Type>
+        <Tier>1</Tier>
         <Command />
       </Burst_II>
       <Burst_III>
@@ -236,57 +236,56 @@
       </Element_Priority>
     </Burst>
     <Offense>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <Validate_IDs>true</Validate_IDs>
-      <Fighting_Mode>Passive</Fighting_Mode>
-      <Targeting_Mode>Any</Targeting_Mode>
+      <Fighting_Mode>Aggressive</Fighting_Mode>
+      <Targeting_Mode>White List</Targeting_Mode>
       <Player />
       <Movement>Self</Movement>
       <Enemy_Count>1</Enemy_Count>
       <Enemy_Distance>20</Enemy_Distance>
       <Enemy_Elevation>10</Enemy_Elevation>
       <Claim_Timeout>10</Claim_Timeout>
-      <Enemy_List />
+      <Enemy_List>
+        <string>Locus Dire Bat</string>
+      </Enemy_List>
     </Offense>
   </Fighting>
   <Healing>
     <Party>true</Party>
     <Alliance>false</Alliance>
-    <Cure_List>
-      <string>Treubond</string>
-      <string>Khrone</string>
-    </Cure_List>
+    <Cure_List />
     <Spells>
       <Cure>
         <Enabled>true</Enabled>
-        <MND_1>0</MND_1>
+        <MND_1>300</MND_1>
         <MND_2>0</MND_2>
         <VIT_1>0</VIT_1>
         <VIT_2>0</VIT_2>
-        <MND>0</MND>
+        <MND>300</MND>
         <VIT>0</VIT>
-        <Skill>0</Skill>
-        <Cure_Potency>40</Cure_Potency>
-        <Cure_Potency_II>0</Cure_Potency_II>
+        <Skill>400</Skill>
+        <Cure_Potency>50</Cure_Potency>
+        <Cure_Potency_II>30</Cure_Potency_II>
         <Weather>0</Weather>
-        <Cure_I>14</Cure_I>
+        <Cure_I>111</Cure_I>
         <Cure_I_Enabled>false</Cure_I_Enabled>
-        <Cure_II>28</Cure_II>
+        <Cure_II>246</Cure_II>
         <Cure_II_Enabled>false</Cure_II_Enabled>
-        <Cure_III>137</Cure_III>
+        <Cure_III>558</Cure_III>
         <Cure_III_Enabled>true</Cure_III_Enabled>
-        <Cure_IV>280</Cure_IV>
-        <Cure_IV_Enabled>true</Cure_IV_Enabled>
-        <Cure_V>468</Cure_V>
+        <Cure_IV>1044</Cure_IV>
+        <Cure_IV_Enabled>false</Cure_IV_Enabled>
+        <Cure_V>1323</Cure_V>
         <Cure_V_Enabled>false</Cure_V_Enabled>
-        <Cure_VI>756</Cure_VI>
+        <Cure_VI>1654</Cure_VI>
         <Cure_VI_Enabled>false</Cure_VI_Enabled>
-        <Threshold>70</Threshold>
+        <Threshold>75</Threshold>
         <Priority_Threshold>85</Priority_Threshold>
         <Priority_Enable>false</Priority_Enable>
         <Priority_Count>0</Priority_Count>
         <Priority_Promote_Rate>0</Priority_Promote_Rate>
-        <Over_Cure>25</Over_Cure>
+        <Over_Cure>30</Over_Cure>
         <FC_Enabled>false</FC_Enabled>
         <FC_MP_Threshold>2</FC_MP_Threshold>
         <FC_HP_Threshold>25</FC_HP_Threshold>
@@ -301,17 +300,17 @@
         <VIT>0</VIT>
         <Skill>0</Skill>
         <Cure_Potency>50</Cure_Potency>
-        <Cure_Potency_II>5</Cure_Potency_II>
+        <Cure_Potency_II>11</Cure_Potency_II>
         <Weather>0</Weather>
-        <Curaga_I>93</Curaga_I>
+        <Curaga_I>96</Curaga_I>
         <Curaga_I_Enabled>false</Curaga_I_Enabled>
-        <Curaga_II>108</Curaga_II>
+        <Curaga_II>112</Curaga_II>
         <Curaga_II_Enabled>false</Curaga_II_Enabled>
-        <Curaga_III>255</Curaga_III>
-        <Curaga_III_Enabled>false</Curaga_III_Enabled>
-        <Curaga_IV>511</Curaga_IV>
+        <Curaga_III>265</Curaga_III>
+        <Curaga_III_Enabled>true</Curaga_III_Enabled>
+        <Curaga_IV>531</Curaga_IV>
         <Curaga_IV_Enabled>false</Curaga_IV_Enabled>
-        <Curaga_V>108</Curaga_V>
+        <Curaga_V>112</Curaga_V>
         <Curaga_V_Enabled>false</Curaga_V_Enabled>
         <Curaga_VI>0</Curaga_VI>
         <Curaga_VI_Enabled>false</Curaga_VI_Enabled>
@@ -401,63 +400,12 @@
     </Raise>
   </Healing>
   <Debuff>
-    <Party>true</Party>
+    <Party>false</Party>
     <Alliance>false</Alliance>
-    <High_Enable>true</High_Enable>
-    <Normal_Enable>true</Normal_Enable>
-    <Low_Enable>true</Low_Enable>
-    <Debuff_List>
-      <Character_Debuff>
-        <Name>Treubond</Name>
-        <Sleep>true</Sleep>
-        <Poison>true</Poison>
-        <Paralysis>true</Paralysis>
-        <Blindness>true</Blindness>
-        <Silence>false</Silence>
-        <Petrification>true</Petrification>
-        <Disease>false</Disease>
-        <Curse>false</Curse>
-        <Bind>true</Bind>
-        <Weight>false</Weight>
-        <Slow>false</Slow>
-        <Doom>true</Doom>
-        <Addle>false</Addle>
-        <Plague>false</Plague>
-        <Dia>false</Dia>
-        <Bio>false</Bio>
-        <Flash>false</Flash>
-        <Amnesia>false</Amnesia>
-        <STR_Down>true</STR_Down>
-        <DEX_Down>false</DEX_Down>
-        <VIT_Down>false</VIT_Down>
-        <AGI_Down>false</AGI_Down>
-        <INT_Down>false</INT_Down>
-        <MND_Down>false</MND_Down>
-        <CHR_Down>false</CHR_Down>
-        <Max_HP_Down>false</Max_HP_Down>
-        <Max_MP_Down>false</Max_MP_Down>
-        <Accuracy_Down>false</Accuracy_Down>
-        <Attack_Down>false</Attack_Down>
-        <Evasion_Down>false</Evasion_Down>
-        <Defense_Down>false</Defense_Down>
-        <Magic_Evasion_Down>false</Magic_Evasion_Down>
-        <Magic_Def_Down>false</Magic_Def_Down>
-        <Magic_Acc_Down>false</Magic_Acc_Down>
-        <Magic_Atk_Down>false</Magic_Atk_Down>
-        <Max_TP_Down>false</Max_TP_Down>
-        <Inhibit_TP>false</Inhibit_TP>
-        <Burn>false</Burn>
-        <Frost>false</Frost>
-        <Choke>false</Choke>
-        <Rasp>false</Rasp>
-        <Shock>false</Shock>
-        <Drown>false</Drown>
-        <Requiem>false</Requiem>
-        <Elegy>false</Elegy>
-        <Lullaby>false</Lullaby>
-        <Nocturne>false</Nocturne>
-      </Character_Debuff>
-    </Debuff_List>
+    <High_Enable>false</High_Enable>
+    <Normal_Enable>false</Normal_Enable>
+    <Low_Enable>false</Low_Enable>
+    <Debuff_List />
     <High_Priority>
       <string>Doom</string>
       <string>Curse</string>
@@ -514,19 +462,19 @@
   </Debuff>
   <Enfeebling>
     <Immuno_Count>0</Immuno_Count>
-    <High_Enable>true</High_Enable>
+    <High_Enable>false</High_Enable>
     <Normal_Enable>false</Normal_Enable>
     <Low_Enable>false</Low_Enable>
-    <Dispelling_Enable>true</Dispelling_Enable>
+    <Dispelling_Enable>false</Dispelling_Enable>
     <Auto_Mode>false</Auto_Mode>
     <Immuno_Mode>false</Immuno_Mode>
     <Break_AoE>false</Break_AoE>
     <Sleep_AoE>false</Sleep_AoE>
     <Dia_AoE>false</Dia_AoE>
     <Dispel_AoE>false</Dispel_AoE>
-    <Assist>Treubond</Assist>
+    <Assist />
     <Mode>Global</Mode>
-    <Priority_Mode>Strict</Priority_Mode>
+    <Priority_Mode>Free</Priority_Mode>
     <Enemy_Enfeebling>
       <Name>All Enemies</Name>
       <Addle>false</Addle>
@@ -551,27 +499,27 @@
       <Frost>false</Frost>
       <Burn>false</Burn>
       <Drown>false</Drown>
-      <Elegy>true</Elegy>
+      <Elegy>false</Elegy>
       <Nocturne>false</Nocturne>
       <Requiem>false</Requiem>
-      <Threnody>true</Threnody>
+      <Threnody>false</Threnody>
       <Attack_Down>false</Attack_Down>
       <Inhibit_TP>false</Inhibit_TP>
       <Fire_Threnody>false</Fire_Threnody>
-      <Ice_Threnody>false</Ice_Threnody>
+      <Ice_Threnody>true</Ice_Threnody>
       <Wind_Threnody>false</Wind_Threnody>
       <Earth_Threnody>false</Earth_Threnody>
       <Ltng_Threnody>false</Ltng_Threnody>
       <Water_Threnody>false</Water_Threnody>
-      <Light_Threnody>true</Light_Threnody>
+      <Light_Threnody>false</Light_Threnody>
       <Dark_Threnody>false</Dark_Threnody>
-      <Protect>true</Protect>
-      <Shell>true</Shell>
+      <Protect>false</Protect>
+      <Shell>false</Shell>
       <Haste>false</Haste>
-      <Spikes>true</Spikes>
+      <Spikes>false</Spikes>
       <Warcry>false</Warcry>
-      <Enspell>true</Enspell>
-      <Phalanx>true</Phalanx>
+      <Enspell>false</Enspell>
+      <Phalanx>false</Phalanx>
       <Stoneskin>false</Stoneskin>
       <Aquaveil>false</Aquaveil>
       <Regen>false</Regen>
@@ -591,10 +539,10 @@
     </Enemy_Enfeebling>
     <Enfeebling_List />
     <High_Priority>
-      <string>Elegy</string>
       <string>Slow</string>
       <string>Paralyze</string>
       <string>Silence</string>
+      <string>Elegy</string>
       <string>Nocturne</string>
       <string>Addle</string>
       <string>Dia</string>
@@ -633,16 +581,16 @@
     <Normal_Enable>true</Normal_Enable>
     <Low_Enable>true</Low_Enable>
     <Rebuff>true</Rebuff>
-    <Rebuff_Time>0</Rebuff_Time>
+    <Rebuff_Time>30</Rebuff_Time>
     <Enhancing_Player>
       <Utsusemi>false</Utsusemi>
       <Crusade>false</Crusade>
-      <Reraise>false</Reraise>
+      <Reraise>true</Reraise>
       <Blink>false</Blink>
-      <Klimaform>false</Klimaform>
+      <Klimaform>true</Klimaform>
       <Aquaveil>false</Aquaveil>
       <Temper>false</Temper>
-      <Stoneskin>false</Stoneskin>
+      <Stoneskin>true</Stoneskin>
       <Auspice>false</Auspice>
       <STR>false</STR>
       <DEX>false</DEX>
@@ -682,14 +630,119 @@
     </Enhancing_Player>
     <Enhancing_List>
       <Character_Enhancing>
-        <Name>Khrone</Name>
+        <Name>Withen</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>true</Haste>
+        <Refresh>false</Refresh>
+        <Flurry>false</Flurry>
+        <Regen>true</Regen>
+        <Phalanx>true</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>true</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Yfandes</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>false</Haste>
+        <Refresh>false</Refresh>
+        <Flurry>false</Flurry>
+        <Regen>true</Regen>
+        <Phalanx>true</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Swifman</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>false</Haste>
+        <Refresh>false</Refresh>
+        <Flurry>false</Flurry>
+        <Regen>true</Regen>
+        <Phalanx>true</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>true</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Monberaux</Name>
         <Protect>false</Protect>
         <Shell>false</Shell>
         <Haste>false</Haste>
         <Refresh>false</Refresh>
         <Flurry>false</Flurry>
         <Regen>false</Regen>
-        <Phalanx>true</Phalanx>
+        <Phalanx>false</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Koru-Moru</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>false</Haste>
+        <Refresh>false</Refresh>
+        <Flurry>false</Flurry>
+        <Regen>false</Regen>
+        <Phalanx>false</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Joachim</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>false</Haste>
+        <Refresh>false</Refresh>
+        <Flurry>false</Flurry>
+        <Regen>false</Regen>
+        <Phalanx>false</Phalanx>
         <Adloquium>false</Adloquium>
         <Animus_Augeo>false</Animus_Augeo>
         <Animus_Minuo>false</Animus_Minuo>
@@ -739,7 +792,7 @@
   <Abilities>
     <Enabled>true</Enabled>
     <Main_Job>
-      <Name>Bard</Name>
+      <Name>Scholar</Name>
       <Warrior>
         <Mighty_Strikes>false</Mighty_Strikes>
         <Provoke>false</Provoke>
@@ -780,7 +833,7 @@
       <White_Mage>
         <Benediction>false</Benediction>
         <Divine_Seal>false</Divine_Seal>
-        <Afflatus_Solace>true</Afflatus_Solace>
+        <Afflatus_Solace>false</Afflatus_Solace>
         <Afflatus_Misery>false</Afflatus_Misery>
         <Martyr>false</Martyr>
         <Martyr_HP>0</Martyr_HP>
@@ -788,7 +841,7 @@
         <Devotion>false</Devotion>
         <Devotion_MP>0</Devotion_MP>
         <Devotion_Target />
-        <Divine_Caress>true</Divine_Caress>
+        <Divine_Caress>false</Divine_Caress>
         <Sacrosanctity>false</Sacrosanctity>
         <Asylum>false</Asylum>
       </White_Mage>
@@ -895,11 +948,499 @@
       <Bard>
         <Soul_Voice>false</Soul_Voice>
         <Pianissimo>false</Pianissimo>
-        <Nightingale>true</Nightingale>
-        <Troubadour>true</Troubadour>
+        <Nightingale>false</Nightingale>
+        <Troubadour>false</Troubadour>
         <Tenuto>false</Tenuto>
-        <Marcato>true</Marcato>
-        <Clarion_Call>true</Clarion_Call>
+        <Marcato>false</Marcato>
+        <Clarion_Call>false</Clarion_Call>
+      </Bard>
+      <Ranger>
+        <Eagle_Eye_Shot>false</Eagle_Eye_Shot>
+        <Sharpshot>false</Sharpshot>
+        <Sharpshot_Barrage>false</Sharpshot_Barrage>
+        <Scavenge>false</Scavenge>
+        <Camouflage>false</Camouflage>
+        <Camouflage_Barrage>false</Camouflage_Barrage>
+        <Barrage>false</Barrage>
+        <Barrage_Double>false</Barrage_Double>
+        <Shadowbind>false</Shadowbind>
+        <Velocity_Shot>false</Velocity_Shot>
+        <Unlimited_Shot>false</Unlimited_Shot>
+        <Flashy_Shot>false</Flashy_Shot>
+        <Stealth_Shot>false</Stealth_Shot>
+        <Double_Shot>false</Double_Shot>
+        <Bounty_Shot>false</Bounty_Shot>
+        <Decoy_Shot>false</Decoy_Shot>
+        <Hover_Shot>false</Hover_Shot>
+        <Hover_Shot_Delay>false</Hover_Shot_Delay>
+        <Hover_Shot_Time>0</Hover_Shot_Time>
+        <Overkill>false</Overkill>
+      </Ranger>
+      <Summoner>
+        <Astral_Flow>false</Astral_Flow>
+        <Elemental_Siphon>false</Elemental_Siphon>
+        <Apogee>false</Apogee>
+        <Mana_Cede>false</Mana_Cede>
+        <Astral_Conduit>false</Astral_Conduit>
+      </Summoner>
+      <Samurai>
+        <Meikyo_Shisui>false</Meikyo_Shisui>
+        <Warding_Circle>false</Warding_Circle>
+        <Third_Eye>false</Third_Eye>
+        <Third_Eye_HPP>0</Third_Eye_HPP>
+        <Hasso>false</Hasso>
+        <Meditate>false</Meditate>
+        <Seigan>false</Seigan>
+        <Sekkanoki>false</Sekkanoki>
+        <Konzen_ittai>false</Konzen_ittai>
+        <Shikikoyo>false</Shikikoyo>
+        <Blade_Bash>false</Blade_Bash>
+        <Sengikori>false</Sengikori>
+        <Hamanoha>false</Hamanoha>
+        <Hagakure>false</Hagakure>
+        <Yaegasumi>false</Yaegasumi>
+      </Samurai>
+      <Ninja>
+        <Mijin_Gakure>false</Mijin_Gakure>
+        <Migawari>false</Migawari>
+        <Gekka>false</Gekka>
+        <Yain>false</Yain>
+        <Kakka>false</Kakka>
+        <Myoshu>false</Myoshu>
+        <Yonin>false</Yonin>
+        <Innin>false</Innin>
+        <Sange>false</Sange>
+        <Futae>false</Futae>
+        <Futae_Busrt_Only>false</Futae_Busrt_Only>
+        <Issekigan>false</Issekigan>
+        <Mikage>false</Mikage>
+        <Utsusemi_Mode />
+      </Ninja>
+      <Dragoon>
+        <Spirit_Surge>false</Spirit_Surge>
+        <Call_Wyvern>false</Call_Wyvern>
+        <Ancient_Circle>false</Ancient_Circle>
+        <Jump>false</Jump>
+        <Spirit_Link>false</Spirit_Link>
+        <Spirit_Link_HPP>0</Spirit_Link_HPP>
+        <Jump_TP>0</Jump_TP>
+        <High_Jump>false</High_Jump>
+        <Super_Jump>false</Super_Jump>
+        <Spirit_Bond>false</Spirit_Bond>
+        <Deep_Breathing>false</Deep_Breathing>
+        <Angon>false</Angon>
+        <Spirit_Jump>false</Spirit_Jump>
+        <Soul_Jump>false</Soul_Jump>
+        <Dragon_Breaker>false</Dragon_Breaker>
+        <Fly_High>false</Fly_High>
+        <Dismiss>false</Dismiss>
+        <Smiting_Breath>false</Smiting_Breath>
+        <Restoring_Breath>false</Restoring_Breath>
+        <Restoring_Breath_HPP>0</Restoring_Breath_HPP>
+        <Steady_Wing>false</Steady_Wing>
+      </Dragoon>
+      <Blue_Mage>
+        <Azure_Lore>false</Azure_Lore>
+        <Burst_Affinity>false</Burst_Affinity>
+        <Chain_Affinity>false</Chain_Affinity>
+        <Convergence>false</Convergence>
+        <Diffusion>false</Diffusion>
+        <Efflux>false</Efflux>
+        <Unbridled_Learning>false</Unbridled_Learning>
+        <Unbridled_Wisdom>false</Unbridled_Wisdom>
+        <Sheep_Song>false</Sheep_Song>
+        <Jettatura>false</Jettatura>
+        <Stinking_Gas>false</Stinking_Gas>
+        <Blank_Gaze>false</Blank_Gaze>
+        <Soporific>false</Soporific>
+        <Geist_Wall>false</Geist_Wall>
+        <Sandspin>false</Sandspin>
+        <Cocoon>false</Cocoon>
+        <Metallic_Body>false</Metallic_Body>
+        <Refueling>false</Refueling>
+        <Battery_Charge>false</Battery_Charge>
+        <Sudden_Lunge>false</Sudden_Lunge>
+        <Reaving_Wind>false</Reaving_Wind>
+        <Feather_Tickle>false</Feather_Tickle>
+        <Occultation>false</Occultation>
+        <Magic_Barrier>false</Magic_Barrier>
+        <Magic_Hammer>false</Magic_Hammer>
+        <Magic_Hammer_MP>0</Magic_Hammer_MP>
+        <Saline_Coat>false</Saline_Coat>
+        <Barrier_Tusk>false</Barrier_Tusk>
+        <Nat_Meditation>false</Nat_Meditation>
+        <Diamondhide>false</Diamondhide>
+        <Mighty_Guard>false</Mighty_Guard>
+        <Erratic_Flutter>false</Erratic_Flutter>
+        <Harden_Shell>false</Harden_Shell>
+        <Carcharian_Verve>false</Carcharian_Verve>
+        <Mode />
+        <Diffusion_Spell />
+      </Blue_Mage>
+      <Corsair>
+        <Wild_Card>false</Wild_Card>
+        <Phantom_Roll>false</Phantom_Roll>
+        <Crooked_Cards>false</Crooked_Cards>
+        <Crooked_Card_Roll>1</Crooked_Card_Roll>
+        <Phantom_Roll_TP>0</Phantom_Roll_TP>
+        <Winning_Streak>false</Winning_Streak>
+        <Phantom_Roll_TP_Enable>false</Phantom_Roll_TP_Enable>
+        <Roll_1>
+          <Name />
+          <ID>0</ID>
+          <Buff>0</Buff>
+          <Description />
+          <Lucky>0</Lucky>
+          <Unlucky>0</Unlucky>
+          <Current>0</Current>
+          <Job />
+          <Crooked_Card>false</Crooked_Card>
+        </Roll_1>
+        <Roll_2>
+          <Name />
+          <ID>0</ID>
+          <Buff>0</Buff>
+          <Description />
+          <Lucky>0</Lucky>
+          <Unlucky>0</Unlucky>
+          <Current>0</Current>
+          <Job />
+          <Crooked_Card>false</Crooked_Card>
+        </Roll_2>
+        <Player_1 />
+        <Player_2 />
+        <Player_3 />
+        <Player_4 />
+        <Player_5 />
+        <Quick_Draw>false</Quick_Draw>
+        <Quick_Draw_Element />
+        <Random_Deal>false</Random_Deal>
+        <Triple_Shot>false</Triple_Shot>
+        <Cutting_Cards>false</Cutting_Cards>
+        <Double_Up_Roll>0</Double_Up_Roll>
+        <Bolters>false</Bolters>
+      </Corsair>
+      <Puppetmaster>
+        <Overdrive>false</Overdrive>
+        <Activate>false</Activate>
+        <Deus_Ex_Automata>false</Deus_Ex_Automata>
+        <Repair>false</Repair>
+        <Maintenance>false</Maintenance>
+        <Ventriloquy>false</Ventriloquy>
+        <Role_Reversal>false</Role_Reversal>
+        <Tactical_Switch>false</Tactical_Switch>
+        <Cooldown>false</Cooldown>
+        <Heady_Artifice>false</Heady_Artifice>
+      </Puppetmaster>
+      <Dancer>
+        <Trance>false</Trance>
+        <Samba />
+        <Maintain_Step_Time>0</Maintain_Step_Time>
+        <Build_Step_Time>0</Build_Step_Time>
+        <Flourish_III_WS_Only>false</Flourish_III_WS_Only>
+        <Quickstep>false</Quickstep>
+        <Box_Step>false</Box_Step>
+        <Stutter_Step>false</Stutter_Step>
+        <Feather_Step>false</Feather_Step>
+        <Animated_Flourish>false</Animated_Flourish>
+        <Animated_Flourish_Count>0</Animated_Flourish_Count>
+        <Desperate_Flourish>false</Desperate_Flourish>
+        <Violent_Flourish>false</Violent_Flourish>
+        <Reverse_Flourish>false</Reverse_Flourish>
+        <Reverse_Flourish_Count>0</Reverse_Flourish_Count>
+        <Reverse_Flourish_TP>0</Reverse_Flourish_TP>
+        <Building_Flourish>false</Building_Flourish>
+        <Building_Flourish_Count>0</Building_Flourish_Count>
+        <Building_Flourish_TP>0</Building_Flourish_TP>
+        <Wild_Flourish>false</Wild_Flourish>
+        <Climactic_Flourish>false</Climactic_Flourish>
+        <Climactic_Flourish_Count>0</Climactic_Flourish_Count>
+        <Striking_Flourish>false</Striking_Flourish>
+        <Ternary_Flourish>false</Ternary_Flourish>
+        <Contradance>false</Contradance>
+        <Saber_Dance>false</Saber_Dance>
+        <Fan_Dance>false</Fan_Dance>
+        <No_Foot_Rise>false</No_Foot_Rise>
+        <Presto_Quickstep>false</Presto_Quickstep>
+        <Presto_Stutter_Step>false</Presto_Stutter_Step>
+        <Presto_Box_Step>false</Presto_Box_Step>
+        <Presto_Feather_Step>false</Presto_Feather_Step>
+        <Grand_Pas>false</Grand_Pas>
+      </Dancer>
+      <Scholar>
+        <Tabula_Rasa>false</Tabula_Rasa>
+        <Embrava>false</Embrava>
+        <Light_Arts>true</Light_Arts>
+        <Addendum_White>true</Addendum_White>
+        <Accession>true</Accession>
+        <Perpetuance>true</Perpetuance>
+        <Dark_Arts>false</Dark_Arts>
+        <Addendum_Black>false</Addendum_Black>
+        <Manifestation>false</Manifestation>
+        <Ebullience>false</Ebullience>
+        <Immanence>false</Immanence>
+        <Sublimation>true</Sublimation>
+        <Sublimation_Charging>16</Sublimation_Charging>
+        <Sublimation_Completed>25</Sublimation_Completed>
+        <Modus_Veritas>false</Modus_Veritas>
+        <Enlightenment>false</Enlightenment>
+        <Libra>false</Libra>
+        <Caper_Emissarius>false</Caper_Emissarius>
+        <Cure_Accession>false</Cure_Accession>
+        <Shell_Accession>false</Shell_Accession>
+        <Shell_Perpetuance>false</Shell_Perpetuance>
+        <Shell_Force>false</Shell_Force>
+        <Protect_Accession>false</Protect_Accession>
+        <Protect_Perpetuance>false</Protect_Perpetuance>
+        <Protect_Force>false</Protect_Force>
+        <Regen_Accession>true</Regen_Accession>
+        <Regen_Perpetuance>true</Regen_Perpetuance>
+        <Regen_Force>true</Regen_Force>
+        <Phalanx_Accession>true</Phalanx_Accession>
+        <Phalanx_Perpetuance>true</Phalanx_Perpetuance>
+        <Phalanx_Force>true</Phalanx_Force>
+        <Adloquium_Accession>false</Adloquium_Accession>
+        <Adloquium_Perpetuance>false</Adloquium_Perpetuance>
+        <Adloquium_Force>false</Adloquium_Force>
+        <Storms_Accession>false</Storms_Accession>
+        <Storms_Perpetuance>false</Storms_Perpetuance>
+        <Storms_Force>false</Storms_Force>
+        <Stoneskin_Accession>false</Stoneskin_Accession>
+        <Stoneskin_Perpetuance>false</Stoneskin_Perpetuance>
+        <Stoneskin_Force>false</Stoneskin_Force>
+        <Enspell_Accession>false</Enspell_Accession>
+        <Enspell_Perpetuance>false</Enspell_Perpetuance>
+        <Enspell_Force>false</Enspell_Force>
+        <Blink_Accession>false</Blink_Accession>
+        <Blink_Perpetuance>false</Blink_Perpetuance>
+        <Blink_Force>false</Blink_Force>
+        <Aquaveil_Accession>false</Aquaveil_Accession>
+        <Aquaveil_Perpetuance>false</Aquaveil_Perpetuance>
+        <Aquaveil_Force>false</Aquaveil_Force>
+        <Bar_Accession>false</Bar_Accession>
+        <Bar_Perpetuance>false</Bar_Perpetuance>
+        <Bar_Force>false</Bar_Force>
+        <Klimaform_Manifestation>false</Klimaform_Manifestation>
+        <Klimaform_Force>false</Klimaform_Force>
+        <Haste_Perpetuance>false</Haste_Perpetuance>
+        <Haste_Force>false</Haste_Force>
+      </Scholar>
+      <Geomancer>
+        <Bolster>false</Bolster>
+        <Full_Circle>true</Full_Circle>
+        <Full_Circle_Target>6</Full_Circle_Target>
+        <Full_Circle_Player>21</Full_Circle_Player>
+        <Lasting_Emanation>false</Lasting_Emanation>
+        <Ecliptic_Attrition>true</Ecliptic_Attrition>
+        <Ecliptic_Lasting_HPP>75</Ecliptic_Lasting_HPP>
+        <Ecliptic_Lasting_BoG>true</Ecliptic_Lasting_BoG>
+        <Collimated_Fervor>false</Collimated_Fervor>
+        <Life_Cycle>true</Life_Cycle>
+        <Life_Cycle_HPP>40</Life_Cycle_HPP>
+        <Life_Cycle_BoG>true</Life_Cycle_BoG>
+        <Blaze_of_Glory>true</Blaze_of_Glory>
+        <Dematerialize>true</Dematerialize>
+        <Dematerialize_HPP>100</Dematerialize_HPP>
+        <Dematerialize_BoG>true</Dematerialize_BoG>
+        <Mending_Halation>false</Mending_Halation>
+        <Radial_Arcana>true</Radial_Arcana>
+        <Radial_Arcana_MPP>10</Radial_Arcana_MPP>
+        <Theurgic_Focus>false</Theurgic_Focus>
+        <Concentric_Pulse>false</Concentric_Pulse>
+        <Widened_Compass>false</Widened_Compass>
+      </Geomancer>
+      <Rune_Fencer>
+        <Elemental_Sforzo>false</Elemental_Sforzo>
+        <Rune_Enchantment>false</Rune_Enchantment>
+        <Vallation>false</Vallation>
+        <Vallation_Tank>false</Vallation_Tank>
+        <Swordplay>false</Swordplay>
+        <Swipe>false</Swipe>
+        <Lunge>false</Lunge>
+        <Pflug>false</Pflug>
+        <Valiance>false</Valiance>
+        <Valiance_Tank>false</Valiance_Tank>
+        <Embolden>false</Embolden>
+        <Vivacious_Pulse>false</Vivacious_Pulse>
+        <Gambit>false</Gambit>
+        <Battuta>false</Battuta>
+        <Rayke>false</Rayke>
+        <Liement>false</Liement>
+        <One_for_All>false</One_for_All>
+        <Odyllic_Subterfuge>false</Odyllic_Subterfuge>
+        <Foil>false</Foil>
+        <Flash>false</Flash>
+        <Vivacious_HP>0</Vivacious_HP>
+        <Vivacious_MP>0</Vivacious_MP>
+        <Mode />
+        <Runes_1 />
+        <Runes_2 />
+        <Runes_3 />
+      </Rune_Fencer>
+      <None />
+    </Main_Job>
+    <Sub_Job>
+      <Name>Red Mage</Name>
+      <Warrior>
+        <Mighty_Strikes>false</Mighty_Strikes>
+        <Provoke>false</Provoke>
+        <Berserk>false</Berserk>
+        <Defender>false</Defender>
+        <Warcry>false</Warcry>
+        <Aggressor>false</Aggressor>
+        <Retaliation>false</Retaliation>
+        <Warriors_Charge>false</Warriors_Charge>
+        <Tomahawk>false</Tomahawk>
+        <Restraint>false</Restraint>
+        <Blood_Rage>false</Blood_Rage>
+        <Brazen_Rush>false</Brazen_Rush>
+        <Berserk_TP>1000</Berserk_TP>
+        <Warcry_TP>1000</Warcry_TP>
+        <Aggressor_TP>1000</Aggressor_TP>
+        <Blood_Rage_TP>1000</Blood_Rage_TP>
+        <Tomahawk_TP>1000</Tomahawk_TP>
+        <Warriors_Charge_TP>0</Warriors_Charge_TP>
+        <Provoke_Range>0</Provoke_Range>
+      </Warrior>
+      <Monk>
+        <Hundred_Fists>false</Hundred_Fists>
+        <Boost>false</Boost>
+        <Dodge>false</Dodge>
+        <Focus>false</Focus>
+        <Chakra>false</Chakra>
+        <Chakra_HP>0</Chakra_HP>
+        <Chi_Blast>false</Chi_Blast>
+        <Counterstance>false</Counterstance>
+        <Footwork>false</Footwork>
+        <Mantra>false</Mantra>
+        <Formless_Strikes>false</Formless_Strikes>
+        <Perfect_Counter>false</Perfect_Counter>
+        <Impetus>false</Impetus>
+        <Inner_Strength>false</Inner_Strength>
+      </Monk>
+      <White_Mage>
+        <Benediction>false</Benediction>
+        <Divine_Seal>false</Divine_Seal>
+        <Afflatus_Solace>false</Afflatus_Solace>
+        <Afflatus_Misery>false</Afflatus_Misery>
+        <Martyr>false</Martyr>
+        <Martyr_HP>0</Martyr_HP>
+        <Marty_Target />
+        <Devotion>false</Devotion>
+        <Devotion_MP>0</Devotion_MP>
+        <Devotion_Target />
+        <Divine_Caress>false</Divine_Caress>
+        <Sacrosanctity>false</Sacrosanctity>
+        <Asylum>false</Asylum>
+      </White_Mage>
+      <Black_Mage>
+        <Assist />
+        <Cascade_TP>0</Cascade_TP>
+        <Mana_Wall_MP>0</Mana_Wall_MP>
+        <Manafont_MP>0</Manafont_MP>
+        <Enemy_HPP>0</Enemy_HPP>
+        <Manafont>false</Manafont>
+        <Elemental_Seal>false</Elemental_Seal>
+        <Elemental_Seal_HP>false</Elemental_Seal_HP>
+        <Mana_Wall>false</Mana_Wall>
+        <Mana_Wall_HP>false</Mana_Wall_HP>
+        <Cascade>false</Cascade>
+        <Cascade_HP>false</Cascade_HP>
+        <Manawell>false</Manawell>
+        <Manawell_HP>false</Manawell_HP>
+        <Enmity_Douse>false</Enmity_Douse>
+        <Subtle_Sorcery>false</Subtle_Sorcery>
+      </Black_Mage>
+      <Red_Mage>
+        <Chainspell>false</Chainspell>
+        <Convert>false</Convert>
+        <Convert_HP>50</Convert_HP>
+        <Convert_MP>10</Convert_MP>
+        <Composure>false</Composure>
+        <Saboteur>false</Saboteur>
+        <Spontaneity>false</Spontaneity>
+        <Stymie>false</Stymie>
+        <Stymie_Spell />
+        <Stymie_Name />
+      </Red_Mage>
+      <Thief>
+        <Perfect_Dodge>false</Perfect_Dodge>
+        <Steal>false</Steal>
+        <Sneak_Attack>false</Sneak_Attack>
+        <Flee>false</Flee>
+        <Trick_Attack>false</Trick_Attack>
+        <Mug>false</Mug>
+        <Hide>false</Hide>
+        <Accomplice>false</Accomplice>
+        <Collaborator>false</Collaborator>
+        <Assassins_Charge>false</Assassins_Charge>
+        <Feint>false</Feint>
+        <Despoil>false</Despoil>
+        <Conspirator>false</Conspirator>
+        <Bully>false</Bully>
+        <Larceny>false</Larceny>
+      </Thief>
+      <Paladin>
+        <Invincible>false</Invincible>
+        <Holy_Circle>false</Holy_Circle>
+        <Shield_Bash>false</Shield_Bash>
+        <Sentinel>false</Sentinel>
+        <Cover>false</Cover>
+        <Rampart>false</Rampart>
+        <Majesty>false</Majesty>
+        <Fealty>false</Fealty>
+        <Chivalry>false</Chivalry>
+        <Divine_Emblem>false</Divine_Emblem>
+        <Sepulcher>false</Sepulcher>
+        <Palisade>false</Palisade>
+        <Intervene>false</Intervene>
+        <Flash>false</Flash>
+        <Mode />
+        <Reprisal>false</Reprisal>
+        <Chivalry_TP>0</Chivalry_TP>
+        <Chivalry_MP>0</Chivalry_MP>
+      </Paladin>
+      <Dark_Knight>
+        <Blood_Weapon>false</Blood_Weapon>
+        <Blood_Weapon_HPP>50</Blood_Weapon_HPP>
+        <Arcane_Circle>false</Arcane_Circle>
+        <Last_Resort>false</Last_Resort>
+        <Weapon_Bash>false</Weapon_Bash>
+        <Souleater>false</Souleater>
+        <Souleater_HPP>50</Souleater_HPP>
+        <Consume_Mana>false</Consume_Mana>
+        <Consume_Mana_MPP>50</Consume_Mana_MPP>
+        <Dark_Seal>false</Dark_Seal>
+        <Diabolic_Eye>false</Diabolic_Eye>
+        <Nether_Void>false</Nether_Void>
+        <Arcane_Crest>false</Arcane_Crest>
+        <Scarlet_Delirium>false</Scarlet_Delirium>
+        <Scarlet_Delirium_HPP>50</Scarlet_Delirium_HPP>
+        <Soul_Enslavement>false</Soul_Enslavement>
+        <Dark_Seal_Spell />
+        <Nether_Void_Spell />
+        <Souleater_BloodWeapon>false</Souleater_BloodWeapon>
+      </Dark_Knight>
+      <Beast_Master>
+        <Familiar>false</Familiar>
+        <Charm>false</Charm>
+        <Gauge>false</Gauge>
+        <Reward>false</Reward>
+        <Call_Beast>false</Call_Beast>
+        <Bestial_Loyalty>false</Bestial_Loyalty>
+        <Tame>false</Tame>
+        <Feral_Howl>false</Feral_Howl>
+        <Killer_Instinct>false</Killer_Instinct>
+        <Unleash>false</Unleash>
+      </Beast_Master>
+      <Bard>
+        <Soul_Voice>false</Soul_Voice>
+        <Pianissimo>false</Pianissimo>
+        <Nightingale>false</Nightingale>
+        <Troubadour>false</Troubadour>
+        <Tenuto>false</Tenuto>
+        <Marcato>false</Marcato>
+        <Clarion_Call>false</Clarion_Call>
       </Bard>
       <Ranger>
         <Eagle_Eye_Shot>false</Eagle_Eye_Shot>
@@ -1225,494 +1766,6 @@
         <Runes_3 />
       </Rune_Fencer>
       <None />
-    </Main_Job>
-    <Sub_Job>
-      <Name>Red Mage</Name>
-      <Warrior>
-        <Mighty_Strikes>false</Mighty_Strikes>
-        <Provoke>false</Provoke>
-        <Berserk>false</Berserk>
-        <Defender>false</Defender>
-        <Warcry>false</Warcry>
-        <Aggressor>false</Aggressor>
-        <Retaliation>false</Retaliation>
-        <Warriors_Charge>false</Warriors_Charge>
-        <Tomahawk>false</Tomahawk>
-        <Restraint>false</Restraint>
-        <Blood_Rage>false</Blood_Rage>
-        <Brazen_Rush>false</Brazen_Rush>
-        <Berserk_TP>1000</Berserk_TP>
-        <Warcry_TP>1000</Warcry_TP>
-        <Aggressor_TP>1000</Aggressor_TP>
-        <Blood_Rage_TP>1000</Blood_Rage_TP>
-        <Tomahawk_TP>1000</Tomahawk_TP>
-        <Warriors_Charge_TP>0</Warriors_Charge_TP>
-        <Provoke_Range>0</Provoke_Range>
-      </Warrior>
-      <Monk>
-        <Hundred_Fists>false</Hundred_Fists>
-        <Boost>false</Boost>
-        <Dodge>false</Dodge>
-        <Focus>false</Focus>
-        <Chakra>false</Chakra>
-        <Chakra_HP>0</Chakra_HP>
-        <Chi_Blast>false</Chi_Blast>
-        <Counterstance>false</Counterstance>
-        <Footwork>false</Footwork>
-        <Mantra>false</Mantra>
-        <Formless_Strikes>false</Formless_Strikes>
-        <Perfect_Counter>false</Perfect_Counter>
-        <Impetus>false</Impetus>
-        <Inner_Strength>false</Inner_Strength>
-      </Monk>
-      <White_Mage>
-        <Benediction>false</Benediction>
-        <Divine_Seal>false</Divine_Seal>
-        <Afflatus_Solace>false</Afflatus_Solace>
-        <Afflatus_Misery>false</Afflatus_Misery>
-        <Martyr>false</Martyr>
-        <Martyr_HP>0</Martyr_HP>
-        <Marty_Target />
-        <Devotion>false</Devotion>
-        <Devotion_MP>0</Devotion_MP>
-        <Devotion_Target />
-        <Divine_Caress>false</Divine_Caress>
-        <Sacrosanctity>false</Sacrosanctity>
-        <Asylum>false</Asylum>
-      </White_Mage>
-      <Black_Mage>
-        <Assist />
-        <Cascade_TP>0</Cascade_TP>
-        <Mana_Wall_MP>0</Mana_Wall_MP>
-        <Manafont_MP>0</Manafont_MP>
-        <Enemy_HPP>0</Enemy_HPP>
-        <Manafont>false</Manafont>
-        <Elemental_Seal>false</Elemental_Seal>
-        <Elemental_Seal_HP>false</Elemental_Seal_HP>
-        <Mana_Wall>false</Mana_Wall>
-        <Mana_Wall_HP>false</Mana_Wall_HP>
-        <Cascade>false</Cascade>
-        <Cascade_HP>false</Cascade_HP>
-        <Manawell>false</Manawell>
-        <Manawell_HP>false</Manawell_HP>
-        <Enmity_Douse>false</Enmity_Douse>
-        <Subtle_Sorcery>false</Subtle_Sorcery>
-      </Black_Mage>
-      <Red_Mage>
-        <Chainspell>false</Chainspell>
-        <Convert>true</Convert>
-        <Convert_HP>50</Convert_HP>
-        <Convert_MP>10</Convert_MP>
-        <Composure>false</Composure>
-        <Saboteur>false</Saboteur>
-        <Spontaneity>false</Spontaneity>
-        <Stymie>false</Stymie>
-        <Stymie_Spell />
-        <Stymie_Name />
-      </Red_Mage>
-      <Thief>
-        <Perfect_Dodge>false</Perfect_Dodge>
-        <Steal>false</Steal>
-        <Sneak_Attack>false</Sneak_Attack>
-        <Flee>false</Flee>
-        <Trick_Attack>false</Trick_Attack>
-        <Mug>false</Mug>
-        <Hide>false</Hide>
-        <Accomplice>false</Accomplice>
-        <Collaborator>false</Collaborator>
-        <Assassins_Charge>false</Assassins_Charge>
-        <Feint>false</Feint>
-        <Despoil>false</Despoil>
-        <Conspirator>false</Conspirator>
-        <Bully>false</Bully>
-        <Larceny>false</Larceny>
-      </Thief>
-      <Paladin>
-        <Invincible>false</Invincible>
-        <Holy_Circle>false</Holy_Circle>
-        <Shield_Bash>false</Shield_Bash>
-        <Sentinel>false</Sentinel>
-        <Cover>false</Cover>
-        <Rampart>false</Rampart>
-        <Majesty>false</Majesty>
-        <Fealty>false</Fealty>
-        <Chivalry>false</Chivalry>
-        <Divine_Emblem>false</Divine_Emblem>
-        <Sepulcher>false</Sepulcher>
-        <Palisade>false</Palisade>
-        <Intervene>false</Intervene>
-        <Flash>false</Flash>
-        <Mode />
-        <Reprisal>false</Reprisal>
-        <Chivalry_TP>0</Chivalry_TP>
-        <Chivalry_MP>0</Chivalry_MP>
-      </Paladin>
-      <Dark_Knight>
-        <Blood_Weapon>false</Blood_Weapon>
-        <Blood_Weapon_HPP>50</Blood_Weapon_HPP>
-        <Arcane_Circle>false</Arcane_Circle>
-        <Last_Resort>false</Last_Resort>
-        <Weapon_Bash>false</Weapon_Bash>
-        <Souleater>false</Souleater>
-        <Souleater_HPP>50</Souleater_HPP>
-        <Consume_Mana>false</Consume_Mana>
-        <Consume_Mana_MPP>50</Consume_Mana_MPP>
-        <Dark_Seal>false</Dark_Seal>
-        <Diabolic_Eye>false</Diabolic_Eye>
-        <Nether_Void>false</Nether_Void>
-        <Arcane_Crest>false</Arcane_Crest>
-        <Scarlet_Delirium>false</Scarlet_Delirium>
-        <Scarlet_Delirium_HPP>50</Scarlet_Delirium_HPP>
-        <Soul_Enslavement>false</Soul_Enslavement>
-        <Dark_Seal_Spell />
-        <Nether_Void_Spell />
-        <Souleater_BloodWeapon>false</Souleater_BloodWeapon>
-      </Dark_Knight>
-      <Beast_Master>
-        <Familiar>false</Familiar>
-        <Charm>false</Charm>
-        <Gauge>false</Gauge>
-        <Reward>false</Reward>
-        <Call_Beast>false</Call_Beast>
-        <Bestial_Loyalty>false</Bestial_Loyalty>
-        <Tame>false</Tame>
-        <Feral_Howl>false</Feral_Howl>
-        <Killer_Instinct>false</Killer_Instinct>
-        <Unleash>false</Unleash>
-      </Beast_Master>
-      <Bard>
-        <Soul_Voice>false</Soul_Voice>
-        <Pianissimo>false</Pianissimo>
-        <Nightingale>false</Nightingale>
-        <Troubadour>false</Troubadour>
-        <Tenuto>false</Tenuto>
-        <Marcato>false</Marcato>
-        <Clarion_Call>false</Clarion_Call>
-      </Bard>
-      <Ranger>
-        <Eagle_Eye_Shot>false</Eagle_Eye_Shot>
-        <Sharpshot>false</Sharpshot>
-        <Sharpshot_Barrage>false</Sharpshot_Barrage>
-        <Scavenge>false</Scavenge>
-        <Camouflage>false</Camouflage>
-        <Camouflage_Barrage>false</Camouflage_Barrage>
-        <Barrage>false</Barrage>
-        <Barrage_Double>false</Barrage_Double>
-        <Shadowbind>false</Shadowbind>
-        <Velocity_Shot>false</Velocity_Shot>
-        <Unlimited_Shot>false</Unlimited_Shot>
-        <Flashy_Shot>false</Flashy_Shot>
-        <Stealth_Shot>false</Stealth_Shot>
-        <Double_Shot>false</Double_Shot>
-        <Bounty_Shot>false</Bounty_Shot>
-        <Decoy_Shot>false</Decoy_Shot>
-        <Hover_Shot>false</Hover_Shot>
-        <Hover_Shot_Delay>false</Hover_Shot_Delay>
-        <Hover_Shot_Time>0</Hover_Shot_Time>
-        <Overkill>false</Overkill>
-      </Ranger>
-      <Summoner>
-        <Astral_Flow>false</Astral_Flow>
-        <Elemental_Siphon>false</Elemental_Siphon>
-        <Apogee>false</Apogee>
-        <Mana_Cede>false</Mana_Cede>
-        <Astral_Conduit>false</Astral_Conduit>
-      </Summoner>
-      <Samurai>
-        <Meikyo_Shisui>false</Meikyo_Shisui>
-        <Warding_Circle>false</Warding_Circle>
-        <Third_Eye>false</Third_Eye>
-        <Third_Eye_HPP>0</Third_Eye_HPP>
-        <Hasso>false</Hasso>
-        <Meditate>false</Meditate>
-        <Seigan>false</Seigan>
-        <Sekkanoki>false</Sekkanoki>
-        <Konzen_ittai>false</Konzen_ittai>
-        <Shikikoyo>false</Shikikoyo>
-        <Blade_Bash>false</Blade_Bash>
-        <Sengikori>false</Sengikori>
-        <Hamanoha>false</Hamanoha>
-        <Hagakure>false</Hagakure>
-        <Yaegasumi>false</Yaegasumi>
-      </Samurai>
-      <Ninja>
-        <Mijin_Gakure>false</Mijin_Gakure>
-        <Migawari>false</Migawari>
-        <Gekka>false</Gekka>
-        <Yain>false</Yain>
-        <Kakka>false</Kakka>
-        <Myoshu>false</Myoshu>
-        <Yonin>false</Yonin>
-        <Innin>false</Innin>
-        <Sange>false</Sange>
-        <Futae>false</Futae>
-        <Futae_Busrt_Only>false</Futae_Busrt_Only>
-        <Issekigan>false</Issekigan>
-        <Mikage>false</Mikage>
-        <Utsusemi_Mode />
-      </Ninja>
-      <Dragoon>
-        <Spirit_Surge>false</Spirit_Surge>
-        <Call_Wyvern>false</Call_Wyvern>
-        <Ancient_Circle>false</Ancient_Circle>
-        <Jump>false</Jump>
-        <Spirit_Link>false</Spirit_Link>
-        <Spirit_Link_HPP>0</Spirit_Link_HPP>
-        <Jump_TP>0</Jump_TP>
-        <High_Jump>false</High_Jump>
-        <Super_Jump>false</Super_Jump>
-        <Spirit_Bond>false</Spirit_Bond>
-        <Deep_Breathing>false</Deep_Breathing>
-        <Angon>false</Angon>
-        <Spirit_Jump>false</Spirit_Jump>
-        <Soul_Jump>false</Soul_Jump>
-        <Dragon_Breaker>false</Dragon_Breaker>
-        <Fly_High>false</Fly_High>
-        <Dismiss>false</Dismiss>
-        <Smiting_Breath>false</Smiting_Breath>
-        <Restoring_Breath>false</Restoring_Breath>
-        <Restoring_Breath_HPP>0</Restoring_Breath_HPP>
-        <Steady_Wing>false</Steady_Wing>
-      </Dragoon>
-      <Blue_Mage>
-        <Azure_Lore>false</Azure_Lore>
-        <Burst_Affinity>false</Burst_Affinity>
-        <Chain_Affinity>false</Chain_Affinity>
-        <Convergence>false</Convergence>
-        <Diffusion>false</Diffusion>
-        <Efflux>false</Efflux>
-        <Unbridled_Learning>false</Unbridled_Learning>
-        <Unbridled_Wisdom>false</Unbridled_Wisdom>
-        <Sheep_Song>false</Sheep_Song>
-        <Jettatura>false</Jettatura>
-        <Stinking_Gas>false</Stinking_Gas>
-        <Blank_Gaze>false</Blank_Gaze>
-        <Soporific>false</Soporific>
-        <Geist_Wall>false</Geist_Wall>
-        <Sandspin>false</Sandspin>
-        <Cocoon>false</Cocoon>
-        <Metallic_Body>false</Metallic_Body>
-        <Refueling>false</Refueling>
-        <Battery_Charge>false</Battery_Charge>
-        <Sudden_Lunge>false</Sudden_Lunge>
-        <Reaving_Wind>false</Reaving_Wind>
-        <Feather_Tickle>false</Feather_Tickle>
-        <Occultation>false</Occultation>
-        <Magic_Barrier>false</Magic_Barrier>
-        <Magic_Hammer>false</Magic_Hammer>
-        <Magic_Hammer_MP>0</Magic_Hammer_MP>
-        <Saline_Coat>false</Saline_Coat>
-        <Barrier_Tusk>false</Barrier_Tusk>
-        <Nat_Meditation>false</Nat_Meditation>
-        <Diamondhide>false</Diamondhide>
-        <Mighty_Guard>false</Mighty_Guard>
-        <Erratic_Flutter>false</Erratic_Flutter>
-        <Harden_Shell>false</Harden_Shell>
-        <Carcharian_Verve>false</Carcharian_Verve>
-        <Mode />
-        <Diffusion_Spell />
-      </Blue_Mage>
-      <Corsair>
-        <Wild_Card>false</Wild_Card>
-        <Phantom_Roll>false</Phantom_Roll>
-        <Crooked_Cards>false</Crooked_Cards>
-        <Crooked_Card_Roll>1</Crooked_Card_Roll>
-        <Phantom_Roll_TP>0</Phantom_Roll_TP>
-        <Winning_Streak>false</Winning_Streak>
-        <Phantom_Roll_TP_Enable>false</Phantom_Roll_TP_Enable>
-        <Roll_1>
-          <Name />
-          <ID>0</ID>
-          <Buff>0</Buff>
-          <Description />
-          <Lucky>0</Lucky>
-          <Unlucky>0</Unlucky>
-          <Current>0</Current>
-          <Job />
-          <Crooked_Card>false</Crooked_Card>
-        </Roll_1>
-        <Roll_2>
-          <Name />
-          <ID>0</ID>
-          <Buff>0</Buff>
-          <Description />
-          <Lucky>0</Lucky>
-          <Unlucky>0</Unlucky>
-          <Current>0</Current>
-          <Job />
-          <Crooked_Card>false</Crooked_Card>
-        </Roll_2>
-        <Player_1 />
-        <Player_2 />
-        <Player_3 />
-        <Player_4 />
-        <Player_5 />
-        <Quick_Draw>false</Quick_Draw>
-        <Quick_Draw_Element />
-        <Random_Deal>false</Random_Deal>
-        <Triple_Shot>false</Triple_Shot>
-        <Cutting_Cards>false</Cutting_Cards>
-        <Double_Up_Roll>0</Double_Up_Roll>
-        <Bolters>false</Bolters>
-      </Corsair>
-      <Puppetmaster>
-        <Overdrive>false</Overdrive>
-        <Activate>false</Activate>
-        <Deus_Ex_Automata>false</Deus_Ex_Automata>
-        <Repair>false</Repair>
-        <Maintenance>false</Maintenance>
-        <Ventriloquy>false</Ventriloquy>
-        <Role_Reversal>false</Role_Reversal>
-        <Tactical_Switch>false</Tactical_Switch>
-        <Cooldown>false</Cooldown>
-        <Heady_Artifice>false</Heady_Artifice>
-      </Puppetmaster>
-      <Dancer>
-        <Trance>false</Trance>
-        <Samba />
-        <Maintain_Step_Time>0</Maintain_Step_Time>
-        <Build_Step_Time>0</Build_Step_Time>
-        <Flourish_III_WS_Only>false</Flourish_III_WS_Only>
-        <Quickstep>false</Quickstep>
-        <Box_Step>false</Box_Step>
-        <Stutter_Step>false</Stutter_Step>
-        <Feather_Step>false</Feather_Step>
-        <Animated_Flourish>false</Animated_Flourish>
-        <Animated_Flourish_Count>0</Animated_Flourish_Count>
-        <Desperate_Flourish>false</Desperate_Flourish>
-        <Violent_Flourish>false</Violent_Flourish>
-        <Reverse_Flourish>false</Reverse_Flourish>
-        <Reverse_Flourish_Count>0</Reverse_Flourish_Count>
-        <Reverse_Flourish_TP>0</Reverse_Flourish_TP>
-        <Building_Flourish>false</Building_Flourish>
-        <Building_Flourish_Count>0</Building_Flourish_Count>
-        <Building_Flourish_TP>0</Building_Flourish_TP>
-        <Wild_Flourish>false</Wild_Flourish>
-        <Climactic_Flourish>false</Climactic_Flourish>
-        <Climactic_Flourish_Count>0</Climactic_Flourish_Count>
-        <Striking_Flourish>false</Striking_Flourish>
-        <Ternary_Flourish>false</Ternary_Flourish>
-        <Contradance>false</Contradance>
-        <Saber_Dance>false</Saber_Dance>
-        <Fan_Dance>false</Fan_Dance>
-        <No_Foot_Rise>false</No_Foot_Rise>
-        <Presto_Quickstep>false</Presto_Quickstep>
-        <Presto_Stutter_Step>false</Presto_Stutter_Step>
-        <Presto_Box_Step>false</Presto_Box_Step>
-        <Presto_Feather_Step>false</Presto_Feather_Step>
-        <Grand_Pas>false</Grand_Pas>
-      </Dancer>
-      <Scholar>
-        <Tabula_Rasa>false</Tabula_Rasa>
-        <Embrava>false</Embrava>
-        <Light_Arts>false</Light_Arts>
-        <Addendum_White>false</Addendum_White>
-        <Accession>false</Accession>
-        <Perpetuance>false</Perpetuance>
-        <Dark_Arts>false</Dark_Arts>
-        <Addendum_Black>false</Addendum_Black>
-        <Manifestation>false</Manifestation>
-        <Ebullience>false</Ebullience>
-        <Immanence>false</Immanence>
-        <Sublimation>true</Sublimation>
-        <Sublimation_Charging>0</Sublimation_Charging>
-        <Sublimation_Completed>0</Sublimation_Completed>
-        <Modus_Veritas>false</Modus_Veritas>
-        <Enlightenment>false</Enlightenment>
-        <Libra>false</Libra>
-        <Caper_Emissarius>false</Caper_Emissarius>
-        <Cure_Accession>false</Cure_Accession>
-        <Shell_Accession>false</Shell_Accession>
-        <Shell_Perpetuance>false</Shell_Perpetuance>
-        <Shell_Force>false</Shell_Force>
-        <Protect_Accession>false</Protect_Accession>
-        <Protect_Perpetuance>false</Protect_Perpetuance>
-        <Protect_Force>false</Protect_Force>
-        <Regen_Accession>false</Regen_Accession>
-        <Regen_Perpetuance>false</Regen_Perpetuance>
-        <Regen_Force>false</Regen_Force>
-        <Phalanx_Accession>false</Phalanx_Accession>
-        <Phalanx_Perpetuance>false</Phalanx_Perpetuance>
-        <Phalanx_Force>false</Phalanx_Force>
-        <Adloquium_Accession>false</Adloquium_Accession>
-        <Adloquium_Perpetuance>false</Adloquium_Perpetuance>
-        <Adloquium_Force>false</Adloquium_Force>
-        <Storms_Accession>false</Storms_Accession>
-        <Storms_Perpetuance>false</Storms_Perpetuance>
-        <Storms_Force>false</Storms_Force>
-        <Stoneskin_Accession>false</Stoneskin_Accession>
-        <Stoneskin_Perpetuance>false</Stoneskin_Perpetuance>
-        <Stoneskin_Force>false</Stoneskin_Force>
-        <Enspell_Accession>false</Enspell_Accession>
-        <Enspell_Perpetuance>false</Enspell_Perpetuance>
-        <Enspell_Force>false</Enspell_Force>
-        <Blink_Accession>false</Blink_Accession>
-        <Blink_Perpetuance>false</Blink_Perpetuance>
-        <Blink_Force>false</Blink_Force>
-        <Aquaveil_Accession>false</Aquaveil_Accession>
-        <Aquaveil_Perpetuance>false</Aquaveil_Perpetuance>
-        <Aquaveil_Force>false</Aquaveil_Force>
-        <Bar_Accession>false</Bar_Accession>
-        <Bar_Perpetuance>false</Bar_Perpetuance>
-        <Bar_Force>false</Bar_Force>
-        <Klimaform_Manifestation>false</Klimaform_Manifestation>
-        <Klimaform_Force>false</Klimaform_Force>
-        <Haste_Perpetuance>false</Haste_Perpetuance>
-        <Haste_Force>false</Haste_Force>
-      </Scholar>
-      <Geomancer>
-        <Bolster>false</Bolster>
-        <Full_Circle>true</Full_Circle>
-        <Full_Circle_Target>6</Full_Circle_Target>
-        <Full_Circle_Player>21</Full_Circle_Player>
-        <Lasting_Emanation>false</Lasting_Emanation>
-        <Ecliptic_Attrition>true</Ecliptic_Attrition>
-        <Ecliptic_Lasting_HPP>75</Ecliptic_Lasting_HPP>
-        <Ecliptic_Lasting_BoG>true</Ecliptic_Lasting_BoG>
-        <Collimated_Fervor>false</Collimated_Fervor>
-        <Life_Cycle>true</Life_Cycle>
-        <Life_Cycle_HPP>40</Life_Cycle_HPP>
-        <Life_Cycle_BoG>true</Life_Cycle_BoG>
-        <Blaze_of_Glory>true</Blaze_of_Glory>
-        <Dematerialize>true</Dematerialize>
-        <Dematerialize_HPP>100</Dematerialize_HPP>
-        <Dematerialize_BoG>true</Dematerialize_BoG>
-        <Mending_Halation>false</Mending_Halation>
-        <Radial_Arcana>true</Radial_Arcana>
-        <Radial_Arcana_MPP>10</Radial_Arcana_MPP>
-        <Theurgic_Focus>false</Theurgic_Focus>
-        <Concentric_Pulse>false</Concentric_Pulse>
-        <Widened_Compass>false</Widened_Compass>
-      </Geomancer>
-      <Rune_Fencer>
-        <Elemental_Sforzo>false</Elemental_Sforzo>
-        <Rune_Enchantment>false</Rune_Enchantment>
-        <Vallation>false</Vallation>
-        <Vallation_Tank>false</Vallation_Tank>
-        <Swordplay>false</Swordplay>
-        <Swipe>false</Swipe>
-        <Lunge>false</Lunge>
-        <Pflug>false</Pflug>
-        <Valiance>false</Valiance>
-        <Valiance_Tank>false</Valiance_Tank>
-        <Embolden>false</Embolden>
-        <Vivacious_Pulse>false</Vivacious_Pulse>
-        <Gambit>false</Gambit>
-        <Battuta>false</Battuta>
-        <Rayke>false</Rayke>
-        <Liement>false</Liement>
-        <One_for_All>false</One_for_All>
-        <Odyllic_Subterfuge>false</Odyllic_Subterfuge>
-        <Foil>false</Foil>
-        <Flash>false</Flash>
-        <Vivacious_HP>0</Vivacious_HP>
-        <Vivacious_MP>0</Vivacious_MP>
-        <Mode />
-        <Runes_1 />
-        <Runes_2 />
-        <Runes_3 />
-      </Rune_Fencer>
-      <None />
     </Sub_Job>
   </Abilities>
   <Geomancy>
@@ -1813,71 +1866,71 @@
     <Uchitake>false</Uchitake>
   </Items>
   <Songs>
-    <Enabled>true</Enabled>
-    <NiTro>true</NiTro>
+    <Enabled>false</Enabled>
+    <NiTro>false</NiTro>
     <Soul_Voice>false</Soul_Voice>
     <Song_1>
-      <Name>Valor Minuet IV</Name>
+      <Name />
       <Target />
-      <Buff>Minuet</Buff>
+      <Buff />
       <Buff2 />
-      <ID>397</ID>
+      <ID>0</ID>
     </Song_1>
     <Song_2>
-      <Name>Valor Minuet V</Name>
+      <Name />
       <Target />
-      <Buff>Minuet</Buff>
+      <Buff />
       <Buff2 />
-      <ID>398</ID>
+      <ID>0</ID>
     </Song_2>
     <Song_3>
-      <Name>Valor Minuet III</Name>
+      <Name />
       <Target />
-      <Buff>Minuet</Buff>
+      <Buff />
       <Buff2 />
-      <ID>396</ID>
+      <ID>0</ID>
     </Song_3>
     <Song_4>
-      <Name>Victory March</Name>
+      <Name />
       <Target />
-      <Buff>March</Buff>
+      <Buff />
       <Buff2 />
-      <ID>420</ID>
+      <ID>0</ID>
     </Song_4>
     <Song_5>
-      <Name>Mage's Ballad III</Name>
+      <Name />
       <Target />
-      <Buff>Ballad</Buff>
+      <Buff />
       <Buff2 />
-      <ID>388</ID>
+      <ID>0</ID>
     </Song_5>
     <Dummy_1>
-      <Name>Shining Fantasia</Name>
+      <Name />
       <Target />
-      <Buff>Fantasia</Buff>
+      <Buff />
       <Buff2 />
-      <ID>408</ID>
+      <ID>0</ID>
     </Dummy_1>
     <Dummy_2>
-      <Name>Army's Paeon</Name>
+      <Name />
       <Target />
-      <Buff>Paeon</Buff>
+      <Buff />
       <Buff2 />
-      <ID>378</ID>
+      <ID>0</ID>
     </Dummy_2>
     <Dummy_3>
-      <Name>Gold Capriccio</Name>
+      <Name />
       <Target />
-      <Buff>Capriccio</Buff>
+      <Buff />
       <Buff2 />
-      <ID>412</ID>
+      <ID>0</ID>
     </Dummy_3>
     <Dummy_4>
-      <Name>Warding Round</Name>
+      <Name />
       <Target />
-      <Buff>Round</Buff>
+      <Buff />
       <Buff2 />
-      <ID>414</ID>
+      <ID>0</ID>
     </Dummy_4>
     <Dummy_5>
       <Name />
@@ -1928,26 +1981,26 @@
       <Buff2 />
       <ID>0</ID>
     </Pianissimo_6>
-    <Rebuff>true</Rebuff>
-    <Rebuff_Time>45</Rebuff_Time>
-    <Marcato>Valor Minuet V</Marcato>
+    <Rebuff>false</Rebuff>
+    <Rebuff_Time>0</Rebuff_Time>
+    <Marcato />
     <NiTro_Recast>0</NiTro_Recast>
     <NiTro_Warning_Type />
     <NiTro_Warning_Name />
     <NiTro_Warning_Message />
     <NiTro_Warning_Time>0</NiTro_Warning_Time>
     <NiTro_Range>21</NiTro_Range>
-    <NiTro_Players>3</NiTro_Players>
-    <Song_Count>5</Song_Count>
+    <NiTro_Players>0</NiTro_Players>
+    <Song_Count>0</Song_Count>
     <Bard_Count>4</Bard_Count>
     <Paeon_Count>0</Paeon_Count>
     <Minne_Count>0</Minne_Count>
-    <Ballad_Count>1</Ballad_Count>
-    <Minuet_Count>3</Minuet_Count>
+    <Ballad_Count>0</Ballad_Count>
+    <Minuet_Count>0</Minuet_Count>
     <Madrigal_Count>0</Madrigal_Count>
     <Prelude_Count>0</Prelude_Count>
     <Aria_Count>0</Aria_Count>
-    <March_Count>1</March_Count>
+    <March_Count>0</March_Count>
     <Etude_Count>0</Etude_Count>
     <Carol_Count>0</Carol_Count>
     <Sirvente_Count>0</Sirvente_Count>

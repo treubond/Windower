@@ -206,7 +206,7 @@ function get_sets()
 
     -- Your idle set when you DON'T have a luopan out
     sets.me.idle.normal = {
-		main="Vadose Rod",
+		main="Bolelabunga",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
 		head="Weath. Corona +1",
@@ -276,7 +276,7 @@ function get_sets()
 		hands=AF.Hands,
 		legs="Weath. Pants +1",
 		feet=RELIC.Feet,
-		neck="Sanctity Necklace",
+		neck={ name="Bagua Charm +1", augments={'Path: A',}},
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
@@ -335,7 +335,7 @@ function get_sets()
 	
     -- Luopan is out
 	sets.pan.melee = set_combine(sets.pan.idle[idleMode],{
-
+		neck={ name="Bagua Charm +1", augments={'Path: A',}},
     }) 
     
     -- Weapon Skill sets
@@ -525,10 +525,10 @@ function get_sets()
 			
 	})
     sets.midcast.nuking.acc = set_combine(sets.midcast.nuking.normal,{
-
+		neck={ name="Bagua Charm +1", augments={'Path: A',}},
     })
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {
-
+		neck={ name="Bagua Charm +1", augments={'Path: A',}},
     })
 	-----------------------------------------------------------------------------------------------
 	-- Helix sets automatically derives from casting sets. SO DONT PUT ANYTHING IN THEM other than:
@@ -585,7 +585,7 @@ function get_sets()
     sets.midcast.cure = {} -- Leave This Empty
     -- Cure Potency
     sets.midcast.cure.normal = set_combine(sets.midcast.casting,{
-		--main = "Daybreak",
+		main = "Daybreak",
 		sub = "Culminus",
 		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%',}},
     })
@@ -593,7 +593,7 @@ function get_sets()
 
     })    
     sets.midcast.regen = set_combine(sets.midcast.enhancing,{
-
+		main="Bolelabunga",
     }) 
    
     ------------
