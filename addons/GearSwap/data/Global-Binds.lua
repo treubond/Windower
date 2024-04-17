@@ -36,6 +36,15 @@
 
 -------------------------------------------------------------------------------------------------------------------
 
+    -- Silmaril HotKeys
+    send_command('bind @f1 input //send Treubond //sm toggle')
+    send_command('bind @f2 input //send Khrone //sm toggle')
+    send_command('bind @f3 input //send Hybridkiller //sm toggle')
+    send_command('bind @f4 input //sm all toggle')
+    send_command('bind #f input //sm all follow')
+    send_command('bind #m input //sm mirror')
+    
+
     -- Default Spell HotKeys
     if player.main_job == 'DNC' or player.sub_job == 'DNC' then
         send_command('bind ^, input /ja "Spectral Jig" <me>')

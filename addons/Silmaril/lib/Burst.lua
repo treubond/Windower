@@ -48,12 +48,11 @@ do
 
 			-- Get the party id's to validate the target from Party.lua
 			local pt_ids = get_party_ids()
-			local alliance_ids = get_alliance_ids()
 
 			local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
 
 			-- valid party target and within range
-			if t and t.spawn_type == 16 and t.distance:sqrt() < 21 and alliance_ids[t.claim_id] then
+			if t and t.spawn_type == 16 and t.distance:sqrt() < 21 then
 
 				-- Update the enemy to track
 				last_skillchain_id = t.id
@@ -73,37 +72,37 @@ do
 
 				-- Display the info to the user
 				if skillchain.english == 'Light' then
-					info('Skillchain: Light - (Light, Fire, Thunder, Wind)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Light - (Light, Fire, Thunder, Wind)')
 				elseif skillchain.english == 'Darkness' then
-					info('Skillchain: Dark - (Dark, Earth, Water, Ice)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Dark - (Dark, Earth, Water, Ice)')
 				elseif skillchain.english == 'Radiance' then
-					info('Skillchain: Radiance - (Light, Fire, Thunder, Wind)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Radiance - (Light, Fire, Thunder, Wind)')
 				elseif skillchain.english == 'Umbra' then
-					info('Skillchain: Umbra - (Dark, Earth, Water, Ice)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Umbra - (Dark, Earth, Water, Ice)')
 				elseif skillchain.english == 'Gravitation' then
-					info('Skillchain: Gravitation - (Dark, Earth)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Gravitation - (Dark, Earth)')
 				elseif skillchain.english == 'Fragmentation' then
-					info('Skillchain: Fragmentation - (Thunder, Wind)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Fragmentation - (Thunder, Wind)')
 				elseif skillchain.english == 'Distortion' then
-					info('Skillchain: Distortion - (Water, Ice)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Distortion - (Water, Ice)')
 				elseif skillchain.english == 'Fusion' then
-					info('Skillchain: Fusion - (Light, Fire)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Fusion - (Light, Fire)')
 				elseif skillchain.english == 'Compression' then
-					info('Skillchain: Compression	- (Dark)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Compression	- (Dark)')
 				elseif skillchain.english == 'Liquefaction' then
-					info('Skillchain: Liquefaction - (Fire)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Liquefaction - (Fire)')
 				elseif skillchain.english == 'Induration' then
-					info('Skillchain: Induration - (Ice)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Induration - (Ice)')
 				elseif skillchain.english == 'Reverberation' then
-					info('Skillchain: Reverberation - (Water)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Reverberation - (Water)')
 				elseif skillchain.english == 'Transfixion' then
-					info('Skillchain: Transfixion	- (Light)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Transfixion	- (Light)')
 				elseif skillchain.english == 'Scission' then
-					info('Skillchain: Scission - (Earth)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Scission - (Earth)')
 				elseif skillchain.english == 'Detonation' then
-					info('Skillchain: Detonation - (Wind)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Detonation - (Wind)')
 				elseif skillchain.english == 'Impaction' then
-					info('Skillchain: Impaction - (Thunder)')
+					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Impaction - (Thunder)')
 				end
 
 				-- Create a count down timer
@@ -113,15 +112,53 @@ do
 				send_packet(get_player_id()..';burst_'..skillchain.english..'_'..elements..'_'..t.id)
 			end
 		elseif data.category == 3 and data.param ~= 0 then
-
 			local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
-
 			-- This is used to stop bursting if a ws happened to close the window
 			if t and t.id == last_skillchain_id then
 				log('Skillchain is closed for ['..last_skillchain_id..']')
 				local action = get_player_id()..';burst_closed_none_'..last_skillchain_id
 				last_skillchain_id = 0
 				send_packet(action)
+			end
+		end
+	end
+
+	function corsair_shot(data)
+		-- Used for COR shot
+		local spell = get_spell(data.param)
+		local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
+		-- valid party target and within range
+		if t and t.spawn_type == 16 and t.distance:sqrt() < 21 and spell then
+			if spell.name == 'Dia' or spell.name == 'Dia II' or spell.name == 'Dia III' or spell.name == 'Diaga' then
+				log("Light Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Light_'..t.id)
+			elseif spell.name == 'Bio' or 
+					spell.name == 'Bio II' or 
+					spell.name == 'Bio III' or 
+					spell.name == 'Blind' or 
+					spell.name == 'Blind II' or 
+					spell.name == 'Kurayami: Ichi' or 
+					spell.name == 'Kurayami: Ni' then
+				log("Dark Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Dark_'..t.id)
+			elseif spell.name == 'Burn' then
+				log("Fire Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Fire_'..t.id)
+			elseif spell.name == 'Poison' or spell.name == 'Poison II' or spell.name == 'Drown' then
+				log("Water Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Water_'..t.id)
+			elseif spell.name == 'Shock' then
+				log("Thunder Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Thunder_'..t.id)
+			elseif spell.name == 'Slow' or spell.name == 'Hojo: Ichi' or spell.name == 'Hojo: Ni' or spell.name == 'Rasp' then
+				log("Earth Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Earth_'..t.id)
+			elseif spell.name == 'Choke' then
+				log("Wind Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Thunder_'..t.id)
+			elseif spell.name == 'Paralyze' or spell.name == 'Paralyze II' or spell.name == 'Frost' then
+				log("Ice Shot Detected")
+				send_packet(get_player_id()..';burst_Enfeebling_Ice_'..t.id)
 			end
 		end
 	end

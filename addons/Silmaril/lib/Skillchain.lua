@@ -126,60 +126,96 @@ do
         if not ws then return end
 
         local id = data.targets[1].id
-
         now = os.clock()
-        if data.actor_id == Skillchain_Leader_ID and ws.en == Skillchain_Leader_WS then
 
-            -- Check if enough time have elapsed on the correct mob
-            if Skillchain_Time_ID == id then
-                if now - Skillchain_Time < Skillchain_Delay then return end
+        -- The correct person with correct ws
+        if data.actor_id == Skillchain_Leader_ID and ws.en == Skillchain_Leader_WS then 
+            -- Check if it is a new mob
+            if Skillchain_Time_ID ~= id then 
+                -- Set the time and update the ID since its a new mob
+                Skillchain_Time = os.clock()
+                Skillchain_Time_ID = id
+                -- Send the update
+                log('['..Skillchain_Leader_Name..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #1')
+                send_packet(get_player_id()..';skillchain_'..ws.en..'_'..Skillchain_Leader_Name..'_'..id)
+                -- Return since it was decieded this is the skillchain
+                return
+            else
+                -- Since not a new mob check if enough time has elapsed
+                if now - Skillchain_Time > Skillchain_Delay then 
+                    Skillchain_Time = os.clock() 
+                    log('['..Skillchain_Leader_Name..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #1')
+                    send_packet(get_player_id()..';skillchain_'..ws.en..'_'..Skillchain_Leader_Name..'_'..id)
+                    -- Return since it was decieded this is the skillchain
+                    return
+                end
             end
+        end
 
-            Skillchain_Time = os.clock()
-            Skillchain_Time_ID = id
-
-            log('['..Skillchain_Leader_Name..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #1')
-            send_packet(get_player_id()..';skillchain_'..ws.en..'_'..Skillchain_Leader_Name..'_'..id)
-
-        elseif data.actor_id == Skillchain_Leader_ID_2 and ws.en == Skillchain_Leader_WS_2 then
-            
-            -- Check if enough time have elapsed on the correct mob
-            if Skillchain_Time_ID_2 == id then
-                if now - Skillchain_Time_2 < Skillchain_Delay_2 then return end
+        -- The correct person with correct ws
+        if data.actor_id == Skillchain_Leader_ID_2 and ws.en == Skillchain_Leader_WS_2 then
+            -- Check if it is a new mob
+            if Skillchain_Time_ID_2 ~= id then 
+                -- Set the time and update the ID
+                Skillchain_Time_2 = os.clock()
+                Skillchain_Time_ID_2 = id
+                -- Send the update
+                log('['..Skillchain_Leader_Name_2..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #2')
+                send_packet(get_player_id()..';skillchain2_'..ws.en..'_'..Skillchain_Leader_Name_2..'_'..id)
+                return
+            else
+                -- Since not a new mob check if enough time has elapsed
+                if now - Skillchain_Time_2 > Skillchain_Delay_2 then 
+                    Skillchain_Time_2 = os.clock() 
+                    log('['..Skillchain_Leader_Name_2..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #2')
+                    send_packet(get_player_id()..';skillchain2_'..ws.en..'_'..Skillchain_Leader_Name_2..'_'..id)
+                    return
+                end
             end
+        end
 
-            Skillchain_Time_2 = os.clock()
-            Skillchain_Time_ID_2 = id
-
-            log('['..Skillchain_Leader_Name_2..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #2')
-            send_packet(get_player_id()..';skillchain2_'..ws.en..'_'..Skillchain_Leader_Name_2..'_'..id)
-
-        elseif data.actor_id == Skillchain_Leader_ID_3 and ws.en == Skillchain_Leader_WS_3 then
-
-            -- Check if enough time have elapsed on the correct mob
-            if Skillchain_Time_ID_3 == id then
-                if now - Skillchain_Time_3 < Skillchain_Delay_3 then return end
+        -- The correct person with correct ws
+        if data.actor_id == Skillchain_Leader_ID_3 and ws.en == Skillchain_Leader_WS_3 then
+            -- Check if it is a new mob
+            if Skillchain_Time_ID_3 ~= id then 
+                -- Set the time and update the ID
+                Skillchain_Time_3 = os.clock()
+                Skillchain_Time_ID_3 = id
+                -- Send the update
+                log('['..Skillchain_Leader_Name_3..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #3')
+                send_packet(get_player_id()..';skillchain3_'..ws.en..'_'..Skillchain_Leader_Name_3..'_'..id)
+                return
+            else
+                -- Since not a new mob check if enough time has elapsed
+                if now - Skillchain_Time_3 > Skillchain_Delay_3 then 
+                    Skillchain_Time_3 = os.clock() 
+                    log('['..Skillchain_Leader_Name_3..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #3')
+                    send_packet(get_player_id()..';skillchain3_'..ws.en..'_'..Skillchain_Leader_Name_3..'_'..id)
+                    return
+                end
             end
+        end
 
-            Skillchain_Time_3 = os.clock()
-            Skillchain_Time_ID_3 = id
-
-            log('['..Skillchain_Leader_Name_3..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #3')
-            send_packet(get_player_id()..';skillchain3_'..ws.en..'_'..Skillchain_Leader_Name_3..'_'..id)
-
-        elseif data.actor_id == Skillchain_Leader_ID_4 and ws.en == Skillchain_Leader_WS_4 then
-
-            -- Check if enough time have elapsed on the correct mob
-            if Skillchain_Time_ID_4 == id then
-                if now - Skillchain_Time_4 < Skillchain_Delay_4 then return end
+        -- The correct person with correct ws
+        if data.actor_id == Skillchain_Leader_ID_4 and ws.en == Skillchain_Leader_WS_4 then
+            -- Check if it is a new mob
+            if Skillchain_Time_ID_4 ~= id then 
+                -- Set the time and update the ID
+                Skillchain_Time_4 = os.clock()
+                Skillchain_Time_ID_4 = id
+                -- Send the update
+                log('['..Skillchain_Leader_Name_4..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #4')
+                send_packet(get_player_id()..';skillchain4_'..ws.en..'_'..Skillchain_Leader_Name_4..'_'..id)
+                return
+            else
+                -- Since not a new mob check if enough time has elapsed
+                if now - Skillchain_Time_4 > Skillchain_Delay_4 then 
+                    Skillchain_Time_4 = os.clock() 
+                    log('['..Skillchain_Leader_Name_4..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #4')
+                    send_packet(get_player_id()..';skillchain4_'..ws.en..'_'..Skillchain_Leader_Name_4..'_'..id)
+                    return
+                end
             end
-
-            Skillchain_Time_4 = os.clock()
-            Skillchain_Time_ID_4 = id
-
-            log('['..Skillchain_Leader_Name_4..'] Weaponskill ['..ws.en..'] on ['..id..'] Follower #4')
-            send_packet(get_player_id()..';skillchain4_'..ws.en..'_'..Skillchain_Leader_Name_4..'_'..id)
-
         end
     end
 

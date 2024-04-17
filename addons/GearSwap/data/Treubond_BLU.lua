@@ -189,7 +189,7 @@ function job_setup()
     -- Unblinkable JA IDs for actions that always have TH: Quick/Box/Stutter Step, Desperate/Violent Flourish
     info.default_u_ja_ids = S{201, 202, 203, 205, 207}
 
-    lockstyleset = 1
+    lockstyleset = 9
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -214,6 +214,12 @@ function user_setup()
     -- Additional local binds
     include('Global-Binds.lua') -- OK to remove this line
     -- include('Global-GEO-Binds.lua') -- OK to remove this line
+
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
     -- send_command('lua l azureSets')
     send_command('bind f9 gs c cycle offensemode')
@@ -351,17 +357,18 @@ function init_gear_sets()
     sets.precast.JA['Enchainment'] = {}
 
     sets.precast.FC = {
-        head="Jhakri Coronal +2",
+        ammo="Staunch Tathlum",
+        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         body="Jhakri Robe +2",
-        hands="Jhakri Cuffs +2",
+        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
         legs="Aya. Cosciales +2",
         feet="Jhakri Pigaches +2",
-        neck="Asperity necklace",
-        waist="Penitent's Rope",
+        neck="Baetyl Pendant",
+        waist="Siegel Sash",
         left_ear="Loquac. Earring",
         right_ear="Magnetic Earring",
         left_ring="Jhakri Ring",
-        right_ring="Omega Ring",
+        right_ring="Kishar Ring",
         back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}},
     }
 
@@ -377,6 +384,7 @@ function init_gear_sets()
     ------------------------------------------------------------------------------------------------
 
     sets.precast.WS = {
+        ammo="Oshasha's Treatise",
         head="Hashishin Kavuk +2",
         body="Assim. Jubbah +2",
         hands="Jhakri Cuffs +2",
@@ -384,16 +392,16 @@ function init_gear_sets()
         feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Moonshade Earring",
+        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
         right_ear="Cessance Earring",
-        left_ring="Vehemence Ring",
+        left_ring="Lehko's Ring",
         right_ring="Rajas Ring",
-        back={ name="Rosmerta's Cape", augments={'STR+30','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+        back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }
 
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
 
-    sets.precast.WS['Chant du Cygne'] = set_combine(sets.precast.WS, {neck="Fotia Gorget",waist="Fotia Belt",left_ring="Enlivened Ring",}) -- 80% DEX
+    sets.precast.WS['Chant du Cygne'] = set_combine(sets.precast.WS, {neck="Fotia Gorget",waist="Fotia Belt",left_ring="Lehko's Ring",}) -- 80% DEX
 
     sets.precast.WS['Chant du Cygne'].Acc = set_combine(sets.precast.WS['Chant du Cygne'], {})
 
@@ -446,7 +454,7 @@ function init_gear_sets()
         legs="Hashishin Tayt +2",
         feet="Hashi. Basmak +2",
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Moldavite Earring",
         right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Jhakri Ring",
@@ -496,7 +504,7 @@ function init_gear_sets()
 
     sets.midcast['Blue Magic'].StunMagical = sets.midcast['Blue Magic'].MagicAccuracy
 
-    sets.midcast['Blue Magic'].Healing = {hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}, neck="Phalaina Locket", back="Solemnity Cape"}
+    sets.midcast['Blue Magic'].Healing = {hands=Telchine_ENH_hands, neck="Phalaina Locket", back="Solemnity Cape"}
 
     sets.midcast['Blue Magic'].HealingSelf = set_combine(sets.midcast['Blue Magic'].Healing, {})
 
@@ -514,18 +522,25 @@ function init_gear_sets()
 
     sets.midcast['Blue Magic']['Carcharian Verve'] = set_combine(sets.midcast['Blue Magic'].Buff, {})
 
-    sets.midcast['Enhancing Magic'] = {hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},}
+    sets.midcast['Enhancing Magic'] = {hands=Telchine_ENH_hands,}
 
-    sets.midcast.EnhancingDuration = {}
+    sets.midcast.EnhancingDuration = {
+        head=Telchine_ENH_head,
+        body=Telchine_ENH_body,
+        hands=Telchine_ENH_hands,
+        legs=Telchine_ENH_legs,
+        feet=Telchine_ENH_feet,
+    }
 
-    sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}, 
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},})
+    sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {})
+    
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {})
 
     sets.midcast.Phalanx = set_combine(sets.midcast.EnhancingDuration, {
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}, 
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},})
+        hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
+        legs={ name="Taeon Tights", augments={'Phalanx +3',}},
+        feet={ name="Taeon Boots", augments={'Phalanx +3',}},
+    })
 
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
         hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
@@ -1223,5 +1238,5 @@ function select_default_macro_book()
 end
 
 function set_lockstyle()
-    -- send_command('wait 2; input /lockstyleset ' .. lockstyleset)
+    send_command('wait 11; input /lockstyleset ' .. lockstyleset)
 end

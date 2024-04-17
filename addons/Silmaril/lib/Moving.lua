@@ -26,7 +26,11 @@ do
 		if not get_connected() then runstop() return end
 
 		-- Turned off actions
-		if not get_enabled() and not following then runstop() return end
+		if not get_enabled() and not following then 
+			runstop() 
+			autorun_target = nil 
+			return 
+		end
 
 		-- Don't move because you are in injecting
 		if get_injecting() then runstop() return end
@@ -56,7 +60,7 @@ do
 		end
 
 		-- Target is not followable
-		if t.status ~= 0 and t.status ~= 1 and t.status ~= 4 and t.status ~= 5 and t.status ~= 85 then runstop() return end
+		if t.status ~= 0 and t.status ~= 1 and t.status ~= 5 and t.status ~= 85 then runstop() return end
 
 		-- Enemy dead
 		if t.spawn_type == 16 and t.status > 1 then runstop() end
@@ -168,11 +172,11 @@ do
 	function set_fast_follow (state, target)
 		if state then
 			following = true
-			windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\06[ON]'))
+			info('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\06[ON]')
 			fast_follow_target = target
 		else
 			following = false
-			windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]'))
+			info('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]')
 			fast_follow_target = nil
 			runstop()
 		end

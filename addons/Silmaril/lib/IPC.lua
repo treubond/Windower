@@ -1,14 +1,18 @@
 function IPC_Action(msg)
     local args = msg:split(' ')
-    local command = args:remove(1)
-    if command == 'zone' then
+    local command = table.remove(args,1)
+    if command ~= 'silmaril' then return end
+    if #args < 1 then return end
+    local qual = table.remove(args,1)
+
+    if qual == 'zone' then
         IPC_zone(args)
-    elseif command == 'update' then
+    elseif qual == 'update' then
         IPC_update(args)
-    elseif command == 'message' then
+    elseif qual == 'message' then
         IPC_message(args)
-    elseif command then
-        IPC_command(command, args)
+    elseif qual then
+        IPC_command(qual, args)
     end
 end
 

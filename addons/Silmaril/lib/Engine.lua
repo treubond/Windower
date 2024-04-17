@@ -10,8 +10,8 @@ do
         local now = os.clock()
         local last_request = now
         local last_sync = now
-        local last_send = now
         local last_display = now
+        local last_send = now
 
 	    while true do
 
@@ -25,17 +25,79 @@ do
                     last_request = now
                 end
             else
-
-                -- Update the player location, player info, and the world
-                update_player_info()
-
-                -- Process player movement
-                movement()
-
-                -- updates the player environment Via Update.lua
-                if now - last_send > 1/30 then
-                    send_silmaril()
+                if now - last_send > .075 then
                     last_send = now
+
+                    -- Update the player location, player info, and the world
+                    update_player_info()
+
+                    -- Process player movement
+                    movement()
+
+                    -- Send the info to Silmaril
+                    send_silmaril()
+
+                    -- Player was mirroring and recieved a release packet.  Now just wait till status ~= 4
+                    if get_mirror_on() and get_mirroring() then
+                        local p = get_player()
+                        if old_status == 4 and p.status == 0 and get_mirror_release() then
+                            -- Player is released via status change (non standard)
+                            log("Mirror sequence completed via status change")
+                            npc_mirror_complete()
+                            clear_npc_data()
+                        end
+                        old_status = p.status
+                    end
+
+                    -- Mirroring 
+                    if get_injecting() then 
+                        local retry_count = get_retry_count()
+
+                        -- No poke response after the time delay
+                        if now - get_poke_time() > 1 and not get_mid_inject() then
+
+                            -- There are still message so try to get a poke response
+                            if get_mirror_message() then
+                                if retry_count < 5 then
+                                    retry_count = retry_count + 1
+                                    log("Retry Poke ["..retry_count..'/5] - Time Out ('..tostring(now - get_poke_time())..')')
+                                    send_packet(get_player_id()..";mirror_status_retry_"..string.format("%i",retry_count))
+                                    npc_retry()
+                                else
+                                    info("Timed out - Unable to Poke NPC.")
+                                    set_force_warp(false)
+                                    send_packet(get_player_id()..";mirror_status_failed")
+                                    npc_reset()
+                                end
+                            -- No messages so turn off injection and give up
+                            else
+                                set_injecting(false)
+                                log("Turning off injecting")
+                            end
+                        end
+
+                        -- Mid injection and no response so follow up with injection
+                        if get_mid_inject() and now - get_message_time() > 2 then
+                            log("Middle of inject and message time exceeded  - Time Out ("..tostring(now - get_message_time())..")")
+                            local p = get_player()
+                            if p and p.status == 4 then
+                                if not get_mirror_message() then
+                                    info("Timed out and all message are sent - Consider complete and reseting.")
+                                    send_packet(get_player_id()..";mirror_status_failed")
+                                    npc_reset()
+                                else
+                                    log("Continue the injection.")
+                                    npc_inject()
+                                end
+                            end
+                        end
+                    end
+
+                    -- load the initial settings
+                    if auto_load then 
+                        load_command("")
+                        auto_load = false;
+                    end
                 end
 
                 -- Update the in game display
@@ -49,59 +111,6 @@ do
                     get_player_spells() -- Spells.lua
                     log("Updated Sync")
                     last_sync = now
-                end
-
-                -- Player was mirroring and recieved a release packet.  Now just wait till status ~= 4
-                if get_mirror_on() and get_mirroring() then
-                    local p = get_player()
-                    if old_status == 4 and p.status == 0 and get_mirror_release() then
-                        -- Player is released via status change (non standard)
-                        log("Mirror sequence completed via status change")
-                        npc_mirror_complete()
-                        clear_npc_data()
-                    end
-                    old_status = p.status
-                end
-
-                -- Mirroring 
-                if get_injecting() then 
-
-                    -- Try to get a Menu ID with a poke
-                    local retry_count = get_retry_count()
-                    if now - get_poke_time() > (retry_count + 1)/2 and not get_menu_id() then
-                        if retry_count < 5 then
-                            retry_count = retry_count +1
-                            log("Retry Menu ["..retry_count..'/5] - Time Out')
-                            send_packet(get_player_id()..";mirror_status_retry_"..tostring(retry_count))
-                            npc_retry()
-                        else
-                            info("Timed out - Unable to Poke NPC.")
-                            send_packet(get_player_id()..";mirror_status_failed")
-                            npc_reset()
-                        end
-                    end
-
-                    -- Mid injection and no response so follow up with injection
-                    if get_mid_inject() and now - get_message_time() > 2 and get_menu_id() then
-                        local p = get_player()
-                        if p and p.status == 4 then
-                            if not get_mirror_message() then
-                                info("Timed out and all message are sent - Consider complete and reseting.")
-                                send_packet(get_player_id()..";mirror_status_failed")
-                                npc_reset()
-                            else
-                                log("Continue the injection.")
-                                npc_inject()
-                            end
-                        end
-                    end
-
-                end
-
-                -- load the initial settings
-                if auto_load then 
-                    load_command("")
-                    auto_load = false;
                 end
             end
             coroutine.sleep(engine_speed)

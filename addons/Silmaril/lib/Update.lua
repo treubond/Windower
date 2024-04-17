@@ -32,6 +32,9 @@ do
         --Spell recasts to the Silmaril Program
         packet_data = packet_data..';'..get_spell_recast()
 
+        --Trust recasts to the Silmaril Program
+        packet_data = packet_data..';'..get_trust_recast()
+
         --Update the inventory if 1 seconds have elapsed
         if now - last_inventory > 2 then 
             --Item data to the Silmaril Program via World.lua

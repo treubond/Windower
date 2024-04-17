@@ -239,8 +239,7 @@ function get_sets()
 	-- If you ever lock your weapon, keep that in mind when building cure potency set.
 	sets.midcast.Cure = {
 		neck="Phalaina Locket",
-		hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%',}},
-		back="Solemnity Cape",
+		hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
 		waist="Penitent's Rope",
 
 		-- main="Nirvana",

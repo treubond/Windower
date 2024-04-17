@@ -21,7 +21,7 @@ function commands(cmd, args)
         elseif cmd == 'save' then
             save_command() -- via Display.lua
         elseif cmd == 'reset' then
-            npc_reset(args[1], args[2]) -- via Mirror.lua
+            reset_command(args)
         elseif cmd == "input" then
             input_message(args[1], args[2], args[3]) -- sm input JobAbility 99 125
         elseif cmd == "script" then
@@ -51,6 +51,16 @@ function stop_command(args)
         end
     else
         send_packet(get_player_id()..";stop")
+    end
+end
+
+function reset_command(args)
+    if args and #args > 1 then
+        log('Defined Reset Menu ID: ['..args[1]..'] NPC Index: ['..args[2]..']')
+        npc_reset(args[1], args[2]) -- via Mirror.lua
+    else
+        log('Default Reset')
+        npc_reset() -- via Mirror.lua
     end
 end
 
@@ -91,8 +101,8 @@ function all_command(args)
             command_string = command_string..args[i].." "
         end
         command_string = command_string:sub(1, #command_string - 1)
-        windower.send_ipc_message(command_string)
-        windower.send_command('sm '..command_string)
+        windower.send_ipc_message('silmaril '..command_string)
+        windower.send_command('silmaril '..command_string)
         log(command_string)
     end
 end
@@ -101,15 +111,15 @@ function load_command(args)
     local p = get_player()
     if not p then return end
 
-    local smModePath = "_"
+    local smModePath = ""
 
     for i = 1, #args do
         smModePath = smModePath..args[i].."_"
     end
 
     if p.sub_job then
-        send_packet(p.id..";load"..smModePath..p.main_job.."_"..p.sub_job.."_"..get_player_name())
+        send_packet(p.id..";load_"..smModePath..p.main_job.."_"..p.sub_job.."_"..get_player_name())
     else
-        send_packet(p.id..";load"..smModePath..p.main_job.."_"..get_player_name())
+        send_packet(p.id..";load_"..smModePath..p.main_job.."_"..get_player_name())
     end
 end

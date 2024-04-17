@@ -26,7 +26,6 @@
       <string>Skillchain (Follower 3)</string>
       <string>Skillchain (Follower 4)</string>
       <string>Skillchain (Leader)</string>
-      <string>Weaponskills</string>
     </Priority_List>
     <Priority_Rank>
       <string>Combat</string>
@@ -41,6 +40,7 @@
       <string>Debuff (High Priority)</string>
       <string>Debuff (Low Priority)</string>
       <string>Debuff (Normal Priority)</string>
+      <string>Weaponskills</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -49,7 +49,7 @@
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
         <Name>Treubond</Name>
-        <Engage>false</Engage>
+        <Engage>true</Engage>
         <Run>true</Run>
         <Face_Toward>true</Face_Toward>
         <Face_Away>false</Face_Away>
@@ -76,13 +76,13 @@
       </Shooting>
     </Combat_Action>
     <Weaponskills>
-      <Enabled>false</Enabled>
-      <WeaponType />
-      <WeaponSkill />
+      <Enabled>true</Enabled>
+      <WeaponType>Sword</WeaponType>
+      <WeaponSkill>Savage Blade</WeaponSkill>
       <Script />
       <TP_Threshold>1000</TP_Threshold>
       <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>100</High_HP_Threshold>
+      <High_HP_Threshold>20</High_HP_Threshold>
       <Cycle>0</Cycle>
       <AM_Enabled>true</AM_Enabled>
       <AM_Level>0</AM_Level>
@@ -706,7 +706,7 @@
         <Name>Khrone</Name>
         <Protect>false</Protect>
         <Shell>false</Shell>
-        <Haste>false</Haste>
+        <Haste>true</Haste>
         <Refresh>false</Refresh>
         <Flurry>false</Flurry>
         <Regen>false</Regen>
@@ -1901,11 +1901,11 @@
       <ID>414</ID>
     </Dummy_4>
     <Dummy_5>
-      <Name />
+      <Name>Fowl Aubade</Name>
       <Target />
-      <Buff />
+      <Buff>Aubade</Buff>
       <Buff2 />
-      <ID>0</ID>
+      <ID>405</ID>
     </Dummy_5>
     <Pianissimo_1>
       <Name />

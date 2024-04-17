@@ -17,12 +17,16 @@ function message_in(id, data)
         packet_in_0x034(data)
     elseif id == 0x037 then -- Update Character
         packet_in_0x037(data)
+    elseif id == 0x038 then -- Entity Animation
+        packet_in_0x038(data)
     elseif id == 0x03E then  -- Open Buy/Sell
         packet_in_0x03E(data)
     elseif id == 0x052 then -- NPC Release
         packet_in_0x052(data)
     elseif id == 0x063 then -- Player buff duration
         packet_in_0x063(data)
+    elseif id == 0x068 then -- Pet Status Update
+        packet_in_0x068(data)
     elseif id == 0x076 then -- Buffs
         run_buffs(data) -- via Buffs.lua
     elseif id == 0x0F9 then -- Reraise Dialog
@@ -75,6 +79,7 @@ end
 function packet_in_0x05C(data)
     if not get_injecting() then return end
     local packet = packets.parse('incoming', data)
+
     log('npc_inject() called from [0x05C]')
     npc_inject()
 end
@@ -84,8 +89,8 @@ function packet_in_0x028(data)
 	local p = get_player()
 	if not p then return end
     local packet = windower.packets.parse_action(data)
-    if packet.actor_id == p.id then
 
+    if packet.actor_id == p.id then
         -- [2] = 'Ranged attack finish'
         if packet.category == 2 and packet.param == 26739 then
             send_packet(p.id..';shooting_finished_2_Ranged Attack_'..packet.targets[1].id)
@@ -138,7 +143,7 @@ function packet_in_0x028(data)
                 if packet.targets[1].actions[1].param ~= 0 then
 					local spell = get_spell(packet.targets[1].actions[1].param)
 					if spell then
-                        send_packet(p.id..';casting_blocked_'..spell.id..'_'..spell.en..'_'..packet.targets[1].id..'_'..tostring(spell.cast_time + 2.1))
+                        send_packet(p.id..';casting_blocked_'..spell.id..'_'..spell.en..'_'..packet.targets[1].id..'_'..string.format("%.2f",spell.cast_time + 2.1))
                         log('PACKET: Casting Spell ['..spell.en..'] on target '..packet.targets[1].id)
 					end
 				end
@@ -175,16 +180,18 @@ function packet_in_0x028(data)
             if not pt_ids[target.id] then
                 if target.actions[1].message then
                     local buff = target.actions[1].param
-                    -- Handles the dazes for DNC
-                    if packet.category == 14 and buff_gain:contains(tonumber(target.actions[1].message)) then
-                        local ability = get_ability(packet.param)
-                        local daze = get_buff(ability.status)
-                        if daze then buff = daze.id..'|'..target.actions[1].param end
-                    end
-                    if buff_gain:contains(tonumber(target.actions[1].message)) then -- Buff Gain 
-                        send_packet(p.id..';packet_statusgains_'..buff..'_'..target.id)
-                    elseif buff_wear:contains(tonumber(target.actions[1].message)) then -- Buff Wear
-                        send_packet(p.id..';packet_statuswears_'..buff..'_'..target.id)
+                    if buff then
+                        -- Handles the dazes for DNC
+                        if packet.category == 14 and buff_gain:contains(tonumber(target.actions[1].message)) then
+                            local ability = get_ability(packet.param)
+                            local daze = get_buff(ability.status)
+                            if daze then buff = daze.id..'|'..target.actions[1].param end
+                        end
+                        if buff_gain:contains(tonumber(target.actions[1].message)) and target.id then -- Buff Gain 
+                            send_packet(p.id..';packet_statusgains_'..buff..'_'..target.id)
+                        elseif buff_wear:contains(tonumber(target.actions[1].message)) and target.id then -- Buff Wear
+                            send_packet(p.id..';packet_statuswears_'..buff..'_'..target.id)
+                        end
                     end
                 end
             end
@@ -193,11 +200,22 @@ function packet_in_0x028(data)
 
     -- Process the skillchain and magic bursts if needed
     if packet.category == 3 and packet.param ~= 0 then -- Monitor others for Weaponskills and Skillchains
-        run_ws_skillchain(packet)
-        run_burst(packet)
+        local alliance_ids = get_alliance_ids()
+        if alliance_ids[packet.actor_id] then
+            run_ws_skillchain(packet)
+            run_burst(packet)
+        end
     elseif packet.category == 4 then -- Monitor others for Immanence and Skillchains
-        run_spell_check(packet)
-        run_burst(packet)
+        local alliance_ids = get_alliance_ids()
+        if alliance_ids[packet.actor_id] then
+            run_spell_check(packet)
+            run_burst(packet)
+            local no_effect = S{75,653,654,655,656,66,85,284}
+            local message = tonumber(packet.targets[1].actions[1].message)
+            if message and not no_effect:contains(message) then
+                corsair_shot(packet)
+            end
+        end
     end
 end
 
@@ -229,7 +247,7 @@ function packet_in_0x032(data)
         return
     end
 
-    if get_injecting() then
+    if get_injecting() and not get_mid_inject() then
         -- Assign the Menu ID
         set_menu_id(packet['Menu ID'])
         set_interaction_type("Type 1")
@@ -256,7 +274,7 @@ function packet_in_0x033(data)
         return
     end
 
-    if get_injecting() then
+    if get_injecting() and not get_mid_inject() then
         -- Assign the Menu ID
         set_menu_id(packet['Menu ID'])
         set_interaction_type("Type String")
@@ -283,7 +301,7 @@ function packet_in_0x034(data)
         return
     end
 
-    if get_injecting() then
+    if get_injecting() and not get_mid_inject() then
         -- Assign the Menu ID
         set_menu_id(packet['Menu ID'])
         set_interaction_type("Type 2")
@@ -300,6 +318,8 @@ function packet_in_0x037(data)
     local p = get_player()
     if not p then return end
     local packet = packets.parse('incoming', data)
+    -- Used to calculate relative time
+    set_server_offset(packet['Timestamp'],packet['Time offset?']/60)
 
     -- Player is in a menu
     if packet['Status'] == 4 then 
@@ -332,6 +352,14 @@ function packet_in_0x037(data)
     end
 end
 
+-- Entity Animation
+function packet_in_0x038(data)
+    local packet = packets.parse('incoming', data)
+    if packet.Type == "hov1" then
+        log('Hover Shot Animation')
+    end
+end
+
 -- Open Buy/Sell
 function packet_in_0x03E(data)
     if true then return end -- Disabled for now
@@ -353,6 +381,7 @@ function packet_in_0x052(data)
     -- This tells us the Server released the player - next should follow a status from 4 -> 0
     -- The engine is used to make this determination
     if get_mirroring() then
+        log("Setting mirror_release to true")
         set_mirror_release(true)
     end
 
@@ -363,6 +392,41 @@ function packet_in_0x063(data)
     if data:byte(0x05) ~= 0x09 then return end
     -- Process the buffs via the Player.lua
     player_packet_buffs(data) 
+end
+
+-- Pet status update
+function packet_in_0x068(data)
+    local packet = packets.parse('incoming', data)
+    local p = get_player()
+
+    if packet['Owner ID'] == p.id then
+        local player_pet = get_player_pet()
+
+        -- No pet info so get info
+        if not player_pet then
+            log('Getting Data of Pet')
+            player_pet = windower.ffxi.get_mob_by_index(packet['Pet Index'])
+        end
+
+        if player_pet then
+            local pet_target = windower.ffxi.get_mob_by_id(packet['Target ID'])
+            if not pet_target then
+                log('Set to idle (Deactive)')
+                player_pet.target = 0
+                player_pet.status = 0
+            else
+                player_pet.tp = packet['Pet TP']
+                player_pet.target = pet_target.index
+                player_pet.status = 1
+                if player_pet.tp and pet_target.index then
+                    log('Packet 0x068 Update - TP ['..player_pet.tp..'] Target ['..pet_target.index..']')
+                end
+            end
+        end
+
+        --Assign the updates to the pet
+        set_player_pet(player_pet)
+    end
 end
 
 -- Reraise Dialog
@@ -419,6 +483,9 @@ function packet_out_0x00D(data)
         npc_mirror_complete()
     end
 
+    -- clear pet info
+    set_player_pet(nil)
+
 end
 
 -- User dialog
@@ -457,7 +524,7 @@ function packet_out_0x05E(data)
 
     local packet = packets.parse('outgoing', data)
 
-    windower.send_ipc_message('zone '..
+    windower.send_ipc_message('silmaril zone '..
         p.id..' '..
         w.zone..' '..
         p_loc.x..' '..
@@ -477,8 +544,8 @@ function packet_out_0x036(data)
     local items = windower.ffxi.get_items(0)
     local formattedString = ","
     for i=0,9 do
-        local item = 'Item Index '..tostring(i)
-        local item_count = 'Item Count '..tostring(i)
+        local item = 'Item Index '..string.format("%i",i)
+        local item_count = 'Item Count '..string.format("%i",i)
         if items[packet[item]] then -- found in inventory
             local inv_item = items[packet[item]].id
             local inv_count = packet[item_count]

@@ -33,6 +33,7 @@ do
         end
     end
 
+    --Send the outgoing packet without a log
     function send_update (msg)
         if msg and udp then
             assert(udp:send(msg))
@@ -53,10 +54,10 @@ do
                 if cmd ~= "results" then log(data) end
 
                 -- Check if valid message
-                if tonumber(message[1]) ~= get_player_id() then log('Wrong Message ['..cmd..']') return end
+                if message[1] ~= get_player_id() then log('Wrong Message ['..cmd..']') return end
 
                 if cmd == "accepted" then
-                    windower.add_to_chat(1, ('\31\200[\31\05Silmaril Addon\31\200]\31\207 '..message[3]))
+                    info('\31\200[\31\05Silmaril Addon\31\200]\31\207 '..message[3])
                     set_connected(true)
                 elseif cmd == "sync" then
                     sync_cmd(message[3])
@@ -65,14 +66,16 @@ do
                     windower.send_command('lua u silmaril')
                 elseif cmd == "reset" then
                     reset_request(message[3])
+                elseif cmd == "clear" then
+                    clear_party_location()
                 elseif cmd == "on" then
-                    on_cmd()
+                    on_cmd(message[3],message[4],message[5])
                 elseif cmd == "off" then
                     off_cmd()
                 elseif cmd == "results" then
                     mirror_results(message[3])
                 elseif cmd == "input" then
-                    input_message(message[3],message[4],message[5],message[6])
+                    input_message(message[3],message[4],message[5],message[6],message[7])
                 elseif cmd == "script" then
                     windower.send_command(message[3])
                 elseif cmd == "skillchain" then
@@ -196,14 +199,20 @@ do
         sync_data(param) -- method called via Sync.lua
     end
 
-    function on_cmd()
+    function on_cmd(file,sub,name)
         set_enabled(true)
-        windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Actions: \31\06[ON]'))
+        if not file then
+            file = 'Profile Not Loaded'
+        else
+            if sub then file = file..'_'..sub end
+            if name then file = file..'_'..name end
+        end
+        info('\31\200[\31\05Silmaril\31\200]\31\207'..' Actions: \31\06[ON]'..' \31\207 Profile: \31\06['..file..']')
     end
 
     function off_cmd()
         runstop()
         set_enabled(false)
-        windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Actions: \31\03[OFF]'))
+        info('\31\200[\31\05Silmaril\31\200]\31\207'..' Actions: \31\03[OFF]')
     end
 end

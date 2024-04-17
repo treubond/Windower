@@ -8,6 +8,7 @@ function get_sets()
  
     -- Load and initialize the include file.
     include('Mote-Include.lua')
+    include('Global-Binds.lua')
 end
  
  
@@ -62,10 +63,29 @@ function user_setup()
     send_command('bind ^numpad4 input /ws "Shijin Spiral" <t>')
     send_command('bind ^numpad5 input /ws "Stringing Pummel" <t>')
 
+    send_command('bind f9 gs c cycle OffenseMode')
+    send_command('bind ^f9 gs c cycle HybridMode')
+    send_command('bind f10 gs c cycle PhysicalDefenseMode')
+
     update_pet_mode()
     select_default_macro_book()
 end
  
+function file_unload()
+    --send_command('unbind ^c')
+    send_command('unbind ![')
+    send_command('unbind !]')
+	send_command('unbind !t')
+    send_command('unbind !w')
+    send_command('unbind f9')
+    send_command('unbind ^f9')
+    send_command('unbind f10')
+    send_command('unbind ^numpad7')
+    send_command('unbind ^numpad9')
+	send_command('unbind ^numpad4')
+    send_command('unbind ^numpad6')
+    send_command('unbind ^numpad1')
+end
  
 -- Define sets used by this job file.
 function init_gear_sets()
@@ -90,7 +110,11 @@ function init_gear_sets()
      
     sets.precast.JA['Repair'] = {--[[ feet="Foire Babouches +1",ear1="Guignol Earring",ear2="Pratik Earring",legs="Desultor Tassets" ]]}
  
-    sets.precast.JA.Maneuver = {hands="Foire Dastanas +1",body="Karagoz Farsetto +1"--[[ neck="Buffoon's Collar +1",body="Karagoz Farsetto",hands="Foire Dastanas +1",back="Visucius's Mantle",ear2="Burana Earring" ]]}
+    sets.precast.JA.Maneuver = {
+        hands="Foire Dastanas +1",
+        body="Karagoz Farsetto +1",
+        --[[ neck="Buffoon's Collar +1",body="Karagoz Farsetto",hands="Foire Dastanas +1",back="Visucius's Mantle",ear2="Burana Earring" ]]
+    }
  
  
  
@@ -181,7 +205,12 @@ function init_gear_sets()
      
     --Set for Pet Weapon Skill DMG MAX
      
-    sets.midcast.Pet.Weaponskill = {head="Karagoz Cappello", body="Karagoz Farsetto +1", back="Dispersal Mantle"}--[[ range="Divinator",neck="Empath Necklace",head="Karagoz Cappello",body="Karagoz Farsetto",hands="Karagoz Guanti",legs="Kara. Pantaloni +1",feet="Naga Kyahan",
+    sets.midcast.Pet.Weaponskill = {
+        head="Karagoz Cappello", 
+        body="Karagoz Farsetto +1", 
+        hands="Mpaca's Gloves",
+        feet="Mpaca's Boots",
+        back="Dispersal Mantle",}--[[ range="Divinator",neck="Empath Necklace",head="Karagoz Cappello",body="Karagoz Farsetto",hands="Karagoz Guanti",legs="Kara. Pantaloni +1",feet="Naga Kyahan",
     back="Dispersal Mantle",ear2="Burana Earring",ear1="Cirque Earring",waist="Klouskap Sash",ring1="Overbearing Ring" ]]
  
      
@@ -230,20 +259,34 @@ function init_gear_sets()
  
     -- Idle sets to wear while pet is engaged
     sets.idle.Pet.Engaged = {
+        ranged="Animator P +1",
+        ammo="Automat. Oil +3",
         head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
         body={ name="Rao Togi", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
         hands={ name="Rao Kote", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
         legs="Tali'ah Sera. +2",
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
+        waist="Isa Belt",
         left_ear="Enmerkar Earring",
         right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
         right_ring="Tali'ah Ring",
+        back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
     }--Handler's Earring/Burana Earring
  
-    sets.idle.Pet.PetDT = set_combine(sets.idle.Pet.Engaged,  {--[[ range="Divinator",ammo="Automat. Oil +3",
+    sets.idle.Pet.PetDT = set_combine(sets.idle.Pet.Engaged,  {
+        body={ name="Rao Togi", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
+        hands={ name="Rao Kote", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
+        legs="Tali'ah Sera. +2",
+        feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
+        waist="Isa Belt",
+        left_ear="Handler's Earring +1",
+        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
+        --[[ range="Divinator",ammo="Automat. Oil +3",
         head="Pitre Taj +1",neck="Empath Necklace",ear1="Handler's Earring +1",ear2="Handler's Earring",
         body="Foire Tobe +1",hands="Regimen Mittens",ring1="Varar Ring",ring2="Varar Ring",
-        back="Visucius's Mantle",waist="Isa Belt",legs="Kara. Pantaloni +1",feet="Naga Kyahan" ]]})--Pet: Damage Taken set
+        back="Visucius's Mantle",waist="Isa Belt",legs="Kara. Pantaloni +1",feet="Naga Kyahan" ]]
+    })--Pet: Damage Taken set
          
     sets.idle.Pet.Engaged.Ranged = set_combine(sets.idle.Pet.Engaged, {--[[ range="Divinator II",neck="Empath Necklace",
     hands="Regimen Mittens",legs="Kara. Pantaloni +1",ear2="Burana Earring",ear1="Cirque Earring",back="Visucius's Mantle",
@@ -277,12 +320,17 @@ function init_gear_sets()
         back="Umbra Cape",waist="Klouskap Sash",legs="Herculean Trousers",feet="Herculean Boots" ]]}
  
     sets.defense.PetDT = {
+        ranged="Animator P +1",
+        ammo="Automat. Oil +3",
+        head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
         body={ name="Rao Togi", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
         hands={ name="Rao Kote", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
         legs="Tali'ah Sera. +2",
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
+        waist="Isa Belt",
         left_ear="Handler's Earring +1",
         right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
         --[[ range="Divinator",ammo="Automat. Oil +3",
         head="Pitre Taj +1",neck="Empath Necklace",ear1="Handler's Earring +1",ear2="Handler's Earring",
         body="Foire Tobe +1",hands="Regimen Mittens",ring1="Varar Ring",ring2="Varar Ring",
@@ -305,11 +353,13 @@ function init_gear_sets()
      
     -- Normal melee group
     sets.engaged = {
-        head="Tali'ah Turban +2",
-        body="Tali'ah Manteel +2",
-        hands="Tali'ah Gages +2",
+        ranged="Animator P +1",
+        ammo="Automat. Oil +3",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Mpaca's Gloves",
         legs="Tali'ah Sera. +2",
-        feet="Tali'ah Crackows +2",
+        feet="Mpaca's Boots",
         neck="Asperity necklace",
         waist="Moonbow Belt",
         left_ear="Mache Earring",
@@ -330,10 +380,25 @@ function init_gear_sets()
         head="Hizamaru Somen +1",neck="Asperity Necklace",ear1="Brutal Earring",ear2="Cessance Earring",
         body="Hiza. Haramaki +1",hands="Hizamaru Kote +1",ring1="Petrov Ring",ring2="Epona's Ring",
         back="Dispersal Mantle",waist="Klouskap Sash",legs="Hiza. Hizayoroi +1",feet="Hiza. Sune-ate +1" ]]}
-    sets.engaged.DT = {--[[ ammo="Automat. Oil +3",
+    sets.engaged.DT = {
+        ranged="Animator P +1",
+        ammo="Automat. Oil +3",
+        head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
+        body={ name="Rao Togi", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
+        hands={ name="Rao Kote", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
+        legs="Tali'ah Sera. +2",
+        feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
+        waist="Isa Belt",
+        left_ear="Enmerkar Earring",
+        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        left_ring="Chirich Ring +1",
+        right_ring="Tali'ah Ring",
+        back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
+        --[[ ammo="Automat. Oil +3",
         head="Herculean Helm",neck="Twilight Torque",ear1="Brutal Earring",ear2="Cessance Earring",
         body={ name="Rawhide Vest", augments={'HP+50','"Subtle Blow"+7','"Triple Atk."+2',}},hands="Herculean Gloves",ring1="Dark Ring",ring2="Defending Ring",
-        back="Umbra Cape",waist="Klouskap Sash",legs="Herculean Trousers",feet="Herculean Boots" ]]}
+        back="Umbra Cape",waist="Klouskap Sash",legs="Herculean Trousers",feet="Herculean Boots" ]]
+    }
     sets.engaged.Acc.DT = {--[[ ammo="Automat. Oil +3",
         head="Dampening Tam",neck="Twilight Torque",ear1="Steelflash Earring",ear2="Cessance Earring",
         body={ name="Rawhide Vest", augments={'HP+50','"Subtle Blow"+7','"Triple Atk."+2',}},hands="Herculean Gloves",ring1="Dark Ring",ring2="Defending Ring",
@@ -347,6 +412,8 @@ function init_gear_sets()
     -- When Pet is Engaged this what will be Equiped for armor while your weapons are Drawn.
     ------------------------------------------------------------------------------
     sets.engaged.PetEngaged = {
+        ranged="Animator P +1",
+        ammo="Automat. Oil +3",
         head="Tali'ah Turban +2",
         body="Tali'ah Manteel +2",
         hands="Tali'ah Gages +2",
@@ -362,14 +429,18 @@ function init_gear_sets()
     }
          
     sets.engaged.PetEngaged.PetDT = set_combine(sets.engaged.PetEngaged,  {
+        ranged="Animator P +1",
+        ammo="Automat. Oil +3",
+        head={ name="Anwig Salade", augments={'Attack+3','Pet: Damage taken -10%','Accuracy+3','Pet: Haste+5',}},
         body={ name="Rao Togi", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
         hands={ name="Rao Kote", augments={'Pet: HP+100','Pet: Accuracy+15','Pet: Damage taken -3%',}},
         legs="Tali'ah Sera. +2",
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
+        waist="Isa Belt",
         left_ear="Enmerkar Earring",
         right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
         left_ring="Chirich Ring +1",
-        right_ring="Chirich Ring",
+        right_ring="Tali'ah Ring",
         --[[ range="Divinator",ammo="Automat. Oil +3",
         head="Pitre Taj +1",neck="Empath Necklace",ear1="Handler's Earring +1",ear2="Handler's Earring",
         body="Foire Tobe +1",hands="Regimen Mittens",ring1="Varar Ring",ring2="Varar Ring",

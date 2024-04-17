@@ -18,8 +18,8 @@
         </flags>
         <padding>0</padding>
         <pos>
-            <x>1280</x>
-            <y>1063</y>
+            <x>100</x>
+            <y>100</y>
         </pos>
         <text>
             <alpha>255</alpha>
@@ -40,4 +40,16 @@
             </stroke>
         </text>
     </global>
+    <khrone>
+        <pos>
+            <x>760</x>
+            <y>705</y>
+        </pos>
+    </khrone>
+    <treubond>
+        <pos>
+            <x>527</x>
+            <y>-2</y>
+        </pos>
+    </treubond>
 </settings>

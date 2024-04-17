@@ -88,6 +88,7 @@
 res = require('resources')
 texts = require('texts')
 include('Modes.lua')
+include('Global-Binds.lua')
 
 -- Define your modes: 
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
@@ -151,6 +152,7 @@ hud_font = 'Impact'
     send_command('@input /macro book '..tostring(2)..';wait 1.1;input /macro set '..tostring(1))
     --set_macro_page(1, 2)
     --select_default_macro_book()
+    send_command('wait 10;input /lockstyleset 8')
 
 --[[
     This gets passed in when the Keybinds is turned on.
@@ -237,10 +239,10 @@ function get_sets()
     sets.buff = {} 				-- leave this empty
     sets.me.idle = {}			-- leave this empty
 
-    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
-    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
-    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
     -- Your idle set
@@ -467,7 +469,7 @@ function get_sets()
         legs="Jhakri Slops +2",
         feet="Jhakri Pigaches +2",
         neck="Phalaina Locket",
-        waist="Hierarch Belt",
+        waist="Sacro Cord",
         left_ear="Magnetic Earring",
         right_ear="Loquac. Earring",
         left_ring="Jhakri Ring",
@@ -534,7 +536,7 @@ function get_sets()
         legs="Arbatel Pants +2",
         feet={ name="Agwu's Pigaches", augments={'Path: A',}},
         neck="Saevus Pendant +1",
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
@@ -563,7 +565,7 @@ function get_sets()
         legs="Arbatel Pants +2",
         feet={ name="Agwu's Pigaches", augments={'Path: A',}},
         neck={ name="Argute Stole +1", augments={'Path: A',}},
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
@@ -586,7 +588,7 @@ function get_sets()
         back="Izdubar Mantle", ]]
     })
 	
-    sets.midcast.nuking.acc = {  -- MAB 321, MACC 371, MAB 19/4
+    sets.midcast.nuking.acc = {  -- MAB 329, MACC 379, MAB 19/4
         main="Daybreak",
         sub="Culminus",
         ammo="Ghastly Tathlum +1",
@@ -596,7 +598,7 @@ function get_sets()
         legs="Arbatel Pants +2",
         feet="Arbatel Loafers +2",
         neck={ name="Argute Stole +1", augments={'Path: A',}},
-        waist="Olympus Sash",
+        waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
@@ -627,7 +629,7 @@ function get_sets()
         legs="Jhakri Slops +2",
         feet="Jhakri Pigaches +2",
         neck={ name="Argute Stole +1", augments={'Path: A',}},
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear="Regal Earring",
         left_ring="Omega Ring",
@@ -660,7 +662,7 @@ function get_sets()
         legs="Arbatel Pants +2",
         feet="Arbatel Loafers +2",
         neck={ name="Argute Stole +1", augments={'Path: A',}},
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear="Regal Earring",
         left_ring="Omega Ring",
@@ -754,7 +756,7 @@ function get_sets()
         legs="Jhakri Slops +2",
         feet="Mallquis Clogs",
         neck="Phalaina Locket", --4
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear="Regal Earring",
         left_ring="Omega Ring",

@@ -69,6 +69,7 @@
 
 
 include('organizer-lib') -- Remove if you dont use Organizer
+include('Global-Binds.lua')
 
 --------------------------------------------------------------------------------------------------------------
 res = require('resources')      -- leave this as is    
@@ -101,11 +102,11 @@ hud_font = 'Arial'
     windower.send_command('bind home gs c geo geocycle') 			-- home Cycles Geomancy Spell
     windower.send_command('bind end gs c geo geocycledown') 		-- end Cycles Geomancy Spell in reverse order	
     windower.send_command('bind PAGEUP gs c geo indicycle') 		-- PgUP Cycles IndiColure Spell
-    windower.send_command('bind PAGEDOWN gs c geo indicycledown') 	    -- PgDown Cycles IndiColure Spell in reverse order	
-    windower.send_command('bind !f12 gs c toggle runspeed') 			-- Alt-F9 toggles locking on / off Herald's Gaiters
-	windower.send_command('bind !f10 gs c toggle mb')				-- F10 toggles Magic Burst Mode on / off.
-    windower.send_command('bind f10 gs c toggle nukemode')         -- Alt-F10 to change Nuking Mode
-    windower.send_command('bind ^F10 gs c toggle matchsc')          -- CTRL-F10 to change Match SC Mode         
+    windower.send_command('bind PAGEDOWN gs c geo indicycledown') 	-- PgDown Cycles IndiColure Spell in reverse order	
+    windower.send_command('bind !f12 gs c toggle runspeed') 		-- Alt-F9 toggles locking on / off Herald's Gaiters
+	windower.send_command('bind !f10 gs c toggle mb')				-- Alt-F10 toggles Magic Burst Mode on / off.
+    windower.send_command('bind f10 gs c toggle nukemode')			-- F10 to change Nuking Mode
+    windower.send_command('bind ^F10 gs c toggle matchsc')			-- CTRL-F10 to change Match SC Mode         
     windower.send_command('bind f12 gs c toggle melee')				-- F12 Toggle Melee mode on / off and locking of weapons
 	windower.send_command('bind f9 gs c toggle idlemode')			-- F9 Toggles between MasterRefresh or MasterDT when no luopan is out
 	windower.send_command('bind ^end gs c hud keybinds')
@@ -114,9 +115,9 @@ hud_font = 'Arial'
 	windower.send_command('bind ^f input /ja "Full Circle" <me>')
 	windower.send_command('bind ^n input /ja "Entrust" <me>')
 
-	windower.send_command('bind ^numpad7 input //send Hybridkiller /ws fudo <t>')
-    windower.send_command('bind ^numpad9 input //send Hybridkiller /ws kasha <t>')
-    windower.send_command('bind ^numpad4 input //send Hybridkiller /ws shoha <t>')
+	windower.send_command('bind ^numpad1 input //send Hybridkiller /ws fudo <t>')
+    windower.send_command('bind ^numpad3 input //send Hybridkiller /ws kasha <t>')
+    windower.send_command('bind ^numpad2 input //send Hybridkiller /ws shoha <t>')
 
 --[[
     This gets passed in when the Keybinds is turned on.
@@ -151,9 +152,9 @@ function user_unload()
     send_command('unbind !f12')
 	send_command('unbind !end')
 
-	send_command('unbind ^numpad7')
-    send_command('unbind ^numpad9')
-    send_command('unbind ^numpad4')
+	send_command('unbind ^numpad1')
+    send_command('unbind ^numpad3')
+    send_command('unbind ^numpad2')
 	send_command('unbind !e')
 	send_command('unbind !r')
 
@@ -171,7 +172,7 @@ validateTextInformation()
 
 -- Optional. Swap to your geo macro sheet / book
 set_macros(1,7) -- Sheet, Book 
-send_command('wait 6;input /lockstyleset 10')
+send_command('wait 10;input /lockstyleset 10')
     
 -- Setup your Gear Sets below:
 function get_sets()
@@ -191,7 +192,7 @@ function get_sets()
 	
 	AF.Head = "Geomancy Galero"
 	AF.Body = "Geomancy Tunic"
-	AF.Hands = "Geomancy Mitaines"
+	AF.Hands = "Geomancy Mitaines +3"
 	AF.Legs = "Geomancy Pants"
 	AF.Feet = "Geomancy Sandals"
 	
@@ -199,9 +200,9 @@ function get_sets()
 	RELIC.Body = "Bagua Tunic"
 	RELIC.Hands = "Bagua Mitaines"
 	RELIC.Legs = "Bagua Pants"
-	RELIC.Feet = "Bagua Sandals +2"
+	RELIC.Feet = "Bagua Sandals +3"
 	
-	EMPY.Head = "Azimuth Hood +2"
+	EMPY.Head = "Azimuth Hood +3"
 	EMPY.Body = "Azimuth Coat"
 	EMPY.Hands = "Azimuth Gloves"
 	EMPY.Legs = "Azimuth Tights"
@@ -214,10 +215,10 @@ function get_sets()
 	GEOCape.Nuke = {}
 	GEOCape.FC = {}
 	
-    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
-    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
-    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
     -- My formatting is very easy to follow. All sets that pertain to my character doing things are under 'me'.
@@ -377,7 +378,7 @@ function get_sets()
     })
 	
     -- Luopan is out
-	sets.pan.melee = set_combine(sets.pan.idle[idleMode],{
+	sets.pan.melee = set_combine(sets.pan.idle.normal,{ --[idleMode],{
 		waist="Isa Belt",
 		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
     }) 
@@ -450,7 +451,7 @@ function get_sets()
 		legs="Jhakri Slops +2",
 		feet="Jhakri Pigaches +2",
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Rumination Sash",
+		waist="Sacro Cord",
 		left_ear="Malignance Earring",
 		right_ear="Loquac. Earring",
 		left_ring="Jhakri Ring",
@@ -569,7 +570,7 @@ function get_sets()
 		legs="Jhakri Slops +2",
 		feet=EMPY.Feet,
 		neck="Saevus Pendant +1",
-		waist="Olympus Sash",
+		waist="Sacro Cord",
 		left_ear="Malignance Earring",
 		right_ear = "Azimuth Earring",
 		left_ring="Jhakri Ring",
@@ -598,7 +599,7 @@ function get_sets()
 		legs={ name="Nyame Flanchard", augments={'Path: B',}}, --6/0  
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6/0
 		neck="Saevus Pendant +1",
-		waist="Olympus Sash",
+		waist="Sacro Cord",
 		left_ear="Malignance Earring",
 		right_ear = "Azimuth Earring",
 		left_ring="Jhakri Ring", --2/0

@@ -7,7 +7,7 @@ do
         -- Clear the table
         party_buffs = {}
 
-        local player_id = get_player_id()
+        local player_id = tonumber(get_player_id())
 
         for k = 0, 5 do
             local formattedString = nil

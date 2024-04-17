@@ -8,6 +8,7 @@ do
         -- Set the player in Player.lua
         local p = windower.ffxi.get_player()
         set_player(p)
+        set_player_id(tostring(p.id))
 
         -- Set the player's location in Player.lua
         set_player_location(windower.ffxi.get_mob_by_id(p.id))
@@ -31,7 +32,7 @@ do
         math.random()
         math.random() 
         math.random()
-       delay_time = math.random(1, 500) / 1000
+       delay_time = math.random(1, 5000) / 10000
     end
 
     function validate_load()
@@ -159,7 +160,7 @@ do
         local formattedString = get_player_id()..";weatherdata_"
         local all_weather_count = 0
         for id, weather in pairs(res.weather) do
-            formattedString = formattedString..weather.id..'|'..weather.en..'|'..res.elements[weather.element].en..'|'..tostring(weather.intensity)..','
+            formattedString = formattedString..weather.id..'|'..weather.en..'|'..res.elements[weather.element].en..'|'..weather.intensity..','
             if weather.id and tonumber(weather.id) > tonumber(all_weather_count) then
                 all_weather_count = weather.id
             end

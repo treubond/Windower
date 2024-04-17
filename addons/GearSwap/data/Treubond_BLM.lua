@@ -153,10 +153,10 @@ function get_sets()
     Taranus.MND_FC_MEVA = { name="Taranus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Mag. Evasion+15',}}
     Taranus.INT_STP     = { name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+5','"Store TP"+10','Phys. dmg. taken-10%',}} ]]
     -- Telchine Enhancing duration
-    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
-    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
-    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
       
     sets.me = {}       -- leave this empty
@@ -239,7 +239,7 @@ function get_sets()
     }
     
     sets.me.latent_refresh = { 
-      --waist="Fucho-no-Obi",
+      waist="Fucho-no-Obi",
     }
     
     -- Combat Related Sets
@@ -638,7 +638,7 @@ function get_sets()
     legs="Wicce Chausses +2",
     feet="Wicce Sabots +2",
     neck="Saevus Pendant +1",
-    waist="Penitent's Rope",
+    waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
     left_ring="Jhakri Ring",
@@ -667,7 +667,7 @@ function get_sets()
     legs="Wicce Chausses +2",
     feet="Wicce Sabots +2",
     neck="Saevus Pendant +1",
-    waist="Penitent's Rope",
+    waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
     left_ring="Jhakri Ring",
@@ -704,7 +704,7 @@ function get_sets()
     legs="Wicce Chausses +2",
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck="Saevus Pendant +1",
-    waist="Penitent's Rope",
+    waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
     left_ring="Jhakri Ring",
@@ -849,6 +849,7 @@ function get_sets()
       left_ring="Archon ring",
       right_ring="Excelsis Ring",
       feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+      waist="Fucho-no-Obi",
       --[[ ammo="Pemphredo tathlum",
       head="Pixie hairpin +1",
       neck="Erra pendant",
@@ -887,7 +888,7 @@ function get_sets()
       legs="Wicce Chausses +2",
       feet="Wicce Sabots +2",
       neck="Phalaina Locket",
-      waist="Penitent's Rope",
+      waist="Sacro Cord",
       left_ear="Malignance Earring",
       right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
       left_ring="Omega Ring",

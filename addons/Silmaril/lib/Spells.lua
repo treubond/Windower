@@ -1,6 +1,8 @@
 do
     local all_spells = res.spells
     local player_spells = {}
+    local player_trusts = {}
+    local spell_recasts = {}
 
     -- Used once via sync request Sync.lua
     function get_all_spells() 
@@ -24,14 +26,25 @@ do
         return formattedString
     end
 
-    function get_spell_recast() 
+    function get_spell_recast()
         local formattedString = "spells_"
-
-        local spell_recasts = windower.ffxi.get_spell_recasts()
+        spell_recasts = windower.ffxi.get_spell_recasts()
         if not spell_recasts then return formattedString end
 
         for index, recast in pairs(player_spells) do
-            formattedString = formattedString..recast..'|'..round(spell_recasts[recast],2)..','
+            formattedString = formattedString..recast..'|'..string.format("%.2f",spell_recasts[recast])..','
+        end
+        formattedString = formattedString:sub(1, #formattedString - 1)
+        --log(formattedString)
+        return formattedString
+    end
+
+    function get_trust_recast()
+        local formattedString = "trusts_"
+        if not spell_recasts then return formattedString end
+
+        for index, recast in pairs(player_trusts) do
+            formattedString = formattedString..recast..'|'..string.format("%.2f",spell_recasts[recast])..','
         end
         formattedString = formattedString:sub(1, #formattedString - 1)
         --log(formattedString)
@@ -43,6 +56,7 @@ do
 
         -- Clear the old spell list
         player_spells = {}
+        player_trusts = {}
 
         -- Load in the player data
         local p = get_player()
@@ -60,13 +74,17 @@ do
         
         for id, spell in pairs (all_spells) do
             if spells_have[id] == true then
-                for job, level in pairs (spell.levels) do
-                    if(job == p.main_job_id and level > 99) then -- Merit spell.  You have learned since it appears from the windower.ffxi.get_spells()
-                        level = 99
-                    end
-                    if (job == p.main_job_id and level <= p.main_job_level) or (job == p.sub_job_id and level <= p.sub_job_level) then
-                        table.insert(player_spells, id)
-                        break
+                if spell.type == "Trust" then
+                    table.insert(player_trusts, id)
+                else
+                    for job, level in pairs (spell.levels) do
+                        if(job == p.main_job_id and level > 99) then -- Merit spell.  You have learned since it appears from the windower.ffxi.get_spells()
+                            level = 99
+                        end
+                        if (job == p.main_job_id and level <= p.main_job_level) or (job == p.sub_job_id and level <= p.sub_job_level) then
+                            table.insert(player_spells, id)
+                            break
+                        end
                     end
                 end
             end

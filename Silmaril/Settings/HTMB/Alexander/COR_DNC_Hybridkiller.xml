@@ -8,7 +8,6 @@
       <string>Cura</string>
       <string>Curaga</string>
       <string>Cure</string>
-      <string>Curing Waltz</string>
       <string>Debuff (High Priority)</string>
       <string>Debuff (Low Priority)</string>
       <string>Debuff (Normal Priority)</string>
@@ -36,6 +35,7 @@
       <string>Songs</string>
       <string>Fighting</string>
       <string>Shooting</string>
+      <string>Curing Waltz</string>
     </Priority_List>
     <Priority_Rank>
       <string>Combat</string>
@@ -49,8 +49,8 @@
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
         <Name>Treubond</Name>
-        <Engage>false</Engage>
-        <Run>false</Run>
+        <Engage>true</Engage>
+        <Run>true</Run>
         <Face_Toward>true</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
@@ -80,9 +80,9 @@
       <WeaponType>Sword</WeaponType>
       <WeaponSkill>Savage Blade</WeaponSkill>
       <Script />
-      <TP_Threshold>1500</TP_Threshold>
+      <TP_Threshold>1000</TP_Threshold>
       <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>15</High_HP_Threshold>
+      <High_HP_Threshold>100</High_HP_Threshold>
       <Cycle>0</Cycle>
       <AM_Enabled>false</AM_Enabled>
       <AM_Level>0</AM_Level>
@@ -985,7 +985,7 @@
           <Description>Attack</Description>
           <Lucky>4</Lucky>
           <Unlucky>8</Unlucky>
-          <Current>0</Current>
+          <Current>7</Current>
           <Job>Dark Knight</Job>
           <Crooked_Card>false</Crooked_Card>
         </Roll_1>
@@ -996,7 +996,7 @@
           <Description>Store TP</Description>
           <Lucky>2</Lucky>
           <Unlucky>6</Unlucky>
-          <Current>0</Current>
+          <Current>8</Current>
           <Job>Samurai</Job>
           <Crooked_Card>false</Crooked_Card>
         </Roll_2>
@@ -1010,7 +1010,7 @@
         <Random_Deal>false</Random_Deal>
         <Triple_Shot>false</Triple_Shot>
         <Cutting_Cards>false</Cutting_Cards>
-        <Double_Up_Roll>114</Double_Up_Roll>
+        <Double_Up_Roll>109</Double_Up_Roll>
         <Bolters>false</Bolters>
       </Corsair>
       <Puppetmaster>
@@ -1515,19 +1515,19 @@
       </Puppetmaster>
       <Dancer>
         <Trance>false</Trance>
-        <Samba>Haste Samba</Samba>
+        <Samba />
         <Maintain_Step_Time>0</Maintain_Step_Time>
         <Build_Step_Time>0</Build_Step_Time>
         <Flourish_III_WS_Only>false</Flourish_III_WS_Only>
         <Quickstep>false</Quickstep>
-        <Box_Step>true</Box_Step>
+        <Box_Step>false</Box_Step>
         <Stutter_Step>false</Stutter_Step>
         <Feather_Step>false</Feather_Step>
         <Animated_Flourish>false</Animated_Flourish>
         <Animated_Flourish_Count>0</Animated_Flourish_Count>
         <Desperate_Flourish>false</Desperate_Flourish>
         <Violent_Flourish>false</Violent_Flourish>
-        <Reverse_Flourish>true</Reverse_Flourish>
+        <Reverse_Flourish>false</Reverse_Flourish>
         <Reverse_Flourish_Count>2</Reverse_Flourish_Count>
         <Reverse_Flourish_TP>1007</Reverse_Flourish_TP>
         <Building_Flourish>false</Building_Flourish>

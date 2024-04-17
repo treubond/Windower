@@ -16,14 +16,17 @@
     </Position>
   </Positions>
   <Reflection />
-  <Always_On_Top_Main>true</Always_On_Top_Main>
-  <Always_On_Top_Config>true</Always_On_Top_Config>
+  <Close_Prompt>false</Close_Prompt>
+  <Always_On_Top_Main>false</Always_On_Top_Main>
+  <Always_On_Top_Config>false</Always_On_Top_Config>
   <Always_On_Top_Log>true</Always_On_Top_Log>
   <Always_On_Top_Error>true</Always_On_Top_Error>
   <Always_On_Top_Warning>true</Always_On_Top_Warning>
   <Always_On_Top_Debug>true</Always_On_Top_Debug>
+  <Always_On_Reflect_Message>false</Always_On_Reflect_Message>
   <Verbose_Logs>false</Verbose_Logs>
   <Fast_Follow_Log>false</Fast_Follow_Log>
+  <System_Log>false</System_Log>
   <Single_use>true</Single_use>
   <Allow_Trades>false</Allow_Trades>
   <Allow_Vendors>false</Allow_Vendors>
@@ -34,33 +37,27 @@
   <Blacklists>
     <Mirror_Blacklists>
       <Mirror_Blacklist>
-        <Name>Veridical Conflux</Name>
-        <Zone>247</Zone>
-        <Index>147</Index>
-        <Comment>Odyssey Entry</Comment>
-      </Mirror_Blacklist>
-      <Mirror_Blacklist>
         <Name>Diaphanous Transposer</Name>
         <Zone>267</Zone>
-        <Index>411</Index>
+        <Index>0</Index>
         <Comment>Sortie Entry</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Ambuscade Tome</Name>
-        <Zone>249</Zone>
-        <Index>150</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Ambuscade Entry</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Veridical Conflux</Name>
-        <Zone>248</Zone>
-        <Index>125</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>HTB Entry (Selbina)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Entry Gate</Name>
         <Zone>78</Zone>
-        <Index>638</Index>
+        <Index>0</Index>
         <Comment>Einherjar</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
@@ -71,50 +68,50 @@
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Nareema</Name>
-        <Zone>79</Zone>
-        <Index>563</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Assault NPC (Leujaoam Sanctum)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Daswil</Name>
-        <Zone>52</Zone>
-        <Index>428</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Assault NPC (Mamool Ja Training Grounds)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Waudeen</Name>
-        <Zone>61</Zone>
-        <Index>488</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Assault NPC (Lebros Cavern)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Nahshib</Name>
-        <Zone>79</Zone>
-        <Index>562</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Assault NPC (Periqia)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Meyaada</Name>
-        <Zone>54</Zone>
-        <Index>647</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Assault NPC (Ilrusi Atoll)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Shahayl</Name>
-        <Zone>72</Zone>
-        <Index>243</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Assault NPC (Nyzul Isle)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coelestrox</Name>
-        <Zone>291</Zone>
-        <Index>886</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>AF3 Upgrade Goblin</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Earthly Concrescence</Name>
-        <Zone>291</Zone>
-        <Index>888</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Omen Entry</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
@@ -125,8 +122,8 @@
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Temprix</Name>
-        <Zone>291</Zone>
-        <Index>885</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Aeonic Goblin</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
@@ -155,8 +152,8 @@
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Rediroq</Name>
-        <Zone>129</Zone>
-        <Index>97</Index>
+        <Zone>0</Zone>
+        <Index>0</Index>
         <Comment>Moblin Maze Mongers</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
@@ -210,12 +207,6 @@
       <Mirror_Blacklist>
         <Name>Gilded Doors</Name>
         <Zone>72</Zone>
-        <Index>185</Index>
-        <Comment>Nyzul Isle</Comment>
-      </Mirror_Blacklist>
-      <Mirror_Blacklist>
-        <Name>Gilded Doors</Name>
-        <Zone>72</Zone>
         <Index>186</Index>
         <Comment>Nyzul Isle</Comment>
       </Mirror_Blacklist>
@@ -253,6 +244,12 @@
         <Name>Gilded Doors</Name>
         <Zone>72</Zone>
         <Index>192</Index>
+        <Comment>Nyzul Isle</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Gilded Doors</Name>
+        <Zone>72</Zone>
+        <Index>193</Index>
         <Comment>Nyzul Isle</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
@@ -567,6 +564,54 @@
         <Index>0</Index>
         <Comment>Nyzle Isle Lamps</Comment>
       </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Rune of Transfer</Name>
+        <Zone>77</Zone>
+        <Index>0</Index>
+        <Comment>Nyzle Isle Lamps</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Armoury Crate</Name>
+        <Zone>77</Zone>
+        <Index>0</Index>
+        <Comment>Nyzle Isle Lamps</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Iron Gate</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Periqia Iron Gates</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Saarlan</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Legion NPC</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Mayuyu</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Legion NPC</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Legion Tome</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Legion NPC</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Legion Portal</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Legion NPC</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Peculiar Footprints</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Peculiar Foes</Comment>
+      </Mirror_Blacklist>
     </Mirror_Blacklists>
   </Blacklists>
   <Protection>
@@ -598,4 +643,9 @@
       <Linkshell_2 />
     </Protect_Linkshell>
   </Protection>
+  <Page_1>false</Page_1>
+  <Page_2>false</Page_2>
+  <Page_3>false</Page_3>
+  <Distance_Checks>false</Distance_Checks>
+  <Key />
 </GlobalConfig>

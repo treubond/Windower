@@ -3,17 +3,12 @@ do
     local player_buffs = "playerbuffs_"
     local motion = false
     local player = {}
+    local player_id = "0" -- used for when the lua is being unloaded
+    local player_pet = {}
     local player_location = {}
-    local stop_time = os.clock()
+    local stop_time = os.time()
     local player_moving = false
-
-    -- Used to calculate buff durations
-    local epoc_now = os.time() -- Offset from 
-    local hour, min = (os.difftime(epoc_now, os.time(os.date('!*t', epoc_now))) / 3600):modf()
-    local timezone = '%+.2d:%.2d':format(hour, 60 * min)
-    local fn = function(ts) return os.date('%Y-%m-%dT%H:%M:%S' .. timezone, ts) end
-    local time = function(ts) return fn(os.time() - ts) end
-    local bufftime = function(ts) return fn(1009810800 + (ts / 60) + 0x100000000 / 60 * 9) end
+    local server_delta = 0
 
     function update_player_info()
 
@@ -27,6 +22,7 @@ do
 
         player = windower.ffxi.get_player()
         if not player then return end
+        player_id = tostring(player.id)
 
         player_location = windower.ffxi.get_mob_by_id(player.id)
         if not player_location then return end
@@ -74,20 +70,21 @@ do
 		set_party_location(character)
 
         --Send the information to others via IPC
-	    windower.send_ipc_message('update '..
+	    windower.send_ipc_message('silmaril update '..
             player.id..' '..
             get_player_name()..' '..
             w.zone..' '..
-            round(player_location.x,3)..' '..
-            round(player_location.y,3)..' '..
-            round(player_location.z,3)..' '..
-            round(player_location.heading,3)..' '..
+            string.format("%.3f",player_location.x)..' '..
+            string.format("%.3f",player_location.y)..' '..
+            string.format("%.3f",player_location.z)..' '..
+            string.format("%.3f",player_location.heading)..' '..
             player.status..' '..
             player.target_index)
     end
 
     function get_player_info()
         local player_info = "player_"
+        if not player then return player_info end
         local jp_spent = player.job_points[player.main_job:lower()].jp_spent
         local locked_on = false
 
@@ -104,16 +101,16 @@ do
 
         -- Update character status
         player_info = 'player_'..
-            tostring(player.main_job_id)..','..
-            tostring(player.main_job_level)..','..
-            tostring(player.sub_job_id)..','..
-            tostring(player.sub_job_level)..','..
-            tostring(jp_spent)..','..
+            string.format("%i",player.main_job_id)..','..
+            string.format("%i",player.main_job_level)..','..
+            string.format("%i",player.sub_job_id)..','..
+            string.format("%i",player.sub_job_level)..','..
+            string.format("%i",jp_spent)..','..
             tostring(locked_on)..','..
             tostring(player_moving)..','..
             tostring(get_following())..','..
-            tostring(get_autorun_target())..','..
-            tostring(get_autorun_type())..','..
+            string.format("%i",get_autorun_target())..','..
+            string.format("%i",get_autorun_type())..','..
             tostring(get_mirroring())..','..
             tostring(get_injecting())..','
 
@@ -121,13 +118,12 @@ do
     end
 
     function first_time_buffs()
-        local formattedString = "playerbuffs_"
-        local p = get_player()
-        if p then
+        local formattedString = ""
+        if player then
             local intIndex = 1
-            for index, value in pairs(p.buffs) do
-                formattedString = formattedString..tostring(value)..',Unknown'
-                if intIndex ~= tablelength(p.buffs) then
+            for index, value in pairs(player.buffs) do
+                formattedString = formattedString..string.format("%i",value)..',Unknown'
+                if intIndex ~= tablelength(player.buffs) then
                     formattedString = formattedString .."|"
                 end
                 intIndex = intIndex + 1
@@ -138,13 +134,17 @@ do
 
     function player_packet_buffs(original)    
         local packet = packets.parse('incoming', original)
-        local formattedString = "playerbuffs_"
+        local formattedString = ""
         for i=1,32 do
-            local buff = 'Buffs '..tostring(i)
-            local duration = 'Time '..tostring(i)
+            local buff = 'Buffs '..string.format("%i",i)
+            local buff_index = 'Time '..string.format("%i",i)
             if packet[buff] ~= 255 and packet[buff] ~= 0 then
+                -- Buff time is offset in mins from SE Epoc
                 local buff_id = packet[buff]
-                local end_time = bufftime(packet[duration])
+                --This uses the standard epoc but then to reduce offset they must increment it every 2.27 years
+                local buff_offset = 1009810800 + (4294967280 * 9 + packet[buff_index])/ 60 - server_delta
+                local end_time = os.date('%Y-%m-%dT%H:%M:%S',buff_offset)
+                --log('Buff end time ['..end_time..']')
                 formattedString = formattedString..buff_id..','..end_time..'|'
             end
         end
@@ -172,10 +172,13 @@ do
 	end
 
     function get_player_buffs()
-        return player_buffs
+        return 'playerbuffs_'..player_buffs
     end
 
     function get_player_name()
+
+        -- player is null so give it a shot again
+        if not player then player = windower.ffxi.get_player() end
 
         -- Something wrong happened here - couldn't find the player
         if not player or not player.name then info("Player not found") return "Unknown" end
@@ -196,12 +199,26 @@ do
         return player.name
     end
 
+    function set_player_pet(value)
+        player_pet = value
+    end
+
+    function get_player_pet()
+        return player_pet
+    end
+
     function get_player_id()
-        if player and player.id then
-            return player.id
-        else
-            return 0
-        end
+        return player_id
+    end
+
+    function set_player_id(value)
+        player_id = value
+    end
+
+    function set_server_offset(timestamp , offset)
+        local server_time = 1009810800 + timestamp - offset - 2.5
+        server_delta = server_time - os.time()
+        --log('Server Offset is ['..server_delta..'] seconds')
     end
 
 end

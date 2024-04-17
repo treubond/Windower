@@ -723,6 +723,27 @@
         <Storm_Void>false</Storm_Void>
         <Storm_Aurora>false</Storm_Aurora>
       </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Hybridkiller</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>true</Haste>
+        <Refresh>false</Refresh>
+        <Flurry>false</Flurry>
+        <Regen>false</Regen>
+        <Phalanx>false</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
     </Enhancing_List>
     <High_Priority>
       <string>Reraise</string>

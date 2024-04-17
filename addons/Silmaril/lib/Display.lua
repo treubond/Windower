@@ -15,6 +15,12 @@ do
 			pos={x=1440,y=732},
 			bg={visible=true,red=0,green=0,blue=0,alpha=125},
 		},
+		Hover_Box = 
+		{
+			text={size=10,font='Consolas',red=255,green=255,blue=255,alpha=255},
+			pos={x=0,y=0},
+			bg={visible=true,red=0,green=0,blue=0,alpha=125},
+		},
 		Update_Box = 
 		{
 			text={size=10,font='Consolas',red=255,green=255,blue=255,alpha=255},
@@ -32,11 +38,13 @@ do
 			text={size=14,font='Consolas',red=255,green=255,blue=255,alpha=255},
 			pos={x=0,y=0},
 			bg={visible=true,red=255,green=0,blue=0,alpha=125},
-		},}
+		},
+	}
 
 	-- Loads the default settings
 	local settings = config.load(default_settings)
 	local sm_debug = texts.new("",settings.Debug_Box)
+	local sm_hover = texts.new("",settings.Hover_Box)
 	local sm_display = texts.new("",settings.Update_Box)
 	local sm_npc= texts.new("",settings.NPC_Box)
 	local sm_result= texts.new("",settings.NPC_Results)
@@ -78,7 +86,10 @@ do
 		gear_update()
 
 		lines = T{}
-		lines:insert(' Silmaril...'..string.format('[%s]',tostring(gears[gear])):lpad(' ',maxWidth - 12 + string.len(gears[gear]))..' ')
+		local gear_string = gears[gear]
+		if not gear_string then gear_string = "" end
+		lines:insert(' Silmaril...'..string.format('[%s]',gear_string):lpad(' ',maxWidth - 12 + string.len(gears[gear]))..' ')
+
 		if get_mirror_on() and get_following() then
 			sm_display:bg_color(255,0,0)
 			lines:insert(' [Following] [Mirroring]')
@@ -93,10 +104,10 @@ do
 			sm_display:bg_color(0,0,0)
 		end
 		for index, member in pairs(pt_loc) do
-			if member.zone == w.zone and p_loc and member.id ~= get_player_id() then
+			if member.zone == w.zone and p_loc and tostring(member.id) ~= get_player_id() then
 				local delta = {x = member.x - p_loc.x, y = member.y - p_loc.y}
-				local distance = math.round(math.sqrt(delta.x^2 + delta.y^2),2)
-				lines:insert('  '..member.name..string.format('[%s]',tostring(distance)):lpad(' ',maxWidth - string.len(member.name) - 2))
+				local distance = math.sqrt(delta.x^2 + delta.y^2)
+				lines:insert('  '..member.name..string.format('[%3.1f]',distance):lpad(' ',maxWidth - string.len(member.name) - 2))
 			end
 		end
 		lines:insert('')
@@ -108,13 +119,20 @@ do
 	-- Used to help debug issues - 20 chacaters long
 	function debug_box_refresh()
 		local maxWidth = 20
+		local target = get_mirror_target()
+		local target_index = 'nil'
+		if target and target.index then
+			target_index = target.index
+		end
 		lines = T{}
-		lines:insert('Enabled' ..string.format('[%s]',tostring(get_enabled())):lpad(' ',13))
-		lines:insert('Following' ..string.format('[%s]',tostring(get_following())):lpad(' ',11))
-		lines:insert('injecting' ..string.format('[%s]',tostring(get_injecting())):lpad(' ',11))
-		lines:insert('mirroring' ..string.format('[%s]',tostring(get_mirror_on())):lpad(' ',11))
-		lines:insert('protection' ..string.format('[%s]',tostring(get_protection())):lpad(' ',10))
-		lines:insert('Delay' ..string.format('[%s]',tostring(get_delay_time())):lpad(' ',15))
+		lines:insert('Enabled'..string.format('[%s]',tostring(get_enabled())):lpad(' ',13))
+		lines:insert('Following'..string.format('[%s]',tostring(get_following())):lpad(' ',11))
+		lines:insert('injecting'..string.format('[%s]',tostring(get_injecting())):lpad(' ',11))
+		lines:insert('mirroring'..string.format('[%s]',tostring(get_mirror_on())):lpad(' ',11))
+		lines:insert('mirror menu'..string.format('[%s]',tostring(get_menu_id())):lpad(' ',9))
+		lines:insert('mirror target'..string.format('[%s]',tostring(target_index)):lpad(' ',7))
+		lines:insert('protection'..string.format('[%s]',tostring(get_protection())):lpad(' ',10))
+		lines:insert('Delay'..string.format('[%.4f]',get_delay_time()):lpad(' ',15))
 		for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth) end
 		sm_debug:text(lines:concat('\n'))
 	end

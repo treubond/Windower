@@ -76,17 +76,17 @@ do
     end()
 
     -- Processes the incoming packets
-    function protection_in(id, data)
+    function protection_in(id, data, modified)
         
         -- Protection is off so return unchanged packet
         if not protection then return end
 
         -- The packet is part of the filtered so change it
-        if all_filtered_packets[id] then return process_filtered(id, data) end
+        if all_filtered_packets[id] then return process_filtered(id, modified) end
 
         -- /check results.
         if id == 0x0C9 then 
-            local packet = packets.parse('incoming', data)
+            local packet = packets.parse('incoming', modified)
             if packet['Linkshell'] then
                 packet['Linkshell'] = ls_names(packet['Linkshell'])
             end
@@ -95,7 +95,7 @@ do
 
         -- Item Updates
         if id == 0x020 then 
-            local packet = packets.parse('incoming', data)
+            local packet = packets.parse('incoming', modified)
             -- linkshell/pearlsack/linkpearl
             if packet.Item >= 513 and packet.Item <= 528 then
                 packet.extdata = packet.ExtData
@@ -112,28 +112,48 @@ do
 
     end
 
-    function protection_out(id, data)
+    function protection_out(id, data, modified)
 
         -- Protection is not enabled
         if not protection then return end
 
-        -- No need to modify this packet as it is a Tell
-        if id ~= 0x0B6 then return end
+        -- Need to modify this packet as it is a Tell
+        if id == 0x0B6 then
+            local packet = packets.parse('outgoing', data)
 
-        local packet = packets.parse('incoming', data)
+            -- Check if the name has been randomized
+            local name = reverse_anon_cache[packet['Target Name']]
+            if name then
+                packet['Target Name'] = name
+                return packets.build(packet)
+            end
 
-        -- Check if the name has been randomized
-        if reverse_anon_cache[packet['Target Name']] then
-            packet['Target Name'] = reverse_anon_cache[packet['Target Name']]
-            return packets.build(packet)
+            -- Check if its from a defined list
+            name = reverse_name_cache[packet['Target Name']]
+            if name then
+                packet['Target Name'] = name
+                return packets.build(packet)
+            end
+
+        -- Need to modify this packet as it is a Change Permisions
+        elseif id == 0x077 then
+            local packet = packets.parse('outgoing', data)
+            log(packet['Target Name'])
+
+            -- Check if the name has been randomized
+            local name = reverse_anon_cache[packet['Target Name']]
+            if name then
+                packet['Target Name'] = name
+                return packets.build(packet)
+            end
+
+            -- Check if its from a defined list
+            name = reverse_name_cache[packet['Target Name']]
+            if name then
+                packet['Target Name'] = name
+                return packets.build(packet)
+            end
         end
-
-        -- Check if its from a defined list
-        if reverse_name_cache[packet['Target Name']] then
-            packet['Target Name'] = reverse_name_cache[packet['Target Name']]
-            return packets.build(packet)
-        end
-
     end
 
     function names(name, id, packet)

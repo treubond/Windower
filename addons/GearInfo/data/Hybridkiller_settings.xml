@@ -60,28 +60,28 @@
         <Cors>
             <qultada>0</qultada>
         </Cors>
-        <display>
-            <pos>
-                <x>933</x>
-                <y>51</y>
-            </pos>
-        </display>
         <Geos>
             <Sylvie>0</Sylvie>
         </Geos>
+        <display>
+            <pos>
+                <x>897</x>
+                <y>52</y>
+            </pos>
+        </display>
         <image_folder_name>default</image_folder_name>
         <player>
             <rank>1</rank>
-            <show_acc_Stuff>false</show_acc_Stuff>
-            <show_att_Stuff>false</show_att_Stuff>
             <show_COR_messages>true</show_COR_messages>
-            <show_Defence>false</show_Defence>
-            <show_dt_Stuff>false</show_dt_Stuff>
             <show_DW_Stuff>false</show_DW_Stuff>
+            <show_Defence>false</show_Defence>
             <show_Evasion>false</show_Evasion>
-            <show_logo>true</show_logo>
             <show_MA_Stuff>false</show_MA_Stuff>
             <show_STP>false</show_STP>
+            <show_acc_Stuff>false</show_acc_Stuff>
+            <show_att_Stuff>false</show_att_Stuff>
+            <show_dt_Stuff>false</show_dt_Stuff>
+            <show_logo>true</show_logo>
             <show_total_haste>true</show_total_haste>
             <show_tp_Stuff>true</show_tp_Stuff>
             <update_gs>true</update_gs>

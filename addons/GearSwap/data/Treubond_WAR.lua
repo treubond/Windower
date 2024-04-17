@@ -46,6 +46,7 @@ function get_sets()
     -- Load and initialize the include file.
     include('Mote-Include.lua')
     include('organizer-lib')
+    include('Global-Binds.lua')
 end
 
 ------------------------------------------------------------------------------------------------------------------- 
@@ -86,7 +87,7 @@ end
 
 function user_setup()
     -- Options: Override default values
-    state.OffenseMode:options('Normal', 'MidAcc', 'FullAcc')
+    state.OffenseMode:options('Normal', 'SubtleBlow', 'MidAcc', 'FullAcc')
     state.WeaponskillMode:options('Normal', 'MidAcc', 'FullAcc')
     state.HybridMode:options('Normal', 'Hybrid')
     state.CastingMode:options('Normal')
@@ -127,6 +128,7 @@ function user_setup()
     send_command('bind ^numpad7 input /ws "Upheaval" <t>')
     send_command('bind ^numpad9 input /ws "King\'s Justice" <t>')
     send_command('bind ^numpad4 input /ws "Ukko\'s Fury" <t>')
+    send_command('bind ^numpad5 input /ws "Fell Cleave" <t>')
     send_command('bind ^numpad6 input /ws "Steel Cyclone" <t>')
 	send_command('bind ^numpad1 input /ws "Savage Blade" <t>')
 	
@@ -160,6 +162,7 @@ function file_unload()
     send_command('unbind ^numpad7')
     send_command('unbind ^numpad9')
 	send_command('unbind ^numpad4')
+    send_command('unbind ^numpad5')
     send_command('unbind ^numpad6')
     send_command('unbind ^numpad1')
 end
@@ -331,7 +334,7 @@ function init_gear_sets()
         head="Boii Mask +3", --10
         body="Boii Lorica +2", --13
         hands="Sulev. Gauntlets +2", --5
-        legs="Sakpata's Gauntlets", --8
+        legs="Sulev. Cuisses +2", --7
         feet="Boii Calligae +2", --9
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -354,8 +357,8 @@ function init_gear_sets()
         ammo="Ginsen",
         head="Boii Mask +3",
         body="Boii Lorica +2",
-        hands="Sakpata's Gauntlets",
-        legs="Boii Cuisses +2",
+        hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
+        legs="Pumm. Cuisses +3",
         feet="Pumm. Calligae +3",
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -366,6 +369,11 @@ function init_gear_sets()
         right_ring="Niqmaddu Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }	
+    sets.engaged.SubtleBlow = set_combine(sets.engaged, {
+        body="Sacro Breastplate", 
+        left_ear="Assuage Earring",
+    })
+    
     sets.engaged.MidAcc = set_combine(sets.engaged, { })
     sets.engaged.FullAcc = set_combine(sets.engaged.MidAcc, { })
 

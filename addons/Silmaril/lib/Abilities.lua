@@ -15,14 +15,14 @@ do
                 for index, value in pairs(ability) do
                     local recast_time = ability_recasts[all_job_abilities[value].recast_id]
                     if recast_time then
-                        formattedString = formattedString..all_job_abilities[value].id..'|'..round(recast_time,2)..','
+                        formattedString = formattedString..all_job_abilities[value].id..'|'..string.format("%.2f",recast_time)..','
                     end
                 end
             elseif index == "pet_commands" then
                 for index, value in pairs(ability) do
                     local recast_time = ability_recasts[all_job_abilities[value].recast_id]
                     if recast_time then
-                        formattedString = formattedString..all_job_abilities[value].id..'|'..round(recast_time,2)..','
+                        formattedString = formattedString..all_job_abilities[value].id..'|'..string.format("%.2f",recast_time)..','
                     end
                 end
             end

@@ -195,6 +195,11 @@ function init_gear_sets()
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
     -- Precast Sets
 
@@ -207,7 +212,7 @@ function init_gear_sets()
         ammo="Clarus Stone",
         head="Befouled Crown",
         body="Inyanga Jubbah +1",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+        hands=Telchine_ENH_hands,
         legs="Ebers Pant. +1",
         feet="Aya. Gambieras +1",
         neck="Phalaina Locket",
@@ -609,7 +614,7 @@ function init_gear_sets()
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
-        waist="Penitent's Rope",
+        waist="Sacro Cord",
         left_ear="Eabani Earring",
         right_ear="Magnetic Earring",
         left_ring="Shneddick Ring",
@@ -682,7 +687,7 @@ function init_gear_sets()
     sets.defense.MDT = sets.idle.DT
 
     sets.Kiting = {--[[ feet="Herald's Gaiters" ]]}
-    sets.latent_refresh = {--[[ waist="Fucho-no-obi" ]]}
+    sets.latent_refresh = {waist="Fucho-no-obi"}
 
     -- Engaged sets
 
@@ -760,7 +765,7 @@ function init_gear_sets()
         waist="Gishdubar Sash", --10 ]]
         }
 
-    sets.Obi = {--[[ waist="Hachirin-no-Obi" ]]}
+    sets.Obi = {waist="Hachirin-no-Obi"}
     -- sets.CP = {back="Mecisto. Mantle"}
 
 end

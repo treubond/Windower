@@ -119,7 +119,7 @@ function job_setup()
 
     define_roll_values()
 
-    lockstyleset = 1
+    lockstyleset = 7
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -134,8 +134,8 @@ function user_setup()
     state.WeaponskillMode:options('Normal', 'HighBuff')
     state.IdleMode:options('Normal', 'DT')
 
-    state.Gun = M{['description']='Gun', 'Compensator'}--'DeathPenalty', 'Armageddon', 'Fomalhaut', 'Ataktos'}
-    state.WeaponSet = M{['description']='Melee', 'Piercing', 'Slashing', 'Ranged'}
+    state.Gun = M{['description']='Gun', 'Compensator', 'Anarchy'}--'DeathPenalty', 'Armageddon', 'Fomalhaut', 'Ataktos'}
+    state.WeaponSet = M{['description']='Melee', 'Slashing', 'Piercing', 'Ranged'}
     -- state.CP = M(false, "Capacity Points Mode")
     state.WeaponLock = M(false, 'Weapon Lock')
 
@@ -158,12 +158,12 @@ function user_setup()
     REL.Body=""
     REL.Hands=""
     REL.Legs=""
-    REL.Feet=""
+    REL.Feet="Lanun Bottes +3"
 
     EMP = {}
     EMP.Head=""
     EMP.Body=""
-    EMP.Hands="Chasseur's Gants +2"
+    EMP.Hands="Chasseur's Gants +3"
     EMP.Legs="Chas. Culottes"
     EMP.Feet=""
 
@@ -174,7 +174,7 @@ function user_setup()
 
     send_command('bind @t gs c cycle treasuremode')
     send_command('bind ^` input /ja "Double-up" <me>')
-    send_command('bind ^c input /ja "Crooked Cards" <me>')
+    --send_command('bind ^c input /ja "Crooked Cards" <me>')
     send_command('bind ^s input /ja "Snake Eye" <me>')
     send_command('bind ^f input /ja "Fold" <me>')
     send_command('bind !` input /ja "Bolter\'s Roll" <me>')
@@ -284,7 +284,7 @@ function init_gear_sets()
     ------------------------------------------------------------------------------------------------
 
     sets.precast.JA['Snake Eye'] = {--[[ legs="Lanun Trews +3" ]]}
-    sets.precast.JA['Wild Card'] = {--[[ feet="Lanun Bottes +3" ]]}
+    sets.precast.JA['Wild Card'] = {feet=AF.Feet}
     sets.precast.JA['Random Deal'] = {--[[ body="Lanun Frac +3" ]]}
 
     sets.precast.CorsairRoll = {
@@ -292,7 +292,7 @@ function init_gear_sets()
         ammo={"Decimating Bullet", bag="wardrobe3"},
         head="Nyame Helm",
         body="Nyame Mail",
-        hands="Chasseur's Gants +2",
+        hands=EMP.Hands,
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
         neck="Regal Necklace",
@@ -365,7 +365,7 @@ function init_gear_sets()
         neck="Comm. Charm +1",
         waist="Aquiline Belt",
         left_ear="Crep. Earring",
-        right_ear={ name="Chas. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
+        right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Crepuscular Ring",
         right_ring="Dingir Ring",
         back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+5','Weapon skill damage +10%',}},
@@ -405,7 +405,7 @@ function init_gear_sets()
         body=AF.Body,
         hands=EMP.Hands,
         legs="Ikenga's Trousers",
-        feet="Oshosi Leggings",
+        feet=REL.Feet,
         neck="Comm. Charm +1",
         waist="Aquiline Belt",
         left_ear="Crep. Earring",
@@ -450,7 +450,7 @@ function init_gear_sets()
         body=AF.Body,
         hands=EMP.Hands,
         legs="Nyame Flanchard",
-        feet="Nyame Sollerets",
+        feet=REL.Feet,
         neck="Comm. Charm +1",
         waist="Aquiline Belt",
         left_ear="Hecate's Earring",
@@ -476,6 +476,7 @@ function init_gear_sets()
     sets.precast.WS['Hot Shot'] = sets.precast.WS['Wildfire']
 
     sets.precast.WS['Leaden Salute'] = set_combine(sets.precast.WS['Wildfire'], {
+        head="Pixie Hairpin +1",
         --[[ head="Pixie Hairpin +1",
         ear1="Moonshade Earring",
         ring1="Archon Ring", ]]
@@ -499,7 +500,18 @@ function init_gear_sets()
     sets.precast.WS['Evisceration'].HighBuff = set_combine(sets.precast.WS['Evisceration'], sets.HighBuffMelee)
 
     sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {
-        --[[ head="Nyame Helm",
+        head="Nyame Helm",
+        body=AF.Body,
+        hands=EMP.Hands,
+        legs="Meg. Chausses +1",
+        feet=REL.Feet,
+        neck="Clotharius Torque",
+        waist="Sailfi Belt +1",
+        left_ear="Cessance Earring",
+        right_ear="Brutal Earring",
+        left_ring="Sroda Ring",
+        right_ring="Rajas Ring",
+        back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+5','Weapon skill damage +10%',}},--[[ head="Nyame Helm",
         body="Nyame Mail",
         neck="Rep. Plat. Medal",
         ring1="Epaminondas's Ring",
@@ -613,7 +625,7 @@ function init_gear_sets()
         neck="Comm. Charm +1",
         waist="Aquiline Belt",
         left_ear="Crep. Earring",
-        right_ear={ name="Chas. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
+        right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Crepuscular Ring",
         right_ring="Dingir Ring",
         back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+5','Weapon skill damage +10%',}},
@@ -712,7 +724,7 @@ function init_gear_sets()
         neck="Elite Royal Collar",
         waist="Aquiline Belt",
         left_ear="Crep. Earring",
-        right_ear={ name="Chas. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
+        right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Shneddick Ring",
         right_ring="Defending Ring",
         back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+5','Weapon skill damage +10%',}},
@@ -778,19 +790,18 @@ function init_gear_sets()
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
 
     sets.engaged = {
-        head="Ikenga's Hat",
-        body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
-        legs="Meg. Chausses +1",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
         left_ear="Crep. Earring",
         right_ear="Cessance Earring",
-        left_ring="Chirich Ring",
-        right_ring="Chirich Ring +1",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
         back="Atheling Mantle",
-        ammo=gear.RAbullet,
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body,
@@ -840,18 +851,17 @@ function init_gear_sets()
 
     -- No Magic Haste (74% DW to cap)
     sets.engaged.DW = {
-        ammo=gear.RAbullet,
-        head="Ikenga's Hat",
-        body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
-        legs="Meg. Chausses +1",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
         left_ear="Crep. Earring",
         right_ear="Cessance Earring",
-        left_ring="Chirich Ring",
-        right_ring="Chirich Ring +1",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
         back="Atheling Mantle",
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
@@ -900,18 +910,17 @@ function init_gear_sets()
 
     -- 15% Magic Haste (67% DW to cap)
     sets.engaged.DW.LowHaste = {
-        ammo=gear.RAbullet,
-        head="Ikenga's Hat",
-        body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
-        legs="Meg. Chausses +1",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
         left_ear="Crep. Earring",
         right_ear="Cessance Earring",
-        left_ring="Chirich Ring",
-        right_ring="Chirich Ring +1",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
         back="Atheling Mantle",
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
@@ -960,6 +969,18 @@ function init_gear_sets()
 
     -- 30% Magic Haste (56% DW to cap)
     sets.engaged.DW.MidHaste = {
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        feet="Malignance Boots",
+        neck="Clotharius Torque",
+        waist="Sailfi Belt +1",
+        left_ear="Crep. Earring",
+        right_ear="Cessance Earring",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
+        back="Atheling Mantle",
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -1009,6 +1030,18 @@ function init_gear_sets()
 
     -- 35% Magic Haste (51% DW to cap)
     sets.engaged.DW.HighHaste = {
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        feet="Malignance Boots",
+        neck="Clotharius Torque",
+        waist="Sailfi Belt +1",
+        left_ear="Crep. Earring",
+        right_ear="Cessance Earring",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
+        back="Atheling Mantle",
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -1058,18 +1091,17 @@ function init_gear_sets()
 
     -- 45% Magic Haste (36% DW to cap)
     sets.engaged.DW.MaxHaste = {
-        ammo=gear.RAbullet,
-        head="Ikenga's Hat",
-        body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
-        legs="Meg. Chausses +1",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
         left_ear="Crep. Earring",
         right_ear="Cessance Earring",
-        left_ring="Chirich Ring",
-        right_ring="Chirich Ring +1",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
         back="Atheling Mantle",
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
@@ -1129,18 +1161,6 @@ function init_gear_sets()
     ------------------------------------------------------------------------------------------------
 
     sets.engaged.MalignanceHybrid = {
-        head="Ikenga's Hat",
-        body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
-        legs="Meg. Chausses +1",
-        feet="Malignance Boots",
-        neck="Clotharius Torque",
-        waist="Sailfi Belt +1",
-        left_ear="Crep. Earring",
-        right_ear="Cessance Earring",
-        left_ring="Chirich Ring",
-        right_ring="Chirich Ring +1",
-        back="Atheling Mantle",
         --[[ head="Malignance Chapeau", --6/6
         body="Malignance Tabard", --9/9
         hands="Malignance Gloves", --5/5
@@ -1149,18 +1169,6 @@ function init_gear_sets()
         }
 
     sets.engaged.NyameHybrid = {
-        head="Ikenga's Hat",
-        body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
-        legs="Meg. Chausses +1",
-        feet="Malignance Boots",
-        neck="Clotharius Torque",
-        waist="Sailfi Belt +1",
-        left_ear="Crep. Earring",
-        right_ear="Cessance Earring",
-        left_ring="Chirich Ring",
-        right_ring="Chirich Ring +1",
-        back="Atheling Mantle",
         --[[ head="Nyame Helm", --7/7
         body="Nyame Mail", --9/9
         hands="Nyame Gauntlets",  --7/7
@@ -1275,11 +1283,12 @@ function init_gear_sets()
     sets.DeathPenalty = {ranged="Death Penalty"}
     sets.Armageddon= {ranged="Armageddon"}
     sets.Fomalhaut = {ranged="Fomalhaut"}
-    sets.Ataktos = {ranged="Ataktos"}
+    --sets.Ataktos = {ranged="Ataktos"}
+    sets.Anarchy = {ranged="Anarchy +2"}
 
-    sets.Piercing = {--[[ main={name="Rostam", bag="wardrobe2"}, sub="Gleti's Knife" ]]}
-    sets.Slashing = {main="Naegling", sub="Gleti's Knife"}
-    sets.Ranged = {--[[ main="Lanun Knife", sub="Kustawi +1" ]]}
+    sets.Piercing = {main="Gleti's Knife", sub="Blurred Knife +1"--[[ main={name="Rostam", bag="wardrobe2"}, sub="Gleti's Knife" ]]}
+    sets.Slashing = {main="Naegling", sub="Blurred Knife +1"}
+    sets.Ranged = {main="Kustawi +1", sub="Nusku Shield"--[[ main="Lanun Knife", sub="Kustawi +1" ]]}
     sets.Tauret = {--[[ main="Tauret", sub="Gleti's Knife" ]]}
 
     sets.DefaultShield = {sub="Nusku Shield"}
@@ -1915,5 +1924,5 @@ function select_default_macro_book()
 end
 
 function set_lockstyle()
-    send_command('wait 2; input /lockstyleset ' .. lockstyleset)
+    send_command('wait 10; input /lockstyleset ' .. lockstyleset)
 end

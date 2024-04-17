@@ -9,16 +9,19 @@ do
 
         -- Get the player info
         local p = get_player()
-        if not p then return end
+        if not p then return party_data end
 
+        --Clear old Tables
         party_ids = {}
+        alliance_ids = {}
+
         local party = windower.ffxi.get_party() -- Update the table of the party
-        if not party then return end
+        if not party then return party_data end
         for position, member in pairs(party) do
             if type(member) == "table" and member.name and member.name ~= '' then
                 local formattedString = "party_"..party_position[position]..'_'..member.name..','
-                ..tostring(member.hp)..','..tostring(member.hpp)..','..tostring(member.mp)..','
-                ..tostring(member.mpp)..','..tostring(member.tp)..','..tostring(member.zone)
+                ..string.format("%i",member.hp)..','..string.format("%i",member.hpp)..','..string.format("%i",member.mp)..','
+                ..string.format("%i",member.mpp)..','..string.format("%i",member.tp)..','..string.format("%i",member.zone)
                 if member.mob then
                     local mob = {}
                     local local_player = party_location[member.mob.id]
@@ -40,27 +43,46 @@ do
                     end
                     for index, value in pairs(member.mob) do
                         if index == 'id' then
-                            mob[1] = tostring(value)
+                            mob[1] = string.format("%i",value)
                         elseif index == 'index' then
-                            mob[2] = tostring(value)
+                            mob[2] = string.format("%i",value)
                         elseif index == 'target_index' then
-                            mob[3] = tostring(value)
+                            mob[3] = string.format("%i",value)
                         elseif index == 'status' then
-                            mob[4] = tostring(value)
+                            mob[4] = string.format("%i",value)
                         elseif index == 'heading' then
-                            mob[5] = tostring(round(value,3))
+                            mob[5] = string.format("%.3f",value)
                         elseif index == 'x' then
-                            mob[6] = tostring(round(value,3))
+                            mob[6] = string.format("%.3f",value)
                         elseif index == 'y' then
-                            mob[7] = tostring(round(value,3))
+                            mob[7] = string.format("%.3f",value)
                         elseif index == 'z' then
-                            mob[8] = tostring(round(value,3))
+                            mob[8] = string.format("%.3f",value)
                         elseif index == 'model_size' then
-                            mob[9] = tostring(round(value,3))
+                            mob[9] = string.format("%.3f",value)
                         elseif index == 'is_npc' then
                             mob[10] = tostring(value)
                         elseif index == 'pet_index' then
                             local pet = windower.ffxi.get_mob_by_index(value)
+                            -- Update the player pet
+                            if member.mob.id == p.id then
+                                if pet then
+                                    local player_pet = get_player_pet()
+                                    if player_pet then
+                                        pet.tp = player_pet.tp
+                                        pet.status = player_pet.status
+                                        -- Check is its targeting itself
+                                        if pet.index == player_pet.target then
+                                            pet.target = 0
+                                            pet.status = 0
+                                        else
+                                            pet.target = player_pet.target
+                                        end
+                                    end
+                                end
+                                set_player_pet(pet)
+                            end
+
                             if not pet then
                                 pet = {}
                                 pet.name = "None"
@@ -71,24 +93,29 @@ do
                                 pet.x = 0
                                 pet.y = 0
                                 pet.z = 0
-                            end
-                            if not pet.tp then
+                                pet.status = 0
                                 pet.tp = 0
                             end
-                            local pet_string = pet.name..'|'..tostring(pet.id)..'|'..tostring(pet.index)..'|'..tostring(pet.hpp)..'|'..tostring(pet.tp)..'|'
-                            ..tostring(round(pet.x,2))..'|'..tostring(round(pet.y,2))..'|'..tostring(round(pet.z,2))..'|'..tostring(member.zone)
+
+                            if not pet.tp then pet.tp = 0 end
+                            if not pet.target then pet.target = 0 end
+                            if not pet.status then pet.status = 0 end
+
+                            local pet_string = pet.name..'|'..string.format("%i",pet.id)..'|'..string.format("%i",pet.index)..'|'..string.format("%i",pet.hpp)..'|'..string.format("%i",pet.tp)..'|'..string.format("%.3f",pet.x)..
+                            '|'..string.format("%.3f",pet.y,2)..'|'..string.format("%.3f",pet.z,2)..'|'..string.format("%i",member.zone)..'|'..string.format("%i",pet.status)..'|'..string.format("%i",pet.target)
                             mob[11] = pet_string
+
                         end
                     end
                     if not mob[11] then -- No pet active
-                        local pet_string = "0|0|0|0|0|0|0|0|0"
+                        local pet_string = "0|0|0|0|0|0|0|0|0|0|0"
                         mob[11] = pet_string 
                     end
                     for index, value in ipairs(mob) do
                         formattedString = formattedString..','..value
                     end
                 else
-                    formattedString = formattedString..',0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0'
+                    formattedString = formattedString..',0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
                 end
                 party_data[party_position[position]] = formattedString
                 --log(formattedString)
@@ -99,7 +126,7 @@ do
             party.party1_count = 1
         end
         for i = party.party1_count, 5 do
-            local formattedString = "party_"..tostring(i)..'_Player '..tostring(i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0'
+            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         --Fill in remainder of second party
@@ -107,7 +134,7 @@ do
             party.party2_count = 0
         end
         for i = party.party2_count + 6, 11 do
-            local formattedString = "party_"..tostring(i)..'_Player '..tostring(i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0'
+            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         --Fill in remainder of third part
@@ -115,7 +142,7 @@ do
             party.party3_count = 0
         end
         for i = party.party3_count + 12, 17 do
-            local formattedString = "party_"..tostring(i)..'_Player '..tostring(i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0'
+            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         return party_data
@@ -136,4 +163,10 @@ do
     function set_party_location(value)
         party_location[value.id] = value
     end
+
+    function clear_party_location()
+        log("Clearing Party Location")
+        party_location = {}
+    end
+
 end

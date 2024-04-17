@@ -25,7 +25,7 @@ do
                     if item.flags["Flag03"] and not item.flags["No Auction"] and not item.flags["Rare"] and not item.flags["Exclusive"] then
                         food = true
                     end
-                    formattedString = formattedString..tostring(item.name)..','..tostring(v.id)..','..tostring(v.count)..','..tostring(v.slot)..','..tostring(v.status)..','..tostring(food)..'|'
+                    formattedString = formattedString..item.name..'\\'..string.format("%i",v.id)..'\\'..string.format("%i",v.count)..'\\'..string.format("%i",v.slot)..'\\'..v.status..'\\'..tostring(food)..'|'
                 end
             end
         end

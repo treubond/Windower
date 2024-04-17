@@ -80,9 +80,9 @@
       <WeaponType>Sword</WeaponType>
       <WeaponSkill>Savage Blade</WeaponSkill>
       <Script />
-      <TP_Threshold>1500</TP_Threshold>
+      <TP_Threshold>1000</TP_Threshold>
       <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>15</High_HP_Threshold>
+      <High_HP_Threshold>20</High_HP_Threshold>
       <Cycle>0</Cycle>
       <AM_Enabled>false</AM_Enabled>
       <AM_Level>0</AM_Level>
@@ -985,7 +985,7 @@
           <Description>Attack</Description>
           <Lucky>4</Lucky>
           <Unlucky>8</Unlucky>
-          <Current>4</Current>
+          <Current>9</Current>
           <Job>Dark Knight</Job>
           <Crooked_Card>false</Crooked_Card>
         </Roll_1>
@@ -996,7 +996,7 @@
           <Description>Experience Points</Description>
           <Lucky>5</Lucky>
           <Unlucky>9</Unlucky>
-          <Current>10</Current>
+          <Current>5</Current>
           <Job>Corsair</Job>
           <Crooked_Card>false</Crooked_Card>
         </Roll_2>

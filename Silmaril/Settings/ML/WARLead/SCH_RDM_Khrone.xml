@@ -4,7 +4,6 @@
   <Priority>
     <Priority_List>
       <string>Auto Raising</string>
-      <string>Combat</string>
       <string>Cura</string>
       <string>Curing Waltz</string>
       <string>Debuff (High Priority)</string>
@@ -41,20 +40,21 @@
       <string>Enhancing (Low Priority)</string>
       <string>Magic Bursts</string>
       <string>Cure</string>
+      <string>Combat</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
     <Combat_Action>
       <Combat>
-        <Enabled>false</Enabled>
+        <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
+        <Name>Treubond</Name>
         <Engage>false</Engage>
-        <Run>false</Run>
+        <Run>true</Run>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
-        <Max_Distance>3</Max_Distance>
+        <Max_Distance>6.5</Max_Distance>
         <Min_Distance>0</Min_Distance>
       </Combat>
       <Combat_Script>
@@ -638,7 +638,7 @@
         <Flurry>false</Flurry>
         <Regen>true</Regen>
         <Phalanx>true</Phalanx>
-        <Adloquium>false</Adloquium>
+        <Adloquium>true</Adloquium>
         <Animus_Augeo>false</Animus_Augeo>
         <Animus_Minuo>false</Animus_Minuo>
         <Storm_Sand>false</Storm_Sand>
@@ -654,7 +654,7 @@
         <Name>Hybridkiller</Name>
         <Protect>false</Protect>
         <Shell>false</Shell>
-        <Haste>false</Haste>
+        <Haste>true</Haste>
         <Refresh>false</Refresh>
         <Flurry>false</Flurry>
         <Regen>true</Regen>
@@ -665,7 +665,7 @@
         <Storm_Sand>false</Storm_Sand>
         <Storm_Rain>false</Storm_Rain>
         <Storm_Wind>false</Storm_Wind>
-        <Storm_Fire>false</Storm_Fire>
+        <Storm_Fire>true</Storm_Fire>
         <Storm_Hail>false</Storm_Hail>
         <Storm_Thunder>false</Storm_Thunder>
         <Storm_Void>false</Storm_Void>
@@ -1220,10 +1220,10 @@
         <Phalanx_Accession>true</Phalanx_Accession>
         <Phalanx_Perpetuance>true</Phalanx_Perpetuance>
         <Phalanx_Force>true</Phalanx_Force>
-        <Adloquium_Accession>false</Adloquium_Accession>
-        <Adloquium_Perpetuance>false</Adloquium_Perpetuance>
-        <Adloquium_Force>false</Adloquium_Force>
-        <Storms_Accession>false</Storms_Accession>
+        <Adloquium_Accession>true</Adloquium_Accession>
+        <Adloquium_Perpetuance>true</Adloquium_Perpetuance>
+        <Adloquium_Force>true</Adloquium_Force>
+        <Storms_Accession>true</Storms_Accession>
         <Storms_Perpetuance>false</Storms_Perpetuance>
         <Storms_Force>false</Storms_Force>
         <Stoneskin_Accession>false</Stoneskin_Accession>

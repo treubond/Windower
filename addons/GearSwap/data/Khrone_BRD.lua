@@ -1,4 +1,5 @@
- include('organizer-lib') -- optional
+include('organizer-lib') -- optional
+include('Global-Binds.lua')
 res = require('resources')
 texts = require('texts')
 include('Modes.lua')
@@ -220,7 +221,7 @@ function get_sets()
 --------------------    
 	REL = {}		--Leave This Empty
 		REL.HED	= ""--"Bihu Roundlet +3"
-		REL.BOD	= ""--"Bihu Justaucorps +3"
+		REL.BOD	= "Bihu Justaucorps +3"
 		REL.HND	= ""--"Bihu Cuffs +3"
 		REL.LEG	= ""--"Bihu Cannions +3"
 		REL.FEE	= ""--"Bihu Slippers +3"
@@ -287,8 +288,8 @@ function get_sets()
 --[AYANMO ARMOR]-[AYA]
 --------------------    
 	AYA = {}		--Leave This Empty
-		AYA.HED	= ""--"Ayanmo Zucchetto +2"
-		AYA.BOD	= ""--"Ayanmo Corazza +2"
+		AYA.HED	= "Ayanmo Zucchetto +2"
+		AYA.BOD	= "Ayanmo Corazza +2"
 		AYA.HND	= ""--"Ayanmo Manopolas +2"
 		AYA.LEG	= ""--"Ayanmo Cosciales +2"
 		AYA.FEE	= ""--"Ayanmo Gambieras +2"
@@ -476,8 +477,8 @@ function get_sets()
 --Set combine flow is  NormalSW > NormalDW & NormalSWDT > NormalDWDT
     sets.me.melee.normalsw 		={
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
-		head=EMP.HED,
-		body="Ayanmo Corazza +2",
+		head=AYA.HED,
+		body=AYA.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=EMP.FEE,
@@ -486,7 +487,7 @@ function get_sets()
 		left_ear="Mache Earring",
 		right_ear="Crep. Earring",
 		left_ring="Chirich Ring +1",
-		right_ring="Rajas Ring",
+		right_ring="Lehko's Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head="Ayanmo zucchetto +2",
@@ -533,8 +534,8 @@ function get_sets()
 ---------------
     sets.me.melee.aftermathsw 	= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
-		head=EMP.HED,
-		body="Ayanmo Corazza +2",
+		head=AYA.HED,
+		body=AYA.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=EMP.FEE,
@@ -543,7 +544,7 @@ function get_sets()
 		left_ear="Mache Earring",
 		right_ear="Crep. Earring",
 		left_ring="Chirich Ring +1",
-		right_ring="Rajas Ring",
+		right_ring="Lehko's Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+14','"Store TP"+4','Quadruple Attack +3',}},
 		head=AYA.HED,
@@ -583,8 +584,8 @@ function get_sets()
 ---------------
     sets.me.melee.ACCsw 	= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
-		head=EMP.HED,
-		body="Ayanmo Corazza +2",
+		head=AYA.HED,
+		body=AYA.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=EMP.FEE,
@@ -593,7 +594,7 @@ function get_sets()
 		left_ear="Mache Earring",
 		right_ear="Crep. Earring",
 		left_ring="Chirich Ring +1",
-		right_ring="Rajas Ring",
+		right_ring="Lehko's Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
@@ -629,7 +630,7 @@ function get_sets()
     sets.me.melee.dtsw 		= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		head=EMP.HED,
-		body="Ayanmo Corazza +2",
+		body=AYA.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=EMP.FEE,
@@ -638,7 +639,7 @@ function get_sets()
 		left_ear="Mache Earring",
 		right_ear="Crep. Earring",
 		left_ring="Chirich Ring +1",
-		right_ring="Rajas Ring",
+		right_ring="Lehko's Ring",
 		back=JSE.DBL,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head="Bunzi's Hat",
@@ -671,8 +672,8 @@ function get_sets()
 ---------------
     sets.me.melee.SubtleBlowsw 		= {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
-		head=EMP.HED,
-		body="Ayanmo Corazza +2",
+		head=AYA.HED,
+		body=AYA.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=EMP.FEE,
@@ -721,6 +722,8 @@ function get_sets()
 ---------------
     sets.me["Savage Blade"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		right_ring="Rajas Ring",
 		back=JSE.WSD.STR,
@@ -744,6 +747,8 @@ function get_sets()
 ---------------
     sets.me["Mordant Rime"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
@@ -766,6 +771,8 @@ function get_sets()
 ---------------
     sets.me["Rudra's Storm"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
@@ -788,6 +795,8 @@ function get_sets()
 ---------------
     sets.me["Exenterator"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
@@ -810,6 +819,8 @@ function get_sets()
 ---------------
     sets.me["Evisceration"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
@@ -832,6 +843,8 @@ function get_sets()
 ---------------
     sets.me["Aeolian Edge"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
@@ -854,6 +867,8 @@ function get_sets()
 ---------------
     sets.me["Energy Drain"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
@@ -876,6 +891,8 @@ function get_sets()
 ---------------
     sets.me["Energy Steal"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
@@ -898,6 +915,8 @@ function get_sets()
 ---------------
     sets.me["Shell Crusher"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
@@ -921,6 +940,8 @@ function get_sets()
 ---------------
     sets.me["Shattersoul"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
@@ -944,6 +965,8 @@ function get_sets()
 ---------------
     sets.me["Retribution"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
@@ -966,6 +989,8 @@ function get_sets()
 ---------------
     sets.me["Cataclysm"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
@@ -988,6 +1013,8 @@ function get_sets()
 ---------------
     sets.me["Flash Nova"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		body=REL.BOD,
+		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},

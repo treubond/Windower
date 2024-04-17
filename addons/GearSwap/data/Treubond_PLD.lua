@@ -279,7 +279,8 @@ function init_gear_sets()
     sets.midcast.Enmity = set_combine(sets.precast.Enmity, {})
      
     sets.midcast.SIRD = {
-        
+        ammo="Staunch Tathlum",
+        legs="Carmine Cuisses +1",
         --[[ ammo="Staunch Tathlum", ear2="Knightly Earring",
         waist="Resolute Belt", legs="Carmine Cuisses +1" ]]}
  

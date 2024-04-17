@@ -887,7 +887,7 @@
         <Meditate>true</Meditate>
         <Seigan>false</Seigan>
         <Sekkanoki>false</Sekkanoki>
-        <Konzen_ittai>true</Konzen_ittai>
+        <Konzen_ittai>false</Konzen_ittai>
         <Shikikoyo>false</Shikikoyo>
         <Blade_Bash>true</Blade_Bash>
         <Sengikori>true</Sengikori>
@@ -1178,7 +1178,7 @@
       <Name>Warrior</Name>
       <Warrior>
         <Mighty_Strikes>false</Mighty_Strikes>
-        <Provoke>false</Provoke>
+        <Provoke>true</Provoke>
         <Berserk>true</Berserk>
         <Defender>false</Defender>
         <Warcry>true</Warcry>

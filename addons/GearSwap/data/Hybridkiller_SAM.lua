@@ -81,6 +81,7 @@ function get_sets()
 
     -- Load and initialize the include file.
     include('Mote-Include.lua')
+	include('Global-Binds.lua')
 end
 
 
@@ -445,7 +446,19 @@ function init_gear_sets()
 	sets.precast.WS.FullTPPhysical = {--[[ left_ear={ name="Lugra Earring +1", augments={'Path: A',}}, ]]}
 		
 	sets.precast.WS['Tachi: Shoha'] = {
-		--[[ ammo="Knobkierrie",
+		ammo="Aurgelmir Orb",
+		head="Mpaca's Cap",
+		body={ name="Sakonji Domaru +3", augments={'Enhances "Overwhelm" effect',}},
+		hands="Kasuga Kote +3",
+		legs="Wakido Haidate +3",
+		feet="Mpaca's Boots",
+		neck={ name="Sam. Nodowa +1", augments={'Path: A',}},
+		waist="Ioskeha Belt +1",
+		left_ear="Cessance Earring",
+		right_ear="Thrud Earring",
+		left_ring="Sroda Ring",
+		right_ring="Rajas Ring",
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},		--[[ ammo="Knobkierrie",
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -697,7 +710,7 @@ function init_gear_sets()
     -- Normal melee group
     -- Delay 450 GK, 25 Save TP => 65 Store TP for a 5-hit (25 Store TP in gear)
 
-    sets.engaged = {  --STP = 71   DT=38 PDT=6
+    sets.engaged = {  --STP = 76   DT=38 PDT=6
 		ammo="Aurgelmir Orb", --4
 		head="Kasuga Kabuto +2",  --11  DT 9
 		body="Kasuga Domaru +2",  --13  DT 13
@@ -708,8 +721,8 @@ function init_gear_sets()
 		waist="Ioskeha Belt +1",  --0
 		left_ear="Cessance Earring",  --4
 		right_ear="Mache Earring +1",  --0
-		left_ring="Chirich Ring",  --5
-		right_ring="Chirich Ring +1",  --6
+		left_ring="Chirich Ring +1",  --6
+		right_ring="Lehko's Ring",  --10
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},  --0  DT 5
 		--[[ ammo="Aurgelmir Orb +1",
 		head="Kasuga Kabuto +3",
@@ -768,7 +781,7 @@ function init_gear_sets()
 		left_ear="Cessance Earring",  --0
 		right_ear="Mache Earring +1",  --0
 		left_ring="Defending Ring",  --10
-		right_ring="Chirich Ring +1",  --0
+		right_ring="Lehko's Ring",  --0
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},  --5
 		--[[ head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
@@ -1093,5 +1106,5 @@ function select_default_macro_book()
 end
 
 function set_lockstyle()
-    send_command('wait 5; input /lockstyleset ' .. lockstyleset)
+    send_command('wait 11;input /lockstyleset ' .. lockstyleset)
 end

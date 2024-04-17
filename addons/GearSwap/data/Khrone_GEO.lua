@@ -170,7 +170,7 @@ function get_sets()
 	
 	AF.Head = "Geomancy Galero"
 	AF.Body = "Geomancy Tunic"
-	AF.Hands = "Geomancy Mitaines"
+	AF.Hands = "Geo. Mitaines +3"
 	AF.Legs = "Geomancy Pants"
 	AF.Feet = "Geomancy Sandals"
 	

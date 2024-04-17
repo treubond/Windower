@@ -1,10 +1,8 @@
 _addon.name = 'Silmaril'
 _addon.author = 'Mirdain'
-_addon.version = '2.9'
+_addon.version = '3.0'
 _addon.description = 'A multi-boxer tool'
 _addon.commands = {'silmaril','sm'}
-
-os.setlocale ("en")
 
 extdata = require 'extdata'
 packets = require 'packets'
@@ -66,7 +64,7 @@ windower.register_event('incoming chunk', function (id, data, modified, injected
         end
     end
 
-    return protection_in(id, modified)
+    return protection_in(id, data, modified)
 end)
 
 -- Used to track outgoing information
@@ -77,7 +75,7 @@ windower.register_event('outgoing chunk', function (id, data, modified, injected
 
     -- Used with automatic dialogs like warps/doors
     if get_block_release() and id == 0x05B then
-        local packet = packets.parse('incoming', data)
+        local packet = packets.parse('outgoing', data)
         set_block_release(false)
         log('Calling npc_inject from the blocked outoing 0x05B')
         set_injecting(true)
@@ -86,8 +84,40 @@ windower.register_event('outgoing chunk', function (id, data, modified, injected
         return true
     end
 
+    if id == 0x015 then
+        if get_injecting() or get_force_warp() then
+            if get_force_warp() then
+                -- Modifiy the packet
+                local target = get_mirror_target()
+                local packet = packets.parse('outgoing', data)
+                packet['X'] = tonumber(target.x)
+                packet['Y'] = tonumber(target.y)
+                packet['Z'] = tonumber(target.z)
+
+                if get_warp_spoof() then
+                    -- This allows the first 0x015 to position before trying to inject
+                    set_warp_spoof(false) 
+                else
+                    -- a packt has been sent with previous location so inject
+                    if get_outgoing_warp() then
+                        set_outgoing_warp(false)
+                        npc_build_message(target, get_warp_message())
+                    end
+                end
+                return packets.build(packet) -- Release the modified packet
+            end
+            if get_outgoing_message() then
+                log('Outgoing Message allow the 0x015 message')
+                set_outgoing_message(false)
+            else
+                log('Blocking the 0x015 message')
+                return true
+            end
+        end
+    end
+
     -- Process Tells via Protection.lua
-    return protection_out(id, modified)
+    return protection_out(id, data, modified)
 
 end)
 
@@ -96,26 +126,20 @@ windower.register_event('ipc message', function(msg)
     IPC_Action(msg)
 end)
 
-windower.register_event('load', function()
-    connect() -- Start process of connecting via the Connection.lua
-end)
-
-windower.register_event('logout', function()
-    send_packet(player.name..";reset")
-    set_connected(false)
-    log("logging out")
-end)
-
 windower.register_event('job change', function()
-    coroutine.sleep(5)
     get_player_info()
     get_player_spells()
     load_command("")
 end)
 
+windower.register_event('load', function()
+    connect() -- Start process of connecting via the Connection.lua
+end)
+
+windower.register_event('logout', function()
+    send_packet(get_player_id()..";reset")
+end)
+
 windower.register_event('unload', function()
-    local p = windower.ffxi.get_player()
-    send_packet(p.name..";reset")
-    set_connected(false)
-    log("unloaded")
+    send_packet(get_player_id()..";reset")
 end)
