@@ -74,6 +74,7 @@ include('organizer-lib') -- Remove if you dont use Organizer
 res = require('resources')      -- leave this as is    
 texts = require('texts')        -- leave this as is    
 include('Modes.lua')            -- leave this as is      
+include('Global-Binds.lua')
 --------------------------------------------------------------------------------------------------------------
 
 -- Define your modes: 

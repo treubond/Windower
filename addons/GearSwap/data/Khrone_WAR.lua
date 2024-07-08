@@ -55,7 +55,7 @@ end
 
 function job_setup()	
 	--Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Lycurgos',} -- 'KajaLance', 'Club', 'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Lycurgos', 'ShiningOne', 'Club'} -- 'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
     
 	--CP Mode
@@ -251,15 +251,15 @@ function init_gear_sets()
     -- General Set
     sets.precast.WS = {
         ammo="Knobkierrie",
-        head=EMPY.Head,
+        head="Nyame Helm",
         body=AF.Body,
         hands=EMPY.Hands,
-        legs=AF.Legs,
+        legs={ name="Odyssean Cuisses", augments={'Sklchn.dmg.+1%','STR+5','Weapon skill damage +3%','Mag. Acc.+13 "Mag.Atk.Bns."+13',}},
         feet="Sulev. Leggings +1",
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist="Sailfi Belt +1",
         left_ear="Thrud Earring",
-        right_ear={ name="Boii Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
+        right_ear={ name="Boii Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
         left_ring="Rajas Ring",
         right_ring="Lehko's Ring",
         back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
@@ -348,7 +348,7 @@ function init_gear_sets()
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist="Sailfi Belt +1",
         left_ear="Crep. Earring",
-        right_ear="Boii Earring",
+        right_ear={ name="Boii Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
         left_ring="Chirich Ring +1",
         right_ring="Shneddick Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -374,7 +374,7 @@ function init_gear_sets()
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist="Sailfi Belt +1",
         --left_ear="Cessance Earring",
-        right_ear="Boii Earring",
+        right_ear={ name="Boii Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
         left_ring="Chirich Ring +1",
         right_ring="Defending Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -391,14 +391,14 @@ function init_gear_sets()
     sets.engaged = {
         ammo="Ginsen",
         head=EMPY.Head,
-        body=EMPY.Body,
+        body="Sakpata's Plate",
         hands="Sulev. Gauntlets +2",
         legs=AF.Legs,
         feet=AF.Feet,
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist="Sailfi Belt +1",
-        left_ear="Cessance Earring",
-        right_ear={ name="Boii Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
+        left_ear="Schere Earring",
+        right_ear={ name="Boii Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -472,8 +472,8 @@ function init_gear_sets()
 	--sets.Reikiono	 = {main="Reikiono", sub ="Bloodrain Strap"}
     sets.Naegling 	 = {main="Naegling", sub="Blurred Shield +1"}	
     sets.Lycurgos    = {main="Lycurgos", sub="Mythril Grip +1"}
-    --sets.KajaLance   = {main="Kaja Lance", sub="Mythril Grip +1"}
-    --sets.Club        = {main="Beryllium Mace", sub="Blurred Shield +1"}
+    sets.ShiningOne   = {main="Shining One", sub="Mythril Grip +1"}
+    sets.Club        = {main="Beryllium Mace", sub="Blurred Shield +1"}
 
 end
 

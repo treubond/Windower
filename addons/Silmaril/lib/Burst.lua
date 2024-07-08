@@ -49,7 +49,7 @@ do
 			-- Get the party id's to validate the target from Party.lua
 			local pt_ids = get_party_ids()
 
-			local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
+			local t = get_mob_by_id(data.targets[1].id)
 
 			-- valid party target and within range
 			if t and t.spawn_type == 16 and t.distance:sqrt() < 21 then
@@ -106,13 +106,13 @@ do
 				end
 
 				-- Create a count down timer
-				windower.send_command('timers c "Skillchain: '..skillchain.english..'" 5 down')
+				send_command('timers c "Skillchain: '..skillchain.english..'" 5 down')
 
 				-- Send the information
 				send_packet(get_player_id()..';burst_'..skillchain.english..'_'..elements..'_'..t.id)
 			end
 		elseif data.category == 3 and data.param ~= 0 then
-			local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
+			local t = get_mob_by_id(data.targets[1].id)
 			-- This is used to stop bursting if a ws happened to close the window
 			if t and t.id == last_skillchain_id then
 				log('Skillchain is closed for ['..last_skillchain_id..']')
@@ -126,7 +126,7 @@ do
 	function corsair_shot(data)
 		-- Used for COR shot
 		local spell = get_spell(data.param)
-		local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
+		local t = get_mob_by_id(data.targets[1].id)
 		-- valid party target and within range
 		if t and t.spawn_type == 16 and t.distance:sqrt() < 21 and spell then
 			if spell.name == 'Dia' or spell.name == 'Dia II' or spell.name == 'Dia III' or spell.name == 'Diaga' then

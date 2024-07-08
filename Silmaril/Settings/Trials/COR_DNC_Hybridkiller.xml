@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>2.9</Version>
+  <Version>3.1</Version>
   <Priority>
     <Priority_List>
       <string>Auto Raising</string>
@@ -29,7 +29,6 @@
       <string>Medicine</string>
       <string>Ninja Tools</string>
       <string>Shooting</string>
-      <string>Skillchain (Follower 1)</string>
       <string>Skillchain (Follower 2)</string>
       <string>Skillchain (Follower 3)</string>
       <string>Skillchain (Follower 4)</string>
@@ -41,6 +40,7 @@
       <string>Combat</string>
       <string>Job Abilities</string>
       <string>Weaponskills</string>
+      <string>Skillchain (Follower 1)</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -77,12 +77,16 @@
     </Combat_Action>
     <Weaponskills>
       <Enabled>true</Enabled>
+      <Engaged>false</Engaged>
+      <MP_Limit>false</MP_Limit>
       <WeaponType>Marksmanship</WeaponType>
-      <WeaponSkill>Detonator</WeaponSkill>
+      <WeaponSkill>Leaden Salute</WeaponSkill>
+      <Target />
       <Script />
       <TP_Threshold>1000</TP_Threshold>
+      <MP_Threshold>0</MP_Threshold>
       <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>100</High_HP_Threshold>
+      <High_HP_Threshold>69</High_HP_Threshold>
       <Cycle>0</Cycle>
       <AM_Enabled>false</AM_Enabled>
       <AM_Level>0</AM_Level>
@@ -124,14 +128,14 @@
         <Strat>0</Strat>
       </Leader>
       <Follower1>
-        <Enabled>false</Enabled>
-        <Partner />
-        <Partner_WeaponType />
-        <Partner_WeaponSkill />
-        <Start>0</Start>
-        <End>5</End>
-        <WeaponType />
-        <WeaponSkill />
+        <Enabled>true</Enabled>
+        <Partner>Hybridkiller</Partner>
+        <Partner_WeaponType>Marksmanship</Partner_WeaponType>
+        <Partner_WeaponSkill>Leaden Salute</Partner_WeaponSkill>
+        <Start>2.5</Start>
+        <End>7</End>
+        <WeaponType>Sword</WeaponType>
+        <WeaponSkill>Savage Blade</WeaponSkill>
         <Script />
         <Cycle>5</Cycle>
         <Pause>false</Pause>
@@ -238,34 +242,36 @@
     <Offense>
       <Enabled>true</Enabled>
       <Validate_IDs>true</Validate_IDs>
+      <Run_To>false</Run_To>
       <Fighting_Mode>Aggressive</Fighting_Mode>
-      <Targeting_Mode>Any</Targeting_Mode>
+      <Targeting_Mode>White List</Targeting_Mode>
       <Player />
       <Movement>Self</Movement>
       <Enemy_Count>1</Enemy_Count>
-      <Enemy_Distance>28</Enemy_Distance>
+      <Enemy_Distance>50</Enemy_Distance>
       <Enemy_Elevation>10</Enemy_Elevation>
       <Claim_Timeout>10</Claim_Timeout>
-      <Enemy_List />
+      <Enemy_List>
+        <string>Peapuk</string>
+        <string>Schnitter</string>
+        <string>Inugami</string>
+        <string>Gieremund</string>
+        <string>Chasm Gnat</string>
+        <string>Warbler</string>
+        <string>Frigatebird</string>
+        <string>Coastal Colibri</string>
+      </Enemy_List>
     </Offense>
   </Fighting>
   <Healing>
     <Party>false</Party>
     <Alliance>false</Alliance>
+    <Priority_Enable>false</Priority_Enable>
+    <Priority_Count>0</Priority_Count>
     <Cure_List />
     <Spells>
       <Cure>
         <Enabled>false</Enabled>
-        <MND_1>0</MND_1>
-        <MND_2>0</MND_2>
-        <VIT_1>0</VIT_1>
-        <VIT_2>0</VIT_2>
-        <MND>0</MND>
-        <VIT>0</VIT>
-        <Skill>0</Skill>
-        <Cure_Potency>0</Cure_Potency>
-        <Cure_Potency_II>0</Cure_Potency_II>
-        <Weather>0</Weather>
         <Cure_I>10</Cure_I>
         <Cure_I_Enabled>false</Cure_I_Enabled>
         <Cure_II>60</Cure_II>
@@ -280,8 +286,6 @@
         <Cure_VI_Enabled>false</Cure_VI_Enabled>
         <Threshold>75</Threshold>
         <Priority_Threshold>85</Priority_Threshold>
-        <Priority_Enable>false</Priority_Enable>
-        <Priority_Count>0</Priority_Count>
         <Priority_Promote_Rate>2</Priority_Promote_Rate>
         <Over_Cure>30</Over_Cure>
         <FC_Enabled>false</FC_Enabled>
@@ -290,16 +294,6 @@
       </Cure>
       <Curaga>
         <Enabled>false</Enabled>
-        <MND_1>0</MND_1>
-        <MND_2>0</MND_2>
-        <VIT_1>0</VIT_1>
-        <VIT_2>0</VIT_2>
-        <MND>0</MND>
-        <VIT>0</VIT>
-        <Skill>0</Skill>
-        <Cure_Potency>0</Cure_Potency>
-        <Cure_Potency_II>0</Cure_Potency_II>
-        <Weather>0</Weather>
         <Curaga_I>60</Curaga_I>
         <Curaga_I_Enabled>false</Curaga_I_Enabled>
         <Curaga_II>130</Curaga_II>
@@ -310,24 +304,12 @@
         <Curaga_IV_Enabled>false</Curaga_IV_Enabled>
         <Curaga_V>570</Curaga_V>
         <Curaga_V_Enabled>false</Curaga_V_Enabled>
-        <Curaga_VI>0</Curaga_VI>
-        <Curaga_VI_Enabled>false</Curaga_VI_Enabled>
         <Threshold>80</Threshold>
         <Over_Cure>30</Over_Cure>
         <Targets>3</Targets>
       </Curaga>
       <Cura>
         <Enabled>false</Enabled>
-        <MND_1>0</MND_1>
-        <MND_2>0</MND_2>
-        <VIT_1>0</VIT_1>
-        <VIT_2>0</VIT_2>
-        <MND>0</MND>
-        <VIT>0</VIT>
-        <Skill>0</Skill>
-        <Cure_Potency>0</Cure_Potency>
-        <Cure_Potency_II>0</Cure_Potency_II>
-        <Weather>0</Weather>
         <Cura_I>130</Cura_I>
         <Cura_I_Enabled>false</Cura_I_Enabled>
         <Cura_II>270</Cura_II>
@@ -342,12 +324,6 @@
     <Jigs>
       <Curing_Waltz>
         <Enabled>false</Enabled>
-        <Dancer_Main>false</Dancer_Main>
-        <Job_Points>0</Job_Points>
-        <CHR_1>0</CHR_1>
-        <CHR_2>0</CHR_2>
-        <CHR>0</CHR>
-        <Waltz_Potency>0</Waltz_Potency>
         <Curing_Waltz_I>60</Curing_Waltz_I>
         <Curing_Waltz_I_Enabled>false</Curing_Waltz_I_Enabled>
         <Curing_Waltz_II>130</Curing_Waltz_II>
@@ -360,19 +336,11 @@
         <Curing_Waltz_V_Enabled>false</Curing_Waltz_V_Enabled>
         <Threshold>0</Threshold>
         <Priority_Threshold>0</Priority_Threshold>
-        <Priority_Enable>false</Priority_Enable>
-        <Priority_Count>0</Priority_Count>
         <Priority_Promote_Rate>0</Priority_Promote_Rate>
         <Over_Cure>0</Over_Cure>
       </Curing_Waltz>
       <Divine_Waltz>
         <Enabled>false</Enabled>
-        <Dancer_Main>false</Dancer_Main>
-        <Job_Points>0</Job_Points>
-        <CHR_1>0</CHR_1>
-        <CHR_2>0</CHR_2>
-        <CHR>0</CHR>
-        <Waltz_Potency>0</Waltz_Potency>
         <Divine_Waltz_I>60</Divine_Waltz_I>
         <Divine_Waltz_I_Enabled>false</Divine_Waltz_I_Enabled>
         <Divine_Waltz_II>280</Divine_Waltz_II>
@@ -396,6 +364,33 @@
       <Accept_Combat>false</Accept_Combat>
       <Accept_Name />
     </Raise>
+    <Blue_Healing>
+      <Enabled>false</Enabled>
+      <Priority_Threshold>0</Priority_Threshold>
+      <Threshold>0</Threshold>
+      <Over_Cure>0</Over_Cure>
+      <Priority_Promote_Rate>0</Priority_Promote_Rate>
+      <Pollen_Enabled>false</Pollen_Enabled>
+      <Pollen_Potency>0</Pollen_Potency>
+      <Wild_Carrot_Enabled>false</Wild_Carrot_Enabled>
+      <Wild_Carrot_Potency>0</Wild_Carrot_Potency>
+      <Magic_Fruit_Enabled>false</Magic_Fruit_Enabled>
+      <Magic_Fruit_Potency>0</Magic_Fruit_Potency>
+      <Plenilune_Embrace_Enabled>false</Plenilune_Embrace_Enabled>
+      <Plenilune_Embrace_Potency>0</Plenilune_Embrace_Potency>
+      <Restoral_Enabled>false</Restoral_Enabled>
+      <Restoral_Potency>0</Restoral_Potency>
+    </Blue_Healing>
+    <Blue_Healing_AoE>
+      <Threshold>0</Threshold>
+      <Over_Cure>0</Over_Cure>
+      <Targets>0</Targets>
+      <Enabled>false</Enabled>
+      <White_Wind_Enabled>false</White_Wind_Enabled>
+      <White_Wind_Potency>0</White_Wind_Potency>
+      <Healing_Breeze_Enabled>false</Healing_Breeze_Enabled>
+      <Healing_Breeze_Potency>0</Healing_Breeze_Potency>
+    </Blue_Healing_AoE>
   </Healing>
   <Debuff>
     <Party>false</Party>
@@ -460,6 +455,7 @@
   </Debuff>
   <Enfeebling>
     <Immuno_Count>0</Immuno_Count>
+    <Enemy_Count>1</Enemy_Count>
     <High_Enable>false</High_Enable>
     <Normal_Enable>false</Normal_Enable>
     <Low_Enable>false</Low_Enable>
@@ -979,14 +975,14 @@
         <Winning_Streak>false</Winning_Streak>
         <Phantom_Roll_TP_Enable>false</Phantom_Roll_TP_Enable>
         <Roll_1>
-          <Name>Chaos Roll</Name>
-          <ID>105</ID>
-          <Buff>317</Buff>
-          <Description>Attack</Description>
-          <Lucky>4</Lucky>
-          <Unlucky>8</Unlucky>
-          <Current>4</Current>
-          <Job>Dark Knight</Job>
+          <Name>Wizard's Roll</Name>
+          <ID>101</ID>
+          <Buff>313</Buff>
+          <Description>Magic Attack</Description>
+          <Lucky>5</Lucky>
+          <Unlucky>9</Unlucky>
+          <Current>5</Current>
+          <Job>Black Mage</Job>
           <Crooked_Card>false</Crooked_Card>
         </Roll_1>
         <Roll_2>
@@ -996,7 +992,7 @@
           <Description>Store TP</Description>
           <Lucky>2</Lucky>
           <Unlucky>6</Unlucky>
-          <Current>8</Current>
+          <Current>2</Current>
           <Job>Samurai</Job>
           <Crooked_Card>false</Crooked_Card>
         </Roll_2>
@@ -1010,7 +1006,7 @@
         <Random_Deal>false</Random_Deal>
         <Triple_Shot>false</Triple_Shot>
         <Cutting_Cards>false</Cutting_Cards>
-        <Double_Up_Roll>105</Double_Up_Roll>
+        <Double_Up_Roll>109</Double_Up_Roll>
         <Bolters>false</Bolters>
       </Corsair>
       <Puppetmaster>
@@ -1024,6 +1020,16 @@
         <Tactical_Switch>false</Tactical_Switch>
         <Cooldown>false</Cooldown>
         <Heady_Artifice>false</Heady_Artifice>
+        <Repair_HP>0</Repair_HP>
+        <Deploy>false</Deploy>
+        <Retrieve>false</Retrieve>
+        <Maneuver>false</Maneuver>
+        <Overload_Rate>25</Overload_Rate>
+        <Deploy_Mode />
+        <Retrieve_Mode />
+        <Maneuver_1 />
+        <Maneuver_2 />
+        <Maneuver_3 />
       </Puppetmaster>
       <Dancer>
         <Trance>false</Trance>
@@ -1113,10 +1119,11 @@
         <Bar_Accession>false</Bar_Accession>
         <Bar_Perpetuance>false</Bar_Perpetuance>
         <Bar_Force>false</Bar_Force>
-        <Klimaform_Manifestation>false</Klimaform_Manifestation>
-        <Klimaform_Force>false</Klimaform_Force>
         <Haste_Perpetuance>false</Haste_Perpetuance>
         <Haste_Force>false</Haste_Force>
+        <Debuff_Accession>false</Debuff_Accession>
+        <Klimaform_Manifestation>false</Klimaform_Manifestation>
+        <Klimaform_Force>false</Klimaform_Force>
       </Scholar>
       <Geomancer>
         <Bolster>false</Bolster>
@@ -1512,6 +1519,16 @@
         <Tactical_Switch>false</Tactical_Switch>
         <Cooldown>false</Cooldown>
         <Heady_Artifice>false</Heady_Artifice>
+        <Repair_HP>0</Repair_HP>
+        <Deploy>false</Deploy>
+        <Retrieve>false</Retrieve>
+        <Maneuver>false</Maneuver>
+        <Overload_Rate>25</Overload_Rate>
+        <Deploy_Mode />
+        <Retrieve_Mode />
+        <Maneuver_1 />
+        <Maneuver_2 />
+        <Maneuver_3 />
       </Puppetmaster>
       <Dancer>
         <Trance>false</Trance>
@@ -1601,10 +1618,11 @@
         <Bar_Accession>false</Bar_Accession>
         <Bar_Perpetuance>false</Bar_Perpetuance>
         <Bar_Force>false</Bar_Force>
-        <Klimaform_Manifestation>false</Klimaform_Manifestation>
-        <Klimaform_Force>false</Klimaform_Force>
         <Haste_Perpetuance>false</Haste_Perpetuance>
         <Haste_Force>false</Haste_Force>
+        <Debuff_Accession>false</Debuff_Accession>
+        <Klimaform_Manifestation>false</Klimaform_Manifestation>
+        <Klimaform_Force>false</Klimaform_Force>
       </Scholar>
       <Geomancer>
         <Bolster>false</Bolster>
@@ -1759,9 +1777,13 @@
     <Uchitake>false</Uchitake>
   </Items>
   <Songs>
+    <Dummy_Count>0</Dummy_Count>
+    <Base_Count>4</Base_Count>
+    <Total_Song_Count>0</Total_Song_Count>
     <Enabled>false</Enabled>
     <NiTro>false</NiTro>
     <Soul_Voice>false</Soul_Voice>
+    <Pianissmo_Dummy>false</Pianissmo_Dummy>
     <Song_1>
       <Name />
       <Target />
@@ -1874,7 +1896,6 @@
       <Buff2 />
       <ID>0</ID>
     </Pianissimo_6>
-    <Rebuff>false</Rebuff>
     <Rebuff_Time>0</Rebuff_Time>
     <Marcato />
     <NiTro_Recast>0</NiTro_Recast>
@@ -1884,8 +1905,6 @@
     <NiTro_Warning_Time>0</NiTro_Warning_Time>
     <NiTro_Range>21</NiTro_Range>
     <NiTro_Players>0</NiTro_Players>
-    <Song_Count>0</Song_Count>
-    <Bard_Count>4</Bard_Count>
     <Paeon_Count>0</Paeon_Count>
     <Minne_Count>0</Minne_Count>
     <Ballad_Count>0</Ballad_Count>

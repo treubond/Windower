@@ -400,8 +400,8 @@ function init_gear_sets()
     -- Default set for any weaponskill that isn't any more specifically defined
 
     sets.precast.WS = {
-		ammo="Aurgelmir Orb",
-		head="Mpaca's Cap",
+		ammo="Knobkierrie",
+		head="Nyame Helm",
 		body={ name="Sakonji Domaru +3", augments={'Enhances "Overwhelm" effect',}},
 		hands="Kasuga Kote +3",
 		legs="Wakido Haidate +3",
@@ -427,7 +427,7 @@ function init_gear_sets()
 		right_ring="Sroda Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
 		
-	sets.precast.WS.ATKCAP = {
+	sets.precast.WS.ATKCAP = set_combine(sets.precast.WS, {
 		--[[ ammo="Crepuscular Pebble",
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -440,13 +440,13 @@ function init_gear_sets()
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
 	sets.precast.WS.FullTPMagical = {left_ear="Hecate's Earring"}
 	sets.precast.WS.FullTPPhysical = {--[[ left_ear={ name="Lugra Earring +1", augments={'Path: A',}}, ]]}
 		
-	sets.precast.WS['Tachi: Shoha'] = {
-		ammo="Aurgelmir Orb",
+	sets.precast.WS['Tachi: Shoha'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
 		head="Mpaca's Cap",
 		body={ name="Sakonji Domaru +3", augments={'Enhances "Overwhelm" effect',}},
 		hands="Kasuga Kote +3",
@@ -470,9 +470,9 @@ function init_gear_sets()
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
-	sets.precast.WS['Tachi: Shoha'].ATKCAP = {
+	sets.precast.WS['Tachi: Shoha'].ATKCAP = set_combine(sets.precast.WS['Tachi: Shoha'], {
 		--[[ ammo="Crepuscular Pebble",
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -485,9 +485,9 @@ function init_gear_sets()
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
-	sets.precast.WS['Tachi: Rana'] = {
+	sets.precast.WS['Tachi: Rana'] = set_combine(sets.precast.WS, {
 		--[[ ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -500,7 +500,7 @@ function init_gear_sets()
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
 	sets.precast.WS['Tachi: Rana'].ATKCAP = {
 		--[[ ammo="Crepuscular Pebble",
@@ -517,7 +517,7 @@ function init_gear_sets()
 		right_ring="Sroda Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
 		
-	sets.precast.WS['Impulse Drive'] = {
+	sets.precast.WS['Impulse Drive'] = set_combine(sets.precast.WS, {
 		--[[ ammo="Knobkierrie",
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -530,7 +530,7 @@ function init_gear_sets()
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Sroda Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
 	sets.precast.WS['Impulse Drive'].ATKCAP = {
 		--[[ ammo="Crepuscular Pebble",
@@ -549,7 +549,7 @@ function init_gear_sets()
 		
 	sets.precast.WS['Sonic Thrust'] = sets.precast.WS['Impulse Drive']
 	
-	sets.precast.WS['Stardiver'] = {
+	sets.precast.WS['Stardiver'] = set_combine(sets.precast.WS, {
 	    --[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body="Mpaca's Doublet",
@@ -562,7 +562,7 @@ function init_gear_sets()
 		right_ear={ name="Schere Earring", augments={'Path: A',}},
 		left_ring="Niqmaddu Ring",
 		right_ring="Regal Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
 	sets.precast.WS['Stardiver'].ATKCAP = {
 	    --[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
@@ -581,7 +581,7 @@ function init_gear_sets()
 		
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
 
-    sets.precast.WS['Tachi: Ageha'] = {
+    sets.precast.WS['Tachi: Ageha'] = set_combine(sets.precast.WS, {
 		--[[ ammo="Pemphredo Tathlum",
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
@@ -594,9 +594,9 @@ function init_gear_sets()
 		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
 		left_ring="Stikini Ring +1",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 
-    sets.precast.WS['Tachi: Jinpu'] = {
+    sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {
 		feet="Nyame Sollerets",
 		--[[ ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -610,13 +610,13 @@ function init_gear_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
 	sets.precast.WS['Tachi: Goten'] = sets.precast.WS['Tachi: Jinpu']
 	sets.precast.WS['Tachi: Kagero'] = sets.precast.WS['Tachi: Jinpu']
 	sets.precast.WS['Tachi: Koki'] = sets.precast.WS['Tachi: Jinpu']
 	
-    sets.precast.WS['Aeolian Edge'] = {
+    sets.precast.WS['Aeolian Edge'] = set_combine(sets.precast.WS, {
 		--[[ ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -629,7 +629,7 @@ function init_gear_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]}	
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 
 	-- Ranged Set
 		

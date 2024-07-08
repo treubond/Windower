@@ -23,8 +23,8 @@ nukeModes 	= M('normal', 'acc')
 -- You can put specific weapons in the midcasts and precast sets for spells, but after a spell is 
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
-mainWeapon = M('Naegling','Kali','Sangoma')
-subWeapon = M('Ammurapi shield','Kali','Legato Dagger','Fusetto +2')
+mainWeapon = M('Naegling','Carnwenhan','Sangoma')
+subWeapon = M('Ammurapi shield','Kali','Fusetto +2')
 --mainWeapon = M('Carnwenhan','Tauret','Naegling','Sangoma','Twashtar','Marin Staff +1','Daybreak')
 --subWeapon = M('Ammurapi shield','Tauret','Gleti\'s Knife','Fusetto +2','Genmei Shield','Duplus Grip')
 ------------------------------------------------------------------------------------------------------
@@ -722,9 +722,16 @@ function get_sets()
 ---------------
     sets.me["Savage Blade"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
+		head="Nyame Helm",
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'STR+14','Potency of "Cure" effect received+4%','Weapon skill damage +6%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
+		feet="Nyame Sollerets",
+		neck={ name="Bard's Charm +1", augments={'Path: A',}},
 		waist="Sailfi Belt +1",
+		left_ear="Mache Earring",
+		right_ear="Cessance Earring",
+		left_ring="Lehko's Ring",
 		right_ring="Rajas Ring",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
@@ -1097,7 +1104,7 @@ function get_sets()
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
 		legs=INY.LEG,
 		feet=EMP.FEE,
-		neck="Moonbow Whistle",
+		neck="Mnbw. Whistle +1",
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
@@ -1127,7 +1134,7 @@ function get_sets()
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
 		legs=INY.LEG,
 		feet=EMP.FEE,
-		neck="Moonbow Whistle",
+		neck="Mnbw. Whistle +1",
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
@@ -1177,7 +1184,7 @@ function get_sets()
 --[PRECASTING]-[STONESKIN]
 --LEAVE THIS BLANK UNLESS USING A STONESKIN SPELL CASTING TIME DOWN PIECE IN PLACE OF FAST CAST
 ---------------
-    sets.precast.stoneskin = set_combine(sets.precast.enhancing,{--[[ head="Umuthi Hat", ]]}) --15  (83% FC Total w/o Kali)
+    sets.precast.stoneskin = set_combine(sets.precast.enhancing,{head="Umuthi Hat",}) --15  (83% FC Total w/o Kali)
 		
 ---------------
 --[PRECASTING]-[CURE]
@@ -1635,13 +1642,14 @@ function get_sets()
 
 	sets.midcast.songs.normal = {
 		--sub="Ammurapi Shield",
+		main="Carnwenhan",
 		range="Daurdabla",
 		head=EMP.HED,
 		body=EMP.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=ART.FEE,
-		neck="Moonbow Whistle",
+		neck="Mnbw. Whistle +1",
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
@@ -1679,6 +1687,7 @@ function get_sets()
 	}
 	
 	sets.midcast.songs.debuff = {
+		main="Carnwenhan",
 		--sub="Ammurapi Shield",
 		range="Gjallarhorn",
 		head=EMP.HED,
@@ -1686,10 +1695,10 @@ function get_sets()
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=ART.FEE,
-		neck="Moonbow Whistle",
+		neck="Mnbw. Whistle +1",
 		waist="Embla Sash",
-		left_ear="Aredan Earring",
-		right_ear="Ethereal Earring",
+		left_ear="Crep. Earring",
+		right_ear="Fili Earring +1",
 		left_ring="Defending Ring",
 		right_ring="Stikini Ring",
 		back=JSE.DBL,
@@ -1730,7 +1739,7 @@ function get_sets()
 		hands=EMP.HND,
 		legs=EMP.LEG,
 		feet=EMP.FEE,
-		neck="Moonbow Whistle",
+		neck="Mnbw. Whistle +1",
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
@@ -1856,10 +1865,10 @@ function get_sets()
 --------------
 
 -- Type Spell name between "" to have specific set for spell. will join any dummy song gear in by default. 	
-	sets.midcast["Army's Paeon"] 	= set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle",})
-	sets.midcast["Army's Paeon II"] = set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle",})
-	sets.midcast["Army's Paeon III"]= set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle",})
-	sets.midcast["Army's Paeon IV"] = set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle",})
+	sets.midcast["Army's Paeon"] 	= set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle +1",})
+	sets.midcast["Army's Paeon II"] = set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle +1",})
+	sets.midcast["Army's Paeon III"]= set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle +1",})
+	sets.midcast["Army's Paeon IV"] = set_combine(sets.midcast.songs.dummy, {range="Daurdabla",head=ART.HED,neck="Mnbw. Whistle +1",})
 	sets.midcast["Goblin Gavotte"] 	= set_combine(sets.midcast.songs.dummy, {range="Daurdabla",})
 	sets.midcast["Herb Pastoral"] 	= set_combine(sets.midcast.songs.dummy, {range="Daurdabla",})
 end

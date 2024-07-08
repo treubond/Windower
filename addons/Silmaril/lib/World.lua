@@ -20,7 +20,7 @@ do
         player_enemy_data = "enemy_"
         player_npc_data = "npc_"
 
-        mob_array = windower.ffxi.get_mob_array()
+        mob_array = get_mob_array()
         if not mob_array then return end
 
         for id, enemy in pairs(mob_array) do

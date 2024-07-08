@@ -86,16 +86,16 @@ do
 
         -- /check results.
         if id == 0x0C9 then 
-            local packet = packets.parse('incoming', modified)
+            local packet = parse_packet('incoming', modified)
             if packet['Linkshell'] then
                 packet['Linkshell'] = ls_names(packet['Linkshell'])
             end
-            return packets.build(packet)
+            return build_packet(packet)
         end
 
         -- Item Updates
         if id == 0x020 then 
-            local packet = packets.parse('incoming', modified)
+            local packet = parse_packet('incoming', modified)
             -- linkshell/pearlsack/linkpearl
             if packet.Item >= 513 and packet.Item <= 528 then
                 packet.extdata = packet.ExtData
@@ -105,7 +105,7 @@ do
                     local name = ls_names(raw_data.name)
                     local encoded_name = name:encode(ls_enc)
                     packet.ExtData = packet.extdata:sub(0,6)..'b4b4b4b4':pack(raw_data.r, raw_data.g, raw_data.b, packet.extdata:unpack('b8', 8, 4))..packet.extdata:sub(9,9)..encoded_name
-                    return packets.build(packet)
+                    return build_packet(packet)
                 end
             end
         end
@@ -119,39 +119,39 @@ do
 
         -- Need to modify this packet as it is a Tell
         if id == 0x0B6 then
-            local packet = packets.parse('outgoing', data)
+            local packet = parse_packet('outgoing', data)
 
             -- Check if the name has been randomized
             local name = reverse_anon_cache[packet['Target Name']]
             if name then
                 packet['Target Name'] = name
-                return packets.build(packet)
+                return build_packet(packet)
             end
 
             -- Check if its from a defined list
             name = reverse_name_cache[packet['Target Name']]
             if name then
                 packet['Target Name'] = name
-                return packets.build(packet)
+                return build_packet(packet)
             end
 
         -- Need to modify this packet as it is a Change Permisions
         elseif id == 0x077 then
-            local packet = packets.parse('outgoing', data)
+            local packet = parse_packet('outgoing', data)
             log(packet['Target Name'])
 
             -- Check if the name has been randomized
             local name = reverse_anon_cache[packet['Target Name']]
             if name then
                 packet['Target Name'] = name
-                return packets.build(packet)
+                return build_packet(packet)
             end
 
             -- Check if its from a defined list
             name = reverse_name_cache[packet['Target Name']]
             if name then
                 packet['Target Name'] = name
-                return packets.build(packet)
+                return build_packet(packet)
             end
         end
     end
@@ -235,7 +235,7 @@ do
 
     function process_filtered(id, data)
 
-        local packet = packets.parse('incoming',data)
+        local packet = parse_packet('incoming',data)
         local name_field = all_filtered_packets[id].name_field
         local original_name = packet[name_field]
 
@@ -265,7 +265,7 @@ do
 
         -- Default swaps
         packet[name_field] = names(original_name, id, packet)
-        return packets.build(packet)
+        return build_packet(packet)
     end
 
     function get_name_cache()
@@ -296,14 +296,14 @@ do
         if value == 'True' then
             if not protection then
                 protection = true
-                windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Protection: \31\06[ON]'))
+                send_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Protection: \31\06[ON]'))
                 if dressup_enable then dressup = true end
                 info("Please zone to finish protection.")
             end
         else
             if protection then
                 protection = false
-                windower.add_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]'))
+                send_to_chat(1, ('\31\200[\31\05Silmaril\31\200]\31\207'..' Following: \31\03[OFF]'))
                 if dressup_enable then dressup = true end
                 info("Please zone to finish protection.")
             end

@@ -215,10 +215,10 @@ function user_setup()
     include('Global-Binds.lua') -- OK to remove this line
     -- include('Global-GEO-Binds.lua') -- OK to remove this line
 
-    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +6',}}
-    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
-    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +5',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
     -- send_command('lua l azureSets')
@@ -360,7 +360,7 @@ function init_gear_sets()
         ammo="Staunch Tathlum",
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         body="Jhakri Robe +2",
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+        hands=Telchine_ENH_hands,
         legs="Aya. Cosciales +2",
         feet="Jhakri Pigaches +2",
         neck="Baetyl Pendant",
@@ -369,7 +369,7 @@ function init_gear_sets()
         right_ear="Magnetic Earring",
         left_ring="Jhakri Ring",
         right_ring="Kishar Ring",
-        back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}},
+        back={ name="Fi Follet Cape +1", augments={'Path: A',}},
     }
 
     sets.precast.FC['Blue Magic'] = set_combine(sets.precast.FC, {body="Hashishin Mintan +2", hands="Hashi. Bazu. +2"})
@@ -448,6 +448,7 @@ function init_gear_sets()
     sets.midcast.Utsusemi = sets.midcast.SpellInterrupt
 
     sets.midcast['Blue Magic'] = {
+        ammo="Ghastly Tathlum +1",
         head="Hashishin Kavuk +2",
         body="Hashishin Mintan +2",
         hands="Hashi. Bazu. +2",
@@ -455,14 +456,14 @@ function init_gear_sets()
         feet="Hashi. Basmak +2",
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist="Sacro Cord",
-        left_ear="Moldavite Earring",
+        left_ear="Regal Earring",
         right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Jhakri Ring",
-        right_ring="Omega Ring",
+        right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}},
     }
 
-    sets.midcast['Blue Magic'].Physical = {}
+    sets.midcast['Blue Magic'].Physical = set_combine(sets.midcast['Blue Magic'], {})
 
     sets.midcast['Blue Magic'].PhysicalAcc = set_combine(sets.midcast['Blue Magic'].Physical, {})
 
@@ -480,7 +481,7 @@ function init_gear_sets()
 
     sets.midcast['Blue Magic'].PhysicalChr = set_combine(sets.midcast['Blue Magic'].Physical, {})
 
-    sets.midcast['Blue Magic'].Magical = {}
+    sets.midcast['Blue Magic'].Magical = set_combine(sets.midcast['Blue Magic'], {})
 
     sets.midcast['Blue Magic'].Magical.Resistant = set_combine(sets.midcast['Blue Magic'].Magical, {})
 
@@ -496,7 +497,9 @@ function init_gear_sets()
 
     sets.midcast['Blue Magic'].MagicalChr = set_combine(sets.midcast['Blue Magic'].Magical, {})
 
-    sets.midcast['Blue Magic'].MagicAccuracy = {}
+    sets.midcast['Blue Magic'].MagicAccuracy = set_combine(sets.midcast['Blue Magic'], {
+        left_ear="Crep. Earring",
+    })
 
     sets.midcast['Blue Magic'].Breath = set_combine(sets.midcast['Blue Magic'].Magical, {})
 
@@ -543,12 +546,12 @@ function init_gear_sets()
     })
 
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},})
+        hands=Telchine_ENH_hands,
+        feet=Telchine_ENH_feet,})
 
     sets.midcast.Protect = set_combine(sets.midcast.EnhancingDuration, {
-        hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
-        feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},})
+        hands=Telchine_ENH_hands,
+        feet=Telchine_ENH_feet,})
     sets.midcast.Protectra = sets.midcast.Protect
     sets.midcast.Shell = sets.midcast.Protect
     sets.midcast.Shellra = sets.midcast.Protect
@@ -811,7 +814,7 @@ function init_gear_sets()
     sets.Almace = {--[[ main="Almace", sub="Sequence" ]]}
     sets.Naegling = {main="Naegling", sub="Thibron"}
     sets.Maxentius = {--[[ main="Maxentius", sub="Thibron" ]]}
-    sets.Nuking = {main="Kaja Rod", sub="Bunzi's Rod"}
+    sets.Nuking = {main="Maxentius", sub="Bunzi's Rod"}
     sets.Tizona = {main={ name="Tizona", augments={'Path: A',}}, sub="Thibron"}
 
 end

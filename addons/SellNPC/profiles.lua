@@ -8,7 +8,8 @@ profiles['powder'] = S{
 
 -- //sellnpc shield
 profiles['shield'] = S{
-    'Archeon Shield',
+    'Acheron Shield',
+    'Ritter Shield',
 }
 
 -- //sellnpc ore

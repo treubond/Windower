@@ -22,6 +22,10 @@ function commands(cmd, args)
             save_command() -- via Display.lua
         elseif cmd == 'reset' then
             reset_command(args)
+        elseif cmd == 'sortie' then
+            sortie_command(args)
+        elseif cmd == 'zero' then
+            zero_command()
         elseif cmd == "input" then
             input_message(args[1], args[2], args[3]) -- sm input JobAbility 99 125
         elseif cmd == "script" then
@@ -101,8 +105,8 @@ function all_command(args)
             command_string = command_string..args[i].." "
         end
         command_string = command_string:sub(1, #command_string - 1)
-        windower.send_ipc_message('silmaril '..command_string)
-        windower.send_command('silmaril '..command_string)
+        send_ipc('silmaril '..command_string)
+        send_command('silmaril '..command_string)
         log(command_string)
     end
 end

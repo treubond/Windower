@@ -69,12 +69,14 @@
 
 
 include('organizer-lib') -- Remove if you dont use Organizer
-include('Global-Binds.lua')
+
 
 --------------------------------------------------------------------------------------------------------------
 res = require('resources')      -- leave this as is    
 texts = require('texts')        -- leave this as is    
-include('Modes.lua')            -- leave this as is      
+include('Modes.lua')            -- leave this as is    
+
+include('Global-Binds.lua')
 --------------------------------------------------------------------------------------------------------------
 
 -- Define your modes: 
@@ -97,7 +99,7 @@ hud_transparency = 200 -- a value of 0 (invisible) to 255 (no transparency at al
 hud_font = 'Arial'
 
 -- Setup your Key Bindings here:  
-    windower.send_command('bind insert gs c nuke cycle')            -- insert Cycles Nuke element
+    windower.send_command('bind ^delete gs c nuke cycle')            -- insert Cycles Nuke element
     windower.send_command('bind delete gs c nuke cycledown')        -- delete Cycles Nuke element in reverse order   
     windower.send_command('bind home gs c geo geocycle') 			-- home Cycles Geomancy Spell
     windower.send_command('bind end gs c geo geocycledown') 		-- end Cycles Geomancy Spell in reverse order	
@@ -140,7 +142,7 @@ keybinds_on['key_bind_movespeed_lock'] = '(ALT-F12)'
 
 -- Remember to unbind your keybinds on job change.
 function user_unload()
-    send_command('unbind insert')
+    send_command('unbind ^delete')
     send_command('unbind delete')
     send_command('unbind home')
     send_command('unbind PAGEUP')
@@ -281,7 +283,7 @@ function get_sets()
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Penitent's Rope",
+		waist="Plat. Mog. Belt",
 		left_ear="Odnowa Earring +1",
 		right_ear="Eabani Earring",
 		left_ring="Shneddick Ring",
@@ -365,7 +367,7 @@ function get_sets()
 		feet = "Jhakri Pigaches +2",
 		neck = "Asperity Necklace",
 		waist = "Potent Belt",
-		left_ear = "Mache Earring",
+		left_ear = "Telos Earring",
 		right_ear = "Cessance Earring",
 		left_ring = "Chirich Ring +1",
 		right_ring = "Chirich Ring",
@@ -379,6 +381,10 @@ function get_sets()
 	
     -- Luopan is out
 	sets.pan.melee = set_combine(sets.pan.idle.normal,{ --[idleMode],{
+		left_ear = "Telos Earring",
+		right_ear = "Cessance Earring",
+		left_ring = "Chirich Ring +1",
+		right_ring = "Lehko's Ring",
 		waist="Isa Belt",
 		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
     }) 
@@ -456,7 +462,7 @@ function get_sets()
 		right_ear="Loquac. Earring",
 		left_ring="Jhakri Ring",
 		right_ring="Kishar Ring",
-		back="Solemnity Cape",
+		back={ name="Fi Follet Cape +1", augments={'Path: A',}},
 		--[[ main = "Solstice",
 		range = "Dunna",
 		body = "Merlinic Jubbah",
@@ -561,8 +567,8 @@ function get_sets()
 	}
 	-- Nuking
     sets.midcast.nuking.normal = set_combine(sets.midcast.casting,{
-		main="Daybreak",
-		sub="Culminus",
+		main="Bunzi's Rod",
+		sub="Ammurapi Shield",
 		ammo="Ghastly Tathlum +1",
 		head=EMPY.Head,
 		body="Jhakri Robe +2",
@@ -591,7 +597,7 @@ function get_sets()
     })
 	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  43/19
 		main="Bunzi's Rod", --10
-		sub="Culminus",
+		sub="Ammurapi Shield",
 		ammo="Ghastly Tathlum +1",
 		head="Ea Hat", --6/6
 		body="Ea Houppelande", --8/8

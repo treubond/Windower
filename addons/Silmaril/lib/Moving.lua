@@ -16,7 +16,7 @@ do
 
 		now = os.clock()
 
-		if now - move_time > .5 then runstop() return end
+		if now - move_time > 2 then runstop() return end
 
 		-- Get the player
 		local p = get_player()
@@ -71,14 +71,14 @@ do
 		if t.distance > 50 then runstop() return end
 
 		-- You are far enough away so stop running
-		if t.distance >= autorun_distance and autorun_type == 1 then runstop() return end
+		if t.distance > autorun_distance + .1 and autorun_type == 1 then runstop() return end
 
 		-- You are within distance so stop running
-		if t.distance <= autorun_distance and autorun_type > 1 then runstop() return end
+		if t.distance < autorun_distance - .1 and autorun_type > 1 then runstop() return end
 
 		-- Handle the lock on issue
 		if p.target_locked and now - lock_time > .5 then 
-			windower.send_command("input /lockon")
+			send_command("input /lockon")
 			lock_time = now
 			return
 		end
@@ -90,7 +90,7 @@ do
 		end
 
 		-- Perform the movement
-		windower.ffxi.run(angle)
+		player_run(angle)
 	end
 
 	-- Command to stop
@@ -98,7 +98,7 @@ do
 		if move_to_exit then return end
 		autorun_type = 0
 		autorun_target = nil
-		windower.ffxi.run(false)
+		player_run(false)
 	end
 
 	-- Run away #1
@@ -166,7 +166,7 @@ do
 		else
 			return
 		end
-		windower.ffxi.turn(angle)
+		player_turn(angle)
 	end
 
 	function set_fast_follow (state, target)
@@ -188,22 +188,23 @@ do
 		if not p then return end
 		if not get_enabled() then return end
 		if p.target_locked and lock == "0" then 
-			windower.send_command("input /lockon")
+			send_command("input /lockon")
 		elseif not p.target_locked and lock == "1" then
 			if p.target_index ~= target.index then
-				local inject = packets.new("incoming", 0x058, {
+				local inject = new_packet("incoming", 0x058, 
+				{
 					['Player'] = p.id,
 					['Target'] = target.id,
 					['Player Index'] = p.index,
 				})
-				packets.inject(inject)
+				inject_packet(inject)
 			else
-				windower.send_command("input /lockon")
+				send_command("input /lockon")
 			end
 		end
 	end
 
-	function zone_check(player_id, zone, player_x, player_y, player_z, type, zone_line)
+	function zone_check(player_id, zone, player_x, player_y, player_z, type, zone_line, door_menu)
 
 		-- Check if following is on - if not return
 		if not following then return end
@@ -235,16 +236,17 @@ do
 
 		if w.mog_house then
 			log("Mog House zone packet injected with zone line of ["..zone_line.."]")
-			local packet = packets.new('outgoing', 0x05E, 
+			local packet = new_packet('outgoing', 0x05E, 
 				{
 					['Zone Line'] = zone_line, 
+					['MH Door Menu'] = door_menu, 
 					['Type'] = type
 				})
-			packets.inject(packet)
+			inject_packet(packet)
 		else
 			log('Zone Detected - turning and running towards zone')
 			local angle = math.atan2((player_y - p_loc.y), (player_x - p_loc.x))*-1
-			windower.ffxi.run(angle)
+			player_run(angle)
 		end
 	end
 

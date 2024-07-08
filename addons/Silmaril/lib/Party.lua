@@ -15,7 +15,7 @@ do
         party_ids = {}
         alliance_ids = {}
 
-        local party = windower.ffxi.get_party() -- Update the table of the party
+        local party = get_party() -- Update the table of the party
         if not party then return party_data end
         for position, member in pairs(party) do
             if type(member) == "table" and member.name and member.name ~= '' then
@@ -23,14 +23,16 @@ do
                 ..string.format("%i",member.hp)..','..string.format("%i",member.hpp)..','..string.format("%i",member.mp)..','
                 ..string.format("%i",member.mpp)..','..string.format("%i",member.tp)..','..string.format("%i",member.zone)
                 if member.mob then
-                    local mob = {}
+                    local mob = {0,0,0,0,0,0,0,0,0,'false','false','|0|0|0|0|0|0|0|0|0|0'}
                     local local_player = party_location[member.mob.id]
+                    -- Build a party table to use later
                     if not member.mob.is_npc then
                         if tonumber(party_position[position]) < 6 then
                             party_ids[member.mob.id] = position
                         end
                         alliance_ids[member.mob.id] = position
                     end
+
                     if local_player then -- update with local IPC information
                         member.mob.x = local_player.x
                         member.mob.y = local_player.y
@@ -41,6 +43,7 @@ do
                             member.mob.status = p.status
                         end
                     end
+
                     for index, value in pairs(member.mob) do
                         if index == 'id' then
                             mob[1] = string.format("%i",value)
@@ -63,7 +66,7 @@ do
                         elseif index == 'is_npc' then
                             mob[10] = tostring(value)
                         elseif index == 'pet_index' then
-                            local pet = windower.ffxi.get_mob_by_index(value)
+                            local pet = get_mob_by_index(value)
                             -- Update the player pet
                             if member.mob.id == p.id then
                                 if pet then
@@ -103,19 +106,26 @@ do
 
                             local pet_string = pet.name..'|'..string.format("%i",pet.id)..'|'..string.format("%i",pet.index)..'|'..string.format("%i",pet.hpp)..'|'..string.format("%i",pet.tp)..'|'..string.format("%.3f",pet.x)..
                             '|'..string.format("%.3f",pet.y,2)..'|'..string.format("%.3f",pet.z,2)..'|'..string.format("%i",member.zone)..'|'..string.format("%i",pet.status)..'|'..string.format("%i",pet.target)
-                            mob[11] = pet_string
-
+                            mob[12] = pet_string
                         end
                     end
-                    if not mob[11] then -- No pet active
+
+                    if not mob[12] then -- No pet active
                         local pet_string = "0|0|0|0|0|0|0|0|0|0|0"
-                        mob[11] = pet_string 
+                        mob[12] = pet_string 
                     end
+
+                    if party['party1_leader'] == member.mob['id'] then
+                        mob[11] = 'true'
+                    else
+                        mob[11] = 'false'
+                    end
+
                     for index, value in ipairs(mob) do
                         formattedString = formattedString..','..value
                     end
                 else
-                    formattedString = formattedString..',0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
+                    formattedString = formattedString..',0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0'
                 end
                 party_data[party_position[position]] = formattedString
                 --log(formattedString)
@@ -126,7 +136,7 @@ do
             party.party1_count = 1
         end
         for i = party.party1_count, 5 do
-            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
+            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         --Fill in remainder of second party
@@ -134,7 +144,7 @@ do
             party.party2_count = 0
         end
         for i = party.party2_count + 6, 11 do
-            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
+            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         --Fill in remainder of third part
@@ -142,7 +152,7 @@ do
             party.party3_count = 0
         end
         for i = party.party3_count + 12, 17 do
-            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,|0|0|0|0|0|0|0|0|0|0'
+            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         return party_data

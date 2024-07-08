@@ -38,7 +38,12 @@ function get_sets()
 	send_command('bind ^f9 gs c WeaponLock') 	-- F10 = Toggle Melee Mode
 	send_command('bind ^f10 gs c TH') 			-- Ctrl+F10 = Treasure Hunter toggle
 	send_command('bind f11 gs c AccMode') 		-- F11 = ACC Mode toggle
-	
+
+	Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+    Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
+    Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
 	-- Set your merits here. This is used in deciding between Enticer's Pants or Apogee Slacks +1.
 	-- To change in-game, "/console gs c MeteorStrike3" will change Meteor Strike to 3/5 merits.
@@ -177,7 +182,7 @@ function get_sets()
 		legs="Beck. Spats. +1",
 		feet="Beck. Pigaches +2",
 		neck="Adad Amulet",
-		waist="Hierarch Belt",
+		waist="Regal Belt",
 		left_ear="Malignance Earring",
 		right_ear="Loquacious Earring", -- +2
 		left_ring="Tali'ah Ring",
@@ -239,7 +244,7 @@ function get_sets()
 	-- If you ever lock your weapon, keep that in mind when building cure potency set.
 	sets.midcast.Cure = {
 		neck="Phalaina Locket",
-		hands = { name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+		hands = Telchine_ENH_hands,
 		waist="Penitent's Rope",
 
 		-- main="Nirvana",
@@ -298,6 +303,12 @@ function get_sets()
 	})
 
 	sets.midcast.Enhancing = {
+		head=Telchine_ENH_head,
+        body=Telchine_ENH_body,
+        hands=Telchine_ENH_hands,
+        legs=Telchine_ENH_legs,
+        feet=Telchine_ENH_feet,
+		waist="Embla Sash",
 		-- main={ name="Gada", augments={'Enh. Mag. eff. dur. +6','DEX+1','Mag. Acc.+5','"Mag.Atk.Bns."+18','DMG:+4',}},
 		-- sub="Ammurapi Shield",
 		-- head={ name="Telchine Cap", augments={'Mag. Evasion+24','"Conserve MP"+4','Enh. Mag. eff. dur. +10',}},
@@ -535,7 +546,7 @@ function get_sets()
 		legs="Nyame Flanchard",
 		feet="Beck. Pigaches +2",
 		neck="Adad Amulet",
-		waist="Hierarch Belt",
+		waist="Isa Belt",
 		left_ear="Enmerkar Earring",
 		right_ear={ name="Beck. Earring", augments={'System: 1 ID: 1676 Val: 0','Pet: Accuracy+6 Pet: Rng. Acc.+6','Pet: Mag. Acc.+6',}},
 		left_ring="Tali'ah Ring",
@@ -632,7 +643,7 @@ function get_sets()
 		legs="Tali'ah Sera. +2",
 		feet="Beck. Pigaches +2",
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Hierarch Belt",
+		waist="Isa Belt",
 		left_ear="Malignance Earring",
 		right_ear={ name="Beck. Earring", augments={'System: 1 ID: 1676 Val: 0','Pet: Accuracy+6 Pet: Rng. Acc.+6','Pet: Mag. Acc.+6',}},
 		left_ring="Shneddick Ring",
@@ -677,7 +688,7 @@ function get_sets()
 		legs="Tali'ah Sera. +2",
 		feet="Beck. Pigaches +2",
 		neck="Adad Amulet",
-		waist="Hierarch Belt",
+		waist="Isa Belt",
 		left_ear="Malignance Earring",
 		right_ear={ name="Beck. Earring", augments={'System: 1 ID: 1676 Val: 0','Pet: Accuracy+6 Pet: Rng. Acc.+6','Pet: Mag. Acc.+6',}},
 		left_ring="Tali'ah Ring",

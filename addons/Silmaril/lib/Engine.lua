@@ -3,14 +3,22 @@ do
     local connected = false
     local old_status = 0
     local auto_load = true
+    local auto_load_time = os.clock()
+    local sortie_addon = true
 
     function main_engine()
 
-        local engine_speed = 1/60
+        local engine_speed = 1/30
+        local movement_speed = 1/10
+        local send_speed = 1/4
+        local display_speed = 1/4
+        local sync_speed = 30
+
         local now = os.clock()
         local last_request = now
         local last_sync = now
         local last_display = now
+        local last_movement = now
         local last_send = now
 
 	    while true do
@@ -20,19 +28,26 @@ do
 
             if not connected then
                 -- Send a requst to client every second
-                if now - last_request > 1 then
+                if now - last_request > 2 then
                     request() -- Send the request to connect to silmaril via Connection.lua
                     last_request = now
                 end
             else
-                if now - last_send > .075 then
-                    last_send = now
 
-                    -- Update the player location, player info, and the world
+                if now - last_movement > movement_speed then
+                    last_movement = now
+
+                    -- Update the player information via Player.lua
                     update_player_info()
 
                     -- Process player movement
                     movement()
+
+                end
+
+                if now - last_send > send_speed then
+
+                    last_send = now
 
                     -- Send the info to Silmaril
                     send_silmaril()
@@ -52,10 +67,8 @@ do
                     -- Mirroring 
                     if get_injecting() then 
                         local retry_count = get_retry_count()
-
                         -- No poke response after the time delay
                         if now - get_poke_time() > 1 and not get_mid_inject() then
-
                             -- There are still message so try to get a poke response
                             if get_mirror_message() then
                                 if retry_count < 5 then
@@ -69,18 +82,17 @@ do
                                     send_packet(get_player_id()..";mirror_status_failed")
                                     npc_reset()
                                 end
-                            -- No messages so turn off injection and give up
                             else
-                                set_injecting(false)
-                                log("Turning off injecting")
+                                -- Turns off injection and finishes process
+                                npc_inject()
                             end
                         end
 
                         -- Mid injection and no response so follow up with injection
-                        if get_mid_inject() and now - get_message_time() > 2 then
-                            log("Middle of inject and message time exceeded  - Time Out ("..tostring(now - get_message_time())..")")
-                            local p = get_player()
-                            if p and p.status == 4 then
+                        if get_mid_inject() then
+                            local delay = now - get_message_time()
+                            if (delay > .25 and get_force_warp()) or delay > 2 then
+                                log("Middle of injection and message time exceeded (Force Warp) - Time Out ("..tostring(now - get_message_time())..")")
                                 if not get_mirror_message() then
                                     info("Timed out and all message are sent - Consider complete and reseting.")
                                     send_packet(get_player_id()..";mirror_status_failed")
@@ -91,29 +103,33 @@ do
                                 end
                             end
                         end
+
                     end
 
                     -- load the initial settings
-                    if auto_load then 
+                    if auto_load and now - auto_load_time > 2 then 
                         load_command("")
+                        log("Auto Load Settings")
                         auto_load = false;
                     end
                 end
 
                 -- Update the in game display
-                if now - last_display > .25 then
-                    update_display()
+                if now - last_display > display_speed then
                     last_display = now
+                    update_display() -- call to Display.lua
+                    check_addons() -- call to Addons.lua
                 end
 
-                -- Update the spells the player has every 30 seconds
-                if now - last_sync > 30 then 
+                -- Update the spells the player has
+                if now - last_sync > sync_speed then 
                     get_player_spells() -- Spells.lua
                     log("Updated Sync")
                     last_sync = now
                 end
+
             end
-            coroutine.sleep(engine_speed)
+            sleep_time(engine_speed)
         end
     end
 
@@ -137,6 +153,7 @@ do
 
     function set_auto_load(value)
         auto_load = value
+        auto_load_time = os.clock()
     end
 
 end

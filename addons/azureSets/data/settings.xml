@@ -28,6 +28,28 @@
             <default>
 
             </default>
+            <mboze>
+                <slot01>cocoon</slot01>
+                <slot02>tenebral crush</slot02>
+                <slot03>magic fruit</slot03>
+                <slot04>barbed crescent</slot04>
+                <slot05>acrid stream</slot05>
+                <slot06>occultation</slot06>
+                <slot07>entomb</slot07>
+                <slot08>water bomb</slot08>
+                <slot09>subduction</slot09>
+                <slot10>cursed sphere</slot10>
+                <slot11>memento mori</slot11>
+                <slot12>regurgitation</slot12>
+                <slot13>delta thrust</slot13>
+                <slot14>erratic flutter</slot14>
+                <slot15>sound blast</slot15>
+                <slot16>spectral floe</slot16>
+                <slot17>silent storm</slot17>
+                <slot18>magic hammer</slot18>
+                <slot19>feather tickle</slot19>
+                <slot20>reaving wind</slot20>
+            </mboze>
             <nuking>
                 <slot01>delta thrust</slot01>
                 <slot02>barbed crescent</slot02>

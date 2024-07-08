@@ -1,13 +1,13 @@
 do
-    local all_job_abilities = res.job_abilities
+    local all_job_abilities = get_res_all_job_abilities()
 
     function get_abilities_recast() -- Used via update to get ability timers
         local formattedString = "abilities_"
 
-        player_abilities = windower.ffxi.get_abilities()
+        player_abilities = get_abilities()
         if not player_abilities then return formattedString end
 
-        ability_recasts = windower.ffxi.get_ability_recasts()
+        ability_recasts = get_ability_recasts()
         if not ability_recasts then return formattedString end
 
         for index, ability in pairs(player_abilities) do

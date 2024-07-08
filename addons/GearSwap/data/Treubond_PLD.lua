@@ -14,6 +14,8 @@ function get_sets()
     -- Load and initialize the include file.
     include('Mote-Include.lua')
  
+    include('Global-Binds.lua')
+
     -- Organizer
     --include('organizer-lib')
     --include('organizer-items.lua')
@@ -24,6 +26,12 @@ function job_setup()
     state.Buff.Sentinel = buffactive.sentinel or false
     state.Buff.Cover = buffactive.cover or false
     state.Buff.Doom = buffactive.Doom or false
+
+    --Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'SakpataSword', 'Club'} --'ShiningOne', 'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponLock = M(false, 'Weapon Lock')
+    state.ShieldSet = M{['description']='Shield Set', 'Blurred', 'Duban', 'Aegis'}
+    
 end
  
 -------------------------------------------------------------------------------------------------------------------
@@ -32,15 +40,17 @@ end
  
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('Normal', 'Acc')
-    state.HybridMode:options('Normal', 'PDT', 'Reraise')
+    state.OffenseMode:options('Normal', 'Acc', 'HP')
+    state.HybridMode:options('Normal', 'Hybrid') --'PDT', 'Reraise')
     state.WeaponskillMode:options('Normal', 'Acc')
     state.CastingMode:options('Normal', 'SIRD', 'Resistant')
     state.PhysicalDefenseMode:options('PDT', 'HP', 'Reraise', 'Charm')
     state.MagicalDefenseMode:options('MDT', 'HP', 'Reraise', 'Charm')
-    state.IdleMode:options('Normal', 'Refresh')
+    state.IdleMode:options('Normal', 'Refresh', 'HP')
+
+    state.Phalanx = M(false, 'Phalanx')
      
-    state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Knockback', 'MP_Knockback'}
+    state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'HP', 'MP', 'Knockback', 'MP_Knockback'}
     state.EquipShield = M(false, 'Equip Shield w/Defense')
      
     gear.Weard = { name="Weard Mantle", augments={'VIT+1','DEX+3','Enmity+2','Phalanx +5'}}
@@ -68,8 +78,23 @@ function user_setup()
     send_command('bind ^numpad5 input /ws "Expiacion" <t>')
     send_command('bind ^numpad1 input /ws "Sanguine Blade" <t>')
 
-    send_command('bind ^f11 gs c cycle MagicalDefenseMode')
-    send_command('bind !f11 gs c cycle ExtraDefenseMode')
+
+    send_command('bind f10 gs c toggle Phalanx')
+    send_command('bind @w gs c toggle WeaponLock')
+    send_command('bind @e gs c cycleback WeaponSet')
+    send_command('bind @r gs c cycle WeaponSet')
+    send_command('bind @d gs c cycleback ShieldSet')
+    send_command('bind @f gs c cycle ShieldSet')
+
+    --Spells
+    send_command('bind !q input /ma "Blank Gaze" <me>')
+    send_command('bind !w input /ma "Cocoon" <me>')
+    send_command('bind !e input /ma "Phalanx" <me>')
+    
+
+    send_command('bind ^f9 gs c cycle HybridMode')
+    send_command('bind ^f11 gs c cycle OffenseMode')
+    send_command('bind !f11 gs c cycle IdleMode')
     send_command('bind @f10 gs c toggle EquipShield')
     send_command('bind @f11 gs c toggle EquipShield')
     send_command('bind @f12 gs c cycle CastingMode')
@@ -88,11 +113,24 @@ function user_unload()
     send_command('unbind ^numpad4')
     send_command('unbind ^numpad5')
     send_command('unbind ^numpad1')
+    send_command('unbind f10')
     send_command('unbind ^f11')
     send_command('unbind !f11')
     send_command('unbind @f10')
     send_command('unbind @f11')
     send_command('unbind @f12')
+    send_command('unbind @w')
+    send_command('unbind @e')
+    send_command('unbind @r')
+    send_command('unbind @d')
+    send_command('unbind @f')
+    send_command('unbind !q')
+	send_command('unbind !w')
+	send_command('unbind !e')
+	send_command('unbind !r')
+	send_command('unbind !t')
+	send_command('unbind !y')
+	send_command('unbind !u')
     send_command('gs enable all')
 end
  
@@ -100,6 +138,30 @@ end
 -- Define sets and vars used by this job file.
 function init_gear_sets()
  
+    AF = {}
+	RELIC = {}
+	EMPY ={}
+	
+	AF.Head = ""
+	AF.Body = ""
+	AF.Hands = ""
+	AF.Legs = ""
+	AF.Feet = ""
+	
+	RELIC.Head = ""
+	RELIC.Body = ""
+	RELIC.Hands = ""
+	RELIC.Legs = ""
+	RELIC.Feet = ""
+	
+	EMPY.Head = "Chev. Armet +2"
+	EMPY.Body = "Chev. Cuirass +2"
+	EMPY.Hands = "Chev. Gauntlets +1"
+	EMPY.Legs = "Chev. Cuisses +2"
+	EMPY.Feet = "Chev. Sabatons +1"
+
+
+
     --------------------------------------
     -- Precast sets
     --------------------------------------
@@ -108,11 +170,11 @@ function init_gear_sets()
      
     sets.precast.FC = {
         ammo="Staunch Tathlum",
-        head="Chev. Armet +2",
-        body="Chev. Cuirass +1",
-        hands="Chev. Gauntlets +1",
-        legs="Vlr. Breeches +1",
-        feet="Chev. Sabatons +1",
+        head=EMPY.Head,
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs="Carmine Cuisses +1",
+        feet=EMPY.Feet,
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Loquac. Earring",
         right_ear="Magnetic Earring",
@@ -130,11 +192,11 @@ function init_gear_sets()
  
     sets.precast.Enmity = {
         ammo="Staunch Tathlum",
-        head="Chev. Armet +2",
-        body="Chev. Cuirass +1",
+        head=EMPY.Head,
+        body=EMPY.Body,
         hands="Sulev. Gauntlets +2",
         legs="Vlr. Breeches +1",
-        feet="Chev. Sabatons +1",
+        feet=EMPY.Feet,
         neck="Unmoving Collar +1",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cryptic Earring",
@@ -201,30 +263,30 @@ function init_gear_sets()
     -- Default set for any weaponskill that isn't any more specifically defined
      
     sets.precast.WS = {
-        ammo="Ginsen",
-        head="Flam. Zucchetto +2",
-        body="Sulevia's Plate. +2",
-        hands="Sulev. Gauntlets +2",
-        legs="Sulev. Cuisses +2",
-        feet="Sulev. Leggings +2",
-        neck="Asperity Necklace",
+        ammo="Oshasha's Treatise",
+        head={ name="Nyame Helm", augments={'Path: B',}},
+        body={ name="Nyame Mail", augments={'Path: B',}},
+        hands={ name="Odyssean Gauntlets", augments={'Weapon skill damage +3%','Mag. Acc.+6','Mag. Acc.+9 "Mag.Atk.Bns."+9',}},
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
+        feet={ name="Nyame Sollerets", augments={'Path: B',}},
+        neck="Rep. Plat. Medal",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Thrud Earring",
         right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        left_ring="Rajas Ring",
-        right_ring="Vehemence Ring",
-        back="Atheling Mantle",
+        left_ring="Regal Ring",
+        right_ring="Lehko's Ring",
+        back="Solemnity Cape",
         --[[ ammo="Hasty Pinion +1",
         head="Flamma Zucchetto +1",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Brutal Earring",
         body="Acro Surcoat",hands="Sulevia's Gauntlets +2",ring1="Rajas Ring",ring2="Ifrit Ring",
         back=gear.RudianosWS,waist="Fotia Belt",legs="Sulevia's Cuisses +2",feet="Sulevia's Leggings +2" ]]}
  
-    sets.precast.WS.Acc = {
+    sets.precast.WS.Acc = set_combine(sets.precast.WS, {
         
         --[[ ammo="Hasty Pinion +1",
         head="Flamma Zucchetto +1",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Heartseeker Earring",
         body="Flamma Korazin +1",hands="Flamma Manopolas +1",ring1="Enlivened Ring",ring2="Patricius Ring",
-        back=gear.RudianosWS,waist="Anguinus Belt",legs="Flamma Dirs +1",feet="Flamma Gambieras +1" ]]}
+        back=gear.RudianosWS,waist="Anguinus Belt",legs="Flamma Dirs +1",feet="Flamma Gambieras +1" ]]})
  
      
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
@@ -234,41 +296,49 @@ function init_gear_sets()
     sets.precast.WS['Chant du Cygne'] = set_combine(sets.precast.WS, {--[[ hands="Flamma Manopolas +1",waist="Windbuffet Belt +1" ]]})
     sets.precast.WS['Chant du Cygne'].Acc = set_combine(sets.precast.WS.Acc, {--[[ hands="Flamma Manopolas +1" ]]})
  
-    sets.precast.WS['Sanguine Blade'] = {
+    sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, {
         
         --[[ ammo="Plumose Sachet",
         head="Flamma Zucchetto +1",neck="Eddy Necklace",ear1="Friomisi Earring",ear2="Hecate's Earring",
         body="Flamma Korazin +1",hands="Flamma Manopolas +1",ring1="Shiva Ring",ring2="Acumen Ring",
-        back=gear.RudianosWS,waist="Fotia Belt",legs="Flamma Dirs +1",feet="Sulevia's Leggings +2" ]]}
+        back=gear.RudianosWS,waist="Fotia Belt",legs="Flamma Dirs +1",feet="Sulevia's Leggings +2" ]]})
      
     sets.precast.WS['Aeolian Edge'] = set_combine(sets.precast.WS['Sanguine Blade'], {--[[ head="Chimera Hairpin" ]]})
      
-    sets.precast.WS['Atonement'] = {
+    sets.precast.WS['Atonement'] = set_combine(sets.precast.WS, {
         
         --[[ ammo="Paeapua",
         head="Caballarius Coronet +1",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Friomisi Earring",
         body="Acro Surcoat",hands="Caballarius Gauntlets +1",ring1="Supershear Ring",ring2="Provocare Ring",
-        back=gear.RudianosWS,waist="Fotia Belt",legs="Caballarius Breeches +1",feet="Sulevia's Leggings +2" ]]}
+        back=gear.RudianosWS,waist="Fotia Belt",legs="Caballarius Breeches +1",feet="Sulevia's Leggings +2" ]]})
          
-    sets.precast.WS['Savage Blade'] = {
+    sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {
         
         --[[ ammo="Hasty Pinion +1",
         head="Sulevia's Mask +2",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Brutal Earring",
         body="Acro Surcoat",hands="Sulevia's Gauntlets +2",ring1="Rajas Ring",ring2="Ifrit Ring",
-        back=gear.RudianosWS,waist="Fotia Belt",legs="Caballarius Breeches +1",feet="Sulevia's Leggings +2" ]]}    
+        back=gear.RudianosWS,waist="Fotia Belt",legs="Caballarius Breeches +1",feet="Sulevia's Leggings +2" ]]})    
      
-    sets.precast.WS['Circle Blade'] = {
+    sets.precast.WS['Circle Blade'] = set_combine(sets.precast.WS, {
         
         --[[ ammo="Hasty Pinion +1",
         head="Sulevia's Mask +2",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Brutal Earring",
         body="Acro Surcoat",hands="Sulevia's Gauntlets +2",ring1="Rajas Ring",ring2="Ifrit Ring",
-        back=gear.RudianosWS,waist="Caudata Belt",legs="Caballarius Breeches +1",feet="Sulevia's Leggings +2" ]]}
+        back=gear.RudianosWS,waist="Caudata Belt",legs="Caballarius Breeches +1",feet="Sulevia's Leggings +2" ]]})
          
          
     --------------------------------------
     -- Midcast sets
     --------------------------------------
  
+    sets.Phalanx = {
+        main="Sakpata's Sword",
+        hands="Souv. Handsch. +1",
+        legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
+        feet="Souveran Schuhs +1",
+        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
+    }
+
     sets.midcast.FastRecast = {
         
         --[[ ammo="Incantor Stone",
@@ -278,9 +348,14 @@ function init_gear_sets()
          
     sets.midcast.Enmity = set_combine(sets.precast.Enmity, {})
      
-    sets.midcast.SIRD = {
-        ammo="Staunch Tathlum",
-        legs="Carmine Cuisses +1",
+    sets.midcast.SIRD = { -- 93
+        ammo="Staunch Tathlum", --10
+        head="Souv. Schaller +1", --20
+        body=EMPY.Body, --15
+        legs="Carmine Cuisses +1", -- 20
+        neck="Moonbeam Necklace", -- 10
+        waist="Rumination Sash", -- 10
+        right_ear="Magnetic Earring", -- 8
         --[[ ammo="Staunch Tathlum", ear2="Knightly Earring",
         waist="Resolute Belt", legs="Carmine Cuisses +1" ]]}
  
@@ -291,6 +366,9 @@ function init_gear_sets()
     sets.midcast.Stun.SIRD = set_combine(sets.midcast.Stun, sets.midcast.SIRD)
      
     sets.midcast.Cure = {
+        right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
+        neck="Sacro Gorget",
+        back="Solemnity Cape",
         --[[ ear1="Oneiros Earring",ear2="Nourishing Earring +1",
         hands="Buremte Gloves",ring1="Vocane Ring +1",ring2="Kunaji Ring",
         waist="Chuq'aba Belt",legs="Flamma Dirs +1" ]]}
@@ -309,6 +387,8 @@ function init_gear_sets()
     sets.midcast.Shell = {--[[ ring1="Sheltered Ring" ]]}
     sets.midcast.Shell.SIRD = set_combine(sets.midcast.Shell, sets.midcast.SIRD)
      
+    sets.midcast.Phalanx = set_combine(sets.midcast.SIRD, sets.Phalanx)
+
     --------------------------------------
     -- Idle/resting/defense/etc sets
     --------------------------------------
@@ -325,11 +405,11 @@ function init_gear_sets()
     -- Idle sets
     sets.idle = {
         ammo="Staunch Tathlum",
-        head="Chev. Armet +2",
-        body="Chev. Cuirass +1",
-        hands="Chev. Gauntlets +1",
-        legs="Chev. Cuisses +2",
-        feet="Chev. Sabatons +1",
+        head=EMPY.Head,
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
+        feet=EMPY.Feet,
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Flume Belt",
         left_ear="Odnowa Earring +1",
@@ -358,18 +438,36 @@ function init_gear_sets()
     sets.idle.Weak = set_combine(sets.idle,{back=gear.RudianosEnm,legs="Sulevia's Cuisses +2"})
      
     sets.idle.Weak.Reraise = set_combine(sets.idle.Weak, sets.Reraise)
+
+    sets.idle.HP = {
+        ammo="Staunch Tathlum",
+        head="Souv. Schaller +1",
+        body="Sacro Breastplate",
+        hands="Souv. Handsch. +1",
+        legs="Chev. Cuisses +2",
+        feet="Souveran Schuhs +1",
+        neck="Sacro Gorget",
+        waist="Plat. Mog. Belt",
+        left_ear="Eabani Earring",
+        right_ear="Odnowa Earring +1",
+        left_ring="Regal Ring",
+        right_ring="Meridian Ring",
+        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
+    }
      
     sets.Kiting = {--[[ legs="Carmine Cuisses +1" ]]}
  
     sets.latent_refresh = {--[[ waist="Fucho-no-obi" ]]}
+
  
- 
+
     --------------------------------------
     -- Defense sets
     --------------------------------------
      
     -- Extra defense sets.  Apply these on top of melee or defense sets.
     sets.Knockback = {--[[ ring1="Vocane Ring +1",back="Repulse Mantle" ]]}
+    sets.HP = {}
     sets.MP = {--[[ ammo="Homiliary",neck="Creed Collar",]]waist="Flume Belt", } --Chev. Armet +1
     sets.MP_Knockback = set_combine(sets.MP, sets.Knockback)
      
@@ -378,14 +476,15 @@ function init_gear_sets()
     sets.PhysicalShield = {--[[ main={ name="Claidheamh Soluis", augments={'Accuracy+15','"Dbl.Atk."+3','DMG:+19',}},sub="Ochain" ]]}
     sets.MagicalShield = {--[[ main={ name="Claidheamh Soluis", augments={'Accuracy+15','"Dbl.Atk."+3','DMG:+19',}}, ]]sub="Aegis"}
  
+   
     -- Basic defense sets.
          
     sets.defense.PDT = {
         ammo="Staunch Tathlum", --2
-        head="Chev. Armet +2",
+        head=EMPY.Head,
         body="Sulevia's Plate. +2",
         hands="Sulev. Gauntlets +2",
-        legs="Chev. Cuisses +2",
+        legs=EMPY.Legs,
         feet="Sulev. Leggings +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
         waist="Flume Belt",
@@ -399,7 +498,19 @@ function init_gear_sets()
         body="Reverence Surcoat +2",hands="Sulevia's Gauntlets +2",ring1="Vocane Ring +1",ring2="Defending Ring",
         back=gear.RudianosTP,waist="Tempus Fugit",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +1" ]]}
     sets.defense.HP = {
-        left_ear="Odnowa Earring +1",
+        ammo="Staunch Tathlum",
+        head="Souv. Schaller +1",
+        body="Sacro Breastplate",
+        hands="Souv. Handsch. +1",
+        legs="Chev. Cuisses +2",
+        feet="Souveran Schuhs +1",
+        neck="Sacro Gorget",
+        waist="Plat. Mog. Belt",
+        left_ear="Eabani Earring",
+        right_ear="Odnowa Earring +1",
+        left_ring="Regal Ring",
+        right_ring="Meridian Ring",
+        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
         --[[ ammo="Plumose Sachet",
         head="Caballarius Coronet +1",neck="Twilight Torque",ear1="Oneiros Earring",ear2="Creed Earring",
         body="Reverence Surcoat +2",hands="Caballarius Gauntlets +1",ring1="Vocane Ring +1",ring2="Defending Ring",
@@ -423,10 +534,10 @@ function init_gear_sets()
     -- Shellra V can provide 75/256, which would need another 53/256 in gear.
     sets.defense.MDT = {
         ammo="Staunch Tathlum",
-        head="Chev. Armet +2",
+        head=EMPY.Head,
         body="Sulevia's Plate. +2",
         hands="Sulev. Gauntlets +2",
-        legs="Chev. Cuisses +2",
+        legs=EMPY.Legs,
         feet="Sulev. Leggings +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Flume Belt",
@@ -447,29 +558,22 @@ function init_gear_sets()
      
     sets.engaged = {
         ammo="Ginsen",
-        head="Flam. Zucchetto +2",
-        body="Flamma Korazin +2",
-        hands="Flam. Manopolas +2",
-        legs="Flamma Dirs +2",
-        feet="Flam. Gambieras +2",
+        head="Sakpata's Helm",
+        body="Sakpata's Plate",
+        hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
+        legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
+        feet="Sakpata's Leggings",
         neck="Asperity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
-        right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
-        left_ring="Flamma Ring",
-        right_ring="Sulevia's Ring",
-        back="Atheling Mantle",
-        --[[ ammo="Paeapua",
-        head="Flamma Zucchetto +1",neck="Asperity Necklace",ear1="Steelflash Earring",ear2="Bladeborn Earring",
-        body="Yorium Cuirass",hands="Flamma Manopolas +1",ring1="Rajas Ring",ring2="K'ayres Ring",
-        back=gear.RudianosTP,waist="Tempus Fugit",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +1" ]]}
+        right_ear="Crep. Earring",
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
+        back="Solemnity Cape",
+    }
  
     sets.engaged.Acc = {
-        
-        --[[ ammo="Hasty Pinion +1",
-        head="Yorium Barbuta",neck="Ziel Charm",ear1="Steelflash Earring",ear2="Bladeborn Earring",
-        body="Flamma Korazin +1",hands="Flamma Manopolas +1",ring1="Enlivened Ring",ring2="Patricius Ring",
-        back=gear.RudianosTP,waist="Dynamic Belt +1",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +1" ]]}
+    }
  
     sets.engaged.DW = set_combine(sets.engaged, {--[[ ear1="Suppanomimi",ear2="Brutal Earring",legs="Carmine Cuisses +1" ]]})
  
@@ -477,10 +581,10 @@ function init_gear_sets()
  
     sets.engaged.PDT = {
         ammo="Staunch Tathlum",
-        head="Chev. Armet +2",
+        head=EMPY.Head,
         body="Sulevia's Plate. +2",
         hands="Sulev. Gauntlets +2",
-        legs="Chev. Cuisses +2",
+        legs=EMPY.Legs,
         feet="Sulev. Leggings +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Flume Belt",
@@ -493,6 +597,22 @@ function init_gear_sets()
         head="Sulevia's Mask +2",neck="Twilight Torque",ear1="Steelflash Earring",ear2="Bladeborn Earring",
         body="Reverence Surcoat +2",hands="Sulevia's Gauntlets +2",ring1="Vocane Ring +1",ring2="Defending Ring",
         back=gear.RudianosTP,waist="Tempus Fugit",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +1" ]]}
+
+    sets.engaged.HP = {
+        ammo="Staunch Tathlum",
+        head="Souv. Schaller +1",
+        body="Sacro Breastplate",
+        hands="Souv. Handsch. +1",
+        legs="Chev. Cuisses +2",
+        feet="Souveran Schuhs +1",
+        neck="Sacro Gorget",
+        waist="Plat. Mog. Belt",
+        left_ear="Eabani Earring",
+        right_ear="Odnowa Earring +1",
+        left_ring="Regal Ring",
+        right_ring="Meridian Ring",
+        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
+    }
      
     sets.engaged.Acc.PDT = sets.engaged.PDT
     sets.engaged.Reraise = set_combine(sets.engaged, sets.Reraise)
@@ -504,6 +624,42 @@ function init_gear_sets()
     sets.engaged.DW.Acc.Reraise = set_combine(sets.engaged.DW.Acc, sets.Reraise)
  
  
+    sets.Naegling 	    = {main="Naegling"--[[ , sub="Blurred Shield +1" ]]}	
+    sets.SakpataSword   = {main="Sakpata's Sword"--[[ , sub="Aegis" ]]}
+    --sets.ShiningOne      = {main="Shining One", sub="Alber Strap"}
+    sets.Club           = {main="Beryllium Mace"--[[ , sub="Blurred Shield +1" ]]}
+
+    sets.Duban          = {sub="Duban"}
+    sets.Aegis          = {sub="Aegis"}
+    sets.Blurred        = {sub="Blurred Shield +1"}
+
+    -------------------------------------------------------------------------------------------------------------------
+    -- Hybrid Sets
+    -------------------------------------------------------------------------------------------------------------------    
+
+	sets.Hybrid = set_combine(sets.engaged, { -- 50
+        ammo="Ginsen",
+        head="Sakpata's Helm", -- 7
+        body="Sakpata's Plate", -- 10
+        hands={ name="Sakpata's Gauntlets", augments={'Path: A',}}, -- 8
+        legs={ name="Sakpata's Cuisses", augments={'Path: A',}}, -- 9
+        feet="Sakpata's Leggings", -- 6
+        neck={ name="Loricate Torque +1", augments={'Path: A',}}, -- 6
+        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        left_ear="Cessance Earring",
+        right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
+        left_ring="Chirich Ring +1",
+        right_ring="Lehko's Ring",
+        back="Solemnity Cape", -- 4
+    })
+    --[[ sets.Hybrid.MidAcc = set_combine(sets.engaged, { })
+    sets.Hybrid.FullAcc = set_combine(sets.engaged, { }) ]]
+
+    sets.engaged.Hybrid = sets.Hybrid
+    --[[ sets.engaged.MidAcc.Hybrid = sets.Hybrid.MidAcc
+    sets.engaged.FullAcc.Hybrid = sets.Hybrid.FullAcc ]]
+
+
     --------------------------------------
     -- Custom buff sets
     --------------------------------------
@@ -566,11 +722,15 @@ end
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
     update_defense_mode()
+    check_weaponset()
+    check_shieldset()
 end
  
 -- Called when status changes (Idle to Engaged, Resting, etc.)
 function job_status_change(newStatus, oldStatus, eventArgs)
     update_defense_mode()
+    check_weaponset()
+    check_shieldset()
 end
  
 -- Modify the default idle set after it was constructed.
@@ -584,6 +744,8 @@ function customize_idle_set(idleSet)
     if state.Buff.Doom then
         idleSet = set_combine(idleSet, sets.buff.Doom)
     end
+    check_weaponset()
+    check_shieldset()
      
     return idleSet
 end
@@ -593,7 +755,9 @@ function customize_melee_set(meleeSet)
     if state.Buff.Doom then
         meleeSet = set_combine(meleeSet, sets.buff.Doom)
     end
-     
+    check_weaponset()
+    check_shieldset()
+
     return meleeSet
 end
  
@@ -698,6 +862,14 @@ function update_defense_mode()
     end
 end
  
+function check_weaponset()
+    equip(sets[state.WeaponSet.current])
+end
+
+function check_shieldset()
+    equip(sets[state.ShieldSet.current])
+end
+
  
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
@@ -732,3 +904,16 @@ function select_default_macro_book()
         set_macro_page(1, 9)  --BRD
     end
 end
+
+------------------------------------------
+-- Style Change on Job Change
+------------------------------------------
+function set_style(sheet)
+    send_command('@input ;wait 11.0;input /lockstyleset '..sheet)
+	add_to_chat (21, 'Your lockstyle looks like shit, and you should feel bad')
+	add_to_chat (55, 'You are on '..('PLD '):color(5)..''..('btw. '):color(55)..''..('Macros set!'):color(121))
+--	add_to_chat (60, 'Eat tendies in moderation')
+end
+
+--Use the Lockstyle Number-- 
+set_style(12) 

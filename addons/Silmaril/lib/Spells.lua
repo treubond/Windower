@@ -1,5 +1,5 @@
 do
-    local all_spells = res.spells
+    local all_spells = get_res_all_spells()
     local player_spells = {}
     local player_trusts = {}
     local spell_recasts = {}
@@ -28,7 +28,7 @@ do
 
     function get_spell_recast()
         local formattedString = "spells_"
-        spell_recasts = windower.ffxi.get_spell_recasts()
+        spell_recasts = get_spell_recasts()
         if not spell_recasts then return formattedString end
 
         for index, recast in pairs(player_spells) do
@@ -66,9 +66,9 @@ do
         local spells_have = nil
 
         repeat
-            spells_have = windower.ffxi.get_spells()
+            spells_have = get_spells()
             if not spells_have then
-                coroutine.sleep(.1)
+                sleep_time(.1)
             end
         until spells_have
         

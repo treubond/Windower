@@ -16,15 +16,15 @@ do
         local now = os.clock()
 
         -- get/set the world data
-        local w = windower.ffxi.get_info()
+        local w = get_info()
         set_world(w)
         if not w then return end
 
-        player = windower.ffxi.get_player()
+        player = get_player_data()
         if not player then return end
         player_id = tostring(player.id)
 
-        player_location = windower.ffxi.get_mob_by_id(player.id)
+        player_location = get_mob_by_id(player.id)
         if not player_location then return end
 
         -- Determine if player is moving
@@ -70,7 +70,7 @@ do
 		set_party_location(character)
 
         --Send the information to others via IPC
-	    windower.send_ipc_message('silmaril update '..
+	    send_ipc('silmaril update '..
             player.id..' '..
             get_player_name()..' '..
             w.zone..' '..
@@ -133,7 +133,7 @@ do
     end
 
     function player_packet_buffs(original)    
-        local packet = packets.parse('incoming', original)
+        local packet = parse_packet('incoming', original)
         local formattedString = ""
         for i=1,32 do
             local buff = 'Buffs '..string.format("%i",i)
@@ -178,7 +178,7 @@ do
     function get_player_name()
 
         -- player is null so give it a shot again
-        if not player then player = windower.ffxi.get_player() end
+        if not player then player = get_player_data() end
 
         -- Something wrong happened here - couldn't find the player
         if not player or not player.name then info("Player not found") return "Unknown" end

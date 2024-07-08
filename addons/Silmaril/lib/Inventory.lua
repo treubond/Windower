@@ -1,10 +1,10 @@
 do
-    local all_items = res.items -- Store the resource information in a table
+    local all_items = get_res_all_items() -- Store the resource information in a table
 
     function get_inventory()
         local formattedString = "items_"
 
-        local items = windower.ffxi.get_items(0)
+        local items = get_items(0)
         if not items then return formattedString end
 
         for b,v in ipairs(items) do

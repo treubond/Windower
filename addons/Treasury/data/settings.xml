@@ -1,0 +1,21 @@
+<?xml version="1.1" ?>
+<settings>
+    <global>
+        <AutoDrop>false</AutoDrop>
+        <AutoStack>true</AutoStack>
+        <Delay>0</Delay>
+        <Drop />
+        <Lot />
+        <Pass>Gnat Wing,Bat Wing,Wivre Horn,Cockatrice Meat,Puk Egg,Coeurl Meat,Buffalo Meat,Manticore Hide,Lizard Egg,Clot Plasma,Peapuk Wing,Coeurl Hide,Cockatrice Skin,Manticore Fang,Giant Bird Fthr.,Wivre Maul,Asa-arashi,Wyvern Skin</Pass>
+        <Verbose>false</Verbose>
+    </global>
+    <hybridkiller>
+        <Pass>Wivre Maul,Bat Wing,Wivre Horn,Pugil Scales,Umbra Strap,Puk Egg,Peapuk Wing,Focal Orb,Limbo Trousers,Asa-arashi,Lancer&apos;s Earring,Seashell,Wivre Hide,Feast Hose,Wyvern Skin</Pass>
+    </hybridkiller>
+    <khrone>
+        <Pass>Wivre Maul,Limbo Trousers,Peapuk Wing,Puk Egg,Asa-arashi,Wyvern Skin,Bat Wing,Feast Hose,Wivre Horn</Pass>
+    </khrone>
+    <treubond>
+        <Pass>Wivre Maul,Bat Wing,Wivre Horn,Saotome Haidate,Fiendish Tome (14),Odious Quipu,Cockatrice Meat,Mirage Charuqs,Cockatrice Skin,Coeurl Meat,Koga Hatsuburi,Buffalo Meat,Manticore Hide,Relic Dagger,Lizard Egg,Clot Plasma,Cleric&apos;s Duckbills,Assassin&apos;s Bonnet,Coeurl Hide,Giant Bird Fthr.,Asa-arashi,Odious Feather,Relic Maul,Gnat Wing,Peapuk Wing,Odious Necklace,Manticore Fang,Wyvern Skin,Relic Knuckles,Puk Egg,Etoile Bangles</Pass>
+    </treubond>
+</settings>

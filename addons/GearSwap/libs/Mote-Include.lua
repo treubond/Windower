@@ -52,6 +52,7 @@ function init_include()
     state.PhysicalDefenseMode = M{['description'] = 'Physical Defense Mode', 'PDT'}
     state.MagicalDefenseMode  = M{['description'] = 'Magical Defense Mode', 'MDT'}
 
+    state.Phalanx             = M(false, 'Phalanx')
     state.Kiting              = M(false, 'Kiting')
     state.SelectNPCTargets    = M(false, 'Select NPC Targets')
     state.PCTargetMode        = M{['description'] = 'PC Target Mode', 'default', 'stpt', 'stal', 'stpc'}
@@ -530,6 +531,7 @@ function get_idle_set(petStatus)
 
     idleSet = apply_defense(idleSet)
     idleSet = apply_kiting(idleSet)
+    idleSet = apply_phalanx(idleSet)
 
     if user_customize_idle_set then
         idleSet = user_customize_idle_set(idleSet)
@@ -585,6 +587,7 @@ function get_melee_set()
 
     meleeSet = apply_defense(meleeSet)
     meleeSet = apply_kiting(meleeSet)
+    meleeSet = apply_phalanx(meleeSet)
 
     if customize_melee_set then
         meleeSet = customize_melee_set(meleeSet)
@@ -904,6 +907,21 @@ function apply_kiting(baseSet)
     return baseSet
 end
 
+
+-- Function to add phalanx gear on top of the base set if phalanx state is true.
+-- @param baseSet : The gear set that the phalanx gear will be applied on top of.
+function apply_phalanx(baseSet)
+    if state.Phalanx.value then
+        if sets.Phalanx then
+            baseSet = set_combine(baseSet, sets.Phalanx)
+--            send_command('@input /p Phalanx On')
+        end
+--    else 
+--        send_command('@input /p Phalanx Off')
+    end
+
+    return baseSet
+end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions for constructing default gear sets.

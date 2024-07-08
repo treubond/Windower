@@ -63,7 +63,7 @@ do
                     sync_cmd(message[3])
                 elseif cmd == "version" then
                     info('Version miss match!')
-                    windower.send_command('lua u silmaril')
+                    send_command('lua u silmaril')
                 elseif cmd == "reset" then
                     reset_request(message[3])
                 elseif cmd == "clear" then
@@ -77,7 +77,7 @@ do
                 elseif cmd == "input" then
                     input_message(message[3],message[4],message[5],message[6],message[7])
                 elseif cmd == "script" then
-                    windower.send_command(message[3])
+                    send_command(message[3])
                 elseif cmd == "skillchain" then
                     skillchain(message[3],message[4],message[5],message[6])
                 elseif cmd == "skillchain2" then

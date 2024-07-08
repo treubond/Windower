@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>2.9</Version>
+  <Version>3.0</Version>
   <Priority>
     <Priority_List>
       <string>Auto Raising</string>
@@ -28,19 +28,19 @@
       <string>Medicine</string>
       <string>Ninja Tools</string>
       <string>Shooting</string>
-      <string>Skillchain (Follower 4)</string>
       <string>Songs</string>
       <string>Combat Script</string>
     </Priority_List>
     <Priority_Rank>
-      <string>Fighting</string>
       <string>Combat</string>
+      <string>Skillchain (Follower 4)</string>
       <string>Skillchain (Follower 3)</string>
       <string>Skillchain (Follower 2)</string>
       <string>Skillchain (Follower 1)</string>
       <string>Weaponskills</string>
       <string>Skillchain (Leader)</string>
       <string>Job Abilities</string>
+      <string>Fighting</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -49,7 +49,7 @@
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
         <Name />
-        <Engage>false</Engage>
+        <Engage>true</Engage>
         <Run>true</Run>
         <Face_Toward>true</Face_Toward>
         <Face_Away>false</Face_Away>
@@ -77,12 +77,16 @@
     </Combat_Action>
     <Weaponskills>
       <Enabled>true</Enabled>
+      <Engaged>false</Engaged>
+      <MP_Limit>false</MP_Limit>
       <WeaponType>Great Axe</WeaponType>
-      <WeaponSkill>Ukko's Fury</WeaponSkill>
+      <WeaponSkill>Full Break</WeaponSkill>
+      <Target />
       <Script />
       <TP_Threshold>1000</TP_Threshold>
-      <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>18</High_HP_Threshold>
+      <MP_Threshold>0</MP_Threshold>
+      <Low_HP_Threshold>92</Low_HP_Threshold>
+      <High_HP_Threshold>100</High_HP_Threshold>
       <Cycle>0</Cycle>
       <AM_Enabled>false</AM_Enabled>
       <AM_Level>0</AM_Level>
@@ -118,9 +122,9 @@
         <Player_Engaged>true</Player_Engaged>
         <Leader_TP_Threshold>1000</Leader_TP_Threshold>
         <WeaponType>Great Axe</WeaponType>
-        <WeaponSkill>Full Break</WeaponSkill>
+        <WeaponSkill>Upheaval</WeaponSkill>
         <Script />
-        <Cycle>19</Cycle>
+        <Cycle>15</Cycle>
         <Strat>0</Strat>
       </Leader>
       <Follower1>
@@ -141,7 +145,7 @@
         <Partner>Khrone</Partner>
         <Partner_WeaponType>Great Axe</Partner_WeaponType>
         <Partner_WeaponSkill>Upheaval</Partner_WeaponSkill>
-        <Start>0</Start>
+        <Start>3</Start>
         <End>8</End>
         <WeaponType>Great Axe</WeaponType>
         <WeaponSkill>Ukko's Fury</WeaponSkill>
@@ -163,17 +167,17 @@
         <Pause>true</Pause>
       </Follower3>
       <Follower4>
-        <Enabled>false</Enabled>
-        <Partner />
-        <Partner_WeaponType />
-        <Partner_WeaponSkill />
-        <Start>0</Start>
-        <End>5</End>
-        <WeaponType />
-        <WeaponSkill />
+        <Enabled>true</Enabled>
+        <Partner>Treubond</Partner>
+        <Partner_WeaponType>Sword</Partner_WeaponType>
+        <Partner_WeaponSkill>Savage Blade</Partner_WeaponSkill>
+        <Start>2.5</Start>
+        <End>7</End>
+        <WeaponType>Great Axe</WeaponType>
+        <WeaponSkill>Ukko's Fury</WeaponSkill>
         <Script />
         <Cycle>5</Cycle>
-        <Pause>false</Pause>
+        <Pause>true</Pause>
       </Follower4>
     </Skillchains>
     <Burst>
@@ -238,6 +242,7 @@
     <Offense>
       <Enabled>true</Enabled>
       <Validate_IDs>true</Validate_IDs>
+      <Run_To>false</Run_To>
       <Fighting_Mode>Aggressive</Fighting_Mode>
       <Targeting_Mode>Any</Targeting_Mode>
       <Player />
@@ -462,6 +467,7 @@
   </Debuff>
   <Enfeebling>
     <Immuno_Count>0</Immuno_Count>
+    <Enemy_Count>1</Enemy_Count>
     <High_Enable>false</High_Enable>
     <Normal_Enable>false</Normal_Enable>
     <Low_Enable>false</Low_Enable>
@@ -1026,6 +1032,16 @@
         <Tactical_Switch>false</Tactical_Switch>
         <Cooldown>false</Cooldown>
         <Heady_Artifice>false</Heady_Artifice>
+        <Repair_HP>0</Repair_HP>
+        <Deploy>false</Deploy>
+        <Retrieve>false</Retrieve>
+        <Maneuver>false</Maneuver>
+        <Overload_Rate>25</Overload_Rate>
+        <Deploy_Mode />
+        <Retrieve_Mode />
+        <Maneuver_1 />
+        <Maneuver_2 />
+        <Maneuver_3 />
       </Puppetmaster>
       <Dancer>
         <Trance>false</Trance>
@@ -1115,10 +1131,11 @@
         <Bar_Accession>false</Bar_Accession>
         <Bar_Perpetuance>false</Bar_Perpetuance>
         <Bar_Force>false</Bar_Force>
-        <Klimaform_Manifestation>false</Klimaform_Manifestation>
-        <Klimaform_Force>false</Klimaform_Force>
         <Haste_Perpetuance>false</Haste_Perpetuance>
         <Haste_Force>false</Haste_Force>
+        <Debuff_Accession>false</Debuff_Accession>
+        <Klimaform_Manifestation>false</Klimaform_Manifestation>
+        <Klimaform_Force>false</Klimaform_Force>
       </Scholar>
       <Geomancer>
         <Bolster>false</Bolster>
@@ -1514,6 +1531,16 @@
         <Tactical_Switch>false</Tactical_Switch>
         <Cooldown>false</Cooldown>
         <Heady_Artifice>false</Heady_Artifice>
+        <Repair_HP>0</Repair_HP>
+        <Deploy>false</Deploy>
+        <Retrieve>false</Retrieve>
+        <Maneuver>false</Maneuver>
+        <Overload_Rate>25</Overload_Rate>
+        <Deploy_Mode />
+        <Retrieve_Mode />
+        <Maneuver_1 />
+        <Maneuver_2 />
+        <Maneuver_3 />
       </Puppetmaster>
       <Dancer>
         <Trance>false</Trance>
@@ -1603,10 +1630,11 @@
         <Bar_Accession>false</Bar_Accession>
         <Bar_Perpetuance>false</Bar_Perpetuance>
         <Bar_Force>false</Bar_Force>
-        <Klimaform_Manifestation>false</Klimaform_Manifestation>
-        <Klimaform_Force>false</Klimaform_Force>
         <Haste_Perpetuance>false</Haste_Perpetuance>
         <Haste_Force>false</Haste_Force>
+        <Debuff_Accession>false</Debuff_Accession>
+        <Klimaform_Manifestation>false</Klimaform_Manifestation>
+        <Klimaform_Force>false</Klimaform_Force>
       </Scholar>
       <Geomancer>
         <Bolster>false</Bolster>

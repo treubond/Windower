@@ -40,6 +40,12 @@
             </stroke>
         </text>
     </global>
+    <babytaru>
+        <pos>
+            <x>833</x>
+            <y>443</y>
+        </pos>
+    </babytaru>
     <hybridkiller>
         <pos>
             <x>1530</x>

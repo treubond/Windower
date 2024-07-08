@@ -420,8 +420,9 @@ function get_sets()
         feet="Mallquis Clogs",
         left_ear="Magnetic Earring",
         right_ear="Loquac. Earring",
+        left_ring="Kishar Ring",
         right_ring="Jhakri Ring",        
-	
+        back={ name="Fi Follet Cape +1", augments={'Path: A',}},
     }
 
 	sets.precast["Stun"] = {
@@ -556,20 +557,20 @@ function get_sets()
     -- used with toggle, default: F10
     -- Pieces to swap from freen nuke to Magic Burst
     sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MAB 327, MACC 334, MB 33/3
-        main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
+        main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}}, --10
         sub="Elan Strap",
         ammo="Ghastly Tathlum +1",
         head="Arbatel Bonnet +2",
         body="Arbatel Gown +2",
-        hands={ name="Agwu's Gages", augments={'Path: A',}},
+        hands={ name="Agwu's Gages", augments={'Path: A',}}, --8/3
         legs="Arbatel Pants +2",
-        feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-        neck={ name="Argute Stole +1", augments={'Path: A',}},
+        feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6
+        neck={ name="Argute Stole +1", augments={'Path: A',}}, --7
         waist="Sacro Cord",
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        right_ring="Jhakri Ring",
+        right_ring="Jhakri Ring", --2
         back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
 	    --[[ main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
         sub="Elan Strap",
@@ -589,8 +590,8 @@ function get_sets()
     })
 	
     sets.midcast.nuking.acc = {  -- MAB 329, MACC 379, MAB 19/4
-        main="Daybreak",
-        sub="Culminus",
+        main="Bunzi's Rod",
+        sub="Ammurapi Shield",
         ammo="Ghastly Tathlum +1",
         head="Arbatel Bonnet +2",
         body="Arbatel Gown +2",

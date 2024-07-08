@@ -141,7 +141,7 @@ function init_gear_sets()
         left_ear="Moonshade Earring",
         right_ear="Brutal Earring",
         left_ring="Niqmaddu Ring",
-        right_ring="Rajas Ring",
+        right_ring="Regal Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
     }
  
@@ -162,7 +162,7 @@ function init_gear_sets()
         left_ear="Moonshade Earring",
         right_ear="Brutal Earring",
         left_ring="Niqmaddu Ring",
-        right_ring="Rajas Ring",
+        right_ring="Regal Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
     })
  
@@ -177,7 +177,7 @@ function init_gear_sets()
         left_ear="Moonshade Earring",
         right_ear="Brutal Earring",
         left_ring="Niqmaddu Ring",
-        right_ring="Rajas Ring",
+        right_ring="Regal Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
     })
  

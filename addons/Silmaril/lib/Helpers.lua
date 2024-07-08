@@ -1,19 +1,19 @@
 function log (msg)
     if get_debug_state() then
         if msg == nil then
-            windower.add_to_chat(80,'---- Value is Nil ----')
+            send_to_chat(80,'---- Value is Nil ----')
         elseif type(msg) == "table" then
             for index, value in ipairs(msg) do
-                windower.add_to_chat(80,'---- '..tostring(value)..' ----')
+                send_to_chat(80,'---- '..tostring(value)..' ----')
             end
         elseif type(msg) == "number" then
-            windower.add_to_chat(80,'---- '..tostring(msg)..' ----')
+            send_to_chat(80,'---- '..tostring(msg)..' ----')
         elseif type(msg) == "string" then
-            windower.add_to_chat(80,'---- '..msg..' ----')
+            send_to_chat(80,'---- '..msg..' ----')
         elseif type(msg) == "boolean" then
-            windower.add_to_chat(80,'---- '..tostring(msg)..' ----')
+            send_to_chat(80,'---- '..tostring(msg)..' ----')
         else
-            windower.add_to_chat(80,'---- Unknown Debug Message ----')
+            send_to_chat(80,'---- Unknown Debug Message ----')
         end
     end
 end
@@ -21,46 +21,46 @@ end
 function info (msg)
     if get_info_state() then
         if msg == nil then
-            windower.add_to_chat(7,'Value is Nil')
+            send_to_chat(7,'Value is Nil')
         elseif type(msg) == "table" then
             for index, value in ipairs(msg) do
-                windower.add_to_chat(7,tostring(value))
+                send_to_chat(7,tostring(value))
             end
         elseif type(msg) == "number" then
-            windower.add_to_chat(7,tostring(msg))
+            send_to_chat(7,tostring(msg))
         elseif type(msg) == "string" then
-            windower.add_to_chat(5,msg)
+            send_to_chat(5,msg)
         elseif type(msg) == "boolean" then
-            windower.add_to_chat(7,tostring(msg))
+            send_to_chat(7,tostring(msg))
         else
-            windower.add_to_chat(7,'Unknown Info Message')
+            send_to_chat(7,'Unknown Info Message')
         end
     end
 end
 
 function echo (msg)
     if msg == nil then
-        windower.add_to_chat(7,'---- Value is Nil ----')
+        send_to_chat(7,'---- Value is Nil ----')
     elseif type(msg) == "table" then
         for index, value in ipairs(msg) do
             command = 'input /echo '..value..''
-            windower.send_command(command)
-            windower.send_ipc_message('silmaril message '..value)
+            send_command(command)
+            send_ipc('silmaril message '..value)
         end
     elseif type(msg) == "number" then  
         command = 'input /echo '..tostring(msg)..''
-        windower.send_command(command)
-        windower.send_ipc_message('silmaril message '..tostring(msg))
+        send_command(command)
+        send_ipc('silmaril message '..tostring(msg))
     elseif type(msg) == "string" then
         command = 'input /echo '..msg..''
-        windower.send_command(command)
-        windower.send_ipc_message('silmaril message '..msg)
+        send_command(command)
+        send_ipc('silmaril message '..msg)
     elseif type(msg) == "boolean" then
         command = 'input /echo '..tostring(msg)..''
-        windower.send_command(command)
-        windower.send_ipc_message('silmaril message '..tostring(msg))
+        send_command(command)
+        send_ipc('silmaril message '..tostring(msg))
     else
-        windower.add_to_chat(7,'---- Unknown Echo Message ----')
+        send_to_chat(7,'---- Unknown Echo Message ----')
     end
 end
 

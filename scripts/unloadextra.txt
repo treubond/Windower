@@ -1,0 +1,12 @@
+unload FFXIDB;
+unload Guildwork;
+lua unload azureSets;
+lua unload dynamishelper;
+lua unload thtracker;
+lua unload TParty;
+lua unload ohshi;
+lua unload debuffed;
+lua unload omen;
+lua unload pointwatch;
+lua unload speedchecker;
+

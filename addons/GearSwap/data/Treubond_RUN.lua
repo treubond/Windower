@@ -21,6 +21,11 @@
 function get_sets()
 	maps()
 
+	mote_include_version = 2
+    -- Load and initialize the include file.
+    --include('Mote-Include.lua')
+    include('organizer-lib')
+	include('Global-Binds.lua')
     --------------------
     --[ARTIFACT ARMOR]-[AF]
     --------------------    
@@ -45,7 +50,7 @@ function get_sets()
     --[EMPERYAN ARMOR]-[EMPY]
     --------------------    
     EMPY = {}		--Leave This Empty
-    EMPY.Head	= "Erilaz Galea +2"
+    EMPY.Head	= "Erilaz Galea +3"
     EMPY.Body	= "Erilaz Surcoat +2"
     EMPY.Hands	= "Erilaz Gauntlets +2"
     EMPY.Legs	= "Eri. Leg Guards +2"
@@ -654,7 +659,7 @@ function get_sets()
 		left_ear="Sherida Earring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		left_ring="Niqmaddu Ring",
-		right_ring="Ilabrat Ring",
+		right_ring="Regal Ring",
 		back=Ogma.WSD,
 		--[[ ammo = "Coiste Bodhar",
 		head = "Erilaz Galea +3",
@@ -720,7 +725,7 @@ function get_sets()
 		left_ear="Sherida Earring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		left_ring="Niqmaddu Ring",
-		right_ring="Ilabrat Ring",
+		right_ring="Regal Ring",
 		back=Ogma.WSD,
 		--[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head="Nyame Helm",
@@ -1018,14 +1023,14 @@ function get_sets()
 		ring2 = "Kunaji Ring", ]]
 	})
 	--Spell Interruption Rate--
-	sets.SIR = { -- 93
+	sets.SIR = { -- 103
 		ammo="Staunch Tathlum", -- 10
-		head=EMPY.Head, -- 15
+		head=EMPY.Head, -- 20
 		body="Nyame Mail", -- 0
 		hands="Rawhide Gloves", -- 15
 		legs="Carmine Cuisses +1", -- 20
 		feet=EMPY.Feet, -- 0
-		neck={ name="Loricate Torque +1", augments={'Path: A',}}, -- 5
+		neck="Moonbeam Necklace", -- 10
 		waist="Rumination Sash", -- 10
 		left_ear="Odnowa Earring +1", -- 0
 		right_ear="Magnetic Earring", -- 8
@@ -1238,6 +1243,7 @@ function get_sets()
 		hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
 		legs={ name="Taeon Tights", augments={'Phalanx +3',}},
 		feet={ name="Taeon Boots", augments={'Phalanx +3',}},
+		Ogma.SIR,
 		--[[ ammo="Staunch Tathlum +1",
 		head={ name="Fu. Bandeau +3", augments={'Enhances "Battuta" effect',}},
 		body={ name="Herculean Vest", augments={'Rng.Acc.+14 Rng.Atk.+14','"Conserve MP"+2','Phalanx +4','Accuracy+17 Attack+17',}},
@@ -1576,6 +1582,8 @@ TH = false -- Defaults
 SIR = false -- Spell Interruption Rate
 TankingTP = true -- If true, default set is tanking TP array.
 TwoHandedTP = true -- TP set order, looks for Tanking TP set before 2H TP before 1H DW TP.
+
+Phalanx = false -- Phalanx gear
 ------------------------------------------
 -- Windower Hooks              --
 ------------------------------------------
@@ -1720,6 +1728,7 @@ include('Global-Binds.lua')
 --@ means win
 send_command('bind f9 gs c toggle TP set') --This means if you hit f9 it toggles the sets
 send_command('bind f10 gs c toggle WS set') --Changes Reso and Dimidiation sets
+send_command('bind ^f10 gs c toggle Phalanx set') --Toggle phalanx set
 send_command('bind f11 gs c toggle TH') --Toggles TH mode
 send_command('bind f12 gs c toggle Idle set')
 send_command('bind ^f8 gs c toggle SIR') -- Turns Spell Interruption Rate set on
@@ -1773,6 +1782,7 @@ function file_unload()
 	send_command('unbind !f12')
 	send_command('unbind f9')
 	send_command('unbind f10')
+	send_command('unbind ^f10')
 	send_command('unbind f11')
 	send_command('unbind f12')
 	
@@ -1923,6 +1933,15 @@ function self_command(command)
         else
 			SIR = true
 			send_command('@input /echo <----- Spell Interruption Rate: [On] ----->')
+		end
+		status_change(player.status)
+	elseif command == 'toggle Phalanx' then
+		if Phalanx == true then
+			Phalanx = false
+			send_command('@input /echo <----- Phalanx Set: [Off] ----->')
+        else
+			Phalanx = true
+			send_command('@input /echo <----- Phalanx Set: [On] ----->')
 		end
 		status_change(player.status)
 	elseif command == 'toggle TH' then

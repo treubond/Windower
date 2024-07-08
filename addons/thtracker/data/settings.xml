@@ -45,4 +45,10 @@
             </stroke>
         </text>
     </global>
+    <treubond>
+        <pos>
+            <x>1027</x>
+            <y>105</y>
+        </pos>
+    </treubond>
 </settings>

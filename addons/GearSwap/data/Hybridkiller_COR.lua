@@ -134,7 +134,7 @@ function user_setup()
     state.WeaponskillMode:options('Normal', 'HighBuff')
     state.IdleMode:options('Normal', 'DT')
 
-    state.Gun = M{['description']='Gun', 'Compensator', 'Anarchy'}--'DeathPenalty', 'Armageddon', 'Fomalhaut', 'Ataktos'}
+    state.Gun = M{['description']='Gun', 'Anarchy', 'Molybdosis', 'DeathPenalty',} --'Armageddon', 'Fomalhaut', 'Ataktos'}
     state.WeaponSet = M{['description']='Melee', 'Slashing', 'Piercing', 'Ranged'}
     -- state.CP = M(false, "Capacity Points Mode")
     state.WeaponLock = M(false, 'Weapon Lock')
@@ -404,7 +404,7 @@ function init_gear_sets()
         head="Ikenga's Hat",
         body=AF.Body,
         hands=EMP.Hands,
-        legs="Ikenga's Trousers",
+        legs="Nyame Flanchard",
         feet=REL.Feet,
         neck="Comm. Charm +1",
         waist="Aquiline Belt",
@@ -477,6 +477,7 @@ function init_gear_sets()
 
     sets.precast.WS['Leaden Salute'] = set_combine(sets.precast.WS['Wildfire'], {
         head="Pixie Hairpin +1",
+        left_ring="Archon Ring",
         --[[ head="Pixie Hairpin +1",
         ear1="Moonshade Earring",
         ring1="Archon Ring", ]]
@@ -503,7 +504,7 @@ function init_gear_sets()
         head="Nyame Helm",
         body=AF.Body,
         hands=EMP.Hands,
-        legs="Meg. Chausses +1",
+        legs="Nyame Flanchard",
         feet=REL.Feet,
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
@@ -619,7 +620,7 @@ function init_gear_sets()
         ammo=gear.RAbullet,
         head="Ikenga's Hat",
         body="Ikenga's Vest",
-        hands="Ikenga's Gloves",
+        hands="Malignance Gloves",
         legs="Ikenga's Trousers",
         feet="Malignance Boots",
         neck="Comm. Charm +1",
@@ -791,7 +792,7 @@ function init_gear_sets()
 
     sets.engaged = {
         head="Nyame Helm",
-        body="Nyame Mail",
+        body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
@@ -801,7 +802,7 @@ function init_gear_sets()
         right_ear="Cessance Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
-        back="Atheling Mantle",
+        back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body,
@@ -852,7 +853,7 @@ function init_gear_sets()
     -- No Magic Haste (74% DW to cap)
     sets.engaged.DW = {
         head="Nyame Helm",
-        body="Nyame Mail",
+        body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
@@ -862,7 +863,7 @@ function init_gear_sets()
         right_ear="Cessance Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
-        back="Atheling Mantle",
+        back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -911,7 +912,7 @@ function init_gear_sets()
     -- 15% Magic Haste (67% DW to cap)
     sets.engaged.DW.LowHaste = {
         head="Nyame Helm",
-        body="Nyame Mail",
+        body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
@@ -921,7 +922,7 @@ function init_gear_sets()
         right_ear="Cessance Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
-        back="Atheling Mantle",
+        back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -970,7 +971,7 @@ function init_gear_sets()
     -- 30% Magic Haste (56% DW to cap)
     sets.engaged.DW.MidHaste = {
         head="Nyame Helm",
-        body="Nyame Mail",
+        body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
@@ -980,7 +981,7 @@ function init_gear_sets()
         right_ear="Cessance Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
-        back="Atheling Mantle",
+        back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -1031,7 +1032,7 @@ function init_gear_sets()
     -- 35% Magic Haste (51% DW to cap)
     sets.engaged.DW.HighHaste = {
         head="Nyame Helm",
-        body="Nyame Mail",
+        body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
@@ -1041,7 +1042,7 @@ function init_gear_sets()
         right_ear="Cessance Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
-        back="Atheling Mantle",
+        back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -1092,7 +1093,7 @@ function init_gear_sets()
     -- 45% Magic Haste (36% DW to cap)
     sets.engaged.DW.MaxHaste = {
         head="Nyame Helm",
-        body="Nyame Mail",
+        body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
         feet="Malignance Boots",
@@ -1102,7 +1103,7 @@ function init_gear_sets()
         right_ear="Cessance Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
-        back="Atheling Mantle",
+        back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
         --[[ ammo=gear.RAbullet,
         head=gear.Adhemar_B_head,
         body=gear.Adhemar_B_body, --6
@@ -1160,7 +1161,9 @@ function init_gear_sets()
     ---------------------------------------- Hybrid Sets -------------------------------------------
     ------------------------------------------------------------------------------------------------
 
-    sets.engaged.MalignanceHybrid = {
+    sets.engaged.MalignanceHybrid = { -- 9/9
+        hands="Malignance Gloves", --5/5
+        feet="Malignance Boots", --4/4
         --[[ head="Malignance Chapeau", --6/6
         body="Malignance Tabard", --9/9
         hands="Malignance Gloves", --5/5
@@ -1168,7 +1171,12 @@ function init_gear_sets()
         --feet="Malignance Boots", --4/4 ]]
         }
 
-    sets.engaged.NyameHybrid = {
+    sets.engaged.NyameHybrid = { -- 38/38
+        head="Nyame Helm", --7/7
+        body="Nyame Mail", --9/9
+        hands="Nyame Gauntlets",  --7/7
+        legs="Nyame Flanchard", --8/8
+        feet="Nyame Sollerets", --7/7
         --[[ head="Nyame Helm", --7/7
         body="Nyame Mail", --9/9
         hands="Nyame Gauntlets",  --7/7
@@ -1279,7 +1287,7 @@ function init_gear_sets()
 
     sets.TreasureHunter = {--[[ head="Volte Cap", hands=gear.Herc_TH_hands, feet="Volte Boots", waist="Chaac Belt" ]]}
 
-    sets.Compensator = {ranged="Compensator"}
+    sets.Molybdosis = {ranged="Molybdosis"}
     sets.DeathPenalty = {ranged="Death Penalty"}
     sets.Armageddon= {ranged="Armageddon"}
     sets.Fomalhaut = {ranged="Fomalhaut"}

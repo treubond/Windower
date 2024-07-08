@@ -1,6 +1,6 @@
 do
     local party_buffs = {}
-    local all_buffs = res.buffs
+    local all_buffs = get_res_all_buffs()
 
     function run_buffs(data)
 

@@ -34,7 +34,7 @@ do
         log("Skillchain #1 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name or WS ~= Skillchain_Leader_WS then
-                windower.add_to_chat(8,'Skillchain #1 - Monitoring ['..Name..'] for ['..WS..'].')
+                send_to_chat(8,'Skillchain #1 - Monitoring ['..Name..'] for ['..WS..'].')
             end
             Skillchain_Leader_Name = Name
             Skillchain_Leader_WS = WS
@@ -56,7 +56,7 @@ do
         log("Skillchain #2 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name_2 or WS ~= Skillchain_Leader_WS_2 then
-                windower.add_to_chat(8,'Skillchain #2 - Monitoring ['..Name..'] for ['..WS..'].')
+                send_to_chat(8,'Skillchain #2 - Monitoring ['..Name..'] for ['..WS..'].')
             end
             Skillchain_Leader_Name_2 = Name
             Skillchain_Leader_WS_2 = WS
@@ -78,7 +78,7 @@ do
         log("Skillchain #3 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name_3 or WS ~= Skillchain_Leader_WS_3 then
-                windower.add_to_chat(8,'Skillchain #3 - Monitoring ['..Name..'] for ['..WS..'].')
+                send_to_chat(8,'Skillchain #3 - Monitoring ['..Name..'] for ['..WS..'].')
             end
             Skillchain_Leader_Name_3 = Name
             Skillchain_Leader_WS_3 = WS
@@ -100,7 +100,7 @@ do
         log("Skillchain #4 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name_4 or WS ~= Skillchain_Leader_WS_4 then
-                windower.add_to_chat(8,'Skillchain #4 - Monitoring ['..Name..'] for ['..WS..'].')
+                send_to_chat(8,'Skillchain #4 - Monitoring ['..Name..'] for ['..WS..'].')
             end
             Skillchain_Leader_Name_4 = Name
             Skillchain_Leader_WS_4 = WS

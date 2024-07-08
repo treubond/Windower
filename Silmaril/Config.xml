@@ -3,19 +3,179 @@
   <Port>2025</Port>
   <Positions>
     <Position>
-      <ID>421858</ID>
-      <Index>0</Index>
+      <ID>369178</ID>
+      <Index>2</Index>
+    </Position>
+    <Position>
+      <ID>341089</ID>
+      <Index>3</Index>
     </Position>
     <Position>
       <ID>403618</ID>
       <Index>1</Index>
     </Position>
     <Position>
-      <ID>369178</ID>
-      <Index>2</Index>
+      <ID>421858</ID>
+      <Index>0</Index>
     </Position>
   </Positions>
-  <Reflection />
+  <Reflection>
+    <Reflect>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+      <Name>Treubond</Name>
+      <NPC_Name />
+      <Index>0</Index>
+      <ID>0</ID>
+      <Zone>0</Zone>
+      <Mirror_Messages />
+    </Reflect>
+    <Reflect>
+      <X>-338.6</X>
+      <Y>-176.42</Y>
+      <Z>-10.001</Z>
+      <Name>693Powders</Name>
+      <NPC_Name>Igsli</NPC_Name>
+      <Index>182</Index>
+      <ID>17739958</ID>
+      <Zone>235</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>10</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>387</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>41348</Option_Index>
+          <Unknown_1>86</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-338.6</X>
+      <Y>-176.42</Y>
+      <Z>-10.001</Z>
+      <Name>3StacksPowders</Name>
+      <NPC_Name>Igsli</NPC_Name>
+      <Index>182</Index>
+      <ID>17739958</ID>
+      <Zone>235</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>10</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>387</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>8580</Option_Index>
+          <Unknown_1>37</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+  </Reflection>
   <Close_Prompt>false</Close_Prompt>
   <Always_On_Top_Main>false</Always_On_Top_Main>
   <Always_On_Top_Config>false</Always_On_Top_Config>
@@ -33,7 +193,7 @@
   <Engage_Delay>2</Engage_Delay>
   <Disengage_Delay>2</Disengage_Delay>
   <Switch_Delay>1</Switch_Delay>
-  <Message_Delay>2</Message_Delay>
+  <Message_Delay>20</Message_Delay>
   <Blacklists>
     <Mirror_Blacklists>
       <Mirror_Blacklist>

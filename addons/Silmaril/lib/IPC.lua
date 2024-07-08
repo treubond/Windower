@@ -19,7 +19,7 @@ end
 function IPC_zone(args)
     log('received IPC message of zone')
     -- Have the player go to zone line if following via Moving.lua
-    zone_check(tonumber(args[1]),tonumber(args[2]),tonumber(args[3]),tonumber(args[4]),tonumber(args[5]),tonumber(args[6]),tonumber(args[7]))
+    zone_check(tonumber(args[1]),tonumber(args[2]),tonumber(args[3]),tonumber(args[4]),tonumber(args[5]),tonumber(args[6]),tonumber(args[7]),tonumber(args[8]))
 end
 
 function IPC_update(args)
@@ -47,7 +47,7 @@ function IPC_message(args)
     end
     message = message:sub(1, #message - 1)
     command = 'input /echo '..message..''
-    windower.send_command(command)
+    send_command(command)
     log('Message recieved ['..message.."]")
 end
 

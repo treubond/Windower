@@ -10,9 +10,9 @@ function input_message(type, index, param, option, option2)
     if target then 
         log('Using Party Table')
     else
-        target = windower.ffxi.get_mob_by_index(index)
+        target = get_mob_by_index(index)
         if not target then
-            target = windower.ffxi.get_mob_by_id(index)
+            target = get_mob_by_id(index)
             if not target then
                 if type ~= "Reflect" then
                     log("Target not found Type: ["..tostring(type).."] Index ["..tostring(index).."] Param ["..tostring(param).."] Option ["..tostring(option).."] Option 2 ["..tostring(option2).."]")
@@ -99,7 +99,7 @@ function input_message(type, index, param, option, option2)
         lockon(target,param)
 
     elseif type == "Cancel" then
-        windower.packets.inject_outgoing(0xF1,string.char(0xF1,0x04,0,0,string.format("%i",param)%256,math.floor(string.format("%i",param)/256),0,0))
+        cancel_buff(param)
 		log("Cancel ["..string.format("%i",param)..']')
 
     elseif type == "Script" then
@@ -113,10 +113,10 @@ function input_message(type, index, param, option, option2)
         Action_Message('0x037',target,param)
 
     elseif type == "Message" then
-        if param == "0" then windower.send_command('input /tell '..target.name..' '..option..'') -- Tell
-        elseif param == "1" then windower.send_command('input /party '..option..'') -- Party
-        elseif param == "2" then windower.send_command('input /echo '..option..'') -- Echo player only
-        elseif param == "3" then windower.send_command('input /echo '..option..'') windower.send_ipc_message('silmaril message '..option) end -- Echo party
+        if param == "0" then send_command('input /tell '..target.name..' '..option..'') -- Tell
+        elseif param == "1" then send_command('input /party '..option..'') -- Party
+        elseif param == "2" then send_command('input /echo '..option..'') -- Echo player only
+        elseif param == "3" then send_command('input /echo '..option..'') send_ipc('silmaril message '..option) end -- Echo party
 
     elseif type == "Mirror" then
         clear_npc_data()
@@ -170,47 +170,54 @@ function Action_Message(category, target, param)
     -- use input commands so that gearswap can swap our gear for us - use target ID
     if category == '0x09' then
         local ability = get_ability(tonumber(param))
+        if not ability then return log("Ability not found") end
         command = 'input '..ability.prefix..' "'..ability.en..'" '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == '0x07' then
         local ability = get_weaponskill(tonumber(param))
+        if not ability then return log("Ability not found") end
         command = 'input '..ability.prefix..' "'..ability.en..'" '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == '0x08' then
         local ability = get_ability(tonumber(param))
+        if not ability then return log("Ability not found") end
         command = 'input '..ability.prefix..' "'..ability.en..'" '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == '0x03' then
         local ability = get_spell(tonumber(param))
+        if not ability then return log("Ability not found") end
         command = 'input '..ability.prefix..' "'..ability.en..'" '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == '0x037' then
         local ability = get_item(tonumber(param))
+        if not ability then return log("Ability not found") end
         command = 'input /item "'..ability.en..'" '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == '0x10' then
         command = 'input /ra '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == '0x??' then
         command = 'input '..param..' '..target.id
-        windower.send_command(command)
+        send_command(command)
         log(command)
     elseif category == 'raw' then
-        windower.send_command(param)
+        send_command(param)
         log(param)
     else
-        packets.inject(packets.new('outgoing', 0x1A, {
+        local packet = new_packet('outgoing', 0x1A, 
+        {
 			['Target'] = target.id,
 			['Target Index'] = target.index,
 			['Category'] = category, -- Spell Cast
             ['Param'] = param, -- Spell ID
-	    }))
+	    })
+        inject_packet(packet)
         log("Packet Injected ["..category..'] ['..target.name..']')
     end
 end
@@ -220,7 +227,7 @@ function Mirror_Message(target, param, option)
 
     -- License was not found
     if type == 0 then
-        windower.add_to_chat(80,'------- License Not Found -------')
+        send_to_chat(80,'------- License Not Found -------')
 
     -- Turns on/off Mirroring
     elseif type == 1 then

@@ -55,7 +55,7 @@ end
 
 function job_setup()	
 	--Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Lycurgos', 'KajaLance', 'Club'} --'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Lycurgos', 'ShiningOne', 'Club'} --'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
     
 	--CP Mode
@@ -96,6 +96,8 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT', 'Reraise')
     state.MagicalDefenseMode:options('MDT')
     
+    state.Phalanx = M(false, 'Phalanx')
+
     --Auto Kite (Auto Move Speed Gear)
 	state.Auto_Kite = M(false, 'Auto_Kite')   
 	moving = false
@@ -109,6 +111,7 @@ function user_setup()
 	send_command('bind @p gs c toggle Pause')
     send_command('bind f9 gs c cycle OffenseMode')
     send_command('bind ^f9 gs c cycle HybridMode')
+    send_command('bind f10 gs c toggle Phalanx')
 
     -- Ability Binds
     send_command('bind ^numpad/ input /ja "Berserk" <me>')
@@ -159,6 +162,7 @@ function file_unload()
     send_command('unbind !w')
     send_command('unbind f9')
     send_command('unbind ^f9')
+    send_command('unbind f10')
     send_command('unbind ^numpad7')
     send_command('unbind ^numpad9')
 	send_command('unbind ^numpad4')
@@ -210,6 +214,12 @@ function init_gear_sets()
     -- Ranged Attacks
 	sets.precast.RA = { }
 
+    sets.Phalanx = {
+        hands="Souv. Handsch. +1",
+        legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
+        feet="Souveran Schuhs +1",
+    }
+
 -------------------------------------------------------------------------------------------------------------------	
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------
@@ -238,7 +248,7 @@ function init_gear_sets()
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Thrud Earring",
         right_ear="Moonshade Earring",
-        left_ring="Rajas Ring",
+        left_ring="Regal Ring",
         --left_ring="Sroda Ring",
         right_ring="Niqmaddu Ring",
         back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
@@ -313,7 +323,7 @@ function init_gear_sets()
         neck="Sanctity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
-        right_ear="Boii Earring",
+        right_ear="Boii Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Shneddick Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -339,7 +349,7 @@ function init_gear_sets()
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
-        right_ear="Boii Earring",
+        right_ear="Boii Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Defending Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -356,14 +366,14 @@ function init_gear_sets()
     sets.engaged = {
         ammo="Ginsen",
         head="Boii Mask +3",
-        body="Boii Lorica +2",
+        body="Sakpata's Plate",
         hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
         legs="Pumm. Cuisses +3",
         feet="Pumm. Calligae +3",
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Cessance Earring",
-        right_ear="Boii Earring",
+        left_ear="Schere Earring",
+        right_ear="Boii Earring +1",
         left_ring="Chirich Ring +1",
         --right_ring="Sroda Ring",
         right_ring="Niqmaddu Ring",
@@ -424,8 +434,8 @@ function init_gear_sets()
 	--sets.Reikiono	 = {main="Reikiono", sub ="Bloodrain Strap"}
     sets.Naegling 	 = {main="Naegling", sub="Blurred Shield +1"}	
     sets.Lycurgos    = {main="Lycurgos", sub="Pole Grip"}
-    sets.KajaLance   = {main="Kaja Lance", sub="Pole Grip"}
-    sets.Club        = {main="Beryllium Mace", sub="Blurred Shield +1"}
+    sets.ShiningOne  = {main="Shining One", sub="Pole Grip"}
+    sets.Club        = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 
 end
 
@@ -686,5 +696,5 @@ function select_default_macro_book()
 end
 
 function set_lockstyle()
-    send_command('wait 2; input /lockstyleset ' .. lockstyleset)
+    send_command('wait 11; input /lockstyleset ' .. lockstyleset)
 end

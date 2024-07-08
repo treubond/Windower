@@ -21,7 +21,6 @@ do
     local mid_inject = false -- Determines if the player is mid injection incase times out or packet drops
     local block_release = false -- This is used for warp portals when the player is already in a menu (block to server the event skip)
     local force_warp = false -- used to adjust position to get response from server
-    local outgoing_message = false -- Used to release the message
     local warp_spoof = false
     local outgoing_warp = false
     local warp_message = {}
@@ -31,7 +30,7 @@ do
     -- Player starts by interactiong with a NPC by sending an action packet 0x01A with a category of 0x000.
     -- This is captured in Packets.lua and calls npc_interact(packet_in) to start the process of recording.
     -- In response to the Action packet the server send the client a 0x032/0x033/0x034 packet.  This contains the menu the NPC is displaying.
-    -- Because of this the menu needs to be blocked.  This is done after the packet is processed by returning "true" to windower in Silmaril.lua
+    -- Because of this the menu needs to be blocked.  This is done after the packet is processed by returning "true"
 
 
 -----------------------------------------------------------------------
@@ -47,7 +46,7 @@ do
         sm_result_hide()
 
         -- Used to look up NPC for blacklist
-        local npc = windower.ffxi.get_mob_by_id(packet_in['Target'])
+        local npc = get_mob_by_id(packet_in['Target'])
         if not npc then log("Couldn't get target ["..string.format("%i",packet_in['Target']).."]") return end
 
         log('valid_target ['..tostring(npc.valid_target)..']')
@@ -61,6 +60,11 @@ do
         if not w then return end
 
         if w.mog_house and npc.name == 'Moogle' then return end
+
+        if npc.id == p.id and not temp_menu_id then 
+            log('Cancel due to self') 
+            return 
+        end
 
         -- Check for a black listed NPC
         for index, item in ipairs(black_list) do
@@ -121,8 +125,10 @@ do
     -- 0x05B
     -- This function sends the menu selection of the player to silmaril to build the menu transactions
     function npc_out_dialog(packet_in)
+        if not mirror_target then return end
         if blacklisted then log("Blacklisted NPC") return end
         log('Recording Dialog [0x05B]')
+
         send_packet(get_player_id()..';mirror_dialog_0x05B,'..
             packet_in['Target']..','..
             packet_in['Option Index']..','..
@@ -132,6 +138,7 @@ do
             packet_in['_unknown2']..','..
             packet_in['Zone']..','..
             packet_in['Menu ID'])
+
         packet_log(packet_in, "out")
         message_time = os.clock()
     end
@@ -139,8 +146,10 @@ do
     -- 0x05C
     -- This function is for a warp request to silmaril
     function npc_out_warp(packet_in)
+        if not mirror_target then return end
         if blacklisted then log("Blacklisted NPC") return end
         log('Recording Warp [0x05C]')
+
         send_packet(get_player_id()..';mirror_warp_0x05C,'..
             packet_in['X']..','..
             packet_in['Y']..','..
@@ -152,6 +161,7 @@ do
             packet_in['Target Index']..','..
             packet_in['_unknown2']..','..
             packet_in['Rotation'])
+
         packet_log(packet_in, "out")
         message_time = os.clock()
     end
@@ -161,6 +171,7 @@ do
     function npc_out_trade(packet_in, formattedString)
 
         if not packet_in then return end
+        if not mirror_target then return end
         if blacklisted then return end
 
         log('Mirroring Trade [0x036]')
@@ -178,6 +189,7 @@ do
     function npc_out_buy(packet_in)
 
         if not packet_in then return end
+        if not mirror_target then return end
         if blacklisted then return end
 
         log('Mirroring Buy [0x083]')
@@ -237,6 +249,8 @@ do
             table.insert(mirror_message, item)
         end
 
+        if #mirror_message < 1 then return end
+
         -- Set the message count
         message_count = #mirror_message
         log('Messasge count is ['..message_count..']')
@@ -246,16 +260,13 @@ do
             if temp_menu_id then
                 block_release = true
                 log('Sending Menu Cancel')
-                windower.packets.inject_incoming(0x052, 'ICHC':pack(0,2,temp_menu_id,0))
-                temp_menu_id = nil
+                cancel_menu(temp_menu_id)
                 return
             else
                 log('Player is already in a menu - Mirroring Failed')
                 send_packet(get_player_id()..";mirror_status_failed")
                 return
             end
-        else
-            temp_menu_id = nil
         end
 
         -- Parse the first message
@@ -265,19 +276,20 @@ do
         end
 
         if packet_out[1] == "0x05B" or packet_out[1] == "0x05C" then -- Dialog
-
+            
             -- Build the action packet
-            action_packet = packets.new('outgoing', 0x01A, {
+            action_packet = new_packet('outgoing', 0x01A, 
+            {
                 ['Target'] = mirror_target.id,
                 ['Target Index'] = mirror_target.index,
                 ['Category'] = 0x00,
-                ['Param'] = 0 })
+                ['Param'] = 0 
+            })
 
             -- Start the interation
             log('Initial NPC Poke')
             injecting = true
-            packets.inject(action_packet)
-            outgoing_message = true
+            inject_packet(action_packet)
             poke_time = os.clock()
             packet_log(action_packet, 'out')
             mirroring_state = "Injecting [0x01A]"
@@ -313,8 +325,7 @@ do
         end
 
         -- inject the packet
-        packets.inject(action_packet)
-        outgoing_message = true
+        inject_packet(action_packet)
         poke_time = os.clock()
         packet_log(action_packet, 'out')
         mirroring_state = "Injecting [0x01A] - Retry ["..string.format("%i",retry_count)..']'
@@ -328,8 +339,11 @@ do
         if not mirror_message then return end
 
         if #mirror_message == 0 then
+            force_warp = false
             mid_inject = false
-            mirror_message = nil 
+            mirror_message = nil
+            injecting = false
+            send_packet(get_player_id()..";mirror_status_completed")
             return 
         end
 
@@ -355,7 +369,9 @@ do
             message_type = '[0x05B]'
             local automated = false
             if packet_out[6] == 'true' then automated = true end
-            packet = packets.new('outgoing', 0x05B, {
+
+            packet = new_packet('outgoing', 0x05B, 
+            {
                 ['Target'] = tonumber(packet_out[2]),
                 ['Option Index'] = tonumber(packet_out[3]),
                 ['_unknown1'] = tonumber(packet_out[4]),
@@ -382,7 +398,7 @@ do
             end
 
             message_type = '[0x05C]'
-            packet = packets.new('outgoing', 0x05C, 
+            packet = new_packet('outgoing', 0x05C, 
             {
                 ['X'] = tonumber(packet_out[2]),
                 ['Y'] = tonumber(packet_out[3]),
@@ -406,7 +422,7 @@ do
         elseif packet_out[1] == "0x083" then
 
             message_type = '[0x083]'
-            packet = packets.new('outgoing', 0x083, 
+            packet = new_packet('outgoing', 0x083, 
             {
                 ['Count'] = tonumber(packet_out[2]),
                 ['_unknown2'] = tonumber(packet_out[3]),
@@ -422,29 +438,18 @@ do
         end
 
         mid_inject = true
-        packets.inject(packet)
-        outgoing_message = true
+        inject_packet(packet)
         message_time = os.clock()
         packet_log(packet, 'out')
         table.insert(sent_messages, packet)
         table.remove(mirror_message,1)
         mirroring_state = 'Injecting '..message_type..' ('..#sent_messages..' of '..message_count..')'
         log(mirroring_state)
-
-        -- Go ahead and assume it completed as not all NPC have a Event Release (or packet dropped)
-        if #mirror_message == 0 then
-            log("Mirroring Completed (End of Packets)")
-            send_packet(get_player_id()..";mirror_status_completed")
-            force_warp = false
-            mid_inject = false
-            mirror_message = nil
-        end
     end
 
     -- Called when the server has sent a NPC Release
     function npc_in_release(packet_in)
         if not injecting then return end
-
         if packet_in['Type'] == 0x00 then
             log('NPC Release [Standard]')
             -- No messages left to send so consider it done
@@ -452,33 +457,35 @@ do
                 log('Received [Standard] release was a type ['..interaction_type..']')
                 send_packet(get_player_id()..";mirror_status_completed")
                 injecting = false
+                force_warp = false
             end
-
         elseif packet_in['Type'] == 0x01 then
             log('NPC Release [Event]')
-            if not mirror_message then 
+            if not mirror_message or #mirror_message == 0 then 
                 -- Sucessful Event release
                 log('Received [Event] release was a type ['..interaction_type..']')
                 send_packet(get_player_id()..";mirror_status_completed")
                 injecting = false
+                force_warp = false
+                mid_inject = false
+                mirror_message = nil
             end
-
         -- Something prevented the injection
         elseif packet_in['Type'] == 0x02 then
             log('Received [Event Skip] release was a type ['..interaction_type..']')
             send_packet(get_player_id()..";mirror_status_failed")
             injecting = false
-
+            force_warp = false
         elseif packet_in['Type'] == 0x03 then
             log('Received [String] completed source was a type ['..interaction_type..']')
             send_packet(get_player_id()..";mirror_status_completed")
             injecting = false
-
+            force_warp = false
         elseif packet_in['Type'] == 0x04 then
             log('Received [Fishing] release was a type ['..interaction_type..']')
             send_packet(get_player_id()..";mirror_status_completed")
             injecting = false
-
+            force_warp = false
         end
     end
 
@@ -510,7 +517,8 @@ do
             menu_id = menu 
         elseif not menu_id and temp_menu_id then 
             log('Set Menu ID from Temp Menu ID ['..temp_menu_id..']')
-            menu_id = temp_menu_id 
+            menu_id = temp_menu_id
+            temp_menu_id = nil
         elseif menu_id then
             log('Menu ID ['..menu_id..']')
         else
@@ -520,7 +528,7 @@ do
 
         -- Set the target if passed
         if index then 
-            mirror_target = windower.ffxi.get_mob_by_index(index)
+            mirror_target = get_mob_by_index(index)
             if mirror_target then
                 log('Set Mirror Target from command ['..index..']')
                 mirror_target.zone = get_world().zone
@@ -536,7 +544,8 @@ do
         end
 
         log('Silmaril Reset - 0x05B Packet (Constructed)')
-        local packet = packets.new('outgoing', 0x05B, {
+        local packet = new_packet('outgoing', 0x05B, 
+        {
             ['Target'] = mirror_target.id,
             ['Option Index'] = 0,
             ['_unknown1'] = 16384,
@@ -546,13 +555,19 @@ do
             ['Zone'] = mirror_target.zone,
             ['Menu ID'] = menu_id
         })
-        packets.inject(packet)
+
+        inject_packet(packet)
         packet_log(packet, 'out')
 
-        log('Silmaril Reset - 0x052 Packets (Defined)')
-        windower.packets.inject_incoming(0x052, 'ICHC':pack(0,2,menu_id,0)) -- Event Skip
-        windower.packets.inject_incoming(0x052, string.char(0,0,0,0,0,0,0,0)) -- Standard Release
-        windower.packets.inject_incoming(0x052, string.char(0,0,0,0,1,0,0,0)) -- Event Relase
+        -- Reset via Windower/Ashita
+        mirror_reset(menu_id)
+
+        if menu_id and temp_menu_id then
+            log('Try the temp menu recorded ['..temp_menu_id..']')
+            menu_id = nil
+            npc_reset()
+        end
+
     end
 
     function npc_mirror_state(state)
@@ -584,7 +599,6 @@ do
         mid_inject = false
         block_release = false
         force_warp = false
-        outgoing_message = false
     end
 
     -- Table of blacklisted NPC from silmaril
@@ -702,15 +716,6 @@ do
 
     function get_poke_time()
         return poke_time
-    end
-
-    -- Unblocks the 0x015 
-    function get_outgoing_message()
-        return outgoing_message
-    end
-
-    function set_outgoing_message(value)
-        outgoing_message = value
     end
 
     -- Modifies the 0x015 packet

@@ -11,6 +11,7 @@
         bgTransparency - Transparency level for the background. 0-255 range
     -->
     <global>
+        <UpdateFrequency>0.5</UpdateFrequency>
         <bgtransparency>200</bgtransparency>
         <combinepets>true</combinepets>
         <display>
@@ -61,9 +62,26 @@
         <sbcolor>204</sbcolor>
         <showallidps>true</showallidps>
         <showfellow>true</showfellow>
-        <UpdateFrequency>0.5</UpdateFrequency>
         <visible>false</visible>
     </global>
+    <hybridkiller>
+        <display>
+            <pos>
+                <x>883</x>
+                <y>278</y>
+            </pos>
+        </display>
+        <visible>true</visible>
+    </hybridkiller>
+    <khrone>
+        <display>
+            <pos>
+                <x>829</x>
+                <y>247</y>
+            </pos>
+        </display>
+        <visible>true</visible>
+    </khrone>
     <treubond>
         <display>
             <pos>

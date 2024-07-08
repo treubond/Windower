@@ -166,17 +166,17 @@ function get_sets()
     -- Your idle set
     sets.me.idle.refresh = {
       ammo="Staunch Tathlum",
-      head="Wicce Petasos +2",
-      body="Wicce Coat +2",
+      head="Befouled Crown",
+      body="Jhakri Robe +2",
       hands="Wicce Gloves +2",
       legs="Wicce Chausses +2",
       feet="Wicce Sabots +2",
       neck={ name="Loricate Torque +1", augments={'Path: A',}},
       waist={ name="Tarutaru Sash", augments={'"Treasure Hunter"+1','CHR+2','INT+2',}},
-      left_ear="Handler's Earring +1",
-      right_ear="Eabani Earring",
+      left_ear="Gifted Earring",
+      right_ear="Loquac. Earring",
       left_ring="Shneddick Ring",
-      right_ring="Defending Ring",
+      right_ring="Mephitas's Ring",
       back="Pahtli Cape",
       --[[ ammo="Staunch Tathlum +1",
       head="Agwu's Cap",
@@ -199,8 +199,14 @@ function get_sets()
     })
 
     -- Your idle DT set
-    sets.me.idle.dt = set_combine(sets.me.idle[refreshType], {
-
+    sets.me.idle.dt = set_combine(sets.me.idle[refreshType], { --50/50
+      ammo="Staunch Tathlum", --2
+      head="Wicce Petasos +2", --10
+      hands="Wicce Gloves +2", --12
+      feet="Wicce Sabots +2", --10
+      neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
+      right_ring="Defending Ring", --10
+      
       --[[ ammo="Staunch Tathlum +1",
       head="Nyame Helm",
       body="Agwu's Robe",
@@ -377,16 +383,16 @@ function get_sets()
     
     sets.me["Myrkr"] = {
       ammo="Ghastly Tathlum +1",
-      head="Wicce Petasos +2",
+      head="Pixie Hairpin +1",
       body="Wicce Coat +2",
       hands="Nyame Gauntlets",
       legs="Wicce Chausses +2",
       feet={ name="Nyame Sollerets", augments={'Path: B',}},
       neck="Morgana's Choker",
       waist="Hierarch Belt",
-      left_ear="Loquac. Earring",
-      right_ear="Gifted Earring",
-      left_ring="Serket Ring",
+      left_ear="Gifted Earring",
+      right_ear="Loquac. Earring",
+      left_ring="Mephitas's Ring",
       right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
       back="Pahtli Cape",
       --[[ ammo="Ghastly Tathlum +1",
@@ -467,20 +473,20 @@ function get_sets()
     -- Precast
     ----------
       
-    sets.precast.casting = {
+    sets.precast.casting = { --57 (15% for /RDM, 20% for /RDM55)
       ammo="Ghastly Tathlum +1",
       head="Jhakri Coronal +2",
-      body="Jhakri Robe +2",
-      hands="Jhakri Cuffs +2",
-      legs="Jhakri Slops +2",
-      feet="Jhakri Pigaches +2",
-      neck="Saevus Pendant +1",
-      waist="Embla Sash",
-      left_ear="Malignance Earring",
-      right_ear="Loquac. Earring",
-      left_ring="Jhakri Ring",
-      right_ring="Kishar Ring",
-      back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
+      body={ name="Merlinic Jubbah", augments={'"Fast Cast"+5','Mag. Acc.+13',}}, --11
+      hands="Agwu's Gages", --6
+      legs="Gyve Trousers", --4
+      feet="Agwu's Pigaches", --4
+      neck="Baetyl Pendant", --4
+      waist="Embla Sash", --5
+      left_ear="Malignance Earring", --4
+      right_ear="Loquac. Earring", --2
+      left_ring="Jhakri Ring", --3 (with head)
+      right_ring="Kishar Ring", --4
+      back={ name="Fi Follet Cape +1", augments={'Path: A',}}, --10
       --[[ ammo="Impatiens",
       head={ name="Merlinic Hood", augments={'"Fast Cast"+7','"Mag.Atk.Bns."+14',}}, -- 15
       body="Agwu's Robe",                                                            --  8
@@ -696,20 +702,20 @@ function get_sets()
    
    -- used with toggle, default: F10
    -- Pieces to swap from free nuke to Magic Burst    
-   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 43/19  MATB 301 MACC/MD 272/294
+   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 45/17  MATB 301 MACC/MD 272/294
     ammo="Ghastly Tathlum +1",
-    head="Ea Hat",
-    body="Ea Houppelande",
-    hands={ name="Agwu's Gages", augments={'Path: A',}},
-    legs="Wicce Chausses +2",
-    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    head="Ea Hat", --6/6
+    body="Ea Houppelande", --8/8
+    hands={ name="Agwu's Gages", augments={'Path: A',}}, --8/3
+    legs="Wicce Chausses +2", --10
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6
     neck="Saevus Pendant +1",
     waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
-    left_ring="Jhakri Ring",
+    left_ring="Jhakri Ring", --2
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-    back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
+    back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}}, --5
     --[[ ammo="Ghastly Tathlum +1",
      head="Ea Hat +1",
      neck="Sorcerer's Stole +2",
@@ -884,7 +890,7 @@ function get_sets()
       ammo="Ghastly Tathlum +1",
       head="Wicce Petasos +2",
       body="Wicce Coat +2",
-      hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
+      hands=Telchine_ENH_hands,
       legs="Wicce Chausses +2",
       feet="Wicce Sabots +2",
       neck="Phalaina Locket",

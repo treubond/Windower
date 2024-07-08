@@ -1,12 +1,10 @@
 _addon.name = 'Silmaril'
 _addon.author = 'Mirdain'
-_addon.version = '3.0'
+_addon.version = '3.1'
 _addon.description = 'A multi-boxer tool'
 _addon.commands = {'silmaril','sm'}
 
 extdata = require 'extdata'
-packets = require 'packets'
-res = require 'resources'
 texts = require 'texts'
 
 require 'tables'
@@ -14,7 +12,12 @@ require 'strings'
 require 'coroutine'
 require 'pack'
 
+require 'lib./Windower' -- Handles all the windower resources
+require 'lib./Ashita' -- Handles all the ashita resources
+
+-- Core components
 require 'lib./Abilities' --Gets information about the player abilities
+require 'lib./Addons' -- Manages the addons
 require 'lib./Buffs' --Used to process incoming buff packets for other party members
 require 'lib./Burst' --Selects and returns the spell to burst
 require 'lib./Commands' --Handles addon commands
@@ -36,110 +39,11 @@ require 'lib./Sync' --Gets information about ffxi and sends to the Silmaril
 require 'lib./Update' --Sets pace and updates globals form windower
 require 'lib./Weaponskills' --Gets information about weaponskills
 require 'lib./World' --Gets information about the world
-require 'lib./Protection' -- Credit goes to witnessprotection - 'Lili'
+require 'lib./Protection' -- Credit goes to witnessprotection for the idea - 'Lili'
 
---Commands recieved and sent to addon
-windower.register_event('addon command', function(input, ...)
-    local args = L{...}
-    commands(input,args)
-end)
+-- Addons
+require 'lib./Addons./Sortie'
 
--- Used to track incoming information
-windower.register_event('incoming chunk', function (id, data, modified, injected, blocked)
-    
-    -- process the packets via Packets.lua
-    message_in(id, data)
 
-    -- block the menu if you are injecting
-    if get_injecting() then
-        if id == 0x032 then 
-            log("Blocking on the 0x032 Packet [Type 1]")
-            return true
-        elseif id == 0x033 then 
-            log("Blocking on the 0x033 Packet [String]")
-            return true
-        elseif id == 0x034 then 
-            log("Blocking on the 0x034 Packet [Type 2]")
-            return true
-        end
-    end
-
-    return protection_in(id, data, modified)
-end)
-
--- Used to track outgoing information
-windower.register_event('outgoing chunk', function (id, data, modified, injected, blocked)
-
-    -- process the packets via Packets.lua
-    message_out(id, data)
-
-    -- Used with automatic dialogs like warps/doors
-    if get_block_release() and id == 0x05B then
-        local packet = packets.parse('outgoing', data)
-        set_block_release(false)
-        log('Calling npc_inject from the blocked outoing 0x05B')
-        set_injecting(true)
-        set_menu_id(packet['Menu ID'])
-        npc_inject()
-        return true
-    end
-
-    if id == 0x015 then
-        if get_injecting() or get_force_warp() then
-            if get_force_warp() then
-                -- Modifiy the packet
-                local target = get_mirror_target()
-                local packet = packets.parse('outgoing', data)
-                packet['X'] = tonumber(target.x)
-                packet['Y'] = tonumber(target.y)
-                packet['Z'] = tonumber(target.z)
-
-                if get_warp_spoof() then
-                    -- This allows the first 0x015 to position before trying to inject
-                    set_warp_spoof(false) 
-                else
-                    -- a packt has been sent with previous location so inject
-                    if get_outgoing_warp() then
-                        set_outgoing_warp(false)
-                        npc_build_message(target, get_warp_message())
-                    end
-                end
-                return packets.build(packet) -- Release the modified packet
-            end
-            if get_outgoing_message() then
-                log('Outgoing Message allow the 0x015 message')
-                set_outgoing_message(false)
-            else
-                log('Blocking the 0x015 message')
-                return true
-            end
-        end
-    end
-
-    -- Process Tells via Protection.lua
-    return protection_out(id, data, modified)
-
-end)
-
---IPC messaging between characters for fast data transfer
-windower.register_event('ipc message', function(msg)
-    IPC_Action(msg)
-end)
-
-windower.register_event('job change', function()
-    get_player_info()
-    get_player_spells()
-    load_command("")
-end)
-
-windower.register_event('load', function()
-    connect() -- Start process of connecting via the Connection.lua
-end)
-
-windower.register_event('logout', function()
-    send_packet(get_player_id()..";reset")
-end)
-
-windower.register_event('unload', function()
-    send_packet(get_player_id()..";reset")
-end)
+windower_hook()
+ashita_hook()

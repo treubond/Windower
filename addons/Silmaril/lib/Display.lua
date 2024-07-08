@@ -39,6 +39,12 @@ do
 			pos={x=0,y=0},
 			bg={visible=true,red=255,green=0,blue=0,alpha=125},
 		},
+		Tracking_Box = 
+		{
+			text={size=10,font='Consolas',red=255,green=255,blue=255,alpha=255},
+			pos={x=1313,y=623},
+			bg={visible=true,red=0,green=0,blue=0,alpha=102},
+		},
 	}
 
 	-- Loads the default settings
@@ -48,6 +54,14 @@ do
 	local sm_display = texts.new("",settings.Update_Box)
 	local sm_npc= texts.new("",settings.NPC_Box)
 	local sm_result= texts.new("",settings.NPC_Results)
+	local tracking_window = texts.new("",settings.Tracking_Box)
+
+	function zero_command()
+		tracking_window.pos.x = 0
+		tracking_window.pos.y = 0
+		sm_display.pos.x = 0
+		sm_display.pos.y = 0
+	end
 
 	function update_display()
 		-- used to fade the mirror screen
@@ -73,7 +87,6 @@ do
         else
             sm_npc:hide()
         end
-
     end
 
 	-- Used to show if Silmaril is running
@@ -116,6 +129,13 @@ do
 		sm_display:text(lines:concat('\n'))
 	end
 
+	-- Sortie tracking box
+	function tracking_box_refresh(lines)
+		local maxWidth = 41
+        for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth) end
+        tracking_window:text(lines:concat('\n'))
+	end
+
 	-- Used to help debug issues - 20 chacaters long
 	function debug_box_refresh()
 		local maxWidth = 20
@@ -151,7 +171,6 @@ do
 			lines:insert('')
 			sm_npc:text(lines:concat('\n'))
 		end
-
 	end
 
 	-- Displays the current status of the mirroring action
@@ -227,40 +246,52 @@ do
         if settings.debug == true then
             settings.debug = false
             sm_debug:hide()
-			windower.add_to_chat(80,'------- Debugging [OFF] -------')
+			send_to_chat(80,'------- Debugging [OFF] -------')
 		else
 			settings.debug = true
             sm_debug:show()
-			windower.add_to_chat(80,'------- Debugging [ON]  -------')
+			send_to_chat(80,'------- Debugging [ON]  -------')
 		end
 	end
 
 	function info_command()
 	    if settings.info == true then
             settings.info = false
-			windower.add_to_chat(80,'------- Info [OFF] -------')
+			send_to_chat(80,'------- Info [OFF] -------')
 		else
 			settings.info = true
-			windower.add_to_chat(80,'------- Info [ON]  -------')
+			send_to_chat(80,'------- Info [ON]  -------')
 		end
 	end
 
+	function tracking_command(value)
+		if value then
+			tracking_window:show()
+		else
+			tracking_window:hide()
+		end
+	end
+
+	function get_tracking_state()
+		return 
+	end
+
 	function display_command()
-		if settings.display == true then
+		if settings.display then
 			settings.display = false
 			sm_display:hide()
-			windower.add_to_chat(80,'------- Display [OFF] -------')
+			send_to_chat(80,'------- Display [OFF] -------')
 		else
 			settings.display = true
 			sm_display:show()
-			windower.add_to_chat(80,'------- Display [ON]  -------')
+			send_to_chat(80,'------- Display [ON]  -------')
 		end
 	end
 
 	function save_command()
-        coroutine.sleep(math.random(100,200)/1000)
+        sleep_time(math.random(100,200)/1000)
 		config.save(settings, get_player_name():lower())
-		windower.add_to_chat(80,'Silmaril Settings Saved')
+		send_to_chat(80,'Silmaril Settings Saved')
 	end
 
 	function set_status_time()
