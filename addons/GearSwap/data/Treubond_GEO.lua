@@ -595,7 +595,7 @@ function get_sets()
 
 
     })
-	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  47/19
+	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  45/24
 		main="Bunzi's Rod", --10
 		sub="Ammurapi Shield",
 		ammo="Ghastly Tathlum +1",
@@ -608,7 +608,7 @@ function get_sets()
 		waist="Sacro Cord",
 		left_ear="Malignance Earring",
 		right_ear = "Regal Earring",
-		left_ring="Jhakri Ring", --2/0
+		left_ring="Mujin Band", --0/5
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back="Izdubar Mantle",
 	})
@@ -616,6 +616,7 @@ function get_sets()
 		right_ear = "Azimuth Earring",
     })
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {
+		left_ring="Jhakri Ring",
 		right_ear = "Azimuth Earring",
     })
 	-----------------------------------------------------------------------------------------------
