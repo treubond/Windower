@@ -207,7 +207,7 @@ function get_sets()
 	EMPY.Head = "Azimuth Hood +3"
 	EMPY.Body = "Azimuth Coat"
 	EMPY.Hands = "Azimuth Gloves"
-	EMPY.Legs = "Azimuth Tights"
+	EMPY.Legs = "Azimuth Tights +2"
 	EMPY.Feet = "Azimuth Gaiters +2"
 	
 	GEOCape = {}
@@ -447,22 +447,22 @@ function get_sets()
     ----------
       
     -- Generic Casting Set that all others take off of. Here you should add all your fast cast  
-    sets.precast.casting = {
+    sets.precast.casting = { --60 gear
 		main="Daybreak",
 		sub="Culminus",
-		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
-		head="Jhakri Coronal +2",
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
-		feet="Jhakri Pigaches +2",
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Sacro Cord",
-		left_ear="Malignance Earring",
-		right_ear="Loquac. Earring",
-		left_ring="Jhakri Ring",
-		right_ring="Kishar Ring",
-		back={ name="Fi Follet Cape +1", augments={'Path: A',}},
+		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}}, --3
+		head="Jhakri Coronal +2", --3 total with ring
+		body={ name="Merlinic Jubbah", augments={'"Fast Cast"+5','Mag. Acc.+13',}}, --11
+		hands={ name="Agwu's Gages", augments={'Path: A',}}, --6
+		legs="Gyve Trousers", --4
+		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --4
+		neck="Baetyl Pendant", --4
+		waist="Embla Sash", --5
+		left_ear="Malignance Earring", --4
+		right_ear="Loquac. Earring", --2
+		left_ring="Jhakri Ring", --3 total with head
+		right_ring="Kishar Ring", --4
+		back={ name="Fi Follet Cape +1", augments={'Path: A',}}, --10
 		--[[ main = "Solstice",
 		range = "Dunna",
 		body = "Merlinic Jubbah",
@@ -572,13 +572,13 @@ function get_sets()
 		ammo="Ghastly Tathlum +1",
 		head=EMPY.Head,
 		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
+		hands=EMPY.Legs,
 		legs="Jhakri Slops +2",
 		feet=EMPY.Feet,
 		neck="Saevus Pendant +1",
 		waist="Sacro Cord",
 		left_ear="Malignance Earring",
-		right_ear = "Azimuth Earring",
+		right_ear = "Regal Earring",
 		left_ring="Jhakri Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back="Izdubar Mantle",
@@ -595,28 +595,28 @@ function get_sets()
 
 
     })
-	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  43/19
+	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  47/19
 		main="Bunzi's Rod", --10
 		sub="Ammurapi Shield",
 		ammo="Ghastly Tathlum +1",
 		head="Ea Hat", --6/6
 		body="Ea Houppelande", --8/8
 		hands="Ea Cuffs", --5/5
-		legs={ name="Nyame Flanchard", augments={'Path: B',}}, --6/0  
+		legs=EMPY.Legs, --10/0  (+2)
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6/0
 		neck="Saevus Pendant +1",
 		waist="Sacro Cord",
 		left_ear="Malignance Earring",
-		right_ear = "Azimuth Earring",
+		right_ear = "Regal Earring",
 		left_ring="Jhakri Ring", --2/0
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		back="Izdubar Mantle",
 	})
     sets.midcast.nuking.acc = set_combine(sets.midcast.nuking.normal,{
-
+		right_ear = "Azimuth Earring",
     })
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {
-
+		right_ear = "Azimuth Earring",
     })
 	-----------------------------------------------------------------------------------------------
 	-- Helix sets automatically derives from casting sets. SO DONT PUT ANYTHING IN THEM other than:
@@ -683,6 +683,7 @@ function get_sets()
 		main = "Daybreak",
 		sub = "Culminus",
 		hands=Telchine_ENH_hands,
+		legs="Gyve Trousers",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     })
     sets.midcast.cure.weather = set_combine(sets.midcast.cure.normal,{
