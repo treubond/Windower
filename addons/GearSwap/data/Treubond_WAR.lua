@@ -239,7 +239,7 @@ function init_gear_sets()
     -- General Set
     sets.precast.WS = {
         ammo="Knobkierrie",
-        head="Agoge Mask +2",
+        head={ name="Nyame Helm", augments={'Path: B',}},
         body="Pumm. Lorica +3",
         hands="Boii Mufflers +3",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -433,8 +433,8 @@ function init_gear_sets()
 	--sets.Montante	 = {main="Montante +1", sub="Bloodrain Strap"}
 	--sets.Reikiono	 = {main="Reikiono", sub ="Bloodrain Strap"}
     sets.Naegling 	 = {main="Naegling", sub="Blurred Shield +1"}	
-    sets.Lycurgos    = {main="Lycurgos", sub="Pole Grip"}
-    sets.ShiningOne  = {main="Shining One", sub="Pole Grip"}
+    sets.Lycurgos    = {main="Lycurgos", sub="Utu Grip"}
+    sets.ShiningOne  = {main="Shining One", sub="Utu Grip"}
     sets.Club        = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 
 end

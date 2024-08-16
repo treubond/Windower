@@ -212,9 +212,9 @@ function get_sets()
 	
 	GEOCape = {}
 	
-	GEOCape.Idle = { name = "Nantosuelta's Cape"}
-	GEOCape.PetIdle = {}
-	GEOCape.Nuke = {}
+	GEOCape.Idle = {}
+	GEOCape.PetIdle = { name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}}
+	GEOCape.Nuke = {name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}}
 	GEOCape.FC = {}
 	
     Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
@@ -277,18 +277,18 @@ function get_sets()
 		main="Bolelabunga",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
-		head="Nyame Helm",
+		head=EMPY.Head, --12
 		body="Jhakri Robe +2",
-		hands="Nyame Gauntlets",
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Plat. Mog. Belt",
+		hands="Nyame Gauntlets", --7
+		legs={ name="Nyame Flanchard", augments={'Path: B',}}, --8
+		feet="Mallquis Clogs", --7 converts to MP
+		neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
+		waist="Plat. Mog. Belt", --3
 		left_ear="Odnowa Earring +1",
 		right_ear="Eabani Earring",
 		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
-		back="Solemnity Cape",
+		right_ring="Defending Ring", --10
+		back="Solemnity Cape", --4
 	--[[ 		main = "Malignance Pole",
 			sub = "Enki Strap",
 			body = "Mallquis Saio +2",
@@ -328,7 +328,7 @@ function get_sets()
 		right_ear="Eabani Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",
-		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
+		back=GEOCape.PetIdle,
 		--[[ main = "Solstice",
 		sub = "Culminus",
 		range = "Dunna",
@@ -386,7 +386,7 @@ function get_sets()
 		left_ring = "Chirich Ring +1",
 		right_ring = "Lehko's Ring",
 		waist="Isa Belt",
-		back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: "Regen"+5',}},
+		back=GEOCape.PetIdle,
     }) 
     
     -- Weapon Skill sets
@@ -581,7 +581,7 @@ function get_sets()
 		right_ear = "Regal Earring",
 		left_ring="Jhakri Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back="Izdubar Mantle",
+		back=GEOCape.Nuke,
 		--[[ ammo = "Ghastly Tathlum +1",
 		head = EMPY.Head,
 		body = EMPY.Body,
@@ -610,14 +610,14 @@ function get_sets()
 		right_ear = "Regal Earring",
 		left_ring="Mujin Band", --0/5
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back="Izdubar Mantle",
+		back=GEOCape.Nuke,
 	})
     sets.midcast.nuking.acc = set_combine(sets.midcast.nuking.normal,{
-		right_ear = "Azimuth Earring",
+		right_ear = "Azimuth Earring +1",
     })
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {
 		left_ring="Jhakri Ring",
-		right_ear = "Azimuth Earring",
+		right_ear = "Azimuth Earring +1",
     })
 	-----------------------------------------------------------------------------------------------
 	-- Helix sets automatically derives from casting sets. SO DONT PUT ANYTHING IN THEM other than:

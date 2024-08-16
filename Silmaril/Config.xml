@@ -21,21 +21,82 @@
   </Positions>
   <Reflection>
     <Reflect>
-      <X>0</X>
-      <Y>0</Y>
-      <Z>0</Z>
-      <Name>Treubond</Name>
-      <NPC_Name />
-      <Index>0</Index>
-      <ID>0</ID>
-      <Zone>0</Zone>
-      <Mirror_Messages />
+      <X>-338.6</X>
+      <Y>-176.42</Y>
+      <Z>-10.001</Z>
+      <Name>10StacksPowders</Name>
+      <NPC_Name>Igsli</NPC_Name>
+      <Index>182</Index>
+      <ID>17739958</ID>
+      <Zone>235</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>10</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>387</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>49540</Option_Index>
+          <Unknown_1>123</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739958</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>182</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
     </Reflect>
     <Reflect>
       <X>-338.6</X>
       <Y>-176.42</Y>
       <Z>-10.001</Z>
-      <Name>693Powders</Name>
+      <Name>7stacksPowders</Name>
       <NPC_Name>Igsli</NPC_Name>
       <Index>182</Index>
       <ID>17739958</ID>
@@ -168,6 +229,1551 @@
           <Automated_Message>false</Automated_Message>
           <Zone>235</Zone>
           <Menu_ID>598</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-343.396</X>
+      <Y>-171.542</Y>
+      <Z>-10.002</Z>
+      <Name>17Shields</Name>
+      <NPC_Name>Isakoth</NPC_Name>
+      <Index>177</Index>
+      <ID>17739953</ID>
+      <Zone>235</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>41</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-343.396</X>
+      <Y>-171.542</Y>
+      <Z>-10.002</Z>
+      <Name>1RitterShield</Name>
+      <NPC_Name>Isakoth</NPC_Name>
+      <Index>177</Index>
+      <ID>17739953</ID>
+      <Zone>235</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>9</Option_Index>
+          <Unknown_1>38</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739953</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>177</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>26</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-376</X>
+      <Y>221</Y>
+      <Z>-113.34</Z>
+      <Name>25 Ghastly Stones</Name>
+      <NPC_Name>Emporox</NPC_Name>
+      <Index>888</Index>
+      <ID>17970040</ID>
+      <Zone>291</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>6</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-376</X>
+      <Y>221</Y>
+      <Z>-113.34</Z>
+      <Name>25 Verdigris Stones</Name>
+      <NPC_Name>Emporox</NPC_Name>
+      <Index>888</Index>
+      <ID>17970040</ID>
+      <Zone>291</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>262</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-376</X>
+      <Y>221</Y>
+      <Z>-113.34</Z>
+      <Name>25 Wailing Stones</Name>
+      <NPC_Name>Emporox</NPC_Name>
+      <Index>888</Index>
+      <ID>17970040</ID>
+      <Zone>291</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>3</Option_Index>
+          <Unknown_1>518</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17970040</Target_ID>
+          <Option_Index>0</Option_Index>
+          <Unknown_1>16384</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Target_Index>888</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>291</Zone>
+          <Menu_ID>9751</Menu_ID>
           <X />
           <Y />
           <Z />

@@ -28,7 +28,7 @@ function job_setup()
     state.Buff.Doom = buffactive.Doom or false
 
     --Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'SakpataSword', 'Club'} --'ShiningOne', 'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'SakpataSword', 'Club', 'Burtgang'} --'ShiningOne', 'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
     state.ShieldSet = M{['description']='Shield Set', 'Blurred', 'Duban', 'Aegis'}
     
@@ -266,7 +266,7 @@ function init_gear_sets()
         ammo="Oshasha's Treatise",
         head={ name="Nyame Helm", augments={'Path: B',}},
         body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Odyssean Gauntlets", augments={'Weapon skill damage +3%','Mag. Acc.+6','Mag. Acc.+9 "Mag.Atk.Bns."+9',}},
+        hands={ name="Odyssean Gauntlets", augments={'Weapon skill damage +3%','Mag. Acc.+6','Mag. Acc.+9 "Mag.Atk.Bns."+9',}}, --5 WSD
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck="Rep. Plat. Medal",
@@ -624,6 +624,7 @@ function init_gear_sets()
     sets.engaged.DW.Acc.Reraise = set_combine(sets.engaged.DW.Acc, sets.Reraise)
  
  
+    sets.Burtgang       = {main="Burtgang"}
     sets.Naegling 	    = {main="Naegling"--[[ , sub="Blurred Shield +1" ]]}	
     sets.SakpataSword   = {main="Sakpata's Sword"--[[ , sub="Aegis" ]]}
     --sets.ShiningOne      = {main="Shining One", sub="Alber Strap"}

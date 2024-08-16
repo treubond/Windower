@@ -17,17 +17,20 @@
 	</YourName>
 	<Treubond>
 		<plugin>FFXIDB</plugin>
-		<plugin>Guildwork</plugin>
-
+		
 		<addon>azuresets</addon>
 		<addon>Debuffed</addon>
 		<addon>pointwatch</addon>
 		<addon>SpeedChecker</addon>
 		<addon>thtracker</addon>
 		<addon>TParty</addon>
+		<addon>silmaril</addon>
+		<addon>battlemod</addon>
 	</Treubond>
 	<Khrone>
+		<addon>silmaril</addon>
 	</Khrone>
 	<Hybridkiller>
+		<addon>silmaril</addon>
 	</Hybridkiller>
 </settings>

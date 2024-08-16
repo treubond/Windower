@@ -723,12 +723,12 @@ function get_sets()
    
    -- used with toggle, default: F10
    -- Pieces to swap from free nuke to Magic Burst    
-   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 37/5  MATB 301 MACC/MD 272/294
+   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 45/18  MATB 301 MACC/MD 272/294
     main="Bunzi's Rod", --10
     sub="Ammurapi Shield",
     ammo="Ghastly Tathlum",
     --head="Ea Hat", --6/6
-    --body="Ea Houppelande", --8/8
+    body="Ea Houppelande", --8/8
     hands="Ea Cuffs", --5/5
     --hands={ name="Agwu's Gages", augments={'Path: A',}}, --8/3
     legs=EMPY.Legs, --10
@@ -739,7 +739,7 @@ function get_sets()
     --left_ear="Malignance Earring",
     right_ear="Wicce Earring +1",
     left_ring="Jhakri Ring", --2
-    right_ring="Metamorph Ring",
+    right_ring="Mujin Band", --0/5
     --back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}}, --5
     --[[ ammo="Ghastly Tathlum +1",
      head="Ea Hat +1",
@@ -763,6 +763,7 @@ function get_sets()
     hands=EMPY.Hands,
     legs=EMPY.Legs,
     neck="Sanctity Necklace",
+    right_ring="Metamorph Ring",
      --[[ body="Wicce Coat +3",
      legs="Wicce Chausses +3",
      right_ring="Freke Ring", ]]

@@ -62,6 +62,7 @@ include('organizer-lib') -- Can remove this if you dont use organizer
 res = require('resources')
 texts = require('texts')
 include('Modes.lua')
+include('Global-Binds.lua')
 
 
 
@@ -159,6 +160,14 @@ function get_sets()
     Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
       
+    EMPY = {}
+
+    EMPY.Head = "Wicce Petasos +2"
+    EMPY.Body = "Wicce Coat +2"
+    EMPY.Hands = "Wicce Gloves +2"
+    EMPY.Legs = "Wicce Chausses +2"
+    EMPY.Feet = "Wicce Sabots +2"
+
     sets.me = {}       -- leave this empty
     sets.buff = {}     -- leave this empty
     sets.me.idle = {}  -- leave this empty
@@ -168,9 +177,9 @@ function get_sets()
       ammo="Staunch Tathlum",
       head="Befouled Crown",
       body="Jhakri Robe +2",
-      hands="Wicce Gloves +2",
-      legs="Wicce Chausses +2",
-      feet="Wicce Sabots +2",
+      hands=EMPY.Hands,
+      legs=EMPY.Legs,
+      feet=EMPY.Feet,
       neck={ name="Loricate Torque +1", augments={'Path: A',}},
       waist={ name="Tarutaru Sash", augments={'"Treasure Hunter"+1','CHR+2','INT+2',}},
       left_ear="Gifted Earring",
@@ -201,9 +210,9 @@ function get_sets()
     -- Your idle DT set
     sets.me.idle.dt = set_combine(sets.me.idle[refreshType], { --50/50
       ammo="Staunch Tathlum", --2
-      head="Wicce Petasos +2", --10
-      hands="Wicce Gloves +2", --12
-      feet="Wicce Sabots +2", --10
+      head=EMPY.Head, --10
+      hands=EMPY.Hands, --12
+      feet=EMPY.Feet, --10
       neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
       right_ring="Defending Ring", --10
       
@@ -250,6 +259,16 @@ function get_sets()
     
     -- Combat Related Sets
     sets.me.melee = {
+      head=EMPY.Head,
+      body=EMPY.Body,
+      hands=EMPY.Hands,
+      legs=EMPY.Legs,
+      feet=EMPY.Feet,
+      left_ring="Chirich Ring +1",
+      right_ring="Lehko's Ring",
+      neck="Asperity Necklace",
+      left_ear="Crep. Earring",
+      right_ear="Telos Earring",
       --[[ ammo="Staunch Tathlum +1",
       head={ name="Nyame Helm", augments={'Path: B',}},
       body="Nyame Mail",
@@ -272,7 +291,7 @@ function get_sets()
     })
  
     -- Weapon Skills sets just add them by name.
-    sets.me["Heavy Swing"] = {
+    sets.me["Heavy Swing"] = set_combine(sets.me.melee, {
       --[[ ammo="Floestone",
       head="Nyame Helm",
       body="Nyame Mail",
@@ -286,7 +305,7 @@ function get_sets()
       left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
       right_ring="Epaminondas's Ring",
       back=Taranus.INT_WSD   ]]
-    }
+    })
     
     sets.me["Retribution"] = set_combine(sets.me["Heavy Swing"], {})
 
@@ -384,9 +403,9 @@ function get_sets()
     sets.me["Myrkr"] = {
       ammo="Ghastly Tathlum +1",
       head="Pixie Hairpin +1",
-      body="Wicce Coat +2",
+      body=EMPY.Body,
       hands="Nyame Gauntlets",
-      legs="Wicce Chausses +2",
+      legs=EMPY.Legs,
       feet={ name="Nyame Sollerets", augments={'Path: B',}},
       neck="Morgana's Choker",
       waist="Hierarch Belt",
@@ -455,7 +474,7 @@ function get_sets()
     -- Gear that needs to be worn to **actively** enhance a current player buff.
     sets.buff['Manafont']       = {}
     sets.buff['Elemental Seal'] = {}
-    sets.buff['Mana Wall']      = {feet="Wicce Sabots +2",back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},}
+    sets.buff['Mana Wall']      = {feet=EMPY.Feet,back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},}
     sets.buff['Enmity Douse']   = {}
     sets.buff['Manawell']       = {}
     sets.buff['Cascade']        = {}
@@ -474,6 +493,8 @@ function get_sets()
     ----------
       
     sets.precast.casting = { --57 (15% for /RDM, 20% for /RDM55)
+      main={ name="Bunzi's Rod", augments={'Path: A',}},
+      sub="Ammurapi Shield",
       ammo="Ghastly Tathlum +1",
       head="Jhakri Coronal +2",
       body={ name="Merlinic Jubbah", augments={'"Fast Cast"+5','Mag. Acc.+13',}}, --11
@@ -531,6 +552,7 @@ function get_sets()
       
    -- Curing Precast, Cure Spell Casting time -
    sets.precast.cure = set_combine(sets.precast.casting,{    
+    
     back="Pahtli Cape",
    })
       
@@ -540,7 +562,7 @@ function get_sets()
 
    sets.precast['Manafont']       = {--[[ body="Archmage's Coat +3" ]]}
    sets.precast['Elemental Seal'] = {}
-   sets.precast['Mana Wall']      = {feet="Wicce Sabots +2"}
+   sets.precast['Mana Wall']      = {feet=EMPY.Feet}
    sets.precast['Enmity Douse']   = {}
    sets.precast['Manawell']       = {}
    sets.precast['Cascade']        = {}
@@ -554,7 +576,7 @@ function get_sets()
     sets.midcast.Obi             = { waist="Hachirin-no-Obi"   }
     sets.midcast.Orpheus         = { waist="Orpheus's Sash"    }
     sets.midcast.MPReturn        = { --[[ body="Spaekona's Coat +3" ]] }
-    sets.midcast.JaSpellDuration = { legs="Wicce Chausses +2"  }
+    sets.midcast.JaSpellDuration = { legs=EMPY.Legs  }
 
     -----------------------------------------------------------------------------------------------
     -- Helix sets automatically derives from casting sets. SO DONT PUT ANYTHING IN THEM other than:
@@ -638,11 +660,11 @@ function get_sets()
     -- Whatever you want to equip mid-cast as a catch all for all spells, and we'll overwrite later for individual spells
    sets.midcast.casting = {
     ammo="Ghastly Tathlum +1",
-    head="Wicce Petasos +2",
-    body="Wicce Coat +2",
-    hands="Wicce Gloves +2",
-    legs="Wicce Chausses +2",
-    feet="Wicce Sabots +2",
+    head=EMPY.Head,
+    body=EMPY.Body,
+    hands=EMPY.Hands,
+    legs=EMPY.Legs,
+    feet=EMPY.Feet,
     neck="Saevus Pendant +1",
     waist="Sacro Cord",
     left_ear="Malignance Earring",
@@ -667,11 +689,11 @@ function get_sets()
    
    sets.midcast.nuking.normal = { -- MATB 357 MACC/MD 316/381
     ammo="Ghastly Tathlum +1",
-    head="Wicce Petasos +2",
-    body="Wicce Coat +2",
-    hands="Wicce Gloves +2",
-    legs="Wicce Chausses +2",
-    feet="Wicce Sabots +2",
+    head=EMPY.Head,
+    body=EMPY.Body,
+    hands=EMPY.Hands,
+    legs=EMPY.Legs,
+    feet=EMPY.Feet,
     neck="Saevus Pendant +1",
     waist="Sacro Cord",
     left_ear="Malignance Earring",
@@ -702,18 +724,20 @@ function get_sets()
    
    -- used with toggle, default: F10
    -- Pieces to swap from free nuke to Magic Burst    
-   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 45/17  MATB 301 MACC/MD 272/294
+   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 53/22  MATB 301 MACC/MD 272/294
+    main={ name="Bunzi's Rod", augments={'Path: A',}}, --10
+    sub="Ammurapi Shield",
     ammo="Ghastly Tathlum +1",
     head="Ea Hat", --6/6
     body="Ea Houppelande", --8/8
     hands={ name="Agwu's Gages", augments={'Path: A',}}, --8/3
-    legs="Wicce Chausses +2", --10
+    legs=EMPY.Legs, --10
     feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6
     neck="Saevus Pendant +1",
     waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
-    left_ring="Jhakri Ring", --2
+    left_ring="Mujin Band", --0/5
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}}, --5
     --[[ ammo="Ghastly Tathlum +1",
@@ -733,8 +757,9 @@ function get_sets()
 
    -- used with toggle, default: F10
    -- Pieces to swap from free nuke to Magic Burst
-   sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, { -- MB/MBII 38/14  MATB 315 MACC/MD 301/316
-    hands="Wicce Gloves +2",
+   sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, { -- MB/MBII 37/11  MATB 315 MACC/MD 301/316
+    head=EMPY.Head,
+    hands=EMPY.Hands,
     neck="Sanctity Necklace",
      --[[ body="Wicce Coat +3",
      legs="Wicce Chausses +3",
@@ -886,20 +911,22 @@ function get_sets()
     sets.midcast.cure = {} -- Leave This Empty
 
     -- Cure Potency
-    sets.midcast.cure.normal = set_combine(sets.midcast.casting, {
+    sets.midcast.cure.normal = set_combine(sets.midcast.casting, { --31
+      main="Daybreak",
+      sub="Sors Shield",
       ammo="Ghastly Tathlum +1",
-      head="Wicce Petasos +2",
-      body="Wicce Coat +2",
-      hands=Telchine_ENH_hands,
-      legs="Wicce Chausses +2",
-      feet="Wicce Sabots +2",
-      neck="Phalaina Locket",
+      head=EMPY.Head,
+      body=EMPY.Body,
+      hands=Telchine_ENH_hands, --10
+      legs="Gyve Trousers", --10
+      feet=EMPY.Feet,
+      neck="Phalaina Locket", --4
       waist="Sacro Cord",
       left_ear="Malignance Earring",
       right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
       left_ring="Omega Ring",
       right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-      back="Solemnity Cape",
+      back="Solemnity Cape", --7
       --[[ ammo="Leisure musk +1",
       head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
       neck="Debilis medallion",

@@ -38,9 +38,9 @@
       <string>Job Abilities</string>
       <string>Geomancy (Luopan)</string>
       <string>Geomancy (Indi)</string>
-      <string>Geomancy (Entrust)</string>
       <string>Cure</string>
       <string>Magic Bursts</string>
+      <string>Geomancy (Entrust)</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -269,15 +269,15 @@
         <Cure_I_Enabled>false</Cure_I_Enabled>
         <Cure_II>30</Cure_II>
         <Cure_II_Enabled>false</Cure_II_Enabled>
-        <Cure_III>147</Cure_III>
+        <Cure_III>377</Cure_III>
         <Cure_III_Enabled>true</Cure_III_Enabled>
-        <Cure_IV>300</Cure_IV>
+        <Cure_IV>639</Cure_IV>
         <Cure_IV_Enabled>true</Cure_IV_Enabled>
         <Cure_V>502</Cure_V>
         <Cure_V_Enabled>false</Cure_V_Enabled>
         <Cure_VI>810</Cure_VI>
         <Cure_VI_Enabled>false</Cure_VI_Enabled>
-        <Threshold>61</Threshold>
+        <Threshold>65</Threshold>
         <Priority_Threshold>85</Priority_Threshold>
         <Priority_Promote_Rate>0</Priority_Promote_Rate>
         <Over_Cure>30</Over_Cure>
@@ -461,18 +461,18 @@
     <Dispel_AoE>false</Dispel_AoE>
     <Assist> Khrone</Assist>
     <Mode>Global</Mode>
-    <Priority_Mode>Strict</Priority_Mode>
+    <Priority_Mode>Free</Priority_Mode>
     <Enemy_Enfeebling>
       <Name>All Enemies</Name>
       <Addle>false</Addle>
       <Bind>false</Bind>
       <Blind>false</Blind>
       <Break>false</Break>
-      <Dia>true</Dia>
+      <Dia>false</Dia>
       <Distract>false</Distract>
       <Frazzle>false</Frazzle>
       <Gravity>false</Gravity>
-      <Paralyze>false</Paralyze>
+      <Paralyze>true</Paralyze>
       <Poison>false</Poison>
       <Sleep>false</Sleep>
       <Silence>false</Silence>
@@ -1676,12 +1676,12 @@
     <Enable_Luopan>true</Enable_Luopan>
     <Enable_Indi>true</Enable_Indi>
     <Enable_Entrust>true</Enable_Entrust>
-    <Geo>Geo-Fury</Geo>
-    <Geo_Target>Khrone</Geo_Target>
-    <Geo_Assist />
+    <Geo>Geo-Frailty</Geo>
+    <Geo_Target>Hybridkiller</Geo_Target>
+    <Geo_Assist>Khrone</Geo_Assist>
     <Geo_Check_Enabled>false</Geo_Check_Enabled>
-    <Indi>Indi-Haste</Indi>
-    <Entrust>Indi-Frailty</Entrust>
+    <Indi>Indi-Fury</Indi>
+    <Entrust>Indi-STR</Entrust>
     <Entrust_Target>Khrone</Entrust_Target>
     <Entrust_Assist />
     <Entrust_Check_Enabled>false</Entrust_Check_Enabled>

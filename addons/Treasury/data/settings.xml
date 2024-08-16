@@ -10,12 +10,14 @@
         <Verbose>false</Verbose>
     </global>
     <hybridkiller>
-        <Pass>Wivre Maul,Bat Wing,Wivre Horn,Pugil Scales,Umbra Strap,Puk Egg,Peapuk Wing,Focal Orb,Limbo Trousers,Asa-arashi,Lancer&apos;s Earring,Seashell,Wivre Hide,Feast Hose,Wyvern Skin</Pass>
+        <Lot>Roving Bijou</Lot>
+        <Pass>Wivre Maul,Limbo Trousers,Pugil Scales,Pantin Churidars,Duelist&apos;s Tights,Saotome Sune-Ate,Relic Dagger,Relic Bow,Peapuk Wing,Umbra Strap,Sorcerer&apos;s Sabots,Fiendish Tome (16),Bat Wing,Relic Staff,Etoile Toe Shoes,Warrior&apos;s Mufflers,Wyrm Fng.Gnt.,Scout&apos;s Beret,Cleric&apos;s Pantaln.,Odious Mask,Odious Grenade,Abyss Flanchard,Focal Orb,Assassin&apos;s Pouln.,Relic Shield,Puk Egg,Wyvern Skin,Odious Cup,Bard&apos;s Slippers,Relic Horn,Seashell,Commodore Gants,Wivre Horn,Koga Kyahan,Melee Gloves,Odious Die,Asa-arashi,Wivre Hide,Feast Hose,Lancer&apos;s Earring</Pass>
     </hybridkiller>
     <khrone>
-        <Pass>Wivre Maul,Limbo Trousers,Peapuk Wing,Puk Egg,Asa-arashi,Wyvern Skin,Bat Wing,Feast Hose,Wivre Horn</Pass>
+        <Lot>Forgotten Step,100 Byne Bill,Forgotten Touch,T. Whiteshell,Sparkling Stone,M. Silverpiece,Goblin Grease,L. Jadeshell,O. Bronzepiece,1 Byne Bill,Infinity Core,Frgtn. Journey</Lot>
+        <Pass>Wivre Maul,Limbo Trousers,Odious Grenade,Assassin&apos;s Pouln.,Duelist&apos;s Tights,Bale Seal: Hn.,Asa-arashi,Relic Shield,Relic Bow,Peapuk Wing,Mavi Seal: Hn.,Sorcerer&apos;s Sabots,Fiendish Tome (16),Oneiros Tathlum,Blur Mantle,Roving Bijou,Orison Seal: Hn.,Scout&apos;s Beret,Puk Egg,Bat Wing,Wivre Horn,Etoile Toe Shoes,Warrior&apos;s Mufflers,Odious Cup,Wyrm Fng.Gnt.,Odious Die,Mujin Stud,Cleric&apos;s Pantaln.,Pantin Churidars,Relic Staff,Lancer&apos;s Earring,Abyss Flanchard,Unkai Seal: Bd.,Commodore Gants,Unkai Seal: Hn.,Fiendish Tome (18),Wyvern Skin,Brahmastra,Bard&apos;s Slippers,Relic Horn,Rvg. Seal: Bd.,Fiendish Tome (17),Fiendish Tome (20),Koga Kyahan,Melee Gloves,Mavi Seal: Bd.,Saotome Sune-Ate,Wivre Hide,Feast Hose,Odious Mask</Pass>
     </khrone>
     <treubond>
-        <Pass>Wivre Maul,Bat Wing,Wivre Horn,Saotome Haidate,Fiendish Tome (14),Odious Quipu,Cockatrice Meat,Mirage Charuqs,Cockatrice Skin,Coeurl Meat,Koga Hatsuburi,Buffalo Meat,Manticore Hide,Relic Dagger,Lizard Egg,Clot Plasma,Cleric&apos;s Duckbills,Assassin&apos;s Bonnet,Coeurl Hide,Giant Bird Fthr.,Asa-arashi,Odious Feather,Relic Maul,Gnat Wing,Peapuk Wing,Odious Necklace,Manticore Fang,Wyvern Skin,Relic Knuckles,Puk Egg,Etoile Bangles</Pass>
+        <Pass>Wivre Maul,Puk Egg,Odious Cup,Bale Seal: Hn.,Odious Die,Relic Shield,Clot Plasma,Relic Bow,Mavi Seal: Hn.,Sorcerer&apos;s Sabots,Odious Feather,Manticore Fang,Orison Seal: Hn.,Lancer&apos;s Earring,Relic Staff,Warrior&apos;s Mufflers,Fiendish Tome (14),Odious Quipu,Odious Mask,Coeurl Meat,Saotome Haidate,Unkai Seal: Bd.,Unkai Seal: Hn.,Rvg. Seal: Bd.,Coeurl Hide,Bard&apos;s Slippers,Commodore Gants,Koga Kyahan,Odious Necklace,Feast Hose,Odious Grenade,Pantin Churidars,Mavi Seal: Bd.,Saotome Sune-Ate,Relic Dagger,Lizard Egg,Assassin&apos;s Bonnet,Fiendish Tome (16),Blur Mantle,Gnat Wing,Bat Wing,Wivre Horn,Etoile Toe Shoes,Cockatrice Meat,Giant Bird Fthr.,Cleric&apos;s Pantaln.,Koga Hatsuburi,Buffalo Meat,Manticore Hide,Scout&apos;s Beret,Etoile Bangles,Wivre Hide,Cleric&apos;s Duckbills,Wyvern Skin,Abyss Flanchard,Cockatrice Skin,Relic Horn,Peapuk Wing,Asa-arashi,Assassin&apos;s Pouln.,Wyrm Fng.Gnt.,Melee Gloves,Relic Maul,Orison Seal: Bd.,Relic Knuckles,Mirage Charuqs,Duelist&apos;s Tights</Pass>
     </treubond>
 </settings>

@@ -47,14 +47,14 @@
     <Combat_Action>
       <Combat>
         <Enabled>true</Enabled>
-        <Auto_Distance>false</Auto_Distance>
+        <Auto_Distance>true</Auto_Distance>
         <Name>Treubond</Name>
-        <Engage>false</Engage>
+        <Engage>true</Engage>
         <Run>true</Run>
         <Face_Toward>true</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
-        <Max_Distance>9.5</Max_Distance>
+        <Max_Distance>8.5</Max_Distance>
         <Min_Distance>0</Min_Distance>
       </Combat>
       <Combat_Script>

@@ -172,6 +172,9 @@ function user_setup()
     include('Global-Binds.lua') -- OK to remove this line
     --include('Global-GEO-Binds.lua') -- OK to remove this line
 
+    send_command('bind f9 gs c cycle hybridmode')
+    send_command('bind ^f9 gs c cycle OffenseMode')
+    
     send_command('bind @t gs c cycle treasuremode')
     send_command('bind ^` input /ja "Double-up" <me>')
     --send_command('bind ^c input /ja "Crooked Cards" <me>')
@@ -213,6 +216,9 @@ function user_setup()
     send_command('bind ^numpad3 input /ws "Numbing Shot" <t>')
 
     --send_command('bind %numpad0 input /ra <t>')
+
+    -- load GearInfo
+    send_command('wait 3; lua l gearinfo')
 
     select_default_macro_book()
     set_lockstyle()
@@ -263,6 +269,9 @@ function user_unload()
     send_command('unbind ^numpad3')
     --send_command('unbind numpad0')
 
+    send_command('unbind f9')
+    send_command('unbind ^f9')
+
     send_command('unbind #`')
     send_command('unbind #1')
     send_command('unbind #2')
@@ -274,6 +283,9 @@ function user_unload()
     send_command('unbind #8')
     send_command('unbind #9')
     send_command('unbind #0')
+
+    --Unload Gearinfo Lua
+    send_command('lua u gearinfo')
 end
 
 -- Define sets and vars used by this job file.
@@ -793,8 +805,8 @@ function init_gear_sets()
     sets.engaged = {
         head="Nyame Helm",
         body="Adhemar Jacket +1",
-        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        hands="Malignance Gloves",
+        legs="Samnuha Tights",
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
@@ -855,7 +867,7 @@ function init_gear_sets()
         head="Nyame Helm",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        legs="Samnuha Tights",
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
@@ -914,7 +926,7 @@ function init_gear_sets()
         head="Nyame Helm",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        legs="Samnuha Tights",
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
@@ -973,7 +985,7 @@ function init_gear_sets()
         head="Nyame Helm",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        legs="Samnuha Tights",
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
@@ -1034,7 +1046,7 @@ function init_gear_sets()
         head="Nyame Helm",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        legs="Samnuha Tights",
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
@@ -1095,12 +1107,12 @@ function init_gear_sets()
         head="Nyame Helm",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        legs="Samnuha Tights",
         feet="Malignance Boots",
         neck="Clotharius Torque",
         waist="Sailfi Belt +1",
-        left_ear="Crep. Earring",
-        right_ear="Cessance Earring",
+        left_ear="Dudgeon Earring",
+        right_ear="Heartseeker Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
@@ -1120,6 +1132,8 @@ function init_gear_sets()
         } -- 11%
 
     sets.engaged.DW.LowAcc.MaxHaste = set_combine(sets.engaged.DW.MaxHaste, {
+        left_ear="Crep. Earring",
+        right_ear="Cessance Earring",
         --[[ head="Dampening Tam",
         hands=gear.Adhemar_A_hands,
         ring1={name="Chirich Ring +1", bag="wardrobe5"},
@@ -1161,9 +1175,11 @@ function init_gear_sets()
     ---------------------------------------- Hybrid Sets -------------------------------------------
     ------------------------------------------------------------------------------------------------
 
-    sets.engaged.MalignanceHybrid = { -- 9/9
+    sets.engaged.MalignanceHybrid = { -- 28/28
         hands="Malignance Gloves", --5/5
+        body="Nyame Mail", --9/9
         feet="Malignance Boots", --4/4
+        right_ring="Defending Ring", --10/10
         --[[ head="Malignance Chapeau", --6/6
         body="Malignance Tabard", --9/9
         hands="Malignance Gloves", --5/5
@@ -1171,12 +1187,13 @@ function init_gear_sets()
         --feet="Malignance Boots", --4/4 ]]
         }
 
-    sets.engaged.NyameHybrid = { -- 38/38
+    sets.engaged.NyameHybrid = { -- 48/48
         head="Nyame Helm", --7/7
         body="Nyame Mail", --9/9
         hands="Nyame Gauntlets",  --7/7
         legs="Nyame Flanchard", --8/8
         feet="Nyame Sollerets", --7/7
+        right_ring="Defending Ring", --10/10
         --[[ head="Nyame Helm", --7/7
         body="Nyame Mail", --9/9
         hands="Nyame Gauntlets",  --7/7

@@ -1,0 +1,17 @@
+sets.exported={
+    main="Bolelabunga",
+    sub="Ammurapi Shield",
+    ammo="Ghastly Tathlum",
+    head={ name="Chironic Hat", augments={'Pet: Attack+11 Pet: Rng.Atk.+11','STR+9','"Refresh"+2','Accuracy+6 Attack+6','Mag. Acc.+9 "Mag.Atk.Bns."+9',}},
+    body="Jhakri Robe +2",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet={ name="Chironic Slippers", augments={'INT+9','DEX+15','"Refresh"+1','Mag. Acc.+6 "Mag.Atk.Bns."+6',}},
+    neck="Sanctity Necklace",
+    waist="Plat. Mog. Belt",
+    left_ear="Crep. Earring",
+    right_ear="Ethereal Earring",
+    left_ring="Shneddick Ring",
+    right_ring="Defending Ring",
+    back="Solemnity Cape",
+}

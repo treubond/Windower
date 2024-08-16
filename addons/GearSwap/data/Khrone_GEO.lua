@@ -161,7 +161,7 @@ validateTextInformation()
 
 -- Optional. Swap to your geo macro sheet / book
 set_macros(1,7) -- Sheet, Book 
---send_command('wait 6;input /lockstyleset 2')
+send_command('wait 10; input /lockstyleset 10')
     
 -- Setup your Gear Sets below:
 function get_sets()
@@ -207,7 +207,7 @@ function get_sets()
 
     -- Your idle set when you DON'T have a luopan out
     sets.me.idle.normal = {
-		main="Bolelabunga",
+		main="Idris",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
 		head="Weath. Corona +1",
@@ -468,8 +468,10 @@ function get_sets()
 	
 	-- For Geo spells /
     sets.midcast.geo = set_combine(sets.midcast.casting,{
+		main = "Idris",
 		head = EMPY.Head,
 		feet = EMPY.Feet,
+		neck={ name="Bagua Charm +1", augments={'Path: A',}},
 		--[[ main = "Solstice",
 		sub = "Culminus",
 		range = "Dunna",
@@ -496,6 +498,7 @@ function get_sets()
 	}
 	-- Nuking
     sets.midcast.nuking.normal = set_combine(sets.midcast.casting,{
+		main="Bunzi's Rod",
 		sub="Ammurapi Shield",
 		head = EMPY.Head,
 		body="Jhakri Robe +2",

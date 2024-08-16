@@ -1,0 +1,16 @@
+sets.exported={
+    main="Naegling",
+    range="Compensator",
+    head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+    body="Malignance Tabard",
+    hands="Malignance Gloves",
+    legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+    feet={ name="Herculean Boots", augments={'Weapon Skill Acc.+8','"Store TP"+2','"Treasure Hunter"+2',}},
+    neck="Asperity Necklace",
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear="Telos Earring",
+    right_ear="Cessance Earring",
+    left_ring="Lehko's Ring",
+    right_ring="Chirich Ring +1",
+    back="Solemnity Cape",
+}

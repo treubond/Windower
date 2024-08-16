@@ -1,0 +1,1 @@
+send @all /equip ring2 \"warp ring\"; wait 9; send @all /item \"warp ring\" <me>

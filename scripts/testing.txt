@@ -1,0 +1,1 @@
+send @all /p yo mang!; wait 1; send @all /p yarly

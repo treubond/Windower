@@ -10,11 +10,11 @@
 
 wait 5;
 load LuaCore;
+load Config;
 load DelayMeNot;
 load LightLuggage;
 load Sandbox;
 load Timers;
-lua load battlemod;
 lua load DistancePlus;
 lua load findAll;
 lua load GearSwap;

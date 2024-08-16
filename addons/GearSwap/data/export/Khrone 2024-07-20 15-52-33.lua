@@ -1,0 +1,17 @@
+sets.exported={
+    main="Bolelabunga",
+    sub="Ammurapi Shield",
+    ammo="Ghastly Tathlum",
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body="Nyame Mail",
+    hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+    legs="Nyame Flanchard",
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Sanctity Necklace",
+    waist="Embla Sash",
+    left_ear="Crep. Earring",
+    right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
+    left_ring="Kishar Ring",
+    right_ring="Defending Ring",
+    back="Perimede Cape",
+}

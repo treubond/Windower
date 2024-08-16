@@ -189,8 +189,8 @@ function get_sets()
       feet=EMPY.Feet,
       neck={ name="Loricate Torque +1", augments={'Path: A',}},
       waist="Plat. Mog. Belt",
-      left_ear="Ethereal Earring",
-      right_ear="Crep. Earring",
+      left_ear="Crep. Earring",
+      right_ear="Ethereal Earring",
       left_ring="Shneddick Ring",
       right_ring="Metamor. Ring +1",
       back="Solemnity Cape",
@@ -268,6 +268,16 @@ function get_sets()
     
     -- Combat Related Sets
     sets.me.melee = {
+      head=EMPY.Head,
+      body=EMPY.Body,
+      hands=EMPY.Hands,
+      legs=EMPY.Legs,
+      feet=EMPY.Feet,
+      left_ring="Chirich Ring +1",
+      right_ring="Lehko's Ring",
+      neck="Clotharius Torque",
+      left_ear="Crep. Earring",
+      right_ear="Digni. Earring",
       --[[ ammo="Staunch Tathlum +1",
       head={ name="Nyame Helm", augments={'Path: B',}},
       body="Nyame Mail",
@@ -702,7 +712,7 @@ function get_sets()
     neck="Sanctity Necklace",
     --neck="Saevus Pendant +1",
     waist="Sacro Cord",
-    --left_ear="Malignance Earring",
+    left_ear="Malignance Earring",
     right_ear="Wicce Earring",
     left_ring="Jhakri Ring",
     right_ring="Metamor. Ring +1",
@@ -730,20 +740,21 @@ function get_sets()
    
    -- used with toggle, default: F10
    -- Pieces to swap from free nuke to Magic Burst    
-   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 51/13  MATB 301 MACC/MD 272/294
+   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --MB/MBII 41/19  MATB 301 MACC/MD 272/294
     main="Bunzi's Rod", --10
     sub="Ammurapi Shield",
     --ammo="Ghastly Tathlum",
-    --head="Ea Hat", --6/6
+    head="Ea Hat", --6/6
     body="Ea Houppelande", --8/8
-    hands=RELIC.Hands, --16
+    --hands=RELIC.Hands, --16
     --hands={ name="Agwu's Gages", augments={'Path: A',}}, --8/3
     legs=EMPY.Legs, --10
     --feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6
     neck="Mizu. Kubikazari", --10
     --neck="Saevus Pendant +1",
-    waist="Sacro Cord",
-    --left_ear="Malignance Earring",
+    waist="Aswang Sash",
+    --waist="Sacro Cord",
+    left_ear="Malignance Earring",
     right_ear="Wicce Earring",
     left_ring="Jhakri Ring", --2
     right_ring="Mujin Band", --0/5

@@ -87,7 +87,7 @@
       <TP_Threshold>1000</TP_Threshold>
       <MP_Threshold>50</MP_Threshold>
       <Low_HP_Threshold>0</Low_HP_Threshold>
-      <High_HP_Threshold>100</High_HP_Threshold>
+      <High_HP_Threshold>95</High_HP_Threshold>
       <Cycle>0</Cycle>
       <AM_Enabled>false</AM_Enabled>
       <AM_Level>0</AM_Level>
@@ -196,7 +196,7 @@
         <Mode>Priority Element</Mode>
         <Element />
         <Type>Spell</Type>
-        <Tier>3</Tier>
+        <Tier>5</Tier>
         <Command />
       </Burst_I>
       <Burst_II>
@@ -206,7 +206,7 @@
         <Mode>Priority Element</Mode>
         <Element />
         <Type>Spell</Type>
-        <Tier>2</Tier>
+        <Tier>4</Tier>
         <Command />
       </Burst_II>
       <Burst_III>

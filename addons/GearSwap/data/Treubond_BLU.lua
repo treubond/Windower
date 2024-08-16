@@ -206,7 +206,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT', 'MDT')
     state.IdleMode:options('Normal', 'DT')--, 'Learning')
 
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Tizona', 'Nuking',} -- 'Maxentius', 'Almace', 'Nuking'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Tizona', 'Nuking', 'Maxentius'} --  'Almace'}
     state.WeaponLock = M(false, 'Weapon Lock')
     state.MagicBurst = M(false, 'Magic Burst')
     -- state.CP = M(false, "Capacity Points Mode")
@@ -386,7 +386,7 @@ function init_gear_sets()
     sets.precast.WS = {
         ammo="Oshasha's Treatise",
         head="Hashishin Kavuk +2",
-        body="Assim. Jubbah +2",
+        body={ name="Nyame Mail", augments={'Path: B',}},
         hands="Jhakri Cuffs +2",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet={ name="Nyame Sollerets", augments={'Path: B',}},
@@ -615,7 +615,8 @@ function init_gear_sets()
         ammo="Ginsen",
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
         body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
-        hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
+        hands="Malignance Gloves",
+        --hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
         legs="Jhakri Slops +2",
         feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
@@ -628,7 +629,7 @@ function init_gear_sets()
     }
 
     sets.engaged.LowAcc = set_combine(sets.engaged, {
-        hands={ name="Herculean Gloves", augments={'AGI+10','Attack+19','Accuracy+20 Attack+20','Mag. Acc.+20 "Mag.Atk.Bns."+20',}},
+        hands="Malignance Gloves",
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         left_ear="Mache Earring",
         right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
@@ -653,7 +654,8 @@ function init_gear_sets()
         ammo="Ginsen",
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
         body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
-        hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
+        hands="Malignance Gloves",
+        --hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
         legs="Jhakri Slops +2",
         feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
@@ -735,20 +737,20 @@ function init_gear_sets()
     ---------------------------------------- Hybrid Sets -------------------------------------------
     ------------------------------------------------------------------------------------------------
 
-    sets.engaged.Hybrid = {
-        ammo="Staunch Tathlum",
-        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
-        body="Hashishin Mintan +2",
-        hands="Hashi. Bazu. +2",
-        legs="Hashishin Tayt +2",
-        feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+    sets.engaged.Hybrid = { --52/40 PDT/MDT
+        ammo="Staunch Tathlum", --2
+        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, 
+        body="Hashishin Mintan +2", --12
+        hands="Malignance Gloves", --5
+        legs="Hashishin Tayt +2", --11
+        feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, --2/0
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Eabani Earring",
         right_ear="Suppanomimi",
         left_ring="Chirich Ring +1",
-        right_ring="Defending Ring",
-        back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+        right_ring="Defending Ring", --10
+        back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --10/0
     }
 
     sets.engaged.DT = set_combine(sets.engaged, sets.engaged.Hybrid)
@@ -813,7 +815,7 @@ function init_gear_sets()
 
     sets.Almace = {--[[ main="Almace", sub="Sequence" ]]}
     sets.Naegling = {main="Naegling", sub="Thibron"}
-    sets.Maxentius = {--[[ main="Maxentius", sub="Thibron" ]]}
+    sets.Maxentius = {[[ main="Maxentius", sub="Thibron" ]]}
     sets.Nuking = {main="Maxentius", sub="Bunzi's Rod"}
     sets.Tizona = {main={ name="Tizona", augments={'Path: A',}}, sub="Thibron"}
 

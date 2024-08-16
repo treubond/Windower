@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <settings>
   <autoload>
-    <addon>battlemod</addon>
     <addon>GearSwap</addon>
     <addon>InfoBar</addon>
     <addon>PetTP</addon>
@@ -16,13 +15,13 @@
     <plugin>Sandbox</plugin>
     <plugin>Timers</plugin>
     <plugin>DelayMeNot</plugin>
+    <plugin>Config</plugin>
   </autoload>
   <profile name="">
     <consolekey>Insert</consolekey>
     <gamma>0.2086957</gamma>
     <uiscale>1</uiscale>
     <hardwaremouse>false</hardwaremouse>
-    <supersampling>2</supersampling>
     <alwaysplaysound>false</alwaysplaysound>
     <alwaysenablegamepad>false</alwaysenablegamepad>
   </profile>

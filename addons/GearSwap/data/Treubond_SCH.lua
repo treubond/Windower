@@ -133,7 +133,7 @@ hud_font = 'Impact'
     send_command('bind ^] gs c scholar accuracy')
     send_command('bind ^; gs c scholar speed')
     send_command('bind !w input /ma "Aspir II" <t>')
-    send_command('bind !o input /ma "Regen IV" <stpc>')
+    send_command('bind !o input /ma "Regen V" <stpc>')
     send_command('bind ![ gs c scholar aoe')
     send_command('bind !] gs c scholar duration')
     send_command('bind !; gs c scholar cost')
@@ -247,13 +247,13 @@ function get_sets()
 
     -- Your idle set
     sets.me.idle.refresh = {
-        main="Daybreak",
+        main="Daybreak", --1
         sub="Genbu's Shield",
         ammo="Staunch Tathlum",
-        head="Befouled Crown",
-        body="Jhakri Robe +2",
-        hands="Jhakri Cuffs +2",
-        legs="Jhakri Slops +2",
+        head="Befouled Crown", --1
+        body="Jhakri Robe +2", --4
+        hands="Nyame Gauntlets",
+        legs="Arbatel Pants +2",
         feet="Mallquis Clogs",
         neck="Morgana's Choker",
         waist="Hierarch Belt",
@@ -261,7 +261,7 @@ function get_sets()
         right_ear="Loquac. Earring",
         left_ring="Shneddick Ring",
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        back="Vates Cape +1",
+        back={ name="Fi Follet Cape +1", augments={'Path: A',}},
     }
 
     -- Your idle Sublimation set combine from refresh or DT depening on mode.
@@ -269,17 +269,17 @@ function get_sets()
 
     })   
     -- Your idle DT set
-    sets.me.idle.dt = set_combine(sets.me.idle[refreshType],{ --DT 50 + 7%dmg to MP
-        main="Malignance Pole", --20
-        sub="Benthos Grip",
+    sets.me.idle.dt = set_combine(sets.me.idle[refreshType],{ --DT 52 + 7%dmg to MP
+        --main="Malignance Pole", --20
+        --sub="Benthos Grip",
         ammo="Staunch Tathlum", --2
         head="Arbatel Bonnet +2", --9
         body="Jhakri Robe +2",
-        hands="Jhakri Cuffs +2",
-        legs="Jhakri Slops +2",
+        hands="Nyame Gauntlets", --7
+        legs="Arbatel Pants +2", --11
         feet="Mallquis Clogs", --7% dmg to MP
         neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
-        waist="Hierarch Belt",
+        waist="Plat. Mog. Belt", --3
         left_ear="Magnetic Earring",
         right_ear="Eabani Earring",
         left_ring="Shneddick Ring",

@@ -1,0 +1,17 @@
+sets.exported={
+    main="Bolelabunga",
+    sub="Ammurapi Shield",
+    ammo="Voluspa Tathlum",
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body="Ayanmo Corazza +2",
+    hands={ name="Chironic Gloves", augments={'STR+14','Potency of "Cure" effect received+4%','Weapon skill damage +6%',}},
+    legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Sanctity Necklace",
+    waist="Sailfi Belt +1",
+    left_ear="Sherida Earring",
+    right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
+    left_ring="Rajas Ring",
+    right_ring="Lehko's Ring",
+    back="Atheling Mantle",
+}
