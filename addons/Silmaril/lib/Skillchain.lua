@@ -29,9 +29,38 @@ do
     local Skillchain_Time_ID_3 = 0
     local Skillchain_Time_ID_4 = 0
 
+    function skillchain_reset()
+        Skillchain_Leader_Name = ''
+        Skillchain_Leader_WS = ''
+        Skillchain_Leader_ID = 0
+
+        Skillchain_Leader_Name_2 = ''
+        Skillchain_Leader_WS_2 = ''
+        Skillchain_Leader_ID_2 = 0
+
+        Skillchain_Leader_Name_3 = ''
+        Skillchain_Leader_WS_3 = ''
+        Skillchain_Leader_ID_3 = 0
+
+        Skillchain_Leader_Name_4 = ''
+        Skillchain_Leader_WS_4 = ''
+        Skillchain_Leader_ID_4 = 0
+
+        now = os.clock()
+
+        Skillchain_Time = os.clock()
+        Skillchain_Time_2 = os.clock()
+        Skillchain_Time_3 = os.clock()
+        Skillchain_Time_4 = os.clock()
+
+        Skillchain_Time_ID = 0
+        Skillchain_Time_ID_2 = 0
+        Skillchain_Time_ID_3 = 0
+        Skillchain_Time_ID_4 = 0
+    end
+
 
     function skillchain(Name, WS, ID, Delay)
-        log("Skillchain #1 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name or WS ~= Skillchain_Leader_WS then
                 send_to_chat(8,'Skillchain #1 - Monitoring ['..Name..'] for ['..WS..'].')
@@ -53,7 +82,6 @@ do
     end
 
     function skillchain2(Name, WS, ID, Delay)
-        log("Skillchain #2 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name_2 or WS ~= Skillchain_Leader_WS_2 then
                 send_to_chat(8,'Skillchain #2 - Monitoring ['..Name..'] for ['..WS..'].')
@@ -75,7 +103,6 @@ do
     end
 
     function skillchain3(Name, WS, ID, Delay)
-        log("Skillchain #3 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name_3 or WS ~= Skillchain_Leader_WS_3 then
                 send_to_chat(8,'Skillchain #3 - Monitoring ['..Name..'] for ['..WS..'].')
@@ -97,7 +124,6 @@ do
     end
 
     function skillchain4(Name, WS, ID, Delay)
-        log("Skillchain #4 - Leader:["..Name.."], Weaponskill:["..WS.."], Delay:["..Delay.."]")
         if Name ~= 'none' and WS ~= 'none' and WS ~= '' and ID ~= 0 then
             if Name ~= Skillchain_Leader_Name_4 or WS ~= Skillchain_Leader_WS_4 then
                 send_to_chat(8,'Skillchain #4 - Monitoring ['..Name..'] for ['..WS..'].')
@@ -119,10 +145,18 @@ do
     end
 
     -- Called via Packets.lua
-    function run_ws_skillchain(data)
+    function run_ws_skillchain(data, type)
 
-        -- Get the weaponskill data
-        local ws = get_weaponskill(data.param)
+        local ws = nil
+
+        if type == "NPC" then
+            ws = get_monster_ability(data.param)
+        elseif type == "Avatar" then
+            ws = get_ability(data.param)
+        elseif type == "Player" then
+            ws = get_weaponskill(data.param)
+        end
+
         if not ws then return end
 
         local id = data.targets[1].id

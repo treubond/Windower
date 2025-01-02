@@ -73,7 +73,7 @@ include('Global-Binds.lua')
 -- Same idea for nuke modes. 
 idleModes = M('refresh', 'dt', 'mdt', 'death')
 -- To add a new mode to nuking, you need to define both sets: sets.midcast.nuking.mynewmode as well as sets.midcast.MB.mynewmode
-nukeModes = M('normal', 'acc', 'occult')
+nukeModes = M('normal', 'acc', 'occult', 'weather')
 
 -- Setting this to true will stop the text spam, and instead display modes in a UI.
 -- Currently in construction.
@@ -269,6 +269,7 @@ function get_sets()
       neck="Asperity Necklace",
       left_ear="Crep. Earring",
       right_ear="Telos Earring",
+      waist="Eschan Stone",
       --[[ ammo="Staunch Tathlum +1",
       head={ name="Nyame Helm", augments={'Path: B',}},
       body="Nyame Mail",
@@ -493,8 +494,8 @@ function get_sets()
     ----------
       
     sets.precast.casting = { --57 (15% for /RDM, 20% for /RDM55)
-      main={ name="Bunzi's Rod", augments={'Path: A',}},
-      sub="Ammurapi Shield",
+      --main={ name="Bunzi's Rod", augments={'Path: A',}},
+      --sub="Ammurapi Shield",
       ammo="Ghastly Tathlum +1",
       head="Jhakri Coronal +2",
       body={ name="Merlinic Jubbah", augments={'"Fast Cast"+5','Mag. Acc.+13',}}, --11
@@ -724,9 +725,9 @@ function get_sets()
    
    -- used with toggle, default: F10
    -- Pieces to swap from free nuke to Magic Burst    
-   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 53/22  MATB 301 MACC/MD 272/294
-    main={ name="Bunzi's Rod", augments={'Path: A',}}, --10
-    sub="Ammurapi Shield",
+   sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MB/MBII 43/22  MATB 301 MACC/MD 272/294
+    main="Marin Staff +1",
+    sub="Enki Strap",
     ammo="Ghastly Tathlum +1",
     head="Ea Hat", --6/6
     body="Ea Houppelande", --8/8
@@ -784,6 +785,10 @@ function get_sets()
 
    sets.midcast.MB.occult = set_combine(sets.midcast.MB.normal, {
    })
+
+   sets.midcast.MB.weather = set_combine(sets.midcast.MB.normal, {
+    waist="Hachirin-no-obi",
+  })
    
     -- Enfeebling
    sets.midcast.IntEnfeebling = {
@@ -912,8 +917,8 @@ function get_sets()
 
     -- Cure Potency
     sets.midcast.cure.normal = set_combine(sets.midcast.casting, { --31
-      main="Daybreak",
-      sub="Sors Shield",
+      --main="Daybreak",
+      --sub="Sors Shield",
       ammo="Ghastly Tathlum +1",
       head=EMPY.Head,
       body=EMPY.Body,

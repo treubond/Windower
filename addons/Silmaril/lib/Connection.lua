@@ -20,6 +20,7 @@ do
 
     -- Called from Engine.lua
     function request()
+        skillchain_reset()
         send_packet(get_player_id()..";request;".._addon.version..';'..get_player_name())
     end
 
@@ -28,6 +29,15 @@ do
         if msg and udp then
             assert(udp:send(msg))
             log(msg)
+        else
+            log('Unable to send data')
+        end
+    end
+
+        --Send the outgoing packet
+    function send_packet_silent (msg)
+        if msg and udp then
+            assert(udp:send(msg))
         else
             log('Unable to send data')
         end
@@ -57,6 +67,7 @@ do
                 if message[1] ~= get_player_id() then log('Wrong Message ['..cmd..']') return end
 
                 if cmd == "accepted" then
+                    skillchain_reset()
                     info('\31\200[\31\05Silmaril Addon\31\200]\31\207 '..message[3])
                     set_connected(true)
                 elseif cmd == "sync" then

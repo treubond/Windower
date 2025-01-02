@@ -1,12 +1,12 @@
 do
     local location = ""
     local bitzer_position = {}
-    local zone_in = true
     local mob_tracking = {}
     local enabled = true
     local old_zone = 0
     local zone_1 = 133
     local zone_2 = 189
+    local zone_3 = 275
     local world = get_world()
     local p_loc = get_player_location()
     local position_time = os.clock()
@@ -40,25 +40,32 @@ do
         if enabled then
             world = get_world()
             p_loc = get_player_location()
+
             -- Zone change or just starting addon
             if old_zone ~= world.zone then
                 sortie_initialize()
-                tracking_command(false) -- Sortie window
-            elseif world.zone == zone_1 or world.zone == zone_2 then
-                tracking_update() -- Sortie addon
-                tracking_command(true) -- Sortie window
-                if zone_in then
+                old_zone = world.zone
+                log("Sortie Reset")
+                if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
+                    log("Sortie Window Show")
                     sortie_command("A")
-                    zone_in = false
+                    tracking_command(true) -- Sortie window
+                else
+                    log("Sortie Window Hide")
+                    tracking_command(false) -- Sortie window
                 end
             end
-            if world.zone then old_zone = world.zone end
+
+            if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
+                tracking_update() -- Sortie addon
+            end
 
             -- Wait till you finish moving to check for area
             if repositioned then
-                if os.clock() - position_time > 1 then
+                if os.clock() - position_time > 2 then
+                    repositioned = false
+                    if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
                     position_update()
-                    position_time = os.clock()
                 end
             end
 
@@ -91,7 +98,7 @@ do
         if not p_loc or not p_loc.x or not p_loc.y or not p_loc.z then return end
         local distance = round(((p_loc.x - enemy_x)^2 + (p_loc.y - enemy_y)^2):sqrt(),1)
         mob_tracking[table_index].distance = distance
-        log('Track: ['..enemy_index..'] - ['..enemy_x..'], ['..enemy_y..'] and distance of ['..distance..']')
+        --log('Track: ['..enemy_index..'] - ['..enemy_x..'], ['..enemy_y..'] and distance of ['..distance..']')
     end
 
     -- Used to track mobs and objectives
@@ -235,7 +242,7 @@ do
 
     -- NPC Update called from Packets.lua
     function bitzer_Check(data)
-        if world.zone ~= zone_1 and world.zone ~= zone_2 then return end
+        if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
 
         local packet = parse_packet('incoming', data)
         local bitzer_index = packet['Index']
@@ -393,12 +400,11 @@ do
         elseif ((p_loc.x-zone[13].x)^2 + (p_loc.y-zone[13].y)^2):sqrt() < 25 then -- C Boss Exit
             log(zone[13].name)
             sortie_command('D')
-
         end
     end
 
     function sortie_position()
-        if world.zone ~= zone_1 and world.zone ~= zone_2 then return end
+        if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
         position_time = os.clock()
         repositioned = true
     end

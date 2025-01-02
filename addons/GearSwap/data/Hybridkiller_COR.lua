@@ -134,16 +134,16 @@ function user_setup()
     state.WeaponskillMode:options('Normal', 'HighBuff')
     state.IdleMode:options('Normal', 'DT')
 
-    state.Gun = M{['description']='Gun', 'Anarchy', 'Molybdosis', 'DeathPenalty',} --'Armageddon', 'Fomalhaut', 'Ataktos'}
+    state.Gun = M{['description']='Gun', 'Anarchy', 'DeathPenalty', 'Fomalhaut', } --'Armageddon', 'Fomalhaut', 'Ataktos'}
     state.WeaponSet = M{['description']='Melee', 'Slashing', 'Piercing', 'Ranged'}
     -- state.CP = M(false, "Capacity Points Mode")
     state.WeaponLock = M(false, 'Weapon Lock')
 
-    gear.RAbullet = "Decimating Bullet" --"Chrono Bullet"
-    gear.RAccbullet = "Decimating Bullet" --"Devastating Bullet"
-    gear.WSbullet = "Decimating Bullet" --"Chrono Bullet"
-    gear.MAbullet = "Decimating Bullet" --"Living Bullet"
-    gear.QDbullet = "Decimating Bullet" --"Living Bullet"
+    gear.RAbullet = "Chrono Bullet" --"Chrono Bullet"
+    gear.RAccbullet = "Chrono Bullet" --"Devastating Bullet"
+    gear.WSbullet = "Chrono Bullet" --"Chrono Bullet"
+    gear.MAbullet = "Chrono Bullet" --"Living Bullet"
+    gear.QDbullet = "Chrono Bullet" --"Living Bullet"
     options.ammo_warning_limit = 10
 
     AF = {}
@@ -218,7 +218,7 @@ function user_setup()
     --send_command('bind %numpad0 input /ra <t>')
 
     -- load GearInfo
-    send_command('wait 3; lua l gearinfo')
+    --send_command('wait 3; lua l gearinfo')
 
     select_default_macro_book()
     set_lockstyle()
@@ -375,7 +375,7 @@ function init_gear_sets()
         legs="Ikenga's Trousers",
         feet="Meg. Jam. +1",
         neck="Comm. Charm +1",
-        waist="Aquiline Belt",
+        waist="Eschan Stone",
         left_ear="Crep. Earring",
         right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Crepuscular Ring",
@@ -419,7 +419,7 @@ function init_gear_sets()
         legs="Nyame Flanchard",
         feet=REL.Feet,
         neck="Comm. Charm +1",
-        waist="Aquiline Belt",
+        waist="Eschan Stone",
         left_ear="Crep. Earring",
         right_ear="Enervating Earring",
         left_ring="Crepuscular Ring",
@@ -458,13 +458,14 @@ function init_gear_sets()
 
     sets.precast.WS['Wildfire'] = {
         --ammo=gear.MAbullet,
-        head="Nyame Helm",
+        head={ name="Herculean Helm", augments={'Mag. Acc.+5','STR+3','Weapon skill damage +7%','Mag. Acc.+19 "Mag.Atk.Bns."+19',}},
+        --head="Nyame Helm",
         body=AF.Body,
         hands=EMP.Hands,
         legs="Nyame Flanchard",
         feet=REL.Feet,
         neck="Comm. Charm +1",
-        waist="Aquiline Belt",
+        waist="Eschan Stone",
         left_ear="Hecate's Earring",
         right_ear="Strophadic Earring",
         left_ring="Crepuscular Ring",
@@ -636,7 +637,7 @@ function init_gear_sets()
         legs="Ikenga's Trousers",
         feet="Malignance Boots",
         neck="Comm. Charm +1",
-        waist="Aquiline Belt",
+        waist="Eschan Stone",
         left_ear="Crep. Earring",
         right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Crepuscular Ring",
@@ -735,7 +736,7 @@ function init_gear_sets()
         legs="Nyame Flanchard",
         feet="Malignance Boots",
         neck="Elite Royal Collar",
-        waist="Aquiline Belt",
+        waist="Eschan Stone",
         left_ear="Crep. Earring",
         right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Shneddick Ring",

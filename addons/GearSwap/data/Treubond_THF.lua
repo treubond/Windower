@@ -60,6 +60,7 @@ function get_sets()
 
     -- Load and initialize the include file.
     include('Mote-Include.lua')
+    include('Global-Binds.lua')
 end
 
 
@@ -83,7 +84,7 @@ function job_setup()
     state.Ambush = M(false, 'Ambush')
     -- state.CP = M(false, "Capacity Points Mode")
 
-    lockstyleset = 17
+    lockstyleset = 16
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -356,7 +357,7 @@ function init_gear_sets()
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet={ name="Herculean Boots", augments={'Weapon Skill Acc.+8','"Store TP"+2','"Treasure Hunter"+2',}},
         neck="Baetyl Pendant",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        waist="Eschan Stone",
         left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
         right_ear="Moldavite Earring",
         left_ring="Lehko's Ring",
@@ -409,8 +410,20 @@ function init_gear_sets()
 
     sets.resting = {}
 
-    sets.idle = {
+    sets.idle = { --50/52
+        ammo="Staunch Tathlum", --2/2
+        head="Nyame Helm", --7/7
+        body="Nyame Mail", --9/9
+        hands="Nyame Gauntlets", --7/7
+        legs="Nyame Flanchard", --8/8
+        feet="Nyame Sollerets", --7/7
+        neck="Rep. Plat. Medal", --regain +2
+        left_ear="Eabani Earring",
+        right_ear="Odnowa Earring +1", --3/5
         left_ring="Shneddick Ring",
+        right_ring="Chirich Ring +1",
+        back="Solemnity Cape", --4/4
+        waist="Plat. Mog. Belt", --3/3
         --[[ ammo="Staunch Tathlum +1",
         head="Turms Cap +1",
         body="Tu. Harness +1",
@@ -426,7 +439,7 @@ function init_gear_sets()
         waist="Plat. Mog. Belt", ]]
         }
 
-    sets.idle.DT = set_combine(sets.idle, {
+    sets.idle.DT = set_combine(sets.idle, { 
         --[[ ammo="Staunch Tathlum +1", --3/3
         head="Nyame Helm", --7/7
         body="Nyame Mail", --9/9
@@ -476,8 +489,8 @@ function init_gear_sets()
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
 
     sets.engaged = {
-        main={ name="Malevolence", augments={'INT+7','Mag. Acc.+3','"Mag.Atk.Bns."+5','"Fast Cast"+2',}},
-        sub={ name="Malevolence", augments={'INT+3','Mag. Acc.+5',}},
+        --main={ name="Malevolence", augments={'INT+7','Mag. Acc.+3','"Mag.Atk.Bns."+5','"Fast Cast"+2',}},
+        --sub={ name="Malevolence", augments={'INT+3','Mag. Acc.+5',}},
         ammo="Per. Lucky Egg",
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},

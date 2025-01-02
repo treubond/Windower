@@ -1,0 +1,28 @@
+//cancel any target
+setkey escape down;
+wait 0.1;
+setkey escape up;
+wait .5;
+setkey escape down;
+wait 0.1;
+setkey escape up;
+wait .5;
+setkey escape down;
+wait 0.1;
+setkey escape up;
+wait .5;
+
+//target npc
+input /targetnpc;
+wait 1;
+
+//select enter
+setkey enter down;
+wait 0.1;
+setkey enter up;
+
+wait 2;
+
+setkey escape down;
+wait 0.1;
+setkey escape up;

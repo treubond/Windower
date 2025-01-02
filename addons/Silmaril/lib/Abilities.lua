@@ -1,5 +1,6 @@
 do
     local all_job_abilities = get_res_all_job_abilities()
+    local monster_abilities = get_res_all_monster_abilities()
 
     function get_abilities_recast() -- Used via update to get ability timers
         local formattedString = "abilities_"
@@ -46,8 +47,27 @@ do
         return formattedString..'_'..all_ability_count
     end
 
+    function get_all_monster_abilities() -- -- used once via sync request Sync.lua
+        local formattedString = get_player_id()..";monsterdata_"
+        if not monster_abilities then return formattedString end
+        local all_ability_count = 0
+        for id, ability in pairs(monster_abilities) do
+            if ability.skillchain_a then
+                formattedString = formattedString..ability.id..'|'..ability.en..','
+                all_ability_count = all_ability_count + 1
+            end
+        end
+        formattedString = formattedString:sub(1, #formattedString - 1)
+        log(formattedString)
+        return formattedString..'_'..all_ability_count
+    end
+
     function get_ability(id)
         return all_job_abilities[id]
+    end
+
+    function get_monster_ability(id)
+        return monster_abilities[id]
     end
 
 end

@@ -1,11 +1,15 @@
 do
     local packets = require 'packets'
     local res = require 'resources'
+
+    -- Regester Events
+
     function windower_hook()
+
 	    --Commands recieved and sent to addon
         windower.register_event('addon command', function(input, ...)
             local args = L{...}
-            commands(input,args)
+            commands(input, args)
         end)
 
         -- Begin the sync process
@@ -60,8 +64,9 @@ do
         windower.register_event('unload', function()
             send_packet(get_player_id()..";reset")
         end)
-
     end
+
+    -- Resources
 
     function get_res_all_job_abilities()
 	    return res.job_abilities
@@ -115,6 +120,12 @@ do
 	    return res.weapon_skills
     end
 
+    function get_res_all_monster_abilities()
+	    return res.monster_abilities
+    end
+
+    -- Game Data
+
     function get_abilities()
 	    return windower.ffxi.get_abilities()
     end
@@ -159,36 +170,44 @@ do
         return windower.ffxi.get_items(value)
     end
 
-    function new_packet(dir, id, values, ...)
-	    return packets.new(dir, id, values, ...)
+    -- FFXI Game commands
+
+    function player_run(value)
+        windower.ffxi.run(value)
     end
 
-    function build_packet(value)
-        return packets.build(value)
+    function player_turn(value)
+        windower.ffxi.turn(value)
     end
 
-    function parse_packet(dir, data)
-        return packets.parse(dir, data)
-    end
-
-    function parse_action_packet(data)
-        return windower.packets.parse_action(data)
-    end
-
-    function inject_packet(value)
-	    packets.inject(value)
-    end
+    -- Misc commands
 
     function send_command(value)
 	    windower.send_command(value)
+    end
+
+    function send_chat(value)
+	    windower.chat.input(value)
+    end
+
+    function send_to_chat(color, value)
+        windower.add_to_chat(color, value)
     end
 
     function send_ipc(value)
 	    windower.send_ipc_message(value)
     end
 
-    function send_to_chat(color, value)
-        windower.add_to_chat(color, value)
+    function is_japanese()
+        local is_japanese = false
+        if windower.ffxi.get_info().language:lower() == "japanese" then is_japanese = true end
+        return is_japanese
+    end
+
+    -- Packet specific calls
+
+    function parse_action_packet(data)
+        return windower.packets.parse_action(data)
     end
 
     function cancel_buff(value)
@@ -205,15 +224,28 @@ do
         windower.packets.inject_incoming(0x052, string.char(0,0,0,0,1,0,0,0)) -- Event Relase
     end
 
-    function player_run(value)
-        windower.ffxi.run(value)
+    -- Packet library
+
+    function inject_packet(value)
+	    packets.inject(value)
     end
 
-    function player_turn(value)
-        windower.ffxi.turn(value)
+    function new_packet(dir, id, values, ...)
+	    return packets.new(dir, id, values, ...)
     end
+
+    function build_packet(value)
+        return packets.build(value)
+    end
+
+    function parse_packet(dir, data)
+        return packets.parse(dir, data)
+    end
+
+    -- Core lua
 
     function sleep_time(value)
         coroutine.sleep(value)
     end
+
 end

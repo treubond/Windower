@@ -3,10 +3,10 @@ do
 	local last_skillchain_id = 0
 
 	local skillchains = {
-		[288] = {id=288,english='Light',elements={'Light','Thunder','Wind','Fire'}},
+		[288] = {id=288,english='Light',elements={'Light','Lightning','Wind','Fire'}},
 		[289] = {id=289,english='Darkness',elements={'Dark','Ice','Water','Earth'}},
 		[290] = {id=290,english='Gravitation',elements={'Dark','Earth'}},
-		[291] = {id=291,english='Fragmentation',elements={'Thunder','Wind'}},
+		[291] = {id=291,english='Fragmentation',elements={'Lightning','Wind'}},
 		[292] = {id=292,english='Distortion',elements={'Ice','Water'}},
 		[293] = {id=293,english='Fusion',elements={'Light','Fire'}},
 		[294] = {id=294,english='Compression',elements={'Dark'}},
@@ -16,11 +16,12 @@ do
 		[298] = {id=298,english='Transfixion', elements={'Light'}},
 		[299] = {id=299,english='Scission',elements={'Earth'}},
 		[300] = {id=300,english='Detonation',elements={'Wind'}},
-		[301] = {id=301,english='Impaction',elements={'Thunder'}},
-		[385] = {id=385,english='Light',elements={'Light','Thunder','Wind','Fire'}},
+		[301] = {id=301,english='Impaction',elements={'Lightning'}},
+
+		[385] = {id=385,english='Light',elements={'Light','Lightning','Wind','Fire'}},
 		[386] = {id=386,english='Darkness',elements={'Dark','Ice','Water','Earth'}},
 		[387] = {id=387,english='Gravitation',elements={'Dark','Earth'}},
-		[388] = {id=388,english='Fragmentation',elements={'Thunder','Wind'}},
+		[388] = {id=388,english='Fragmentation',elements={'Lightning','Wind'}},
 		[389] = {id=389,english='Distortion',elements={'Ice','Water'}},
 		[390] = {id=390,english='Fusion',elements={'Light','Fire'}},
 		[391] = {id=391,english='Compression',elements={'Dark'}},
@@ -30,10 +31,11 @@ do
 		[395] = {id=395,english='Transfixion', elements={'Light'}},
 		[396] = {id=396,english='Scission',elements={'Earth'}},
 		[397] = {id=397,english='Detonation',elements={'Wind'}},
-		[398] = {id=398,english='Impaction',elements={'Thunder'}},
-		[767] = {id=767,english='Radiance',elements={'Light','Thunder','Wind','Fire'}},
+		[398] = {id=398,english='Impaction',elements={'Lightning'}},
+
+		[767] = {id=767,english='Radiance',elements={'Light','Lightning','Wind','Fire'}},
 		[768] = {id=768,english='Umbra',elements={'Dark','Ice','Water','Earth'}},
-		[769] = {id=769,english='Radiance',elements={'Light','Thunder','Wind','Fire'}},
+		[769] = {id=769,english='Radiance',elements={'Light','Lightning','Wind','Fire'}},
 		[770] = {id=770,english='Umbra',elements={'Dark','Ice','Water','Earth'}},
 	}
 
@@ -45,6 +47,8 @@ do
 		or (action.add_effect_message > 384 and action.add_effect_message < 399) -- SC Heals
 		or (action.add_effect_message > 766 and action.add_effect_message < 771) -- Umbra/Radiance
 		then
+
+			log('Skillchain Detected')
 
 			-- Get the party id's to validate the target from Party.lua
 			local pt_ids = get_party_ids()
@@ -70,42 +74,45 @@ do
 				-- Send the info to continue a skillchain based off property via Skillchains.lua
 				run_property_skillchain(skillchain.english, t.id)
 
+				local info_property = ''
+
 				-- Display the info to the user
 				if skillchain.english == 'Light' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Light - (Light, Fire, Thunder, Wind)')
+					info_property = ' Light - (Light, Fire, Thunder, Wind)'
 				elseif skillchain.english == 'Darkness' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Dark - (Dark, Earth, Water, Ice)')
+					info_property = ' Dark - (Dark, Earth, Water, Ice)'
 				elseif skillchain.english == 'Radiance' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Radiance - (Light, Fire, Thunder, Wind)')
+					info_property = ' Radiance - (Light, Fire, Thunder, Wind)'
 				elseif skillchain.english == 'Umbra' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Umbra - (Dark, Earth, Water, Ice)')
+					info_property = ' Umbra - (Dark, Earth, Water, Ice)'
 				elseif skillchain.english == 'Gravitation' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Gravitation - (Dark, Earth)')
+					info_property = ' Gravitation - (Dark, Earth)'
 				elseif skillchain.english == 'Fragmentation' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Fragmentation - (Thunder, Wind)')
+					info_property = ' Fragmentation - (Thunder, Wind)'
 				elseif skillchain.english == 'Distortion' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Distortion - (Water, Ice)')
+					info_property = ' Distortion - (Water, Ice)'
 				elseif skillchain.english == 'Fusion' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Fusion - (Light, Fire)')
+					info_property = ' Fusion - (Light, Fire)'
 				elseif skillchain.english == 'Compression' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Compression	- (Dark)')
+					info_property = ' Compression	- (Dark)'
 				elseif skillchain.english == 'Liquefaction' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Liquefaction - (Fire)')
+					info_property = ' Liquefaction - (Fire)'
 				elseif skillchain.english == 'Induration' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Induration - (Ice)')
+					info_property = ' Induration - (Ice)'
 				elseif skillchain.english == 'Reverberation' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Reverberation - (Water)')
+					info_property = ' Reverberation - (Water)'
 				elseif skillchain.english == 'Transfixion' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Transfixion	- (Light)')
+					info_property = ' Transfixion	- (Light)'
 				elseif skillchain.english == 'Scission' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Scission - (Earth)')
+					info_property = ' Scission - (Earth)'
 				elseif skillchain.english == 'Detonation' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Detonation - (Wind)')
+					info_property = ' Detonation - (Wind)'
 				elseif skillchain.english == 'Impaction' then
-					info('\31\200[\31\05Skillchain\31\200]\31\207'..' Impaction - (Thunder)')
+					info_property = ' Impaction - (Thunder)'
 				end
 
-				-- Create a count down timer
+				-- Create a count down timer and notification
+				info('\31\200[\31\05Skillchain\31\200]\31\207'..info_property)
 				send_command('timers c "Skillchain: '..skillchain.english..'" 5 down')
 
 				-- Send the information
@@ -155,7 +162,7 @@ do
 				send_packet(get_player_id()..';burst_Enfeebling_Earth_'..t.id)
 			elseif spell.name == 'Choke' then
 				log("Wind Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Thunder_'..t.id)
+				send_packet(get_player_id()..';burst_Enfeebling_Wind_'..t.id)
 			elseif spell.name == 'Paralyze' or spell.name == 'Paralyze II' or spell.name == 'Frost' then
 				log("Ice Shot Detected")
 				send_packet(get_player_id()..';burst_Enfeebling_Ice_'..t.id)

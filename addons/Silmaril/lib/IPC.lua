@@ -46,8 +46,8 @@ function IPC_message(args)
         end
     end
     message = message:sub(1, #message - 1)
-    command = 'input /echo '..message..''
-    send_command(command)
+    command = '/echo '..message..''
+    send_chat(command)
     log('Message recieved ['..message.."]")
 end
 

@@ -1,1 +1,1 @@
-send @all /equip ring2 \"dim. ring (holla)\"; send treubond /equip ring2 \"dim. ring (dem)\"; wait 9; send @all /item \"dim. ring (holla)\" <me>; send treubond /item \"dim. ring (dem)\" <me>
+send @all /equip ring2 \"dim. ring (holla)\"; wait 9; send @all /item \"dim. ring (holla)\" <me>

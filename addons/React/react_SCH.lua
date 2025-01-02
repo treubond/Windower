@@ -24,4 +24,5 @@ return {
 				["complete_reaction"]="", 
 				["ready_reaction"]="input /ma 'Barwatera' <me>"
 			},
+		}
 }

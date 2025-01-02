@@ -139,6 +139,8 @@ keybinds_on['key_bind_indi_cycle'] = '(PgUP + PgDOWN)'
 keybinds_on['key_bind_lock_weapon'] = '(F12)'
 keybinds_on['key_bind_movespeed_lock'] = '(ALT-F12)'
 
+-- load PetTP
+send_command('wait 3; lua l pettp')
 
 -- Remember to unbind your keybinds on job change.
 function user_unload()
@@ -162,6 +164,9 @@ function user_unload()
 
 	send_command('unbind ^f')
 	send_command('unbind ^n')
+
+	-- unload PetTP
+	send_command('wait 3; lua u pettp')
 end
 
 --------------------------------------------------------------------------------------------------------------
@@ -205,9 +210,9 @@ function get_sets()
 	RELIC.Feet = "Bagua Sandals +3"
 	
 	EMPY.Head = "Azimuth Hood +3"
-	EMPY.Body = "Azimuth Coat"
-	EMPY.Hands = "Azimuth Gloves"
-	EMPY.Legs = "Azimuth Tights +2"
+	EMPY.Body = "Azimuth Coat +2"
+	EMPY.Hands = "Azimuth Gloves +2"
+	EMPY.Legs = "Azimuth Tights +3"
 	EMPY.Feet = "Azimuth Gaiters +2"
 	
 	GEOCape = {}
@@ -567,13 +572,15 @@ function get_sets()
 	}
 	-- Nuking
     sets.midcast.nuking.normal = set_combine(sets.midcast.casting,{
-		main="Bunzi's Rod",
-		sub="Ammurapi Shield",
+		--main="Bunzi's Rod",
+		--sub="Ammurapi Shield",
+		main="Marin Staff +1",
+		sub="Enki Strap",
 		ammo="Ghastly Tathlum +1",
 		head=EMPY.Head,
-		body="Jhakri Robe +2",
-		hands=EMPY.Legs,
-		legs="Jhakri Slops +2",
+		body=EMPY.Body,
+		hands=EMPY.Hands,
+		legs=EMPY.Legs,
 		feet=EMPY.Feet,
 		neck="Saevus Pendant +1",
 		waist="Sacro Cord",
@@ -595,14 +602,16 @@ function get_sets()
 
 
     })
-	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  45/24
-		main="Bunzi's Rod", --10
-		sub="Ammurapi Shield",
+	sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { --I/II  40/24
+		--main="Bunzi's Rod", --10
+		--sub="Ammurapi Shield",
+		main="Marin Staff +1",
+		sub="Enki Strap",
 		ammo="Ghastly Tathlum +1",
 		head="Ea Hat", --6/6
 		body="Ea Houppelande", --8/8
 		hands="Ea Cuffs", --5/5
-		legs=EMPY.Legs, --10/0  (+2)
+		legs=EMPY.Legs, --15/0  (+3)
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6/0
 		neck="Saevus Pendant +1",
 		waist="Sacro Cord",
@@ -613,6 +622,7 @@ function get_sets()
 		back=GEOCape.Nuke,
 	})
     sets.midcast.nuking.acc = set_combine(sets.midcast.nuking.normal,{
+		hands=EMPY.Hands,
 		right_ear = "Azimuth Earring +1",
     })
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {

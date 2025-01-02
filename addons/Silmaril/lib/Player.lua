@@ -8,9 +8,13 @@ do
     local player_location = {}
     local stop_time = os.time()
     local player_moving = false
+    local epoch_ticks = 0
     local server_delta = 0
 
     function update_player_info()
+
+        -- Location is updated in Moving.lua
+        if not player_location then return end
 
         -- This is updated at high speed
         local now = os.clock()
@@ -23,9 +27,6 @@ do
         player = get_player_data()
         if not player then return end
         player_id = tostring(player.id)
-
-        player_location = get_mob_by_id(player.id)
-        if not player_location then return end
 
         -- Determine if player is moving
         local movement = math.sqrt((player_location.x-old_pos.x)^2 + (player_location.y-old_pos.y)^2 + (player_location.z-old_pos.z)^2 ) > 0.025
@@ -139,10 +140,11 @@ do
             local buff = 'Buffs '..string.format("%i",i)
             local buff_index = 'Time '..string.format("%i",i)
             if packet[buff] ~= 255 and packet[buff] ~= 0 then
-                -- Buff time is offset in mins from SE Epoc
                 local buff_id = packet[buff]
-                --This uses the standard epoc but then to reduce offset they must increment it every 2.27 years
-                local buff_offset = 1009810800 + (4294967280 * 9 + packet[buff_index])/ 60 - server_delta
+                -- 1009810800 is GMT: Monday, December 31, 2001 3:00:00 PM
+                -- 4294967296 is 32 bit for the roll over
+                -- server_delta accounts for a pc that is not time sync'd
+                local buff_offset = 1009810800 + ( 4294967296 * epoch_ticks + packet[buff_index] ) / 60 - server_delta
                 local end_time = os.date('%Y-%m-%dT%H:%M:%S',buff_offset)
                 --log('Buff end time ['..end_time..']')
                 formattedString = formattedString..buff_id..','..end_time..'|'
@@ -216,9 +218,13 @@ do
     end
 
     function set_server_offset(timestamp , offset)
-        local server_time = 1009810800 + timestamp - offset - 2.5
-        server_delta = server_time - os.time()
-        --log('Server Offset is ['..server_delta..'] seconds')
+        -- Calculates the roll over times for buffs
+        local server_time = timestamp - offset
+        local roll_over_rate = 4294967296 / 60
+        epoch_ticks =  math.floor(server_time / roll_over_rate)
+        server_delta = 1009810800 + server_time - os.time()
+        --log('Epoch Ticks ['..epoch_ticks..']')
+        --log('Server Delta ['..server_delta..']')
     end
 
 end

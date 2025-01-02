@@ -82,6 +82,8 @@ do
             send_packet(get_all_weather())
         elseif type == 'day' then
             send_packet(get_all_day())
+        elseif type == 'monster' then
+            send_packet(get_all_monster_abilities())
         end
         -- Speed up the sync process so send a follow up request
         request()

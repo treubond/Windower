@@ -30,6 +30,9 @@ function file_unload()
 	send_command('unbind ^f10')
 	send_command('unbind f11')
 	enable("main","sub","range","ammo","head","neck","ear1","ear2","body","hands","ring1","ring2","back","waist","legs","feet")
+
+	-- unload PetTP
+	send_command('wait 3; lua u pettp')
 end
 
 function get_sets()
@@ -38,6 +41,9 @@ function get_sets()
 	send_command('bind ^f9 gs c WeaponLock') 	-- F10 = Toggle Melee Mode
 	send_command('bind ^f10 gs c TH') 			-- Ctrl+F10 = Treasure Hunter toggle
 	send_command('bind f11 gs c AccMode') 		-- F11 = ACC Mode toggle
+
+	-- load PetTP
+	send_command('wait 3; lua l pettp')
 
 	Telchine_ENH_head = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
     Telchine_ENH_body = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}

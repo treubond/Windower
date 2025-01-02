@@ -10,6 +10,11 @@
         <ShowTargetLine>true</ShowTargetLine>
         <Ranges />
         <Scale>1</Scale>
+        <ColorPC>#FF006FB8</ColorPC>
+        <ColorNPC>#FF269D49</ColorNPC>
+        <ColorMob>#FFED1A20</ColorMob>
+        <ColorMarker>#FFB646AD</ColorMarker>
+        <ZoomDefault>-10</ZoomDefault>
     </global>
     <Treubond>
         <X>1569</X>
@@ -20,8 +25,8 @@
         <Y>852</Y>
     </Windybond>
     <Khrone>
-        <X>913</X>
-        <Y>338</Y>
+        <X>-16</X>
+        <Y>488</Y>
     </Khrone>
     <Treuse>
         <X>1529</X>

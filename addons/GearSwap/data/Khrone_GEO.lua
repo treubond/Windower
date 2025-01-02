@@ -89,7 +89,7 @@ nukeModes = M('normal', 'acc')
 -- Setting this to true will stop the text spam, and instead display modes in a UI.
 -- Currently in construction.
 use_UI = true
-hud_x_pos = 950    --important to update these if you have a smaller screen
+hud_x_pos = 650    --important to update these if you have a smaller screen
 hud_y_pos = 50     --important to update these if you have a smaller screen
 hud_draggable = true
 hud_font_size = 10
@@ -132,6 +132,8 @@ keybinds_on['key_bind_indi_cycle'] = '(PgUP + PgDOWN)'
 keybinds_on['key_bind_lock_weapon'] = '(F12)'
 keybinds_on['key_bind_movespeed_lock'] = '(ALT-F12)'
 
+-- load PetTP
+send_command('wait 3; lua l pettp')
 
 -- Remember to unbind your keybinds on job change.
 function user_unload()
@@ -149,6 +151,9 @@ function user_unload()
 	
 	send_command('unbind ^f')
 	send_command('unbind ^n')
+
+	-- unload PetTP
+	send_command('wait 3; lua u pettp')
 end
 
 --------------------------------------------------------------------------------------------------------------
@@ -275,11 +280,11 @@ function get_sets()
 		head = EMPY.Head,
 		body="Jhakri Robe +2",
 		hands=AF.Hands,
-		legs="Weath. Pants +1",
+		legs="Nyame Flanchard",
 		feet=RELIC.Feet,
 		neck={ name="Bagua Charm +1", augments={'Path: A',}},
-		waist="Embla Sash",
-		left_ear="Aredan Earring",
+		waist="Isa Belt",
+		--left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",

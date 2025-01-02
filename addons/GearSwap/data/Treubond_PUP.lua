@@ -67,6 +67,9 @@ function user_setup()
     send_command('bind ^f9 gs c cycle HybridMode')
     send_command('bind f10 gs c cycle PhysicalDefenseMode')
 
+    -- load PetTP
+    send_command('wait 3; lua l pettp')
+
     update_pet_mode()
     select_default_macro_book()
 end
@@ -85,6 +88,9 @@ function file_unload()
 	send_command('unbind ^numpad4')
     send_command('unbind ^numpad6')
     send_command('unbind ^numpad1')
+
+    -- unload PetTP
+    send_command('wait 3; lua u pettp')
 end
  
 -- Define sets used by this job file.
@@ -242,7 +248,7 @@ function init_gear_sets()
         neck="Sanctity necklace",
         waist="Moonbow Belt",
         left_ear="Enmerkar Earring",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         left_ring="Shneddick Ring",
         right_ring="Defending Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
@@ -268,7 +274,7 @@ function init_gear_sets()
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
         waist="Isa Belt",
         left_ear="Enmerkar Earring",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         right_ring="Tali'ah Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
     }--Handler's Earring/Burana Earring
@@ -280,7 +286,7 @@ function init_gear_sets()
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
         waist="Isa Belt",
         left_ear="Handler's Earring +1",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
         --[[ range="Divinator",ammo="Automat. Oil +3",
         head="Pitre Taj +1",neck="Empath Necklace",ear1="Handler's Earring +1",ear2="Handler's Earring",
@@ -329,7 +335,7 @@ function init_gear_sets()
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
         waist="Isa Belt",
         left_ear="Handler's Earring +1",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
         --[[ range="Divinator",ammo="Automat. Oil +3",
         head="Pitre Taj +1",neck="Empath Necklace",ear1="Handler's Earring +1",ear2="Handler's Earring",
@@ -363,7 +369,7 @@ function init_gear_sets()
         neck="Asperity necklace",
         waist="Moonbow Belt",
         left_ear="Mache Earring",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Chirich Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
@@ -390,7 +396,7 @@ function init_gear_sets()
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
         waist="Isa Belt",
         left_ear="Enmerkar Earring",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Tali'ah Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
@@ -422,7 +428,7 @@ function init_gear_sets()
         neck="Asperity necklace",
         waist="Moonbow Belt",
         left_ear="Mache Earring",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Chirich Ring",
         back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: "Regen"+10','System: 1 ID: 1247 Val: 4',}},
@@ -438,7 +444,7 @@ function init_gear_sets()
         feet={ name="Rao Sune-Ate +1", augments={'Pet: HP+125','Pet: Accuracy+20','Pet: Damage taken -4%',}},
         waist="Isa Belt",
         left_ear="Enmerkar Earring",
-        right_ear={ name="Karagoz Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+        right_ear="Kara. Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Tali'ah Ring",
         --[[ range="Divinator",ammo="Automat. Oil +3",

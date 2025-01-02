@@ -129,7 +129,7 @@ function user_setup()
 	
 	--Load Gearinfo/Dressup Lua
 	
-    send_command('wait 3; lua l gearinfo')
+    --send_command('wait 3; lua l gearinfo')
 	--send_command('wait 10; lua l Dressup')
     
     --Global Samurai binds (^ = CTRL)(! = ALT)(@ = Windows key)(~ = Shift)(# = Apps key)
@@ -408,8 +408,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck={ name="Sam. Nodowa +1", augments={'Path: A',}},
 		waist="Ioskeha Belt +1",
-		left_ear="Cessance Earring",
-		right_ear="Thrud Earring",
+		left_ear="Thrud Earring",
+		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Weapon skill damage +2%',}},
 		left_ring="Sroda Ring",
 		right_ring="Rajas Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},
@@ -454,8 +454,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck={ name="Sam. Nodowa +1", augments={'Path: A',}},
 		waist="Ioskeha Belt +1",
-		left_ear="Cessance Earring",
-		right_ear="Thrud Earring",
+		left_ear="Thrud Earring",
+		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Weapon skill damage +2%',}},
 		left_ring="Sroda Ring",
 		right_ring="Rajas Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},		--[[ ammo="Knobkierrie",
@@ -597,7 +597,19 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 
     sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet="Nyame Sollerets",
+		neck={ name="Sam. Nodowa +1", augments={'Path: A',}},
+		waist="Eschan Stone",
+		left_ear="Thrud Earring",
+		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Weapon skill damage +2%',}},
+		left_ring="Sroda Ring",
+		right_ring="Rajas Ring",
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},
 		--[[ ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -710,7 +722,7 @@ function init_gear_sets()
     -- Normal melee group
     -- Delay 450 GK, 25 Save TP => 65 Store TP for a 5-hit (25 Store TP in gear)
 
-    sets.engaged = {  --STP = 76   DT=38 PDT=6
+    sets.engaged = {  --STP = 76   DT=33 PDT=16
 		ammo="Aurgelmir Orb", --4
 		head="Kasuga Kabuto +2",  --11  DT 9
 		body="Kasuga Domaru +2",  --13  DT 13
@@ -723,7 +735,7 @@ function init_gear_sets()
 		right_ear="Mache Earring +1",  --0
 		left_ring="Chirich Ring +1",  --6
 		right_ring="Lehko's Ring",  --10
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%','Damage taken-5%',}},  --0  DT 5
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},  --0  PDT 10
 		--[[ ammo="Aurgelmir Orb +1",
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
@@ -818,10 +830,10 @@ function init_gear_sets()
     }
 	
 	sets.Dojikiri = {--[[ main={ name="Dojikiri Yasutsuna", augments={'Path: A',}},sub="Utu Grip" ]]}
-	sets.Masamune = {main={ name="Masamune", augments={'Path: A',}}--[[ ,sub="Utu Grip" ]]}
+	sets.Masamune = {main={ name="Masamune", augments={'Path: A',}},sub="Utu Grip"}
 	sets.Shining_One = {--[[ main='Shining One',sub="Utu Grip" ]]}
 	sets.Hachimonji = {--[[ main="Hachimonji",sub="Utu Grip" ]]}
-	sets.Soboro = {main="Soboro Sukehiro",--[[ sub="Utu Grip" ]]}
+	sets.Soboro = {main="Soboro Sukehiro",sub="Utu Grip"}
 	sets.Dagger = {--[[ main={ name="Malevolence", augments={'INT+10','Mag. Acc.+10','"Mag.Atk.Bns."+10','"Fast Cast"+5',}},sub={ name="Ternion Dagger +1", augments={'Path: A',}}, ]]}
 	
     sets.Obi = {--[[ waist="Hachirin-no-Obi" ]]}

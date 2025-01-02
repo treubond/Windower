@@ -2,17 +2,18 @@ do
     local enabled = false
     local connected = false
     local old_status = 0
+    local old_menu = 0
     local auto_load = true
     local auto_load_time = os.clock()
-    local sortie_addon = true
 
     function main_engine()
 
         local engine_speed = 1/30
-        local movement_speed = 1/10
-        local send_speed = 1/4
+        local movement_speed = 1/15
+        local send_speed = 1/8
         local display_speed = 1/4
         local sync_speed = 30
+        local inv_speed = 2
 
         local now = os.clock()
         local last_request = now
@@ -20,10 +21,12 @@ do
         local last_display = now
         local last_movement = now
         local last_send = now
+        local last_inventory = now
 
 	    while true do
 
             now = os.clock() -- used to determine the elapsed time
+
             receive_info() --check the UDP port for incoming traffic
 
             if not connected then
@@ -35,40 +38,64 @@ do
             else
 
                 if now - last_movement > movement_speed then
-                    last_movement = now
-
                     -- Update the player information via Player.lua
                     update_player_info()
 
                     -- Process player movement
                     movement()
 
+                    last_movement = now
                 end
 
                 if now - last_send > send_speed then
-
-                    last_send = now
-
                     -- Send the info to Silmaril
                     send_silmaril()
+                    last_send = now
+                end
 
-                    -- Player was mirroring and recieved a release packet.  Now just wait till status ~= 4
+                -- load the initial settings
+                if auto_load and now - auto_load_time > 2 then 
+                    load_command("")
+                    log("Auto Load Settings")
+                    auto_load = false;
+                end
+
+                -- Update the in game display
+                if now - last_display > display_speed then
+
+                    update_display() -- call to Display.lua
+
+                    check_addons() -- call to Addons.lua
+
+                    -- Player was generating a mirror and recieved a release packet.  Now just wait till status ~= 4
                     if get_mirror_on() and get_mirroring() then
                         local p = get_player()
-                        if old_status == 4 and p.status == 0 and get_mirror_release() then
+                        local w = get_world()
+
+                        -- Normal interactions
+                        if old_status == 4 and p.status == 0 and get_mirror_release() and not get_buy_sell() then
                             -- Player is released via status change (non standard)
                             log("Mirror sequence completed via status change")
                             npc_mirror_complete()
                             clear_npc_data()
                         end
+
+                        -- Buy/Sell interactions
+                        if get_buy_sell() and old_menu and not w.menu_open then
+                            log("Buy/Sell sequence completed via status change")
+                            npc_mirror_complete()
+                            clear_npc_data()
+                        end
+
                         old_status = p.status
+                        old_menu = w.menu_open
                     end
 
                     -- Mirroring 
                     if get_injecting() then 
                         local retry_count = get_retry_count()
                         -- No poke response after the time delay
-                        if now - get_poke_time() > 1 and not get_mid_inject() then
+                        if now - get_poke_time() > 1.5 + retry_count * .5 and not get_mid_inject() then
                             -- There are still message so try to get a poke response
                             if get_mirror_message() then
                                 if retry_count < 5 then
@@ -78,54 +105,67 @@ do
                                     npc_retry()
                                 else
                                     info("Timed out - Unable to Poke NPC.")
-                                    set_force_warp(false)
                                     send_packet(get_player_id()..";mirror_status_failed")
                                     npc_reset()
+                                    clear_npc_data()
                                 end
                             else
                                 -- Turns off injection and finishes process
-                                npc_inject()
+                                log('End of messages reached - Detected by Engine')
+                                send_packet(get_player_id()..";mirror_status_completed")
+                                clear_npc_data()
                             end
                         end
 
                         -- Mid injection and no response so follow up with injection
                         if get_mid_inject() then
-                            local delay = now - get_message_time()
-                            if (delay > .25 and get_force_warp()) or delay > 2 then
-                                log("Middle of injection and message time exceeded (Force Warp) - Time Out ("..tostring(now - get_message_time())..")")
-                                if not get_mirror_message() then
+                            if now - get_message_time() > 5 then -- Likely need to retry the packet instead of progressing
+                                log("Middle of injection and message time out ["..string.format("%.2f",now - get_message_time()).."]")
+                                if not get_mirror_message() or #get_mirror_message() == 0 then
                                     info("Timed out and all message are sent - Consider complete and reseting.")
-                                    send_packet(get_player_id()..";mirror_status_failed")
-                                    npc_reset()
+                                    -- Check is the player is in a menu
+                                    local p = get_player()
+                                    if p.status == 4 then
+                                        log("Player is menu - Reset before finishing")
+                                        npc_reset()
+                                    end
+                                    clear_npc_data()
+                                    send_packet(get_player_id()..";mirror_status_completed")
                                 else
                                     log("Continue the injection.")
                                     npc_inject()
                                 end
+                            else
+                                -- Don't wait for the buy/sell
+                                if #get_mirror_message() == 0 and get_buy_sell() then
+                                    npc_inject()
+                                end
+                            end
+
+                            -- The buy was complete so cancel out of menu
+                            if get_buy_sell() and not get_mirror_message() then
+                                log("Reset from the menu buying")
+                                npc_reset()
+                                clear_npc_data()
                             end
                         end
-
                     end
 
-                    -- load the initial settings
-                    if auto_load and now - auto_load_time > 2 then 
-                        load_command("")
-                        log("Auto Load Settings")
-                        auto_load = false;
-                    end
-                end
-
-                -- Update the in game display
-                if now - last_display > display_speed then
                     last_display = now
-                    update_display() -- call to Display.lua
-                    check_addons() -- call to Addons.lua
                 end
 
                 -- Update the spells the player has
                 if now - last_sync > sync_speed then 
                     get_player_spells() -- Spells.lua
-                    log("Updated Sync")
+                    send_packet_silent(get_player_id()..";sync") -- Request any Skillchain info
                     last_sync = now
+                end
+
+                --Update the inventory
+                if now - last_inventory > inv_speed then 
+                    --Item data to the Silmaril Program via World.lua
+                    send_packet_silent(get_player_id()..";"..get_inventory())
+                    last_inventory = now
                 end
 
             end

@@ -24,7 +24,7 @@ nukeModes 	= M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 mainWeapon = M('Naegling','Carnwenhan','Sangoma')
-subWeapon = M('Ammurapi shield','Kali','Fusetto +2')
+subWeapon = M('Ammurapi shield','Kali','Fusetto +2','Demers. Degen +1')
 --mainWeapon = M('Carnwenhan','Tauret','Naegling','Sangoma','Twashtar','Marin Staff +1','Daybreak')
 --subWeapon = M('Ammurapi shield','Tauret','Gleti\'s Knife','Fusetto +2','Genmei Shield','Duplus Grip')
 ------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ DYNA_NECK = ""
 -- Setting this to true will stop the text spam, and instead display modes in a /UI.
 -- Currently in construction.
 use_UI = true
-hud_x_pos = 900    --important to update these if you have a smaller screen
+hud_x_pos = 600    --important to update these if you have a smaller screen
 hud_y_pos = 190    --important to update these if you have a smaller screen
 hud_draggable = true
 hud_font_size = 8
@@ -147,12 +147,13 @@ keybinds_on['key_bind_lock_weapon'] = '(ALT-F9)'
 keybinds_on['key_bind_matchsc'] = '(F10)'
 send_command('gs c hud hidejob')
 send_command('gs c hud keybinds')
-send_command('lua l gearinfo')
-send_command('lua l equipviewer')
-send_command('lua l partybuffs')
+--send_command('lua l gearinfo')
+--send_command('lua l equipviewer')
+--send_command('lua l partybuffs')
 
 -- Remember to unbind your keybinds on job change.
 function user_unload()
+	send_command('lua u gearinfo')
     send_command('unbind insert')
     send_command('unbind delete')	
     send_command('unbind f9')
@@ -175,7 +176,6 @@ function user_unload()
 	send_command('unbind ^\\\\')
 	send_command('unbind !q')
 	send_command('unbind !a')	
-	send_command('lua u gearinfo')
 end
 
 include('BRD_Lib.lua')
@@ -294,6 +294,13 @@ function get_sets()
 		AYA.LEG	= ""--"Ayanmo Cosciales +2"
 		AYA.FEE	= ""--"Ayanmo Gambieras +2"
 		AYA.RNG = ""--"Ayanmo Ring"
+
+---------------
+--Telchine Gear
+---------------
+	Telchine_ENH_hands = { name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +8',}}
+	Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +8',}}
+	Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +9',}}
 
 ---------------
 --GENERIC SETS
@@ -729,7 +736,7 @@ function get_sets()
 		feet="Nyame Sollerets",
 		neck={ name="Bard's Charm +1", augments={'Path: A',}},
 		waist="Sailfi Belt +1",
-		left_ear="Mache Earring",
+		left_ear="Moonshade Earring",
 		right_ear="Cessance Earring",
 		left_ring="Lehko's Ring",
 		right_ring="Rajas Ring",
@@ -757,6 +764,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head=REL.HED,
@@ -781,6 +789,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -805,6 +814,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=REL.HED,
@@ -829,6 +839,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head=AYA.HED,
@@ -853,6 +864,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range="Linos",
 		head="Nyame Helm",
@@ -877,6 +889,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head=ART.HED,
@@ -901,6 +914,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head=ART.HED,
@@ -925,6 +939,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+3','Quadruple Attack +3',}},
 		head={ name="Bihu Roundlet +3", augments={'Enhances "Con Anima" effect',}},
@@ -950,6 +965,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head={ name="Bihu Roundlet +3", augments={'Enhances "Con Anima" effect',}},
@@ -975,6 +991,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -999,6 +1016,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head="Pixie Hairpin +1",
@@ -1023,6 +1041,7 @@ function get_sets()
 		body=REL.BOD,
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		back=JSE.WSD.STR,
 		--[[ range={ name="Linos", augments={'Attack+17','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head="Nyame Helm",
@@ -1508,6 +1527,9 @@ function get_sets()
 --[MIDCASTING]-[ENHANCING DURATION (SELF)]
 ---------------
     sets.midcast.enhancing.duration = {
+		hands=Telchine_ENH_hands,
+		legs=Telchine_ENH_legs,
+		feet=Telchine_ENH_feet,
 		sub="Ammurapi Shield",
 		waist="Embla Sash",
 		--[[ main=Carnwenhan,
@@ -1549,6 +1571,9 @@ function get_sets()
 --MOST TRASH UP TO AND INCLUDING ESCHA ZITAH IF USING A PDT SET. CAN LET YOU TAKE AS LITTLE AS 50 DAMAGE FROM EVEN APEX MOBS.  
 ---------------
     sets.midcast.phalanx ={
+		hands=Telchine_ENH_hands,
+		legs=Telchine_ENH_legs,
+		feet=Telchine_ENH_feet,
 		--[[ range={ name="Linos", augments={'Mag. Evasion+13','Phys. dmg. taken -4%','HP+15',}},
 		head={ name="Telchine Cap", augments={'"Waltz" potency +5%','Enh. Mag. eff. dur. +10',}},
 		body={ name="Telchine Chas.", augments={'"Waltz" potency +5%','Enh. Mag. eff. dur. +10',}},
@@ -1633,6 +1658,9 @@ function get_sets()
 	sets.midcast.regen = set_combine(sets.midcast.enhancing.duration, {
 		main="Bolelabunga",
 		head=INY.HED,
+		hands=Telchine_ENH_hands,
+		legs=Telchine_ENH_legs,
+		feet=Telchine_ENH_feet,
 		--body={ name="Telchine Chas.", augments={'"Waltz" potency +5%','Enh. Mag. eff. dur. +10',}},
     })
 
@@ -1640,16 +1668,16 @@ function get_sets()
 --[MIDCASTING]-[SONGS]
 --------------
 
-	sets.midcast.songs.normal = {
+	sets.midcast.songs.normal = { -- +7 by default
 		--sub="Ammurapi Shield",
 		main="Carnwenhan",
-		range="Daurdabla",
+		range="Gjallarhorn", -- +4
 		head=EMP.HED,
 		body=EMP.BOD,
 		hands=EMP.HND,
 		legs=INY.LEG,
 		feet=ART.FEE,
-		neck="Mnbw. Whistle +1",
+		neck="Mnbw. Whistle +1", -- +3
 		waist="Embla Sash",
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
@@ -1761,7 +1789,7 @@ function get_sets()
 	}
 
 	sets.midcast.HonorMarch	= set_combine(sets.midcast.songs.normal, {
-		--range="Marsyas",
+		range="Marsyas",
 		hands=EMP.HND,
 	})
 	
@@ -1786,8 +1814,7 @@ function get_sets()
 	sets.midcast.Carol 		= set_combine(sets.midcast.songs.normal, {range="Gjallarhorn",--[[hands="Mousai Gages +1", ]]})
 	
 	sets.midcast.NormlLullaby 	= set_combine(sets.midcast.songs.debuff, {
-		range="Daurdabla",
-		--range="Marsyas", --Duration Instrument. Don't forget to disable the other instruments. 
+		range="Marsyas", --Duration Instrument. Don't forget to disable the other instruments. 
 		--range="Gjallarhorn", --Magic Accuracy Instrument.  Don't forget to disable the other instruments.
 		body=EMP.BOD,
 		--hands=ART.HND,
@@ -1801,8 +1828,7 @@ function get_sets()
 	--EMP.LEG -8 Song Reast for quick sleep recast.
 	
 	sets.midcast.THLullaby 	= set_combine(sets.midcast.songs.debuff, {
-		range="Daurdabla",
-		--range="Marsyas", --Duration Instrument. Don't forget to disable the other instruments. 
+		range="Marsyas", --Duration Instrument. Don't forget to disable the other instruments. 
 		--range="Gjallarhorn", --Magic Accuracy Instrument.  Don't forget to disable the other instruments.
 		--[[ body=ART.BOD,
 		hands=ART.HND,
@@ -1820,8 +1846,8 @@ function get_sets()
 	sets.midcast.Finale 	= set_combine(sets.midcast.songs.debuff, {range="Gjallarhorn",legs=EMP.LEG,})
 		
 	sets.midcast.Scherzo 	= set_combine(sets.midcast.songs.normal, {range="Gjallarhorn",feet=EMP.FEE,})
-	sets.midcast.Hymnus 	= set_combine(sets.midcast.songs.normal, {--[[ range="Marsyas", ]]})
-	sets.midcast.Dirge 		= set_combine(sets.midcast.songs.normal, {--[[ range="Marsyas", ]]})
+	sets.midcast.Hymnus 	= set_combine(sets.midcast.songs.normal, {range="Marsyas",})
+	sets.midcast.Dirge 		= set_combine(sets.midcast.songs.normal, {range="Marsyas",})
 	sets.midcast.Sirvente 	= set_combine(sets.midcast.songs.normal, {range="Gjallarhorn",})
 	
 	sets.midcast["Pining Nocturne"] 	= {

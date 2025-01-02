@@ -30,7 +30,7 @@ function job_setup()
     --Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
     state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'SakpataSword', 'Club', 'Burtgang'} --'ShiningOne', 'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
-    state.ShieldSet = M{['description']='Shield Set', 'Blurred', 'Duban', 'Aegis'}
+    state.ShieldSet = M{['description']='Shield Set', 'Blurred', 'Duban', 'Aegis', 'Demers', 'Thibron'}
     
 end
  
@@ -333,6 +333,7 @@ function init_gear_sets()
  
     sets.Phalanx = {
         main="Sakpata's Sword",
+        body={ name="Odyss. Chestplate", augments={'DEX+7','CHR+15','Phalanx +4','Mag. Acc.+5 "Mag.Atk.Bns."+5',}},
         hands="Souv. Handsch. +1",
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
         feet="Souveran Schuhs +1",
@@ -566,7 +567,7 @@ function init_gear_sets()
         neck="Asperity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
-        right_ear="Crep. Earring",
+        right_ear="Telos Earring",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         back="Solemnity Cape",
@@ -633,6 +634,8 @@ function init_gear_sets()
     sets.Duban          = {sub="Duban"}
     sets.Aegis          = {sub="Aegis"}
     sets.Blurred        = {sub="Blurred Shield +1"}
+    sets.Demers         = {sub="Demers. Degen +1"}
+    sets.Thibron        = {sub="Thibron"}
 
     -------------------------------------------------------------------------------------------------------------------
     -- Hybrid Sets

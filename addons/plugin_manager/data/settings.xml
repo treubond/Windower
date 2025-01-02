@@ -1,6 +1,7 @@
 <settings>
 	<global>
 		<!-- This will be used for all the characters that you don't make a specific set of plugins/addons for -->
+		<addon>react</addon>
 	</global>
 	<YourName> <!-- This is just an example. You need to replace "YourName" to the left and below with the character name that you want the set of plugins to work for. -->
 		<plugin>Binder</plugin>
@@ -14,9 +15,11 @@
 		<addon>send</addon>
 		<addon>battlemod</addon>
 		<addon>ffocolor</addon>
+		<addon>enternity</addon>
 	</YourName>
 	<Treubond>
 		<plugin>FFXIDB</plugin>
+		<plugin>Timers</plugin>
 		
 		<addon>azuresets</addon>
 		<addon>Debuffed</addon>
@@ -26,6 +29,7 @@
 		<addon>TParty</addon>
 		<addon>silmaril</addon>
 		<addon>battlemod</addon>
+		<addon>fastcs</addon>
 	</Treubond>
 	<Khrone>
 		<addon>silmaril</addon>
@@ -33,4 +37,13 @@
 	<Hybridkiller>
 		<addon>silmaril</addon>
 	</Hybridkiller>
+	<Screamineagle>
+		<addon>silmaril</addon>
+	</Screamineagle>
+	<Soliene>
+		<addon>silmaril</addon>
+	</Soliene>
+	<Swifman>
+		<addon>silmaril</addon>
+	</Swifman>
 </settings>

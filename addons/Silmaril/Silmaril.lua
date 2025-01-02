@@ -1,6 +1,6 @@
 _addon.name = 'Silmaril'
 _addon.author = 'Mirdain'
-_addon.version = '3.1'
+_addon.version = '3.3'
 _addon.description = 'A multi-boxer tool'
 _addon.commands = {'silmaril','sm'}
 

@@ -218,7 +218,7 @@ function user_setup()
     --send_command('bind %numpad0 input /ra <t>')
 
     -- load GearInfo
-    send_command('wait 3; lua l gearinfo')
+    --send_command('wait 3; lua l gearinfo')
 
     select_default_macro_book()
     set_lockstyle()
@@ -748,9 +748,8 @@ function init_gear_sets()
         body="Nyame Mail",
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
-        --feet="Malignance Boots",
-        --neck="Elite Royal Collar",
-        --waist="Aquiline Belt",
+        feet="Nyame Sollerets",
+        neck="Bathy Choker +1",
         left_ear="Crep. Earring",
         --right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','Crit.hit rate+3',}},
         left_ring="Shneddick Ring",
@@ -818,15 +817,15 @@ function init_gear_sets()
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
 
     sets.engaged = {
-        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+        head="Malignance Chapeau",
         body="Malignance Tabard",
         hands="Malignance Gloves",
-        legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
+        legs="Samnuha Tights",
         feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         neck="Asperity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Telos Earring",
-        right_ear="Cessance Earring",
+        right_ear="Suppanomimi",
         left_ring="Lehko's Ring",
         right_ring="Chirich Ring +1",
         back="Solemnity Cape",
@@ -891,7 +890,7 @@ function init_gear_sets()
 
     -- No Magic Haste (74% DW to cap)
     sets.engaged.DW = {
-        head="Nyame Helm",
+        head="Malignance Chapeau",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
@@ -899,7 +898,7 @@ function init_gear_sets()
         neck="Asperity Necklace",
         waist="Sailfi Belt +1",
         left_ear="Telos Earring",
-        right_ear="Cessance Earring",
+        right_ear="Suppanomimi",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
@@ -950,7 +949,7 @@ function init_gear_sets()
 
     -- 15% Magic Haste (67% DW to cap)
     sets.engaged.DW.LowHaste = {
-        head="Nyame Helm",
+        head="Malignance Chapeau",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
@@ -958,7 +957,7 @@ function init_gear_sets()
         neck="Asperity Necklace",
         waist="Sailfi Belt +1",
         left_ear="Telos Earring",
-        right_ear="Cessance Earring",
+        right_ear="Suppanomimi",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         --back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
@@ -1009,7 +1008,7 @@ function init_gear_sets()
 
     -- 30% Magic Haste (56% DW to cap)
     sets.engaged.DW.MidHaste = {
-        head="Nyame Helm",
+        head="Malignance Chapeau",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
@@ -1017,7 +1016,7 @@ function init_gear_sets()
         neck="Asperity Necklace",
         waist="Sailfi Belt +1",
         left_ear="Telos Earring",
-        right_ear="Cessance Earring",
+        right_ear="Suppanomimi",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         --back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
@@ -1070,7 +1069,7 @@ function init_gear_sets()
 
     -- 35% Magic Haste (51% DW to cap)
     sets.engaged.DW.HighHaste = {
-        head="Nyame Helm",
+        head="Malignance Chapeau",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
@@ -1078,7 +1077,7 @@ function init_gear_sets()
         neck="Asperity Necklace",
         waist="Sailfi Belt +1",
         left_ear="Telos Earring",
-        right_ear="Cessance Earring",
+        right_ear="Suppanomimi",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         --back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},
@@ -1131,7 +1130,7 @@ function init_gear_sets()
 
     -- 45% Magic Haste (36% DW to cap)
     sets.engaged.DW.MaxHaste = {
-        head="Nyame Helm",
+        head="Malignance Chapeau",
         body="Adhemar Jacket +1",
         hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
         legs={ name="Samnuha Tights", augments={'STR+1','"Triple Atk."+2',}},
@@ -1139,7 +1138,7 @@ function init_gear_sets()
         neck="Asperity Necklace",
         waist="Sailfi Belt +1",
         left_ear="Telos Earring",
-        right_ear="Cessance Earring",
+        right_ear="Suppanomimi",
         left_ring="Chirich Ring +1",
         right_ring="Lehko's Ring",
         --back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}},

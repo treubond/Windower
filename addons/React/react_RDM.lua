@@ -3,7 +3,8 @@ return {
         ["Dread Spikes"]={
             ["complete_reaction"]="input /ma Dispel <bt>", 
             ["ready_reaction"]=""
-        }["Yggr"]={
+        },
+        ["Yggr"]={
             ["complete_reaction"]="input /ma Dispel <bt>", 
             ["ready_reaction"]=""
         }
@@ -17,5 +18,11 @@ return {
             ["complete_reaction"]="input /ma Dispel <bt>", 
             ["ready_reaction"]=""
         }
-    }
+    },
+    ["Sextuple Razool Ja"]={
+        ["Manafont"]={
+            ["complete_reaction"]="input /ma silence <bt>", 
+            ["ready_reaction"]=""
+        }
+    },
 }

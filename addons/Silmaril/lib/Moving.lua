@@ -9,18 +9,24 @@ do
 	local lock_time = os.clock()
 	local move_time = os.clock()
 	local now = os.clock()
+	local p_loc = {}
 
 	function movement()
+
+		-- Get the player
+		local p = get_player()
+		if not p or not p.id then runstop() return end
+
+		-- Update the player location
+		p_loc = get_mob_by_id(p.id)
+		set_player_location(p_loc)
+		if not p_loc then return end
 
 		if not autorun_target then return end
 
 		now = os.clock()
 
 		if now - move_time > 2 then runstop() return end
-
-		-- Get the player
-		local p = get_player()
-		if not p then runstop() return end
 
 		-- Silmaril not connected
 		if not get_connected() then runstop() return end
@@ -37,10 +43,6 @@ do
 
 		-- Player not able to move
 		if p.status ~= 0 and p.status ~=1 and p.status ~=5 and p.status ~=85 then runstop() return end
-
-		-- Get the player location
-		local p_loc = get_player_location()
-		if not p_loc then runstop() return end
 
 		-- Get the world data to check for zones
 		local w = get_world()
@@ -78,7 +80,7 @@ do
 
 		-- Handle the lock on issue
 		if p.target_locked and now - lock_time > .5 then 
-			send_command("input /lockon")
+			send_chat("/lockon")
 			lock_time = now
 			return
 		end
@@ -150,10 +152,6 @@ do
 
 		if target.zone and target.zone ~= w.zone then return end
 
-		-- Get the player location
-		local p_loc = get_player_location()
-		if not p_loc then return end
-
 		local angle = 0
 		if direction == "1" then -- 1 is face target
 			angle = math.atan2((target.y - p_loc.y), (target.x - p_loc.x))*-1
@@ -188,7 +186,7 @@ do
 		if not p then return end
 		if not get_enabled() then return end
 		if p.target_locked and lock == "0" then 
-			send_command("input /lockon")
+			send_chat("/lockon")
 		elseif not p.target_locked and lock == "1" then
 			if p.target_index ~= target.index then
 				local inject = new_packet("incoming", 0x058, 
@@ -199,7 +197,7 @@ do
 				})
 				inject_packet(inject)
 			else
-				send_command("input /lockon")
+				send_chat("/lockon")
 			end
 		end
 	end
@@ -215,10 +213,6 @@ do
 
 		-- Wrong member zoned so disregard
 		if tonumber(fast_follow_target.id) ~= tonumber(player_id) then log("Wrong Player ["..player_id.."]") return end
-
-		-- Get the player location
-		local p_loc = get_player_location()
-		if not p_loc then return end
 
 		-- Get the world data and retun is not correct zone
 		local w = get_world()

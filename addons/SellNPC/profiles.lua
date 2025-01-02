@@ -12,6 +12,12 @@ profiles['shield'] = S{
     'Ritter Shield',
 }
 
+profiles['cp'] = S{
+    'Ryl.Sqr. Halberd',
+    'Musketeer Gun',
+    'Ryl.Swd. Blade',
+}
+
 -- //sellnpc ore
 profiles['ore'] = S{
     'iron ore',

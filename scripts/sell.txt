@@ -1,0 +1,8 @@
+//send to other players
+send Treubond exec sell2
+wait 0.5;
+send Khrone exec sell2
+wait 0.5;
+send Screamineagle exec sell2
+wait 0.5;
+send Hybridkiller exec sell2

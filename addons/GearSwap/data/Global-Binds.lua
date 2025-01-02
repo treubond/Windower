@@ -40,7 +40,8 @@
     send_command('bind @f1 input //send Treubond //sm toggle')
     send_command('bind @f2 input //send Khrone //sm toggle')
     send_command('bind @f3 input //send Hybridkiller //sm toggle')
-    send_command('bind @f4 input //sm all toggle')
+    send_command('bind @f4 input //send Screamineagle //sm toggle')
+    send_command('bind @f5 input //sm all toggle')
     send_command('bind #f input //sm all follow')
     send_command('bind #m input //sm mirror')
     

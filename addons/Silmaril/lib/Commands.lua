@@ -89,6 +89,7 @@ end
 function all_command(args)
     if not args[1] then return end
     local sub_command = args[1]:lower()
+    if sub_command == 'mirror' then info("Don't do that - use sm mirror instead") end
     if sub_command == 'start' or sub_command == 'on' or (sub_command == "toggle" and not get_enabled()) then
         send_packet(get_player_id()..";start_all")
     elseif sub_command == 'off' or sub_command == 'stop' or (sub_command == "toggle" and get_enabled()) then

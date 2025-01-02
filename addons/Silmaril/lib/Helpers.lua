@@ -3,8 +3,14 @@ function log (msg)
         if msg == nil then
             send_to_chat(80,'---- Value is Nil ----')
         elseif type(msg) == "table" then
-            for index, value in ipairs(msg) do
-                send_to_chat(80,'---- '..tostring(value)..' ----')
+            for index, value in pairs(msg) do
+                if type(value) == "table" then
+                    for index2, value2 in pairs(value) do
+                       send_to_chat(80,'---- ['..tostring(index)..'] ['..tostring(index2)..'] '..tostring(value2)..' ----')
+                    end
+                else
+                    send_to_chat(80,'---- ['..tostring(index)..'] '..tostring(value)..' ----')
+                end
             end
         elseif type(msg) == "number" then
             send_to_chat(80,'---- '..tostring(msg)..' ----')
@@ -23,8 +29,14 @@ function info (msg)
         if msg == nil then
             send_to_chat(7,'Value is Nil')
         elseif type(msg) == "table" then
-            for index, value in ipairs(msg) do
-                send_to_chat(7,tostring(value))
+            for index, value in pairs(msg) do
+                if type(value) == "table" then
+                    for index2, value2 in pairs(value) do
+                       send_to_chat(80,'---- ['..tostring(index)..'] ['..tostring(index2)..'] '..tostring(value2)..' ----')
+                    end
+                else
+                    send_to_chat(80,'---- ['..tostring(index)..'] '..tostring(value)..' ----')
+                end
             end
         elseif type(msg) == "number" then
             send_to_chat(7,tostring(msg))
@@ -43,21 +55,21 @@ function echo (msg)
         send_to_chat(7,'---- Value is Nil ----')
     elseif type(msg) == "table" then
         for index, value in ipairs(msg) do
-            command = 'input /echo '..value..''
-            send_command(command)
+            command = '/echo '..value..''
+            send_chat(command)
             send_ipc('silmaril message '..value)
         end
     elseif type(msg) == "number" then  
-        command = 'input /echo '..tostring(msg)..''
-        send_command(command)
+        command = '/echo '..tostring(msg)..''
+        send_chat(command)
         send_ipc('silmaril message '..tostring(msg))
     elseif type(msg) == "string" then
-        command = 'input /echo '..msg..''
-        send_command(command)
+        command = '/echo '..msg..''
+        send_chat(command)
         send_ipc('silmaril message '..msg)
     elseif type(msg) == "boolean" then
-        command = 'input /echo '..tostring(msg)..''
-        send_command(command)
+        command = '/echo '..tostring(msg)..''
+        send_chat(command)
         send_ipc('silmaril message '..tostring(msg))
     else
         send_to_chat(7,'---- Unknown Echo Message ----')

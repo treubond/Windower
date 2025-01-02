@@ -11,12 +11,10 @@
       <string>Debuff (High Priority)</string>
       <string>Debuff (Low Priority)</string>
       <string>Debuff (Normal Priority)</string>
-      <string>Dispelling</string>
       <string>Divine Waltz</string>
       <string>Enfeebling (Low Priority)</string>
       <string>Enfeebling (Normal Priority)</string>
       <string>Enhancing (High Priority)</string>
-      <string>Enhancing (Low Priority)</string>
       <string>Enhancing (Normal Priority)</string>
       <string>Fighting</string>
       <string>Follow</string>
@@ -31,23 +29,25 @@
       <string>Skillchain (Leader)</string>
       <string>Songs</string>
       <string>Weaponskills</string>
+      <string>Dispelling</string>
+      <string>Combat</string>
     </Priority_List>
     <Priority_Rank>
-      <string>Combat</string>
-      <string>Enfeebling (High Priority)</string>
       <string>Job Abilities</string>
       <string>Geomancy (Luopan)</string>
       <string>Geomancy (Indi)</string>
       <string>Cure</string>
       <string>Magic Bursts</string>
       <string>Geomancy (Entrust)</string>
+      <string>Enfeebling (High Priority)</string>
+      <string>Enhancing (Low Priority)</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
     <Combat_Action>
       <Combat>
-        <Enabled>true</Enabled>
-        <Auto_Distance>false</Auto_Distance>
+        <Enabled>false</Enabled>
+        <Auto_Distance>true</Auto_Distance>
         <Name>Khrone</Name>
         <Engage>true</Engage>
         <Run>true</Run>
@@ -459,7 +459,7 @@
     <Sleep_AoE>false</Sleep_AoE>
     <Dia_AoE>false</Dia_AoE>
     <Dispel_AoE>false</Dispel_AoE>
-    <Assist> Khrone</Assist>
+    <Assist>Khrone</Assist>
     <Mode>Global</Mode>
     <Priority_Mode>Free</Priority_Mode>
     <Enemy_Enfeebling>
@@ -468,11 +468,11 @@
       <Bind>false</Bind>
       <Blind>false</Blind>
       <Break>false</Break>
-      <Dia>false</Dia>
+      <Dia>true</Dia>
       <Distract>false</Distract>
       <Frazzle>false</Frazzle>
       <Gravity>false</Gravity>
-      <Paralyze>true</Paralyze>
+      <Paralyze>false</Paralyze>
       <Poison>false</Poison>
       <Sleep>false</Sleep>
       <Silence>false</Silence>
@@ -566,18 +566,18 @@
     <Alliance>false</Alliance>
     <High_Enable>false</High_Enable>
     <Normal_Enable>false</Normal_Enable>
-    <Low_Enable>false</Low_Enable>
+    <Low_Enable>true</Low_Enable>
     <Rebuff>false</Rebuff>
     <Rebuff_Time>0</Rebuff_Time>
     <Enhancing_Player>
       <Utsusemi>false</Utsusemi>
       <Crusade>false</Crusade>
       <Reraise>false</Reraise>
-      <Blink>false</Blink>
+      <Blink>true</Blink>
       <Klimaform>false</Klimaform>
       <Aquaveil>false</Aquaveil>
       <Temper>false</Temper>
-      <Stoneskin>false</Stoneskin>
+      <Stoneskin>true</Stoneskin>
       <Auspice>false</Auspice>
       <STR>false</STR>
       <DEX>false</DEX>
@@ -624,7 +624,7 @@
         <Refresh>false</Refresh>
         <Flurry>false</Flurry>
         <Regen>false</Regen>
-        <Phalanx>false</Phalanx>
+        <Phalanx>true</Phalanx>
         <Adloquium>false</Adloquium>
         <Animus_Augeo>false</Animus_Augeo>
         <Animus_Minuo>false</Animus_Minuo>
@@ -1680,8 +1680,8 @@
     <Geo_Target>Hybridkiller</Geo_Target>
     <Geo_Assist>Khrone</Geo_Assist>
     <Geo_Check_Enabled>false</Geo_Check_Enabled>
-    <Indi>Indi-Fury</Indi>
-    <Entrust>Indi-STR</Entrust>
+    <Indi>Indi-Haste</Indi>
+    <Entrust>Indi-Fury</Entrust>
     <Entrust_Target>Khrone</Entrust_Target>
     <Entrust_Assist />
     <Entrust_Check_Enabled>false</Entrust_Check_Enabled>

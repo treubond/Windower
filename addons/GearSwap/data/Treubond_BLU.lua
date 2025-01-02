@@ -206,7 +206,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT', 'MDT')
     state.IdleMode:options('Normal', 'DT')--, 'Learning')
 
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Tizona', 'Nuking', 'Maxentius'} --  'Almace'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Tizona', 'Naegling', 'Nuking', 'Maxentius'} --  'Almace'}
     state.WeaponLock = M(false, 'Weapon Lock')
     state.MagicBurst = M(false, 'Magic Burst')
     -- state.CP = M(false, "Capacity Points Mode")
@@ -393,7 +393,7 @@ function init_gear_sets()
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Cessance Earring",
+        right_ear="Hashi. Earring +1",
         left_ring="Lehko's Ring",
         right_ring="Rajas Ring",
         back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
@@ -613,18 +613,21 @@ function init_gear_sets()
 
     sets.engaged = { -- DW 22% + DW3 25%
         ammo="Ginsen",
-        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
+        head="Malignance Chapeau",
+        --head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
         body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
         hands="Malignance Gloves",
         --hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
         legs="Jhakri Slops +2",
-        feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+        feet="Malignance Boots",
+        --feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, --2
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Eabani Earring", -- 4
-        right_ear="Suppanomimi", -- 5
+        left_ear="Suppanomimi", -- 5
+        --left_ear="Eabani Earring", -- 4
+        right_ear="Hashi. Earring +1",
         left_ring="Chirich Ring +1",
-        right_ring="Chirich Ring",
+        right_ring="Lehko's Ring",
         back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
 
@@ -650,20 +653,22 @@ function init_gear_sets()
     -- * DW1: +10%
 
     -- No Magic Haste (74% DW to cap)
-    sets.engaged.DW = set_combine(sets.engaged, { -- DW 22% + DW3 25%
+    sets.engaged.DW = set_combine(sets.engaged, { -- DW 11% + DW3 25%
         ammo="Ginsen",
-        head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
+        head="Malignance Chapeau",
+        --head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, -- 5
         body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- 6
         hands="Malignance Gloves",
         --hands={ name="Herculean Gloves", augments={'Mag. Acc.+3 "Mag.Atk.Bns."+3','"Dual Wield"+2',}}, -- 2
         legs="Jhakri Slops +2",
-        feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+        feet="Malignance Boots",
+        --feet={ name="Herculean Boots", augments={'Pet: "Mag.Atk.Bns."+29','"Dual Wield"+2','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, --2
         neck={ name="Mirage Stole +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Eabani Earring", -- 4
-        right_ear="Suppanomimi", -- 5
+        left_ear="Suppanomimi", -- 5
+        right_ear="Hashi. Earring +1",
         left_ring="Chirich Ring +1",
-        right_ring="Chirich Ring",
+        right_ring="Lehko's Ring",
         back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     })
 
@@ -721,7 +726,7 @@ function init_gear_sets()
         left_ear="Eabani Earring", -- 4
         right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Chirich Ring +1",
-        right_ring="Chirich Ring",
+        right_ring="Lehko's Ring",
         back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }) -- 6%
 

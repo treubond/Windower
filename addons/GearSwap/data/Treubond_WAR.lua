@@ -55,7 +55,7 @@ end
 
 function job_setup()	
 	--Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Lycurgos', 'ShiningOne', 'Club'} --'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Chango', 'ShiningOne', 'Club'} --'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
     
 	--CP Mode
@@ -215,6 +215,8 @@ function init_gear_sets()
 	sets.precast.RA = { }
 
     sets.Phalanx = {
+        head="Valorous Mask",
+        body={ name="Odyss. Chestplate", augments={'DEX+7','CHR+15','Phalanx +4','Mag. Acc.+5 "Mag.Atk.Bns."+5',}},
         hands="Souv. Handsch. +1",
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
         feet="Souveran Schuhs +1",
@@ -374,7 +376,7 @@ function init_gear_sets()
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Schere Earring",
         right_ear="Boii Earring +1",
-        left_ring="Chirich Ring +1",
+        left_ring="Lehko's Ring",
         --right_ring="Sroda Ring",
         right_ring="Niqmaddu Ring",
         back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -384,7 +386,7 @@ function init_gear_sets()
         left_ear="Assuage Earring",
     })
     
-    sets.engaged.MidAcc = set_combine(sets.engaged, { })
+    sets.engaged.MidAcc = set_combine(sets.engaged, {right_ring="Chirich Ring +1", })
     sets.engaged.FullAcc = set_combine(sets.engaged.MidAcc, { })
 
     sets.engaged.Reraise = set_combine(sets.engaged, { })
@@ -433,7 +435,7 @@ function init_gear_sets()
 	--sets.Montante	 = {main="Montante +1", sub="Bloodrain Strap"}
 	--sets.Reikiono	 = {main="Reikiono", sub ="Bloodrain Strap"}
     sets.Naegling 	 = {main="Naegling", sub="Blurred Shield +1"}	
-    sets.Lycurgos    = {main="Lycurgos", sub="Utu Grip"}
+    sets.Chango    = {main="Chango", sub="Utu Grip"}
     sets.ShiningOne  = {main="Shining One", sub="Utu Grip"}
     sets.Club        = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 

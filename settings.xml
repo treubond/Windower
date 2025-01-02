@@ -3,7 +3,6 @@
   <autoload>
     <addon>GearSwap</addon>
     <addon>InfoBar</addon>
-    <addon>PetTP</addon>
     <addon>DistancePlus</addon>
     <addon>send</addon>
     <addon>findAll</addon>
@@ -11,9 +10,10 @@
     <addon>Treasury</addon>
     <addon>plugin_manager</addon>
     <addon>indinope</addon>
+    <addon>temps</addon>
+    <addon>enternity</addon>
     <plugin>LightLuggage</plugin>
     <plugin>Sandbox</plugin>
-    <plugin>Timers</plugin>
     <plugin>DelayMeNot</plugin>
     <plugin>Config</plugin>
   </autoload>
@@ -31,6 +31,16 @@
     <width>1280</width>
     <height>720</height>
     <gamma>0.173913</gamma>
+    <uiscale>1</uiscale>
+    <hardwaremouse>false</hardwaremouse>
+    <alwaysplaysound>false</alwaysplaysound>
+    <alwaysenablegamepad>false</alwaysenablegamepad>
+  </profile>
+  <profile name="QuadBox">
+    <consolekey>Insert</consolekey>
+    <windowmode>Window</windowmode>
+    <width>800</width>
+    <height>600</height>
     <uiscale>1</uiscale>
     <hardwaremouse>false</hardwaremouse>
     <alwaysplaysound>false</alwaysplaysound>
