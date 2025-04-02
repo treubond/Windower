@@ -24,6 +24,7 @@ do
     local outgoing_warp = false -- Single inject to start the warp process
     local warp_message = {} -- Holds the sortie/oddy warp messages until ready
     local buy_sell = false
+    local trade = false
 
     -- Outline of events
 
@@ -81,9 +82,11 @@ do
             mirroring_state = "Recording"
             mirroring = true
             message_time = os.clock()
-            send_packet(get_player_id()..';mirror_interact') -- used to clear a buffer in Silmaril
-            log('NPC Interaction Starting for '..npc.name..' [Dialog]')
-            packet_log(packet_in, "in")
+            que_packet('mirror_interact') -- used to clear a buffer in Silmaril
+            if not trade then
+                log('NPC Interaction Starting for '..npc.name..' [Dialog]')
+                packet_log(packet_in, "in")
+            end
         else
             log("Blacklisted NPC")
         end
@@ -96,7 +99,7 @@ do
         if blacklisted then log("Blacklisted NPC") return end
         log('Recording Dialog [0x05B]')
 
-        send_packet(get_player_id()..';mirror_dialog_0x05B,'..
+        que_packet('mirror_dialog_0x05B,'..
             packet_in['Target']..','..
             packet_in['Option Index']..','..
             packet_in['_unknown1']..','..
@@ -117,7 +120,7 @@ do
         if blacklisted then log("Blacklisted NPC") return end
         log('Recording Warp [0x05C]')
 
-        send_packet(get_player_id()..';mirror_warp_0x05C,'..
+        que_packet('mirror_warp_0x05C,'..
             packet_in['X']..','..
             packet_in['Y']..','..
             packet_in['Z']..','..
@@ -141,10 +144,13 @@ do
         if not mirror_target then return end
         if blacklisted then return end
 
+        -- Send the trade info
         log('Mirroring Trade [0x036]')
-        send_packet(get_player_id()..';mirror_trade_0x036,'..
-            packet_in['Target']..','..
-            packet_in['Target Index']..
+        que_packet('mirror_trade_0x036|'..
+            packet_in['Target']..'|'..
+            packet_in['Target Index']..'|'..
+            packet_in['_unknown1']..'|'..
+            packet_in['_unknown2']..'|'..
             formattedString)
 
         message_time = os.clock()
@@ -160,7 +166,7 @@ do
         if blacklisted then return end
 
         log('Mirroring Buy [0x083]')
-        send_packet(get_player_id()..';mirror_buy_0x083,'..
+        que_packet('mirror_buy_0x083,'..
             packet_in['Count']..','..
             packet_in['_unknown2']..','..
             packet_in['Shop Slot']..','..
@@ -177,7 +183,7 @@ do
     function npc_mirror_complete()
         if not mirror_target then log("No Target Found") return end
 
-        send_packet(get_player_id()..';mirror_send_'..
+        que_packet('mirror_send_'..
             string.format("%i",mirror_target.id)..','..
             string.format("%i",mirror_target.index)..','..
             string.format("%.3f",mirror_target.x)..','..
@@ -232,7 +238,7 @@ do
                 return
             else
                 log('Player is already in a menu - Mirroring Failed')
-                send_packet(get_player_id()..";mirror_status_failed")
+                que_packet("mirror_status_failed")
                 return
             end
         end
@@ -263,7 +269,10 @@ do
             mirroring_state = "Injecting [0x01A]"
 
         elseif packet_out[1] == "0x036" then
-            log("Trade Action")
+            -- Don't inject the action packet and start injection
+            mirroring_state = "Trading..."
+            injecting = true
+            npc_inject()
         else
             log("Unknown Message")
         end
@@ -303,7 +312,7 @@ do
     -- Once a 0x032/0x033/0x034 Packet is recieved from the initial Action always first 0x05B Packet sent
     -- Once a follow up 0x05C is recieved send the next dialog reqest/warp
     function npc_inject()
-
+        mid_inject = true
         if not injecting then return end
         if not mirror_message then return end
 
@@ -329,7 +338,7 @@ do
                 packet_log(packet, 'out')
             end
 
-            send_packet(get_player_id()..";mirror_status_completed")
+            que_packet("mirror_status_completed")
             clear_npc_data()
             return 
         end
@@ -345,12 +354,13 @@ do
         -- Standard Menu Choice
         if packet_out[1] == "0x05B" then
 
+            local message_menu = tonumber(packet_out[9])
+
             -- Check for correct menu unless it originates from the player
-            if menu_id ~= tonumber(packet_out[9]) then
+            if menu_id ~= tonumber(packet_out[9]) and not trade then
                 if packet_out[2] ~= get_player_id() then
                     info('Menu Mis-Match')
                     reset_player(packet_out[9])
-                    return
                 end
             end
 
@@ -367,7 +377,7 @@ do
                 ['Automated Message'] = automated,
                 ['_unknown2'] = packet_out[7],
                 ['Zone'] = tonumber(packet_out[8]),
-                ['Menu ID'] = tonumber(packet_out[9]),
+                ['Menu ID'] = message_menu,
             })
 
             -- If a menu ID was not assigned from incoming interact assign it here
@@ -420,13 +430,20 @@ do
                 ['_unknown4'] = tonumber(packet_out[6]),
             })
 
+        -- Trade
+        elseif packet_out[1] == "0x036" then
+            -- Doesn't require a poke
+            message_type = '[0x036]'
+            trade = true
+            packet = build_trade_packet(mirror_target, mirror_message)
+            if not packet then log('Trade packet not built') clear_npc_data() return end
+
         else
             echo("Unknown Packet Detected!!!! - Player ["..get_player_name().."] cannot mirror.")
-            send_packet(get_player_id()..";mirror_status_failed")
+            que_packet("mirror_status_failed")
             return
         end
 
-        mid_inject = true
         inject_packet(packet)
         message_time = os.clock()
         packet_log(packet, 'out')
@@ -444,7 +461,7 @@ do
             -- No messages left to send so consider it done
             if not mirror_message then 
                 log('Received [Standard] release was a type ['..interaction_type..']')
-                send_packet(get_player_id()..";mirror_status_completed")
+                que_packet("mirror_status_completed")
                 clear_npc_data()
             end
         elseif packet_in['Type'] == 0x01 then
@@ -452,7 +469,7 @@ do
             if not mirror_message or #mirror_message == 0 then 
                 -- Sucessful Event release
                 log('Received [Event] release was a type ['..interaction_type..']')
-                send_packet(get_player_id()..";mirror_status_completed")
+                que_packet("mirror_status_completed")
                 clear_npc_data()
             else
                 -- Continue the injection
@@ -461,16 +478,90 @@ do
         -- Something prevented the injection
         elseif packet_in['Type'] == 0x02 then
             log('Received [Event Skip] release was a type ['..interaction_type..']')
-            send_packet(get_player_id()..";mirror_status_failed")
+            que_packet("mirror_status_failed")
             clear_npc_data()
         elseif packet_in['Type'] == 0x03 then
             log('Received [String] completed source was a type ['..interaction_type..']')
-            send_packet(get_player_id()..";mirror_status_completed")
+            que_packet("mirror_status_completed")
             clear_npc_data()
         elseif packet_in['Type'] == 0x04 then
             log('Received [Fishing] release was a type ['..interaction_type..']')
-            send_packet(get_player_id()..";mirror_status_completed")
+            que_packet("mirror_status_completed")
             clear_npc_data()
+        end
+    end
+
+    -- Builds the trade packet to send
+    function build_trade_packet(target, mirror_message)
+        local packet_out = {}
+        local items = get_items(0)
+        local items_found = 0
+        local items_used = {}
+
+        for item in string.gmatch(mirror_message[1], "([^,]+)") do
+            table.insert(packet_out, item)
+        end
+
+        local total_items = tonumber(packet_out[2])
+
+        -- Build the trade packet
+        local trade_packet = new_packet('outgoing', 0x036, 
+        {
+            ['Target'] = mirror_target.id,
+            ['Target Index'] = mirror_target.index,
+            ['Number of Items'] = total_items,
+            ['_unknown1'] = tonumber(packet_out[3]),
+            ['_unknown2'] = tonumber(packet_out[4]),
+        })
+
+        local index = 2
+        for i=1, trade_packet['Number of Items'] do
+
+            -- split the item message
+            local item_out = {}
+            for trade_item in string.gmatch(packet_out[index + i], "([^\\]+)") do
+                table.insert(item_out, tonumber(trade_item))
+            end
+
+            -- Need to look up inventory to see if present - zero is gil
+            if item_out[1] ~= 0 then
+               -- Loop through the bag to try to find the items
+               for i=1, #items do
+                   -- Correct Item ID found
+                   if items[i].id == item_out[1] and not items_used[i] then
+                       -- Check if the quanity is enough
+                       if items[i].count >= item_out[2] then
+                           log('Item found at position ['..i..']')
+                           item_out[1] = i
+                           items_found = items_found + 1
+                           items_used[i] = true
+                           i = #items
+                       end
+                   end
+               end
+            else
+                local all_items = get_items()
+                if item_out[2] > all_items['gil'] then
+                    echo("Not enough Gil to trade!!!! - Player ["..get_player_name().."] cannot mirror the trade.")
+                    que_packet("mirror_status_failed")
+                    return
+                else
+                    log('Gil check ok')
+                    items_found = items_found + 1
+                end
+            end
+
+            trade_packet['Item Index '..string.format("%i",i)] = item_out[1]
+            trade_packet['Item Count '..string.format("%i",i)] = item_out[2]
+        end
+
+        if items_found == total_items then
+            log('All Items was found')
+            return trade_packet
+        else
+            echo("Not all items found!!!! - Player ["..get_player_name().."] cannot mirror the trade.")
+            que_packet("mirror_status_failed")
+            return false
         end
     end
 
@@ -485,17 +576,13 @@ do
         echo("Incorrect Menu Detected!!!!")
         echo("Player ["..get_player_name().."] cannot mirror Menu ["..value.."] because Menu is ["..menu_id.."]).")
         log("Player Menu ["..string.format("%i",menu_id)..'] and Mirror Menu ['..value..']')
-        send_packet(get_player_id()..";mirror_menu_"..menu_id)
-        send_packet(get_player_id()..";mirror_status_failed")
+        que_packet("mirror_status_failed")
         retry_count = 0
         npc_reset()
     end
 
     function npc_reset(menu, index)
         injecting = false
-
-        -- Try to finish the injection
-        if mid_inject then log('Mid-Inject so continue') npc_inject() return end
 
         -- Set the menu ID if passed
         if menu then 
@@ -586,6 +673,7 @@ do
         outgoing_warp = false
         warp_spoof = false
         buy_sell = false
+        trade = false
         npc_box_status()
         sm_result_hide()
     end
@@ -660,6 +748,7 @@ do
 
     function set_menu_id(value)
         menu_id = tonumber(value)
+        que_packet("mirror_menu_"..value)
     end
 
     function get_mirror_message()
@@ -750,6 +839,14 @@ do
 
     function set_buy_sell(value)
         buy_sell = value
+    end
+
+    function get_trade()
+        return trade
+    end
+
+    function set_trade(value)
+        trade = value
     end
 
 end

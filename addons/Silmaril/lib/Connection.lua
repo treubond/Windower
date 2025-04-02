@@ -4,47 +4,51 @@ do
     local udp = nil
     local port = 2025
     local ip = "127.0.0.1"
+    local action_packets = {}
+    local action_count = 1
 
-    -- Called from Silmaril.lua
+    -- Called from the hooks after loaded - Windower.lua or Ashita.lua
     function connect()
 
-        initialize() -- via Sync.lua
+        -- via Sync.lua
+        initialize() 
+
+        -- Initialization is completed so progress to open up the port
         udp = assert(socket.udp())
         udp:settimeout(0)
         udp:setpeername(ip, port)
 
         -- start the main proecess via Engine.lua
         main_engine() 
-
     end
 
     -- Called from Engine.lua
     function request()
         skillchain_reset()
-        send_packet(get_player_id()..";request;".._addon.version..';'..get_player_name())
+        local request = get_player_id()..";request;".._addon.version..';'..get_player_name()
+        log(request)
+        send_packet(request) -- Send directly
     end
 
-    --Send the outgoing packet
-    function send_packet (msg)
-        if msg and udp then
-            assert(udp:send(msg))
+    -- Builts a packet to send to silmaril
+    function que_packet (msg)
+        if msg then
+            action_packets[action_count] = msg
+            action_count = action_count +1
             log(msg)
-        else
-            log('Unable to send data')
         end
     end
 
-        --Send the outgoing packet
-    function send_packet_silent (msg)
-        if msg and udp then
-            assert(udp:send(msg))
-        else
-            log('Unable to send data')
+    -- Builts a packet to send to silmaril without a log
+    function que_packet_silent (msg)
+        if msg then
+            action_packets[action_count] = msg
+            action_count = action_count +1
         end
     end
 
-    --Send the outgoing packet without a log
-    function send_update (msg)
+    --Send the outgoing packet to silmaril
+    function send_packet (msg)
         if msg and udp then
             assert(udp:send(msg))
         else
@@ -66,29 +70,50 @@ do
                 -- Check if valid message
                 if message[1] ~= get_player_id() then log('Wrong Message ['..cmd..']') return end
 
+                -- Connection established with silmaril
                 if cmd == "accepted" then
                     skillchain_reset()
                     info('\31\200[\31\05Silmaril Addon\31\200]\31\207 '..message[3])
                     set_connected(true)
+
+                -- Sync process
                 elseif cmd == "sync" then
                     sync_cmd(message[3])
+
+                -- Notify if the versions do not match and unload the addon
                 elseif cmd == "version" then
                     info('Version miss match!')
                     send_command('lua u silmaril')
+
+                -- Reset command from silmaril (Rest Button)
                 elseif cmd == "reset" then
                     reset_request(message[3])
+
+                -- If any character logs - reset the party table.
                 elseif cmd == "clear" then
                     clear_party_location()
+
+                -- Turn the addon on
                 elseif cmd == "on" then
                     on_cmd(message[3],message[4],message[5])
+
+                -- Turn the addon off
                 elseif cmd == "off" then
                     off_cmd()
+
+                -- Display the mirroring results
                 elseif cmd == "results" then
                     mirror_results(message[3])
+
+                -- Standard commands from Silmaril
                 elseif cmd == "input" then
                     input_message(message[3],message[4],message[5],message[6],message[7])
+
+                -- Raw commands that do not require processing
                 elseif cmd == "script" then
-                    send_command(message[3])
+                    send_command(shift_jis(message[3]))
+
+                -- Sent the skillchains to watch for
                 elseif cmd == "skillchain" then
                     skillchain(message[3],message[4],message[5],message[6])
                 elseif cmd == "skillchain2" then
@@ -97,15 +122,23 @@ do
                     skillchain3(message[3],message[4],message[5],message[6])
                 elseif cmd == "skillchain4" then
                     skillchain4(message[3],message[4],message[5],message[6])
+
+                -- This process standard settings saved in the Config.xml file
                 elseif cmd == "config" then
                     config_msg(message[3])
+
+                -- Load in the mirror black lists
                 elseif cmd == "blacklist" then
                     add_black_list(message[3])
-                elseif cmd == "protection" then
-                    set_protection(message[3])
-                    load_command("")
+
+                -- This is the list to protect
                 elseif cmd == "protectlist" then
                     protectlist(message[3], message[4], message[5], message[6])
+
+                -- Enable protection
+                elseif cmd == "protection" then
+                    set_protection(message[3])
+
                 end
             end
         until not data
@@ -166,17 +199,17 @@ do
     end
 
     function reset_request(param)
-        log('Reset Request')
+        -- set to reload the file unless a clear is sent
+        if param == "clear" then
+            log('Clear command Sent')
+            set_auto_load(false)
+        else
+            log('Reset Request')
+            set_auto_load(true)
+        end
         set_connected(false)
         set_enabled(false)
         set_mirror_on(false)
-
-        -- set to reload the file unless a clear is sent
-        if param == "clear" then
-            set_auto_load(false)
-        else
-            set_auto_load(true)
-        end
     end
 
     -- Updates the display of the mirroring
@@ -226,4 +259,14 @@ do
         set_enabled(false)
         info('\31\200[\31\05Silmaril\31\200]\31\207'..' Actions: \31\03[OFF]')
     end
+
+    function get_action_packets()
+        return action_packets
+    end
+
+    function reset_action_packets()
+        action_count = 1
+        action_packets = {}
+    end
+
 end

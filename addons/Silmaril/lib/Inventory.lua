@@ -130,9 +130,6 @@ do
             end
         end
 
-        --1580
-        --1548
-
         --Wardrobe
         get_expendables(8)
         --Wardrobe 2

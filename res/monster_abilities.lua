@@ -3333,20 +3333,22 @@ return {
     [3960] = {id=3960,en="Predatory Glare",ja="プレダトリグレア"},
     [3961] = {id=3961,en="Hoof Volley",ja="フーフボレー"},
     [3962] = {id=3962,en="Nihility Song",ja="ニヒリティソング"},
-    [3968] = {id=3968,en="Shield Shatter",ja="シールドシャッター"},
-    [3969] = {id=3969,en="Disarming Crescent",ja="デサーミングクレセント"},
-    [3970] = {id=3970,en="Warm Up",ja="ワームアップ"},
-    [3971] = {id=3971,en="Hurl Anathema",ja="ハールアナセマ"},
-    [3972] = {id=3972,en="Ward Breach",ja="ワードブリーチ"},
-    [3973] = {id=3973,en="Charging Up",ja="チャージアップ"},
-    [3974] = {id=3974,en="Mijin Gakure",ja="微塵がくれ"},
-    [4035] = {id=4035,en="Rending Talons",ja="レンディングタロン"},
-    [4036] = {id=4036,en="Shrieking Gale",ja="シュリークゲール"},
-    [4037] = {id=4037,en="Wings of Woe",ja="ウィングオブウォウ"},
-    [4038] = {id=4038,en="Wings of Agony",ja="ウィングオブアゴニ"},
-    [4040] = {id=4040,en="Ravenous Wail",ja="ラビナスウェール"},
-    [4041] = {id=4041,en="Face the Music",ja="フェイスザミュージック"},
-    [4045] = {id=4045,en="Self-Destruct",ja="自爆"},
+    [3968] = {id=3968,en="Memento Mori",ja="メメントモーリ"},
+    [3969] = {id=3969,en="Quelling Seal",ja="クエルシール"},
+    [3970] = {id=3970,en="Envoutement",ja="エンバウトメント"},
+    [3971] = {id=3971,en="Final Retribution",ja="Ｆ．レトリビューション"},
+    [3972] = {id=3972,en="Gambol Macabre",ja="ガンボルマカブル"},
+    [3973] = {id=3973,en="Hecatomb Macabre",ja="ヘカトゥームマカブル"},
+    [3974] = {id=3974,en="Hecatomb Macabre",ja="ヘカトゥームマカブル"},
+    [3975] = {id=3975,en="Hell Slash",ja="ヘルスラッシュ"},
+    [3976] = {id=3976,en="Dark Holy Cloud",ja="ダークホーリークラウド"},
+    [3977] = {id=3977,en="Black Cloud",ja="ブラッククラウド"},
+    [3978] = {id=3978,en="Blood Saber",ja="ブラッドセイバー"},
+    [3979] = {id=3979,en="Souleater",ja="暗黒"},
+    [3980] = {id=3980,en="Gambol Macabre",ja="ガンボルマカブル"},
+    [4032] = {id=4032,en="Shearing Gale",ja="シーリングゲール"},
+    [4033] = {id=4033,en="Beclouding Dust",ja="ビクラウドダスト"},
+    [4034] = {id=4034,en="Brewing Storm",ja="ブルーイングストーム"},
     [4096] = {id=4096,en="Pain Sync",ja="痛覚同化"},
     [4097] = {id=4097,en="View Sync",ja="風景同化"},
     [4098] = {id=4098,en="Blessing Sync",ja="福音同化"},
@@ -3616,7 +3618,7 @@ return {
 }, {"id", "en", "ja", "skillchain_a", "skillchain_b", "skillchain_c"}
 
 --[[
-Copyright © 2013-2024, Windower
+Copyright © 2013-2025, Windower
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

@@ -4,10 +4,7 @@ function send_silmaril()
     local packet_data = get_player_id()..';heartbeat'
 
     --Player status from Player.lua
-    packet_data = packet_data..';'..get_player_info()
-
-    --Player buffs from Player.lua
-    packet_data = packet_data..';'..get_player_buffs()
+    packet_data = packet_data..';'..update_player()
 
     --Party data via Party.Lua
     for index, value in pairs(get_party_data()) do
@@ -18,6 +15,9 @@ function send_silmaril()
     for index, value in pairs(get_party_buffs()) do
         packet_data = packet_data..';'..value
     end
+
+    --Player buffs from Player.lua
+    packet_data = packet_data..';'..get_player_buffs()
 
     --Job ability recasts vis Abilities.lua
     packet_data = packet_data..';'..get_abilities_recast()
@@ -37,15 +37,19 @@ function send_silmaril()
     --NPC data to the Silmaril Program via World.lua
     packet_data = packet_data..';'..get_npc_data()
 
-    -- The players location
-    local p_loc = get_player_location()
-    if p_loc then
-        packet_data = packet_data..';'..'location_'..p_loc.x..'_'..p_loc.y..'_'..p_loc.z
+    -- Process the qued action from the last update_player
+    for index, value in pairs(get_action_packets()) do
+        packet_data = packet_data..';'..value
     end
 
     --Process the information and generate a response
     packet_data = packet_data..';action'
 
     --Send the built string using send_update to not log the big messages
-    send_update(packet_data)
+    send_packet(packet_data)
+
+    reset_action_packets()
+
+    reset_packet_buffs()
+
 end

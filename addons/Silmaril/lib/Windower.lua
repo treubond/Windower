@@ -1,5 +1,12 @@
 do
     local packets = require 'packets'
+
+    packets.raw_fields.incoming[0x009] = 
+    L{
+        {ctype='data[17]',              label='_dummy1'},                -- 70
+        {ctype='char*',                 label='Name'},                   -- 74
+    }
+
     local res = require 'resources'
 
     -- Regester Events
@@ -155,6 +162,7 @@ do
     end
 
     function get_mob_by_id(value)
+        if not value then return end
 	    return windower.ffxi.get_mob_by_id(value)
     end
 
@@ -167,7 +175,11 @@ do
     end
 
     function get_items(value)
-        return windower.ffxi.get_items(value)
+        if value then 
+            return windower.ffxi.get_items(value)
+        else
+            return windower.ffxi.get_items()
+        end
     end
 
     -- FFXI Game commands
@@ -204,6 +216,10 @@ do
         return is_japanese
     end
 
+    function shift_jis(value)
+        return windower.to_shift_jis(value)
+    end
+
     -- Packet specific calls
 
     function parse_action_packet(data)
@@ -213,6 +229,55 @@ do
     function cancel_buff(value)
         windower.packets.inject_outgoing(0xF1,string.char(0xF1,0x04,0,0,string.format("%i",value)%256,math.floor(string.format("%i",value)/256),0,0))
     end
+
+    -- these represent the bits
+    -- 8 bits in a byte
+    local sizes = {
+        ['unsigned char']   =  8,
+        ['unsigned short']  = 16,
+        ['unsigned int']    = 32,
+        ['unsigned long']   = 64,
+        ['signed char']     =  8,
+        ['signed short']    = 16,
+        ['signed int']      = 32,
+        ['signed long']     = 64,
+        ['char']            =  8,
+        ['short']           = 16,
+        ['int']             = 32,
+        ['long']            = 64,
+        ['bool']            =  8,
+        ['float']           = 32,
+        ['double']          = 64,
+        ['data']            =  8,
+        ['bit']             =  1,
+        ['boolbit']         =  1,
+    }
+
+
+    --  Type identifiers as declared in lpack.c
+    --  Windower uses an adjusted set of identifiers
+    --  This is marked where applicable
+    --  local pack_ids = {}
+    --  pack_ids['bit']             = 'b'   -- Windower exclusive
+    --  pack_ids['boolbit']         = 'q'   -- Windower exclusive
+    --  pack_ids['bool']            = 'B'   -- Windower exclusive
+    --  pack_ids['unsigned char']   = 'C'   -- Originally 'b', replaced by 'bit' for Windower
+    --  pack_ids['unsigned short']  = 'H'
+    --  pack_ids['unsigned int']    = 'I'
+    --  pack_ids['unsigned long']   = 'L'
+    --  pack_ids['signed char']     = 'c'
+    --  pack_ids['signed short']    = 'h'
+    --  pack_ids['signed int']      = 'i'
+    --  pack_ids['signed long']     = 'L'
+    --  pack_ids['char']            = 'c'
+    --  pack_ids['short']           = 'h'
+    --  pack_ids['int']             = 'i'
+    --  pack_ids['long']            = 'l'
+    --  pack_ids['float']           = 'f'
+    --  pack_ids['double']          = 'd'
+    --  pack_ids['data']            = 'A'
+
+
 
     function cancel_menu(value)
         windower.packets.inject_incoming(0x052, 'ICHC':pack(0,2,value,0))

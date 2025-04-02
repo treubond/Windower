@@ -189,7 +189,7 @@ function init_gear_sets()
     sets.precast.JA['Berserk']              = { body="Pumm. Lorica +3",}
     sets.precast.JA['Retaliation'] 			= { --[[ hands = WARAF.Hands, ]] feet = "Boii Calligae +2" }
     sets.precast.JA['Restraint'] 			= { hands = "Boii Mufflers +3", }
-    sets.precast.JA['Warcry'] 				= { head = "Agoge Mask +2" }
+    sets.precast.JA['Warcry'] 				= { head = "Agoge Mask +3" }
     sets.precast.JA['Provoke'] 				= set_combine(sets.TreasureHunter, { --[[ hands = WARAF.Hands ]] })
 --[[     sets.precast.JA['Blood Rage'] 			= { body = WAREmpy.Body }
     sets.precast.JA['Provoke'] 				= set_combine(sets.TreasureHunter, { hands = WARAF.Hands })
@@ -199,8 +199,8 @@ function init_gear_sets()
     sets.precast.JA['Retaliation'] 			= { hands = WARAF.Hands, feet = WAREmpy.Feet }
     sets.precast.JA['Aggressor'] 			= { head = WARAF.Head, body = WARRelic.Body }
     sets.precast.JA['Restraint'] 			= { hands = WAREmpy.Hands }
-    sets.precast.JA['Warrior\'s Charge'] 	= { legs = WARRelic.Legs }
-	sets.precast.JA['Tomahawk']				= { ammo = "Thr. Tomahawk", legs = WARRelic.Legs } ]]
+    sets.precast.JA['Warrior\'s Charge'] 	= { legs = WARRelic.Legs } ]]
+	sets.precast.JA['Tomahawk']				= { ammo = "Thr. Tomahawk", --[[ legs = WARRelic.Legs ]] }
 
     -- Waltz (CHR and VIT)
     sets.precast.Waltz = { }
@@ -241,7 +241,7 @@ function init_gear_sets()
     -- General Set
     sets.precast.WS = {
         ammo="Knobkierrie",
-        head={ name="Nyame Helm", augments={'Path: B',}},
+        head="Agoge Mask +3",
         body="Pumm. Lorica +3",
         hands="Boii Mufflers +3",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -324,7 +324,7 @@ function init_gear_sets()
         feet="Boii Calligae +2",
         neck="Sanctity Necklace",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Cessance Earring",
+        left_ear="Odnowa Earring +1",
         right_ear="Boii Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Shneddick Ring",
@@ -345,12 +345,12 @@ function init_gear_sets()
     sets.defense.PDT = {
         head="Boii Mask +3", --10
         body="Boii Lorica +2", --13
-        hands="Sulev. Gauntlets +2", --5
-        legs="Sulev. Cuisses +2", --7
+        hands={ name="Sakpata's Gauntlets", augments={'Path: A',}}, --8
+        legs="Pumm. Cuisses +3", --5 PDT
         feet="Boii Calligae +2", --9
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Cessance Earring",
+        left_ear="Odnowa Earring +1",
         right_ear="Boii Earring +1",
         left_ring="Chirich Ring +1",
         right_ring="Defending Ring",
@@ -366,12 +366,12 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
  
     sets.engaged = {
-        ammo="Ginsen",
-        head="Boii Mask +3",
-        body="Sakpata's Plate",
-        hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
-        legs="Pumm. Cuisses +3",
-        feet="Pumm. Calligae +3",
+        ammo="Coiste Bodhar",
+        head="Boii Mask +3", -- 11
+        body="Sakpata's Plate", -- 10
+        hands={ name="Sakpata's Gauntlets", augments={'Path: A',}}, -- 8
+        legs="Pumm. Cuisses +3", -- PDT 5
+        feet="Pumm. Calligae +3", 
         neck={ name="War. Beads +1", augments={'Path: A',}},
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Schere Earring",
@@ -379,11 +379,12 @@ function init_gear_sets()
         left_ring="Lehko's Ring",
         --right_ring="Sroda Ring",
         right_ring="Niqmaddu Ring",
-        back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+        back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, -- PDT 10
     }	
     sets.engaged.SubtleBlow = set_combine(sets.engaged, {
         body="Sacro Breastplate", 
-        left_ear="Assuage Earring",
+        left_ring="Chirich Ring +1",
+        --left_ear="Assuage Earring",
     })
     
     sets.engaged.MidAcc = set_combine(sets.engaged, {right_ring="Chirich Ring +1", })
@@ -396,9 +397,9 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------    
 
 	sets.Hybrid = set_combine(sets.engaged, { 
-        legs="Sulev. Cuisses +2",
-        feet="Boii Calligae +2",
-        
+        --legs="Sulev. Cuisses +2", -- 7
+        feet="Boii Calligae +2", -- 9
+        left_ring="Moonlight Ring", -- 5
     })
     sets.Hybrid.MidAcc = set_combine(sets.engaged, { })
     sets.Hybrid.FullAcc = set_combine(sets.engaged, { })
@@ -435,7 +436,7 @@ function init_gear_sets()
 	--sets.Montante	 = {main="Montante +1", sub="Bloodrain Strap"}
 	--sets.Reikiono	 = {main="Reikiono", sub ="Bloodrain Strap"}
     sets.Naegling 	 = {main="Naegling", sub="Blurred Shield +1"}	
-    sets.Chango    = {main="Chango", sub="Utu Grip"}
+    sets.Chango      = {main="Chango", sub="Utu Grip"}
     sets.ShiningOne  = {main="Shining One", sub="Utu Grip"}
     sets.Club        = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 

@@ -800,7 +800,7 @@
         <Flurry>false</Flurry>
         <Animus_Augeo>false</Animus_Augeo>
         <Animus_Minuo>false</Animus_Minuo>
-        <Refresh>true</Refresh>
+        <Refresh>false</Refresh>
         <Regen>false</Regen>
         <Phalanx>true</Phalanx>
         <Adloquium>false</Adloquium>
@@ -817,11 +817,11 @@
         <Name>Khrone</Name>
         <Protect>false</Protect>
         <Shell>false</Shell>
-        <Haste>false</Haste>
+        <Haste>true</Haste>
         <Flurry>false</Flurry>
         <Animus_Augeo>false</Animus_Augeo>
         <Animus_Minuo>false</Animus_Minuo>
-        <Refresh>true</Refresh>
+        <Refresh>false</Refresh>
         <Regen>false</Regen>
         <Phalanx>false</Phalanx>
         <Adloquium>false</Adloquium>
@@ -2089,7 +2089,7 @@
     <Enabled>false</Enabled>
     <Dummy_Count>0</Dummy_Count>
     <Base_Count>4</Base_Count>
-    <Total_Song_Count>0</Total_Song_Count>
+    <Total_Song_Count>4</Total_Song_Count>
     <Pianissmo_Dummy>false</Pianissmo_Dummy>
     <Dummy_First>false</Dummy_First>
     <Song_1>

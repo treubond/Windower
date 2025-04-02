@@ -353,10 +353,10 @@ function get_sets()
 	
 	-- This is when you have a Luopan out but want to sacrifice some slot for master DT, put those slots in.
     sets.pan.idle.dt = set_combine(sets.pan.idle.normal,{
-
+		body="Adamantite Armor",
     })   
     sets.pan.idle.mdt = set_combine(sets.pan.idle.normal,{
-
+		body="Adamantite Armor",
     })   
     -- Combat Related Sets
       
@@ -365,15 +365,15 @@ function get_sets()
 	-- No Luopan out
 	-- they end in [idleMode] so it will derive from either the normal or the dt set depending in which mode you are then add the pieces filled in below.
     sets.me.melee = set_combine(sets.me.idle[idleMode],{
-		head = "Jhakri Coronal +2",
-		body = "Jhakri Robe +2",
-		hands = "Jhakri Cuffs +2",
-		legs = "Jhakri Slops +2",
-		feet = "Jhakri Pigaches +2",
+		head = EMPY.Head,
+		body = EMPY.Body,
+		hands = EMPY.Hands,
+		legs = EMPY.Legs,
+		feet = EMPY.Feet,
 		neck = "Asperity Necklace",
-		waist = "Potent Belt",
+		waist = "Eschan Stone",
 		left_ear = "Telos Earring",
-		right_ear = "Cessance Earring",
+		right_ear = "Crep. Earring",
 		left_ring = "Chirich Ring +1",
 		right_ring = "Chirich Ring",
 		--[[ neck = "Lissome Necklace",
@@ -401,8 +401,7 @@ function get_sets()
 		waist = "Fotia Belt",
 	}
 	sets.me["Judgment"] = {
-		--[[ neck = "Rep. Plat. Medal", ]]
-		
+		neck = "Rep. Plat. Medal",
 		left_ear = "Moonshade Earring",
 		
 	}

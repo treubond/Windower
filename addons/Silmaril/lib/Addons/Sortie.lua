@@ -7,8 +7,8 @@ do
     local zone_1 = 133
     local zone_2 = 189
     local zone_3 = 275
-    local world = get_world()
-    local p_loc = get_player_location()
+    local world = nil
+    local p_loc = nil
     local position_time = os.clock()
     local repositioned = false
 
@@ -39,7 +39,7 @@ do
     function sortie_engine()
         if enabled then
             world = get_world()
-            p_loc = get_player_location()
+            p_loc = get_player_info()
 
             -- Zone change or just starting addon
             if old_zone ~= world.zone then
@@ -242,6 +242,7 @@ do
 
     -- NPC Update called from Packets.lua
     function bitzer_Check(data)
+        if not world then return end
         if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
 
         local packet = parse_packet('incoming', data)
@@ -271,7 +272,7 @@ do
         bitzer_position[position].z = z
             
         log('Bitzer Found - '..bitzer_index..' ['..x..'],['..y..'],['..z..']')
-        send_packet(get_player_id()..';sortie_'..bitzer_index..'_'..x..'_'..y..'_'..z)
+        que_packet('sortie_'..bitzer_index..'_'..x..'_'..y..'_'..z)
         repositioned = false
     end
 
@@ -404,6 +405,7 @@ do
     end
 
     function sortie_position()
+        if not world then return end
         if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
         position_time = os.clock()
         repositioned = true

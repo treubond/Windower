@@ -391,6 +391,7 @@ function get_sets()
     })
 
     sets.me["Seraph Strike"] = {
+      waist="Hachirin-no-Obi",
       --[[ ammo="Pemphredo Tathlum",
       head="Agwu's Cap",
       body="Agwu's Robe",
@@ -582,7 +583,7 @@ function get_sets()
     ----------
 
     -- Just go make it, inventory will thank you and making rules for each is meh.
-    sets.midcast.Obi             = { --[[ waist="Hachirin-no-Obi" ]]   }
+    sets.midcast.Obi             = { waist="Hachirin-no-Obi"   }
     sets.midcast.Orpheus         = { --[[ waist="Orpheus's Sash" ]]    }
     sets.midcast.MPReturn        = { --[[ body="Spaekona's Coat +3" ]] }
     sets.midcast.JaSpellDuration = { legs=EMPY.Legs  }
@@ -971,6 +972,7 @@ function get_sets()
     })
 
     sets.midcast['Death'] = {
+      waist="Hachirin-no-Obi",
       --[[ main="Hvergelmir",
       sub="Khonsu",
       ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},

@@ -116,16 +116,16 @@ do
 				send_command('timers c "Skillchain: '..skillchain.english..'" 5 down')
 
 				-- Send the information
-				send_packet(get_player_id()..';burst_'..skillchain.english..'_'..elements..'_'..t.id)
+				que_packet('burst_'..skillchain.english..'_'..elements..'_'..t.id)
 			end
+
 		elseif data.category == 3 and data.param ~= 0 then
 			local t = get_mob_by_id(data.targets[1].id)
 			-- This is used to stop bursting if a ws happened to close the window
 			if t and t.id == last_skillchain_id then
-				log('Skillchain is closed for ['..last_skillchain_id..']')
-				local action = get_player_id()..';burst_closed_none_'..last_skillchain_id
 				last_skillchain_id = 0
-				send_packet(action)
+				log('Skillchain is closed for ['..last_skillchain_id..']')
+				que_packet('burst_closed_none_'..last_skillchain_id)
 			end
 		end
 	end
@@ -138,34 +138,34 @@ do
 		if t and t.spawn_type == 16 and t.distance:sqrt() < 21 and spell then
 			if spell.name == 'Dia' or spell.name == 'Dia II' or spell.name == 'Dia III' or spell.name == 'Diaga' then
 				log("Light Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Light_'..t.id)
+				que_packet('shot_Enfeebling_Light_'..t.id)
 			elseif spell.name == 'Bio' or 
-					spell.name == 'Bio II' or 
-					spell.name == 'Bio III' or 
-					spell.name == 'Blind' or 
-					spell.name == 'Blind II' or 
-					spell.name == 'Kurayami: Ichi' or 
-					spell.name == 'Kurayami: Ni' then
+				spell.name == 'Bio II' or 
+				spell.name == 'Bio III' or 
+				spell.name == 'Blind' or 
+				spell.name == 'Blind II' or 
+				spell.name == 'Kurayami: Ichi' or 
+				spell.name == 'Kurayami: Ni' then
 				log("Dark Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Dark_'..t.id)
+				que_packet('shot_Enfeebling_Dark_'..t.id)
 			elseif spell.name == 'Burn' then
 				log("Fire Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Fire_'..t.id)
+				que_packet('shot_Enfeebling_Fire_'..t.id)
 			elseif spell.name == 'Poison' or spell.name == 'Poison II' or spell.name == 'Drown' then
 				log("Water Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Water_'..t.id)
+				que_packet('shot_Enfeebling_Water_'..t.id)
 			elseif spell.name == 'Shock' then
 				log("Thunder Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Thunder_'..t.id)
+				que_packet('shot_Enfeebling_Thunder_'..t.id)
 			elseif spell.name == 'Slow' or spell.name == 'Hojo: Ichi' or spell.name == 'Hojo: Ni' or spell.name == 'Rasp' then
 				log("Earth Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Earth_'..t.id)
+				que_packet('shot_Enfeebling_Earth_'..t.id)
 			elseif spell.name == 'Choke' then
 				log("Wind Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Wind_'..t.id)
+				que_packet('shot_Enfeebling_Wind_'..t.id)
 			elseif spell.name == 'Paralyze' or spell.name == 'Paralyze II' or spell.name == 'Frost' then
 				log("Ice Shot Detected")
-				send_packet(get_player_id()..';burst_Enfeebling_Ice_'..t.id)
+				que_packet('shot_Enfeebling_Ice_'..t.id)
 			end
 		end
 	end

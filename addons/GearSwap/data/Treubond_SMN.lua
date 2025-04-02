@@ -150,7 +150,7 @@ function get_sets()
 		right_ear="Loquacious Earring", -- +2
 		left_ring="Tali'ah Ring",
 		right_ring="Evoker's Ring",
-		back={ name="Campestres's Cape", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Pet: Haste+6',}},
+		back={ name="Fi Follet Cape +1", augments={'Path: A',}}, --10
 		-- main={ name="Grioavolr", augments={'"Fast Cast"+6','INT+2','"Mag.Atk.Bns."+17',}}, -- +10
 		-- sub="Clerisy Strap +1", -- +3
 		-- --ammo="Sapience Orb",

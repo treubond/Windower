@@ -30,7 +30,7 @@ state.OffenseMode:set('TP')
 
 --Modes for specific to Ninja
 state.WeaponMode:options('Verethragna','Karambit','Pole','Club')
-state.WeaponMode:set('Karambit')
+state.WeaponMode:set('Verethragna')
 
 elemental_ws = S{'Cataclysm', 'Rock Crusher', 'Earth Crusher', 'Starburst','Sunburst'}
 
@@ -39,11 +39,43 @@ jobsetup (LockStylePallet,MacroBook,MacroSet)
 
 function get_sets()
 
+	--Sets
+	AF = {}
+	RELIC = {}
+	EMPY ={}
+	
+	AF.Head = ""
+	AF.Body = ""
+	AF.Hands = ""
+	AF.Legs = ""
+	AF.Feet = ""
+	
+	RELIC.Head = ""
+	RELIC.Body = ""
+	RELIC.Hands = ""
+	RELIC.Legs = ""
+	RELIC.Feet = ""
+	
+	EMPY.Head = "Bhikku Crown +2"
+	EMPY.Body = "Bhikku Cyclas +2"
+	EMPY.Hands = "Bhikku Gloves +2"
+	EMPY.Legs = "Bhikku Hose +3"
+	EMPY.Feet = "Bhikku Gaiters +2"
+
+	-- WS Binds
+	send_command('bind ^numpad7 input /ws "Victory Smite" <t>')
+	send_command('bind ^numpad9 input /ws "Shijin Spiral" <t>')
+	send_command('bind ^numpad4 input /ws "Howling Fist" <t>')
+	send_command('bind ^numpad5 input /ws "Spinning Attack" <t>')
+	send_command('bind ^numpad6 input /ws "" <t>')
+	send_command('bind ^numpad1 input /ws "" <t>')
+
 	-- Weapon setup
 	sets.Weapons = {}
 
 	sets.Weapons['Verethragna'] = {
-		main={ name="Verethragna", augments={'Path: A',}},
+		main="Verethragna",
+		--main={ name="Verethragna", augments={'Path: A',}},
 	}
 
 	sets.Weapons['Karambit'] = {
@@ -69,7 +101,7 @@ function get_sets()
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		legs=EMPY.Legs,
 		feet="Malignance Boots",
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Moonbow Belt",
@@ -77,7 +109,7 @@ function get_sets()
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Defending Ring",
 		right_ring="Shneddick Ring",
-		back="Shadow Mantle",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	    --[[ ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -109,11 +141,11 @@ function get_sets()
 
 	--Base TP set to build off
 	sets.OffenseMode.TP = {
-		ammo="Ginsen",
+		ammo="Coiste Bodhar",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
-		legs={ name="Samnuha Tights", augments={'STR+7','"Dbl.Atk."+2','"Triple Atk."+1',}},
+		legs=EMPY.Legs,
 		feet="Malignance Boots",
 		neck="Asperity Necklace",
 		waist="Moonbow Belt",
@@ -121,7 +153,7 @@ function get_sets()
 		right_ear="Schere Earring",
 		left_ring="Lehko's Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Mecisto. Mantle", augments={'Cap. Point+49%','Rng.Atk.+3','DEF+2',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Coiste Bodhar",
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body="Ken. Samue +1",
@@ -215,7 +247,7 @@ function get_sets()
 	})
 
 	sets.JA = {}
-	sets.JA["Hundred Fists"] = {l--[[ egs={ name="Hes. Hose +3", augments={'Enhances "Hundred Fists" effect',}} ]]}
+	sets.JA["Hundred Fists"] = {--[[ egs={ name="Hes. Hose +3", augments={'Enhances "Hundred Fists" effect',}} ]]}
 	sets.JA["Berserk"] = {}
 	sets.JA["Warcry"] = {}
 	sets.JA["Defender"] = {}
@@ -224,19 +256,20 @@ function get_sets()
 	sets.JA["Focus"] = {}
 	sets.JA["Dodge"] = {}
 	sets.JA["Chakra"] = {
-		--[[ ammo="Crepuscular Pebble",
+		ammo="Crepuscular Pebble",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck={ name="Unmoving Collar +1", augments={'Path: A',}},
-		waist="Moonbow Belt +1",
-		left_ear="Tuisto Earring",
+		--neck={ name="Unmoving Collar +1", augments={'Path: A',}},
+		--waist="Moonbow Belt +1",
+		--left_ear="Tuisto Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Regal Ring",
-		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}, ]]
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		--right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
+		--back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}, 
 	}
 	sets.JA["Boost"] = {}
 	sets.JA["Counterstance"] = {}
@@ -244,7 +277,7 @@ function get_sets()
 		--head={ name="Hes. Crown +3", augments={'Enhances "Penance" effect',}},
 	}
 	sets.JA["Mantra"] = {}
-	sets.JA["Footwork"] = {}
+	sets.JA["Footwork"] = {feet=EMPY.Feet}
 	sets.JA["Perfect Counter"] = {}
 	sets.JA["Impetus"] = {}
 	sets.JA["Inner Strength"] = {}
@@ -257,13 +290,13 @@ function get_sets()
 		hands="Malignance Gloves",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Asperity Necklace",
+		neck="Fotia Gorget",
 		waist="Moonbow Belt",
 		left_ear="Sherida Earring",
 		right_ear="Schere Earring",
-		left_ring="Lehko's Ring",
+		left_ring="Regal Ring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Mecisto. Mantle", augments={'Cap. Point+49%','Rng.Atk.+3','DEF+2',}},
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		--[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head="Mpaca's Cap",
 		body="Mpaca's Doublet",
@@ -298,7 +331,8 @@ function get_sets()
 
 	sets.WS.PDL = set_combine(sets.WS,{})
 
-	sets.WS.Kicks = {
+	sets.WS.Kicks = set_combine(sets.WS,{
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Crepuscular Pebble",
 		head="Mpaca's Cap",
 		body="Ken. Samue +1",
@@ -312,7 +346,7 @@ function get_sets()
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Damage taken-5%',}}, ]]
-	}
+	})
 
 	--WS Sets
 	sets.WS["Combo"] = set_combine(sets.WS,{})
@@ -333,23 +367,23 @@ function get_sets()
 	sets.WS["Tornado Kick"] = sets.WS.Kicks
 	sets.WS["Victory Smite"] = set_combine(sets.WS,{})
 	sets.WS["Shijin Spiral"] = set_combine(sets.WS,{
-		--back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	})
 
 	--Impetus set has priority over any other modes
 	sets.Impetus = {
-		--body="Bhikku Cyclas +3",
+		body=EMPY.Body,
 	}
 
 	-- Impetus for the DT stance (need more PDT)
 	sets.Impetus.DT = {
-		--body="Bhikku Cyclas +3",
+		body=EMPY.Body,
 		right_ring="Defending Ring",
 	}
 
 	-- Impetus for the WS sets
 	sets.Impetus.WS = {
-		--body="Bhikku Cyclas +3",
+		body=EMPY.Body,
 	}
 
 	sets.Boost = {
@@ -362,8 +396,8 @@ function get_sets()
 
 	sets.TreasureHunter = {
 		ammo="Per. Lucky Egg",
-		body="Volte Jupon",
-		waist="Chaac Belt",
+		--body="Volte Jupon",
+		--waist="Chaac Belt",
 	}
 end
 
@@ -508,5 +542,10 @@ end
 
 -- This function is called when the job file is unloaded
 function user_file_unload()
-
+	send_command('unbind ^numpad7')
+    send_command('unbind ^numpad9')
+	send_command('unbind ^numpad4')
+    send_command('unbind ^numpad5')
+    send_command('unbind ^numpad6')
+    send_command('unbind ^numpad1')
 end

@@ -322,6 +322,7 @@ function init_gear_sets()
       }
 
     sets.midcast.CureSolaceWeather = set_combine(sets.midcast.CureSolace, {
+        waist="Hachirin-no-Obi",
         --[[ ear2="Nourish. Earring +1", --7
         back="Twilight Cape",
         waist="Hachirin-no-Obi", ]]
@@ -334,6 +335,7 @@ function init_gear_sets()
         })
 
     sets.midcast.CureWeather = set_combine(sets.midcast.CureNormal, {
+        waist="Hachirin-no-Obi",
         --[[ hands="Kaykaus Cuffs +1", --11/(-6)
         ear2="Nourish. Earring +1", --7
         back="Twilight Cape",
@@ -348,6 +350,7 @@ function init_gear_sets()
         })
 
     sets.midcast.CuragaWeather = {
+        waist="Hachirin-no-Obi",
         --[[ body="Theo. Briault +3", --0(+6)/(-6)
         hands="Kaykaus Cuffs +1", --11/(-6)
         ring1={name="Stikini Ring +1", bag="wardrobe3"},
@@ -752,7 +755,7 @@ function init_gear_sets()
         waist="Gishdubar Sash", --10 ]]
         }
 
-    sets.Obi = {--[[ waist="Hachirin-no-Obi" ]]}
+    sets.Obi = {waist="Hachirin-no-Obi"}
     -- sets.CP = {back="Mecisto. Mantle"}
 
 end

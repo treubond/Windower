@@ -3,10 +3,10 @@
 
 -- Load and initialize the include file.
 include('Mirdain-Include')
---include('Global-Binds.lua')
+include('Global-Binds.lua')
 
 --Set to ingame lockstyle and Macro Book/Set
-LockStylePallet = "1"
+LockStylePallet = "20"
 MacroBook = "1"
 MacroSet = "2"
 
@@ -45,18 +45,21 @@ function get_sets()
 	EMPY = {}
 	Telchine = {}
 
+	AF.Body = "Atrophy Tabard +3"
 	AF.Hands = "Atrophy Gloves +3"
+	AF.Legs = "Atrophy Tights +3"
 
 	RELIC.Head = "Viti. Chapeau +1"
 
 	EMPY.Head = "Leth. Chappel +2"
-	--EMPY.Body = ""
-	--EMPY.Hands = ""
+	EMPY.Body = "Lethargy Sayon +2"
+	EMPY.Hands = "Leth. Gantherots +2"
 	EMPY.Legs = "Leth. Fuseau +2"
-	EMPY.Feet = "Leth. Houseaux +2"
+	EMPY.Feet = "Leth. Houseaux +3"
 
-	--Telchine.Head = ""
-	Telchine.Body = { name="Telchine Chas.", augments={'"Cure" potency +8%','Enh. Mag. eff. dur. +9',}}
+	Telchine.Head = { name="Telchine Cap", augments={'Spell interruption rate down -3%','Enh. Mag. eff. dur. +9',}}
+    Telchine.Body = { name="Telchine Chas.", augments={'"Cure" potency +8%','Enh. Mag. eff. dur. +9',}}
+	Telchine.Hands = { name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}}
 
 	-- ===================================================================================================================
 	--		sets.Weapons
@@ -123,14 +126,14 @@ function get_sets()
 	sets.Weapons['Unlocked'] ={
 		--main="Daybreak",
 		main="Bolelabunga",
-		sub="Sors Shield",
+		sub="Ammurapi Shield",
 		--[[ main={ name="Crocea Mors", augments={'Path: C',}},
 		sub={ name="Demers. Degen +1", augments={'Path: A',}}, ]]
 	}
 
 	--Shield used when melee and not dual wield.
 	sets.Weapons.Shield = {
-		sub="Sors Shield",
+		sub="Ammurapi Shield",
 		--sub="Sacro Bulwark",
 	}
 
@@ -148,19 +151,19 @@ function get_sets()
 
 	-- Standard Idle set with -DT,Refresh,Regen and movement gear
 	sets.Idle = {
-		ammo="Fortune Egg",
+		--ammo="Fortune Egg",
 		head=RELIC.Head,
-		body="Jhakri Robe +1",
-		hands=AF.Hands,
+		body=EMPY.Body,
+		hands=EMPY.Hands,
 		legs=EMPY.Legs,
 		feet=EMPY.Feet,
-		neck="Sanctity Necklace",
-		waist="Hierarch Belt",
+		neck="Null Loop",
+		waist="Acuity Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Malignance Earring",
 		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
-		back="Solemnity Cape",
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
+		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Staunch Tathlum +1", -- 3/3
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy'}, priority=3}, -- +3 Refresh
 		body="Lethargy Sayon +3", -- 14/14  +4 Refresh
@@ -196,19 +199,19 @@ function get_sets()
 	-- ===================================================================================================================
 
 	sets.OffenseMode = {
-		ammo="Fortune Egg",
+		ammo="Kaja Bow",
 		head="Malignance Chapeau",
-		body="Jhakri Robe +1",
+		body=EMPY.Body,
 		hands=AF.Hands,
-		legs="Ayanmo Cosciales",
+		legs="Aya. Cosciales +2",
 		feet=EMPY.Feet,
-		neck="Sanctity Necklace",
+		neck="Null Loop",
 		waist="Sailfi Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Suppanomimi",
 		left_ring="Ilabrat Ring",
 		right_ring="Chirich Ring",
-		back="Atheling Mantle",
+		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Paeapua",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -249,18 +252,20 @@ function get_sets()
 	sets.Precast = {}
 
 	-- 50% Fast Cast is needed on RDM (Fast Cast V - 30%)
-	sets.Precast.FastCast = {
-		ammo="Fortune Egg",
-		head=RELIC.Head,
+	sets.Precast.FastCast = { -- 54%
+		--ammo="Fortune Egg",
+		head="Nahtirah Hat", -- 10
+		--head=RELIC.Head,
 		body=Telchine.Body,
-		hands={ name="Leyline Gloves", augments={'Accuracy+2','Mag. Acc.+4',}}, -- 5
-		legs="Ayanmo Cosciales", -- 3
+		hands="Gendewitha Gages", -- 7
+		--hands={ name="Leyline Gloves", augments={'Accuracy+2','Mag. Acc.+4',}}, -- 5
+		legs="Aya. Cosciales +2", -- 6
 		feet=EMPY.Feet,
-		neck="Sanctity Necklace",
+		neck="Null Loop",
 		waist="Embla Sash", -- 5
-		left_ear="Eabani Earring",
-		right_ear="Malignance Earring", -- 4
-		left_ring="Jhakri Ring",
+		left_ear="Malignance Earring", -- 4
+		right_ear="Leth. Earring +1", -- 8
+		left_ring="Kishar Ring", -- 4
 		right_ring="Metamor. Ring +1",
 		back={ name="Fi Follet Cape +1", augments={'Path: A',}}, -- 10
 	    --[[ head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}}, --14
@@ -340,20 +345,21 @@ function get_sets()
 	sets.Midcast.SIRD = {}
 
 	-- Cure Set
-	sets.Midcast.Cure = { -- 48
+	sets.Midcast.Cure = { -- 64
 		main="Daybreak", -- 30
 		sub="Sors Shield", -- 3
-		ammo="Fortune Egg",
+		--ammo="Fortune Egg",
 		head=RELIC.Head,
-		body=Telchine.Body, -- 8
-		hands=AF.Hands,
-		legs="Ayanmo Cosciales",
-		feet=EMPY.Feet,
+		body=EMPY.Body,
+		hands=Telchine.Hands, -- 7
+		legs=AF.Legs, -- 12
+		feet="Vanya Clogs", -- 5
+		--feet=EMPY.Feet,
 		neck="Mizu. Kubikazari",
 		waist="Rumination Sash",
 		left_ear="Eabani Earring",
 		right_ear="Malignance Earring",
-		left_ring="Jhakri Ring",
+		left_ring="Defending Ring",
 		right_ring="Metamor. Ring +1",
 		back="Solemnity Cape", -- 7
 		--[[ sub="Sacro Bulwark",
@@ -377,22 +383,21 @@ function get_sets()
 	})
 
 	-- Enhancing Duration on SELF
-	sets.Midcast.Enhancing = { -- 59
+	sets.Midcast.Enhancing = { -- 120
 		main="Daybreak",
-		sub="Sors Shield",
-		ammo="Fortune Egg",
-		head=RELIC.Head,
+		sub="Ammurapi Shield", -- 10
+		head=Telchine.Head, -- 9
 		body=Telchine.Body, -- 9
 		hands=AF.Hands, -- 20
 		legs=EMPY.Legs,
-		feet=EMPY.Feet,
+		feet=EMPY.Feet, -- 35
 		neck="Mizu. Kubikazari",
 		waist="Embla Sash", -- 10
-		left_ear="Eabani Earring",
-		right_ear="Malignance Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Jhakri Ring",
-		back="Sucellos's Cape", -- 20
+		left_ear="Malignance Earring",
+		right_ear="Leth. Earring +1", -- 8
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
+		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20',}}, -- 20
 		--[[ sub="Ammurapi Shield",
 		ammo="Staunch Tathlum +1",
 		head={ name="Telchine Cap", augments={'"Regen"+2','Enh. Mag. eff. dur. +10',}},
@@ -411,7 +416,9 @@ function get_sets()
 
 	-- Enhancing Duration on OTHERS
 	sets.Midcast.Enhancing.Others = set_combine(sets.Midcast.Enhancing, {
-		
+		head=EMPY.Head,
+		body=EMPY.Body,
+		legs=EMPY.Legs,
 		--[[ head="Leth. Chappel +3",
 		body="Lethargy Sayon +3",
 		legs="Leth. Fuseau +3", ]]
@@ -436,21 +443,21 @@ function get_sets()
 	-- Enfeebling
 	sets.Midcast.Enfeebling = {
 		main="Daybreak",
-		sub="Sors Shield",
-		ammo="Fortune Egg",
-		head="Malignance Chapeau",
+		sub="Ammurapi Shield",
+		ammo="Kaja Bow",
+		head=EMPY.Head,
 		--head="Jhakri Coronal +1",
-		body="Jhakri Robe +1",
-		hands="Jhakri Cuffs +1",
-		legs="Jhakri Slops +1",
+		body=AF.Body,
+		hands=EMPY.Hands,
+		legs=EMPY.Legs,
 		feet=EMPY.Feet,
 		neck="Dls. Torque +2",
 		waist="Eschan Stone",
-		left_ear="Eabani Earring",
+		left_ear="Snotra Earring",
 		right_ear="Malignance Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Jhakri Ring",
-		back="Sucellos's Cape",
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
+		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20',}},
 		--[[ main={ name="Crocea Mors", augments={'Path: C',}},
 		sub="Ammurapi Shield",
 		ammo="Regal Gem",
@@ -470,11 +477,15 @@ function get_sets()
 
 	-- Skill Based ('Dispel','Aspir','Aspir II','Aspir III','Drain','Drain II','Drain III','Frazzle','Frazzle II','Stun','Poison','Poison II','Poisonga')
 	sets.Midcast.Enfeebling.MACC = set_combine(sets.Midcast.Enfeebling, {
+		neck="Dls. Torque +2",
+		--neck="Null Loop",
 		back="Kumbira Cape",
 	})
 
 	 -- Potency Basted ('Paralyze','Paralyze II','Slow','Slow II','Addle','Addle II','Distract','Distract II','Distract III','Frazzle III','Blind','Blind II')
 	sets.Midcast.Enfeebling.Potency = set_combine(sets.Midcast.Enfeebling, {
+		ammo="Regal Gem", -- 10%
+		body=EMPY.Body,
 		--[[ ammo="Regal Gem", -- 10%
 		body="Lethargy Sayon +3", -- 14%
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, -- 10%
@@ -484,6 +495,8 @@ function get_sets()
 
 	-- Duration Based ('Sleep','Sleep II','Sleepga','Sleepga II','Diaga','Dia','Dia II','Dia III','Bio','Bio II','Bio III','Silence','Gravity','Gravity II','Inundation','Break','Breakaga', 'Bind', 'Bind II')
 	sets.Midcast.Enfeebling.Duration = set_combine(sets.Midcast.Enfeebling, {
+		left_ear="Snotra Earring", -- 10%
+		left_ring="Kishar Ring", -- 10%
 		--[[ head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}}, -- 15s (3 seconds x 5 merits)
 		hands="Regal Cuffs", --20% swaps out with Saboteur active
 		right_ear="Snotra Earring", -- 10%
@@ -494,12 +507,12 @@ function get_sets()
 
 	sets.Enspell = {}
 
-	sets.Saboteur = {--[[ hands="Leth. Ganth. +3", ]]}
+	sets.Saboteur = {hands=EMPY.Hands,}
 
 	-- Specific gear for spells
 	sets.Midcast["Stoneskin"] = set_combine(sets.Midcast.Enhancing, {
-		--[[ neck="Nodens Gorget",
-		waist="Siegel Sash",
+		neck="Nodens Gorget",
+		--[[ waist="Siegel Sash",
 		left_ear="Earthcry Earring", ]]
 	})
 
@@ -510,6 +523,7 @@ function get_sets()
 
 	-- Spells that require SKILL - RDM only needs +500 skill except Temper II
 	sets.Midcast["Temper II"] = set_combine(sets.Midcast.Enhancing, {
+		legs=AF.legs,
 		waist="Olympus Sash",
 		--[[ ammo="Hydrocera",
 		head="Befouled Crown",
@@ -521,9 +535,10 @@ function get_sets()
 	}) -- Max Enhancing 613
 
 	sets.Midcast["Diaga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter)
-	sets.Midcast["Dispelga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter)
+	sets.Midcast["Dispelga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter, {neck="Dls. Torque +2"})
 
 	sets.Midcast.Refresh = set_combine(sets.Midcast.Enhancing, {
+		body=AF.Body,
 		--[[ head="Amalric Coif +1",
 		body="Atrophy Tabard +3",
 		legs="Leth. Fuseau +3",
@@ -531,7 +546,19 @@ function get_sets()
 	})
 
 	sets.Midcast.Nuke = {
-		waist="Eschan Stone",
+		main="Marin Staff +1",
+		sub="Bugard Strap +1",
+		head=EMPY.Head,
+		body=EMPY.Body,
+		hands=EMPY.Hands,
+		legs=EMPY.Legs,
+		feet=EMPY.Feet,
+		neck="Sanctity Necklace",
+		waist="Acuity Belt +1",
+		right_ear="Malignance Earring",
+		left_ring="Metamor. Ring +1",
+		right_ring="Freke Ring",
+		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20',}},
 		--[[ sub="Ammurapi Shield",
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head="Leth. Chappel +3",
@@ -550,8 +577,10 @@ function get_sets()
 
 	sets.Midcast.Burst = set_combine(sets.Midcast.Nuke, {
 		--left_ring="Mujin Band",
+		head="Ea Hat",
+		body="Ea Houppelande", 
 		neck="Mizu. Kubikazari",
-		waist="Eschan Stone",
+		waist="Acuity Belt +1",
 	})
 
 	-- ===================================================================================================================
@@ -572,19 +601,19 @@ function get_sets()
 	-- ===================================================================================================================
 
 	sets.WS = {
-		ammo="Fortune Egg",
+		--ammo="Fortune Egg",
 		head="Jhakri Coronal +1",
 		body="Jhakri Robe +1",
 		hands=AF.Hands,
 		legs="Jhakri Slops +1",
 		feet=EMPY.Feet,
-		neck="Sanctity Necklace",
+		neck="Null Loop",
 		waist="Sailfi Belt +1",
 		left_ear="Brutal Earring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		left_ring="Rajas Ring",
 		right_ring="Ilabrat Ring",
-		back="Atheling Mantle",
+		back={ name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 		--[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -607,19 +636,19 @@ function get_sets()
 	})
 
 	sets.WS.MAB = {
-		ammo="Fortune Egg",
-		head="Jhakri Coronal +1",
-		body="Jhakri Robe +1",
+		--ammo="Fortune Egg",
+		head=EMPY.Head,
+		body=EMPY.Body,
 		hands=AF.Hands,
-		legs="Jhakri Slops +1",
-		feet="Jhakri Pigaches +1",
+		legs=EMPY.Legs,
+		feet=EMPY.Feet,
 		neck="Sanctity Necklace",
-		waist="Sailfi Belt +1",
-		left_ear="Brutal Earring",
+		waist="Eschan Stone",
+		left_ear="Malignance Earring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		left_ring="Rajas Ring",
-		right_ring="Chirich Ring",
-		back="Atheling Mantle",
+		right_ring="Freke Ring",
+		back={ name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 		--[[ ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -636,19 +665,19 @@ function get_sets()
 	}
 
 	sets.WS.CRIT = { -- Setup for Capped Attack
-		ammo="Fortune Egg",
-		head="Jhakri Coronal +1",
-		body="Jhakri Robe +1",
+		--ammo="Fortune Egg",
+		head=EMPY.Head,
+		body=EMPY.Body,
 		hands=AF.Hands,
-		legs="Jhakri Slops +1",
-		feet="Jhakri Pigaches +1",
-		neck="Sanctity Necklace",
+		legs=EMPY.Legs,
+		feet=EMPY.Feet,
+		neck="Null Loop",
 		waist="Sailfi Belt +1",
 		left_ear="Brutal Earring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		left_ring="Rajas Ring",
 		right_ring="Chirich Ring",
-		back="Atheling Mantle",
+		back={ name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 		--[[ ammo="Yetshila +1",
 		head={ name="Blistering Sallet +1", augments={'Path: A',}},
 		body="Ayanmo Corazza +2",

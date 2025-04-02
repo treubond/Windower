@@ -1,5 +1,5 @@
 return {
-    ["Odin"]={
+    ["Odin Prime"]={
         ["Dread Spikes"]={
             ["complete_reaction"]="input /ma Dispel <bt>", 
             ["ready_reaction"]=""
@@ -7,7 +7,11 @@ return {
         ["Yggr"]={
             ["complete_reaction"]="input /ma Dispel <bt>", 
             ["ready_reaction"]=""
-        }
+        },
+        ["Endark"]={
+            ["complete_reaction"]="input /ma Dispel <bt>", 
+            ["ready_reaction"]=""
+        },
     }, 
     ["Steelshell"]={
         ["Bubble Curtain"]={

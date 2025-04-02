@@ -1,20 +1,65 @@
 do
     local old_pos = {x=0, y=0, z=0} -- Stores last movement location
-    local player_buffs = "playerbuffs_"
+    local player_buffs = '' -- built string to send to silmaril
+    local old_character = nil -- hold the last character data to compare to new
+    local player_buff_ids = {} -- This stores the buff and end times
     local motion = false
-    local player = {}
+    local player = nil
     local player_id = "0" -- used for when the lua is being unloaded
-    local player_pet = {}
-    local player_location = {}
+    local player_pet = nil
+    local player_info = nil
     local stop_time = os.time()
     local player_moving = false
-    local epoch_ticks = 0
+    local epoch_ticks = 10
     local server_delta = 0
+
+    -- A built string to send to silmaril with the character information called via Update.lua
+    function update_player()
+        local player_string = "player"
+
+        if not player then return player_string end
+
+        local jp_spent = player.job_points[player.main_job:lower()].jp_spent
+
+        local locked_on = false
+
+        --target_locked
+        if player.target_locked then
+            locked_on = true
+        end
+
+        -- No sub job unlocked or Oddy
+        if not player.sub_job_id then
+            player.sub_job_id = 0
+            player.sub_job_level = 0
+        end
+
+        -- Update character status
+        player_string = 'player_'..
+            string.format("%i",player.main_job_id)..','..
+            string.format("%i",player.main_job_level)..','..
+            string.format("%i",player.sub_job_id)..','..
+            string.format("%i",player.sub_job_level)..','..
+            string.format("%i",jp_spent)..','..
+            tostring(locked_on)..','..
+            tostring(player_moving)..','..
+            tostring(get_following())..','..
+            string.format("%i",get_autorun_target())..','..
+            string.format("%i",get_autorun_type())..','..
+            tostring(get_mirroring())..','..
+            tostring(get_injecting())..','
+
+        return player_string
+    end
 
     function update_player_info()
 
-        -- Location is updated in Moving.lua
-        if not player_location then return end
+        player = get_player_data()
+        if not player then return end
+
+        -- Update the position info
+        player_info = get_mob_by_id(player.id)
+        if not player_info then return end
 
         -- This is updated at high speed
         local now = os.clock()
@@ -24,12 +69,8 @@ do
         set_world(w)
         if not w then return end
 
-        player = get_player_data()
-        if not player then return end
-        player_id = tostring(player.id)
-
         -- Determine if player is moving
-        local movement = math.sqrt((player_location.x-old_pos.x)^2 + (player_location.y-old_pos.y)^2 + (player_location.z-old_pos.z)^2 ) > 0.025
+        local movement = math.sqrt((player_info.x-old_pos.x)^2 + (player_info.y-old_pos.y)^2 + (player_info.z-old_pos.z)^2 ) > 0.025
 
         -- Change of state
         if movement and not motion then
@@ -46,111 +87,77 @@ do
         end
 
         -- Store the old location
-   	    old_pos.x = player_location.x
-	    old_pos.y = player_location.y
-	    old_pos.z = player_location.z
+   	    old_pos.x = player_info.x
+	    old_pos.y = player_info.y
+	    old_pos.z = player_info.z
 
         --target_index
         if not player.target_index then
             player.target_index = 0
         end
 
+        local update_character = 
+            'silmaril update '..
+            player_info.id..' '..
+            get_player_name()..' '..
+            w.zone..' '..
+            player_info.x..' '..
+            player_info.y..' '..
+            player_info.z..' '..
+            player_info.heading..' '..
+            player_info.status..' '..
+            player_info.target_index
+
+        -- No update to the character found
+        if update_character == old_character then return end
+
         -- Create a player to update the IPC table
         local character = { 
-            id = player.id,
+            id = player_info.id,
             name = get_player_name(), 
             zone = w.zone, 
-            x = player_location.x, 
-            y = player_location.y, 
-            z = player_location.z, 
-            heading = player_location.heading, 
-            status = player.status,
-            target_index = player.target_index}
+            x = player_info.x, 
+            y = player_info.y, 
+            z = player_info.z, 
+            heading = player_info.heading, 
+            status = player_info.status,
+            target_index = player_info.target_index}
 
         -- Update the party table with your information
 		set_party_location(character)
 
         --Send the information to others via IPC
-	    send_ipc('silmaril update '..
-            player.id..' '..
-            get_player_name()..' '..
-            w.zone..' '..
-            string.format("%.3f",player_location.x)..' '..
-            string.format("%.3f",player_location.y)..' '..
-            string.format("%.3f",player_location.z)..' '..
-            string.format("%.3f",player_location.heading)..' '..
-            player.status..' '..
-            player.target_index)
-    end
+	    send_ipc(update_character)
 
-    function get_player_info()
-        local player_info = "player_"
-        if not player then return player_info end
-        local jp_spent = player.job_points[player.main_job:lower()].jp_spent
-        local locked_on = false
-
-        --target_locked
-        if player.target_locked then
-            locked_on = true
-        end
-
-        -- No sub job unlocked or Oddy
-        if not player.sub_job_id then
-            player.sub_job_id = 0
-            player.sub_job_level = 0
-        end
-
-        -- Update character status
-        player_info = 'player_'..
-            string.format("%i",player.main_job_id)..','..
-            string.format("%i",player.main_job_level)..','..
-            string.format("%i",player.sub_job_id)..','..
-            string.format("%i",player.sub_job_level)..','..
-            string.format("%i",jp_spent)..','..
-            tostring(locked_on)..','..
-            tostring(player_moving)..','..
-            tostring(get_following())..','..
-            string.format("%i",get_autorun_target())..','..
-            string.format("%i",get_autorun_type())..','..
-            tostring(get_mirroring())..','..
-            tostring(get_injecting())..','
-
-        return player_info
+        -- Update the last message
+        old_character = update_character
     end
 
     function first_time_buffs()
-        local formattedString = ""
-        if player then
-            local intIndex = 1
-            for index, value in pairs(player.buffs) do
-                formattedString = formattedString..string.format("%i",value)..',Unknown'
-                if intIndex ~= tablelength(player.buffs) then
-                    formattedString = formattedString .."|"
-                end
-                intIndex = intIndex + 1
-            end
+        if not player then return end
+
+        for i=1, #player.buffs do
+            player_buff_ids[i] = {id = player.buffs[i], time = 'Unknown'}
         end
-        player_buffs = formattedString
     end
 
     function player_packet_buffs(original)    
+        player_buff_ids = {}
         local packet = parse_packet('incoming', original)
-        local formattedString = ""
         for i=1,32 do
-            local buff = 'Buffs '..string.format("%i",i)
-            local buff_index = 'Time '..string.format("%i",i)
+            local buff = 'Buffs '..i
+            local buff_index = 'Time '..i
             if packet[buff] ~= 255 and packet[buff] ~= 0 then
-                local buff_id = packet[buff]
                 -- 1009810800 is GMT: Monday, December 31, 2001 3:00:00 PM
                 -- 4294967296 is 32 bit for the roll over
                 -- server_delta accounts for a pc that is not time sync'd
                 local buff_offset = 1009810800 + ( 4294967296 * epoch_ticks + packet[buff_index] ) / 60 - server_delta
                 local end_time = os.date('%Y-%m-%dT%H:%M:%S',buff_offset)
                 --log('Buff end time ['..end_time..']')
-                formattedString = formattedString..buff_id..','..end_time..'|'
+                -- Need to not key off buff ID's because can have multiple of same
+                player_buff_ids[i] = { id = packet[buff], time = end_time }
             end
         end
-        player_buffs = formattedString:sub(1, #formattedString - 1)
     end
 
     function get_moving()
@@ -161,19 +168,12 @@ do
 		return player
 	end
 
-    function set_player(p)
-		player = p
-	end
-
-    function get_player_location()
-		return player_location
-	end
-
-    function set_player_location(loc)
-		player_location = loc
+    function get_player_info()
+		return player_info
 	end
 
     function get_player_buffs()
+        validate_player_buffs()
         return 'playerbuffs_'..player_buffs
     end
 
@@ -197,7 +197,6 @@ do
         if cache[player.name] then return cache[player.name] end
 
         -- Wasn't found in table so return normal name anyway
-        log("Couldn't find the name in the protection cache")
         return player.name
     end
 
@@ -210,11 +209,13 @@ do
     end
 
     function get_player_id()
-        return player_id
+        if not player or not player.id then return '0' end
+        return tostring(player.id)
     end
 
-    function set_player_id(value)
-        player_id = value
+    function get_player_buff_ids()
+        info('Get Buff IDs Called')
+        return player_buff_ids
     end
 
     function set_server_offset(timestamp , offset)
@@ -225,6 +226,44 @@ do
         server_delta = 1009810800 + server_time - os.time()
         --log('Epoch Ticks ['..epoch_ticks..']')
         --log('Server Delta ['..server_delta..']')
+    end
+
+    function validate_player_buffs()
+        -- Generate the string
+        player_buffs = ''
+        if not player then return '' end
+
+        -- Check for held packet buffs
+        local packet_buffs = get_packet_buffs()
+
+        for index, target in pairs(packet_buffs) do
+
+            -- the buff is for the player
+            if target.id == player.id then
+
+                -- Check to make sure no duplicates
+                local need_buff = true
+                for i=1, #player_buff_ids do
+                    if player_buff_ids[i] and player_buff_ids[i].id == target.buff then
+                        need_buff = false
+                        i = #player_buff_ids 
+                    end
+                end
+
+                if need_buff then
+                    log('Adding Buff ['..target.buff..'] to the player.')
+                    player_buffs = player_buffs..target.buff..',Unknown|'
+                end
+            end
+        end
+
+        for i=1, #player_buff_ids do
+            if player_buff_ids[i] then
+                player_buffs = player_buffs..player_buff_ids[i].id..','..player_buff_ids[i].time..'|'
+            end
+        end
+
+        player_buffs = player_buffs:sub(1, #player_buffs - 1)
     end
 
 end

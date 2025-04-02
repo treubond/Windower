@@ -577,7 +577,7 @@ function init_gear_sets()
         legs="Hashishin Tayt +2",
         feet="Hashi. Basmak +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
-        waist="Flume Belt",
+        waist="Flume Belt +1",
         left_ear="Eabani Earring",
         right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
         left_ring="Shneddick Ring",
@@ -886,6 +886,8 @@ function job_post_midcast(spell, action, spellMap, eventArgs)
         if spellMap == 'Magical' then
             if spell.element == world.weather_element and (get_weather_intensity() == 2 and spell.element ~= elements.weak_to[world.day_element]) then
                 equip({waist="Hachirin-no-Obi"})
+            elseif spell.target.distance < (8 + spell.target.model_size) then
+                equip({waist="Orpheus's Sash"})
             end
         end
         if spellMap == 'Healing' and spell.target.type == 'SELF' then

@@ -8,7 +8,7 @@ include('Modes.lua')
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
-idleModes 	= M('refresh','dt') --,'Phalanx','MEVA','Reraise','town','test')
+idleModes 	= M('refresh','dt','Phalanx') --,'Phalanx','MEVA','Reraise','town','test')
 meleeModes 	= M('normal','aftermath','dt','ACC','SubtleBlow')
 THMode 		= M('OFF','ON')
 HYBRIDmode 	= M('OFF','ON')
@@ -335,7 +335,7 @@ function get_sets()
 		left_ear="Mache Earring",
 		right_ear="Ethereal Earring",
 		left_ring="Defending Ring",
-		right_ring="Stikini Ring",
+		right_ring="Stikini Ring +1",
 		back="Solemnity Cape",
 		--[[ range="Gjallarhorn", 
 		head="Fili Calot +3",
@@ -366,7 +366,7 @@ function get_sets()
 		left_ear="Mache Earring",
 		right_ear="Ethereal Earring",
 		left_ring="Defending Ring",
-		right_ring="Stikini Ring",
+		right_ring="Stikini Ring +1",
 		back="Solemnity Cape",
 		--[[ range="Gjallarhorn",
 		head="Fili Calot +3",
@@ -418,7 +418,9 @@ function get_sets()
 		-- back="Moonlight Cape",
 	}	-- 5 Refresh :: 50 PDT :: 55 MDT
 	
-	sets.me.idle.Phalanx = {
+	sets.me.idle.Phalanx = set_combine(sets.me.idle.dt, {
+		legs={ name="Chironic Hose", augments={'AGI+2','Attack+1','Phalanx +4','Accuracy+6 Attack+6','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
+		feet={ name="Chironic Slippers", augments={'"Store TP"+2','Pet: STR+8','Phalanx +4','Mag. Acc.+3 "Mag.Atk.Bns."+3',}},
 		--[[ range={ name="Linos", augments={'Mag. Evasion+13','Phys. dmg. taken -4%','HP+15',}},
 		head={ name="Chironic Hat", augments={'Attack+9','STR+7','Phalanx +4','Mag. Acc.+18 "Mag.Atk.Bns."+18',}},
 		body={ name="Chironic Doublet", augments={'Pet: "Regen"+3','CHR+15','Phalanx +4',}},
@@ -432,7 +434,7 @@ function get_sets()
 		left_ring="Defending Ring",
 		right_ring="Moonlight Ring",
 		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Waltz" potency +10%','Damage taken-5%',}}, ]]
-	}
+	})
 	
 	sets.me.idle.test = {
 		--[[ range={ name="Linos", augments={'Mag. Evasion+13','Phys. dmg. taken -4%','HP+15',}},
@@ -731,7 +733,7 @@ function get_sets()
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		head="Nyame Helm",
 		body=REL.BOD,
-		hands={ name="Chironic Gloves", augments={'STR+14','Potency of "Cure" effect received+4%','Weapon skill damage +6%',}},
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		feet="Nyame Sollerets",
 		neck={ name="Bard's Charm +1", augments={'Path: A',}},
@@ -762,6 +764,7 @@ function get_sets()
     sets.me["Mordant Rime"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -787,6 +790,7 @@ function get_sets()
     sets.me["Rudra's Storm"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -812,6 +816,7 @@ function get_sets()
     sets.me["Exenterator"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -837,6 +842,7 @@ function get_sets()
     sets.me["Evisceration"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -862,6 +868,7 @@ function get_sets()
     sets.me["Aeolian Edge"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -887,6 +894,7 @@ function get_sets()
     sets.me["Energy Drain"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -912,6 +920,7 @@ function get_sets()
     sets.me["Energy Steal"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -937,6 +946,7 @@ function get_sets()
     sets.me["Shell Crusher"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -963,6 +973,7 @@ function get_sets()
     sets.me["Shattersoul"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -989,6 +1000,7 @@ function get_sets()
     sets.me["Retribution"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -1014,6 +1026,7 @@ function get_sets()
     sets.me["Cataclysm"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -1039,6 +1052,7 @@ function get_sets()
     sets.me["Flash Nova"] = {
 		range={ name="Linos", augments={'Accuracy+15','"Dbl.Atk."+1','Quadruple Attack +3',}},
 		body=REL.BOD,
+		hands={ name="Chironic Gloves", augments={'Rng.Acc.+3','STR+8','Weapon skill damage +8%',}},
 		legs={ name="Chironic Hose", augments={'"Dbl.Atk."+1','Attack+26','Weapon skill damage +9%','Accuracy+20 Attack+20',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
@@ -1117,19 +1131,19 @@ function get_sets()
 ---------------
     sets.precast.casting = {
 		--sub="Culminus",
-		range="Gjallarhorn",
+		--range="Gjallarhorn",
 		head=EMP.HED,
-		body=INY.BOD,
+		body=INY.BOD, -- 14
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
 		legs=INY.LEG,
-		feet=EMP.FEE,
-		neck="Mnbw. Whistle +1",
-		waist="Embla Sash",
+		feet=EMP.FEE, -- 10
+		neck="Voltsurge Torque", --4
+		waist="Embla Sash", -- 5
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
-		left_ring="Metamorph Ring",
-		right_ring="Stikini Ring",
-		back="Solemnity Cape",
+		left_ring="Kishar Ring", -- 4
+		right_ring="Stikini Ring +1",
+		back="Fi Follet Cape +1", -- 10
 		--[[ range={ name="Linos", augments={'Attack+15','Weapon skill damage +3%','Quadruple Attack +3',}},
 		head="Fili Calot +3",
 		body=INY.BOD, --14
@@ -1145,35 +1159,36 @@ function get_sets()
 		back=JSE.FAS.CHR, --10 ]]
     }	--68 FC in gear
 	
-    sets.precast.songs = {
+    sets.precast.songs = { -- 69
 		--sub="Culminus",
 		range="Gjallarhorn",
-		head=EMP.HED,
-		body=INY.BOD,
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		head=EMP.HED, -- 15 (songs)
+		body=INY.BOD, -- 14
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, -- 7
 		legs=INY.LEG,
-		feet=EMP.FEE,
-		neck="Mnbw. Whistle +1",
-		waist="Embla Sash",
+		feet=EMP.FEE, -- 10
+		neck="Voltsurge Torque", -- 4
+		--neck="Mnbw. Whistle +1",
+		waist="Embla Sash", -- 5
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
-		left_ring="Metamorph Ring",
-		right_ring="Stikini Ring",
-		back="Solemnity Cape",
+		left_ring="Kishar Ring", -- 4
+		right_ring="Stikini Ring +1",
+		back="Fi Follet Cape +1", -- 10
 		--[[ sub="Genmei Shield",
 		range="Gjallarhorn",
-		head="Fili Calot +3",
-		body="Inyanga Jubbah +2",
-		hands="Gendewitha Gages",
-		legs="Aya. Cosciales +2",
-		feet="Fili Cothurnes +3",
-		neck="Voltsurge Torque",
-		waist="Embla Sash",
+		head="Fili Calot +3", -- 16
+		body="Inyanga Jubbah +2", -- 14
+		hands="Gendewitha Gages", -- 7
+		legs="Aya. Cosciales +2", -- 6
+		feet="Fili Cothurnes +3", -- 13
+		neck="Voltsurge Torque", -- 4
+		waist="Embla Sash", -- 5
 		left_ear="Mendi. Earring",
 		right_ear="Gifted Earring",
-		left_ring="Kishar Ring",
-		right_ring="Prolix Ring",
-	    back={ name="Intarabus's Cape", augments={'CHR+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+1','"Fast Cast"+10',}}, ]]
+		left_ring="Kishar Ring", -- 4
+		right_ring="Prolix Ring", -- 2
+	    back={ name="Intarabus's Cape", augments={'CHR+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+1','"Fast Cast"+10',}}, -- 10]]
     }	--88 FC (git gud fast cast)
 ---------------
 --[PRECASTING]-[HONOR MARCH]
@@ -1574,6 +1589,7 @@ function get_sets()
 		hands=Telchine_ENH_hands,
 		legs=Telchine_ENH_legs,
 		feet=Telchine_ENH_feet,
+		left_ring="Stikini Ring +1",
 		--[[ range={ name="Linos", augments={'Mag. Evasion+13','Phys. dmg. taken -4%','HP+15',}},
 		head={ name="Telchine Cap", augments={'"Waltz" potency +5%','Enh. Mag. eff. dur. +10',}},
 		body={ name="Telchine Chas.", augments={'"Waltz" potency +5%','Enh. Mag. eff. dur. +10',}},
@@ -1682,7 +1698,7 @@ function get_sets()
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
 		left_ring="Defending Ring",
-		right_ring="Stikini Ring",
+		right_ring="Stikini Ring +1",
 		back=JSE.DBL,
 		--[[ main="Carnwenhan",
 		sub="Genmei Shield",
@@ -1727,8 +1743,8 @@ function get_sets()
 		waist="Embla Sash",
 		left_ear="Crep. Earring",
 		right_ear="Fili Earring +1",
-		left_ring="Defending Ring",
-		right_ring="Stikini Ring",
+		left_ring="Stikini Ring",
+		right_ring="Stikini Ring +1",
 		back=JSE.DBL,
 		--[[ main={ name="Carnwenhan", augments={'Path: A',}},
 		sub="Ammurapi Shield",
@@ -1772,7 +1788,7 @@ function get_sets()
 		left_ear="Aredan Earring",
 		right_ear="Ethereal Earring",
 		left_ring="Defending Ring",
-		right_ring="Stikini Ring",
+		right_ring="Stikini Ring +1",
 		back="Solemnity Cape",
 		--[[ head="Nyame Helm",
 		body="Ashera Harness",

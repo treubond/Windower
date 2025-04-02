@@ -1,6 +1,6 @@
 _addon.name = 'Silmaril'
 _addon.author = 'Mirdain'
-_addon.version = '3.3'
+_addon.version = '3.4 Main Release'
 _addon.description = 'A multi-boxer tool'
 _addon.commands = {'silmaril','sm'}
 
@@ -28,6 +28,8 @@ require 'lib./Helpers' --Common libraries
 require 'lib./Input' --Receive commands to execute
 require 'lib./Inventory' --Build the inventory information
 require 'lib./IPC' --Handles any IPC messages that are being sent
+require 'lib./Hover' -- Handles Hover shot movement
+require 'lib./Maps' -- Remaps the windower resources before sending to Silmaril
 require 'lib./Mirror' -- Allows all members to mirror the main players actions
 require 'lib./Moving' --Controls moving of charater
 require 'lib./Packets' --Handles packet messages
@@ -47,3 +49,7 @@ require 'lib./Addons./Sortie'
 
 windower_hook()
 ashita_hook()
+
+
+log('teset')
+

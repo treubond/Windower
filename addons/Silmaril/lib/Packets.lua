@@ -1,20 +1,19 @@
 do
     local last_sequence_in = {
-        ['0x009'] = 0,
-        ['0x032'] = 0,
-        ['0x033'] = 0,
-        ['0x034'] = 0,
-        ['0x03E'] = 0,
-        ['0x052'] = 0,
-        ['0x05C'] = 0,
-    }
+        ['0x009'] = {},
+        ['0x032'] = {},
+        ['0x033'] = {},
+        ['0x034'] = {},
+        ['0x03E'] = {},
+        ['0x052'] = {},
+        ['0x05C'] = {},}
     local last_sequence_out = {
-        ['0x01A'] = 0,
-        ['0x05B'] = 0,
-        ['0x05C'] = 0,
-        ['0x036'] = 0,
-        ['0x083'] = 0,
-    }
+        ['0x036'] = {},
+        ['0x05B'] = {},
+        ['0x05C'] = {},
+        ['0x083'] = {},}
+    local server_position = {x=0, y=0}
+    local packet_buffs = {}
 
     --Remove all of this and just return the functions.
     function message_in(id, data)
@@ -22,7 +21,9 @@ do
             return packet_in_0x009(data)
         elseif id == 0x00B then -- Zone Response
             return packet_in_0x00B(data)
-        elseif id == 0x00E then -- Zone Response
+        elseif id == 0x00D then -- PC Update
+            return packet_in_0x00D(data)
+        elseif id == 0x00E then -- NPC Update
             return packet_in_0x00E(data)
         elseif id == 0x05C then -- Dialog information
             return packet_in_0x05C(data)
@@ -39,7 +40,7 @@ do
         elseif id == 0x037 then -- Update Character
             return packet_in_0x037(data)
         elseif id == 0x038 then -- Entity Animation
-            -- return packet_in_0x038(data)
+            return packet_in_0x038(data)
         elseif id == 0x03E then  -- Open Buy/Sell
             return packet_in_0x03E(data)
         elseif id == 0x052 then -- NPC Release
@@ -72,13 +73,12 @@ do
             return packet_out_0x05E(data)
         elseif id == 0x015 then -- Player Update
             return packet_out_0x015(data)
-        elseif id == 0x036 and false then -- Menu Item (Trade)
+        elseif id == 0x036 then -- Menu Item (Trade)
             return packet_out_0x036(data)
         elseif id == 0x083 then -- Buy Item
             return packet_out_0x083(data)
         end
     end
-
 
     -----------------------------------------------------------------------
     --------------------------- MESSAGES IN ------------------------------
@@ -88,8 +88,8 @@ do
     function packet_in_0x009(data)
         --Check to make sure you not in the process of buying an item
         if get_buy_sell() and get_mid_inject() then
-            local packet = check_incoming_sequence('0x009',data)
-            if not packet then return end
+            local packet = check_incoming_sequence('0x009', data)
+            if not packet then return true end
             log('Buy Sell continue')
             npc_inject()
         end
@@ -107,43 +107,79 @@ do
         end
     end
 
+    -- PC Update 
+    function packet_in_0x00D(data)
+    end
+
     -- NPC Update
     function packet_in_0x00E(data)
         --Sortie.lua Addon
         bitzer_Check(data)
     end
 
+    -- [1] = 'Melee attack',
+    -- [2] = 'Ranged attack finish',
+    -- [3] = 'Weapon Skill finish',
+    -- [4] = 'Casting finish',
+    -- [5] = 'Item finish',
+    -- [6] = 'Job Ability',
+    -- [7] = 'Weapon Skill start',
+    -- [8] = 'Casting start',
+    -- [9] = 'Item start',
+    -- [11] = 'NPC TP finish',
+    -- [12] = 'Ranged attack start',
+    -- [13] = 'Avatar TP finish',
+    -- [14] = 'Job Ability DNC',
+    -- [15] = 'Job Ability RUN',
+
     -- Action
     function packet_in_0x028(data)
-	    local p = get_player()
-	    if not p or not p.id then return end
-        local packet = parse_action_packet(data)
+
         if not get_connected() then return end
 
+        local p = get_player()
+	    if not p then return end
+
+        local packet = parse_action_packet(data)
+
+        -- Player actions
         if packet.actor_id == p.id then
+
             -- [2] = 'Ranged attack finish'
             if packet.category == 2 and packet.param == 26739 then
-                local p_loc = get_player_location()
-                send_packet(p.id..';shooting_finished_2_Ranged Attack_'..packet.targets[1].id..'_'..p_loc.x..'_'..p_loc.y..'_'..p_loc.z)
+                local particle = 'false'
+                if get_hover_shot_particle() then particle = "true" end
+                que_packet('shooting_finished_2_Ranged Attack_'..packet.targets[1].id..'_'..particle)
                 log("PACKET: Shooting Finished")
+                hover_distance()
+                local pos = {x = server_position.x, y = server_position.y}
+                set_last_shot_pos(pos)
+                set_hover_shot_particle(false)
 
             -- [3] = 'Weapon Skill finish'
             elseif packet.category == 3 and packet.param ~= 0 then
                 local ws = get_weaponskill(packet.param)
                 if ws then
-                    local p_loc = get_player_location()
-                    send_packet(p.id..';weaponskill_blocked_'..ws.id..'_'..ws.en..'_'..packet.targets[1].id..'_'..p_loc.x..'_'..p_loc.y..'_'..p_loc.z)
-                    log('PACKET: Weaponskill ['..ws.en..'] on target ['..packet.targets[1].id..']')
+                    local particle = 'false'
+                    if get_hover_shot_particle() then particle = "true" end
+                    que_packet('weaponskill_finished_'..ws.id..'_'..ws.en..'_'..packet.targets[1].id..'_'..particle)
+                    -- Check for Hover shot
+                    if ws.skill == 26 or ws.skill == 25 then 
+                        hover_distance() 
+                        local pos = {x = server_position.x, y = server_position.y}
+                        set_last_shot_pos(pos)
+                        set_hover_shot_particle(false)
+                    end
                 end
 
             -- [4] = 'Casting finish'
             elseif packet.category == 4 then
-                send_packet(p.id..';casting_finished_'..packet.param..'_'..packet.targets[1].id..'_'..packet.targets[1].actions[1].message)
+                que_packet('casting_finished_'..packet.param..'_'..packet.targets[1].id..'_'..packet.targets[1].actions[1].message)
                 log('PACKET: Casting has finished')
 
             -- [5] = 'Item finish'
             elseif packet.category == 5 then
-                send_packet(p.id..';item_finished')
+                que_packet('item_finished')
                 log("PACKET: Item Finished")
 
             -- [6] = 'Job Ability'
@@ -153,9 +189,12 @@ do
 			    if ability then
                     -- For Corsair's JA Phantom Roll
                     if packet.targets[1].actions[1].param then option = packet.targets[1].actions[1].param end
-                    send_packet(p.id..';jobability_blocked_'..ability.id..'_'..ability.en..'_'..packet.targets[1].id..'_'..option)
+                    que_packet('jobability_blocked_'..ability.id..'_'..ability.en..'_'..packet.targets[1].id..'_'..option)
                     log('PACKET: Job Ability ['..ability.en..'] on Target ['..packet.targets[1].id..'] with Option ['..option..']')
 			    end
+
+            -- [7] = 'Weapon Skill start'
+            elseif packet.category == 7 then
 
             -- [8] = 'Casting start'
             elseif packet.category == 8 then
@@ -165,7 +204,7 @@ do
                     if packet.targets[1].actions[1].param ~= 0 then
 					    local spell = get_spell(packet.targets[1].actions[1].param)
                         if spell then
-                            send_packet(p.id..';casting_interrupted_'..spell.id..'_'..spell.en..'_'..packet.targets[1].id)
+                            que_packet('casting_interrupted_'..spell.id..'_'..spell.en..'_'..packet.targets[1].id)
                             log("PACKET: Casting was interrupted")
                         end
                     end
@@ -175,7 +214,7 @@ do
                     if packet.targets[1].actions[1].param ~= 0 then
 					    local spell = get_spell(packet.targets[1].actions[1].param)
 					    if spell then
-                            send_packet(p.id..';casting_blocked_'..spell.id..'_'..spell.en..'_'..packet.targets[1].id..'_'..string.format("%.2f",spell.cast_time + 2.1))
+                            que_packet('casting_blocked_'..spell.id..'_'..spell.en..'_'..packet.targets[1].id..'_'..string.format("%.2f",spell.cast_time + 2.1))
                             log('PACKET: Casting Spell ['..spell.en..'] on target '..packet.targets[1].id)
 					    end
 				    end
@@ -184,20 +223,21 @@ do
             -- [9] = 'Item start'
             elseif packet.category == 9 then
                 if packet.param == 28787 then
-                    send_packet(p.id..';item_interrupted')
+                    que_packet('item_interrupted')
                     log("PACKET: Item use interrupted")
                 else
-                    send_packet(p.id..';item_blocked')
+                    que_packet('item_blocked')
                     log("PACKET: Item use started")
                 end
 
             -- [12] = 'Ranged attack start'
             elseif packet.category == 12 then
                 if packet.param == 24931 then -- shooting
-                    send_packet(p.id..';shooting_blocked_2_Ranged Attack_'..packet.targets[1].id)
+                    que_packet('shooting_blocked_2_Ranged Attack_'..packet.targets[1].id)
                     log("PACKET: Shooting")
+
                 elseif packet.param == 28787 then -- interrupted
-                    send_packet(p.id..';shooting_interrupted_2_Ranged Attack_'..packet.targets[1].id)
+                    que_packet('shooting_interrupted_2_Ranged Attack_'..packet.targets[1].id)
                     log("PACKET: Shooting interrupted")
                 end
             end
@@ -206,89 +246,237 @@ do
         -- NPC, Enemy, or out of party buffs
         if packet.category == 11 or packet.category == 4 or packet.category == 14 then 
             local buff_gain = S{194,203,205,230,236,237,266,267,268,269,270,271,272,277,278,279,280,319,320,519,520,521,591,645}
-            local buff_wear = S{204,206,321,322,341,342,343,344,350,351,378,531,647}
-            local pt_ids = get_party_ids()
-            local trust_ids = get_trust_ids()
-            for index, target in pairs(packet.targets) do
-                if target.id and (not pt_ids[target.id] or trust_ids[target.id]) then
-                    if target.actions[1].message then
-                        local buff = target.actions[1].param
-                        if buff then
-                            -- Handles the dazes for DNC
-                            if packet.category == 14 and buff_gain:contains(tonumber(target.actions[1].message)) then
-                                local ability = get_ability(packet.param)
-                                local daze = get_buff(ability.status)
-                                if daze and daze.id then buff = daze.id..'|'..target.actions[1].param end
-                            end
+            local buff_wear = S{64,204,206,321,322,341,342,343,344,350,351,378,531,647} 
 
-                            if buff_gain:contains(tonumber(target.actions[1].message)) and target.id then -- Buff Gain 
-                                send_packet(p.id..';packet_statusgains_'..buff..'_'..target.id)
-                            elseif buff_wear:contains(tonumber(target.actions[1].message)) and target.id then -- Buff Wear
-                                send_packet(p.id..';packet_statuswears_'..buff..'_'..target.id)
-                            end
-                        end
+            for index, target in pairs(packet.targets) do
+                if target.id and target.actions[1].message and target.actions[1].param then
+                    local buff = target.actions[1].param
+
+                    -- Handles the dazes for DNC
+                    if packet.category == 14 and buff_gain[tonumber(target.actions[1].message)] then
+                        local ability = get_ability(packet.param)
+                        local daze = get_buff(ability.status)
+                        if daze and daze.id then buff = daze.id..'|'..target.actions[1].param end
                     end
+
+                    -- Buff Gain 
+                    if buff_gain[tonumber(target.actions[1].message)] then 
+                        que_packet('packet_statusgains_'..buff..'_'..target.id)
+
+                    -- Buff Wear
+                    elseif buff_wear[tonumber(target.actions[1].message)] then 
+                        que_packet('packet_statuswears_'..buff..'_'..target.id)
+                    end
+
                 end
             end
         end
 
-        -- Process the skillchain and magic bursts if needed
-        if packet.category == 3 and packet.param ~= 0 then -- Monitor others for Weaponskills and Skillchains
+        -- [3] = 'Weapon Skill finish'
+        if packet.category == 3 and packet.param ~= 0 then
+
+            -- Check if its an enemy or trust
+            local mob_array = get_all_enemies()
+
+            -- Process the action
+            if packet.param and packet.actor_id and packet.targets and packet.targets[1].id and mob_array then
+
+                -- Make a list of all the targets
+                local target_list = ''
+                for index, target in pairs(packet.targets) do
+                    if target.id then target_list = target_list..target.id..'|' end
+                end
+                target_list = target_list:sub(1, #target_list - 1)
+
+                if mob_array[packet.actor_id] and mob_array[packet.actor_id].spawn_type ~= 1 then
+                    que_packet('packet_npc_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                else
+                    que_packet('packet_weaponskill_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                end
+            end
+
+            -- Process the skillchain and magic bursts if needed
             local alliance_ids = get_alliance_ids()
             if alliance_ids[packet.actor_id] then
                 run_ws_skillchain(packet, "Player")
                 run_burst(packet)
             end
-        elseif packet.category == 4 then -- Monitor others for Immanence and Skillchains
+
+        -- [4] = 'Casting finish'
+        elseif packet.category == 4 then
+            
+            -- Process the action
+            if packet.param and packet.actor_id and packet.targets then
+
+                -- Make a list of all the targets
+                local target_list = ''
+                local alliance_party = get_alliance_ids()
+                local now = os.clock()
+
+                -- Determine if the move has a status associated with it
+                local spell = get_spell(packet.param)
+
+                for index, target in pairs(packet.targets) do
+                    if target.id then target_list = target_list..target.id..'|' end
+
+                    -- Used to store the buff
+                    if alliance_party and alliance_party[target.id] and spell and spell.status then
+                       local buff = { id = target.id, buff = spell.status, time = now }
+                       table.insert(packet_buffs, buff)
+                    end
+
+                end
+
+                target_list = target_list:sub(1, #target_list - 1)
+                que_packet('packet_spell_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+
+            end
+
+            -- Monitor others for Immanence and Skillchains
             local alliance_ids = get_alliance_ids()
             if alliance_ids[packet.actor_id] then
                 run_spell_check(packet)
                 run_burst(packet)
                 local no_effect = S{75,653,654,655,656,66,85,284}
                 local message = tonumber(packet.targets[1].actions[1].message)
-                if message and not no_effect:contains(message) then
+                if message and not no_effect[message] then
                     corsair_shot(packet)
                 end
             end
-        elseif packet.category == 11 then -- NPC TP Finish
+
+        -- [6] = 'Job Ability'
+        elseif packet.category == 6 then
+            
+            if not packet.param or not packet.targets or not packet.actor_id then return end
+
+            -- Check if its an enemy or trust
+            local monster_ability = false
+            local ability = get_ability(packet.param)
+
+            if not ability then
+                ability = get_monster_ability(packet.param)
+                if ability then
+                    monster_ability = true    
+                else
+                    info('Unable to parse ['..packet.param..'] ability.')
+                    return
+                end
+            end
+
+            -- Make a list of all the targets
+            local target_list = ''
+            local alliance_party = get_alliance_ids()
+            local now = os.clock()
+
+            -- Determine if the move has a status associated with it
+            local status = nil
+            if ability.status then 
+                status = ability.status
+            else
+                local ability_map = get_ability_maps()[packet.param]
+                if ability_map then status = ability_map end
+            end
+
+            for index, target in pairs(packet.targets) do
+                if target.id then target_list = target_list..target.id..'|' end
+
+                -- Used to store the buff for two seconds before removing it
+                if status and alliance_party and alliance_party[target.id] then
+                    local buff = { id = target.id, buff = status, time = now }
+                    table.insert(packet_buffs, buff)
+                end
+
+            end
+            target_list = target_list:sub(1, #target_list - 1)
+
+            if monster_ability then
+                que_packet('packet_npc_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+            else
+                que_packet('packet_ability_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+            end
+
+        -- [11] = 'NPC TP finish',
+        elseif packet.category == 11 and packet.param ~= 0 then
+
+            -- Process the action
+            if packet.actor_id and packet.targets then
+
+                -- Make a list of all the targets
+                local target_list = ''
+                for index, target in pairs(packet.targets) do
+                    if target.id then target_list = target_list..target.id..'|' end
+                end
+                target_list = target_list:sub(1, #target_list - 1)
+
+                que_packet('packet_npc_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+            end
+
+            -- NPC TP Finish (Trusts)
             local party_ids = get_party_ids()
-            if party_ids[packet.actor_id] then
+            if party_ids and party_ids[packet.actor_id] then
                 run_ws_skillchain(packet, "NPC")
                 run_burst(packet)
             end
-        elseif packet.category == 13 then -- Avatar TP Finish
+
+        -- [13] = 'Avatar TP finish',
+        elseif packet.category == 13 then
+
+            -- Process the action
+            if packet.param and packet.actor_id and packet.targets then
+
+                -- Make a list of all the targets
+                local target_list = ''
+                for index, target in pairs(packet.targets) do
+                    if target.id then target_list = target_list..target.id..'|' end
+                end
+                target_list = target_list:sub(1, #target_list - 1)
+
+                que_packet('packet_avatar_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+            end
+
+            -- Avatar TP Finish
             local party_ids = get_party_ids()
-            if party_ids[packet.actor_id] then
+            if party_ids and party_ids[packet.actor_id] then
                 run_ws_skillchain(packet, "Avatar")
                 run_burst(packet)
             end
+
         end
     end
 
     -- Action Message
     function packet_in_0x029(data)
         local packet = parse_packet('incoming', data)
-        local buff_wear = S{204,206,321,322,341,342,343,344,350,351,378,531,647}    
+        if not packet then return true end
+
+        local buff_wear = S{64,204,206,321,322,341,342,343,344,350,351,378,531,647}    
         if packet['Message'] == 48 then -- Reraise Fail
-            send_packet(get_player_id()..';packet_castfail_'..packet['Param 1']..'_'..packet['Target'])
+            que_packet('packet_castfail_'..packet['Param 1']..'_'..packet['Target'])
         elseif packet['Message'] == 234 then -- Auto Target
-            send_packet(get_player_id()..';packet_autotarget_'..packet['Target Index'])
+            que_packet('packet_autotarget_'..packet['Target Index'])
         elseif buff_wear:contains(tonumber(packet['Message'])) then -- Buff Wear
-            send_packet(get_player_id()..';packet_statuswears_'..packet['Param 1']..'_'..packet['Target'])
+            que_packet('packet_statuswears_'..packet['Param 1']..'_'..packet['Target'])
         end
     end
 
     -- NPC Interaction Type 1
     function packet_in_0x032(data)
         -- This is in response to the client sending a Action packet to start interaction.
-        local packet = check_incoming_sequence('0x032',data)
-        if not packet then return end
+        local packet = parse_packet('incoming', data)
 
         -- Store a temp menu ID to cancel the active dialog for warps/doors
         set_temp_menu_id(packet['Menu ID'])
+        
+        log('Menu ID ['..packet['Menu ID']..']')
+
+        -- Block the menu on a trade
+        if get_trade() and not get_mirroring() then npc_inject() return true end
 
         -- Non standard way to start a mirror (clears so set menu after)
         if get_mirror_on() and not get_mirroring() then
+
+            if not check_incoming_sequence('0x032',data) then return true end
+
             log("interact called 0x032")
             packet['Target'] = packet['NPC']
             local p = get_player()
@@ -299,12 +487,15 @@ do
         end
 
         if get_injecting() and not get_mid_inject() then
+
+            if not check_incoming_sequence('0x032',data) then return true end
+
             -- Assign the Menu ID
             set_menu_id(packet['Menu ID'])
             set_interaction_type("Type 1")
 
             -- Menu will be blocked so you can go ahead and start sending the messages
-            log('npc_inject() called from [0x032] with Menu ID of ['..tostring(get_menu_id())..']')
+            log('npc_inject() called from [0x032] with Menu ID of ['..get_menu_id()..']')
             npc_inject()
 
             --Blocks the menu
@@ -316,14 +507,21 @@ do
     -- String NPC Interaction
     function packet_in_0x033(data)
         -- This is in response to the client sending a Action packet to start interaction.
-        local packet = check_incoming_sequence('0x033', data)
-        if not packet then return end
+        local packet = parse_packet('incoming', data)
 
         -- Store a temp menu ID to cancel the active dialog for warps/doors
         set_temp_menu_id(packet['Menu ID'])
 
+        log('Menu ID ['..packet['Menu ID']..']')
+
+        -- Block the menu on a trade
+        if get_trade() and not get_mirroring() then npc_inject() return true end
+
         -- Non standard way to start a mirror (clears so set menu after)
         if get_mirror_on() and not get_mirroring() then
+
+            if not check_incoming_sequence('0x033',data) then return true end
+
             log("interact called 0x033")
             packet['Target'] = packet['NPC']
             local p = get_player()
@@ -334,12 +532,15 @@ do
         end
 
         if get_injecting() and not get_mid_inject() then
+
+            if not check_incoming_sequence('0x033',data) then return true end
+
             -- Assign the Menu ID
             set_menu_id(packet['Menu ID'])
             set_interaction_type("Type String")
 
             -- Menu will be blocked so you can go ahead and start sending the messages
-            log('npc_inject() called from [0x033] with Menu ID of ['..tostring(get_menu_id())..']')
+            log('npc_inject() called from [0x033] with Menu ID of ['..get_menu_id()..']')
             npc_inject()
 
             --Blocks the menu
@@ -351,16 +552,22 @@ do
     -- NPC Interaction Type 2
     function packet_in_0x034(data)
         -- This is in response to the client sending a Action packet to start interaction.
-        local packet = check_incoming_sequence('0x034',data)
-        if not packet then return end
+        local packet = parse_packet('incoming', data)
 
         -- Store a temp menu ID to cancel the active dialog for warps/doors
         set_temp_menu_id(packet['Menu ID'])
 
-        log('NPC interaction detected')
+        log('Menu ID ['..packet['Menu ID']..']')
+
+        -- Block the menu on a trade
+        if get_trade() and not get_mirroring() then npc_inject() return true end
 
         -- Non standard way to start a mirror (clears so set menu after)
         if get_mirror_on() and not get_mirroring() then
+
+            if not check_incoming_sequence('0x034',data) then return true end
+
+            log("interact called 0x034")
             packet['Target'] = packet['NPC']
             local p = get_player()
             for index, value in ipairs(p.buffs) do
@@ -370,12 +577,15 @@ do
         end
 
         if get_injecting() and not get_mid_inject() then
+
+            if not check_incoming_sequence('0x034',data) then return true end
+
             -- Assign the Menu ID
             set_menu_id(packet['Menu ID'])
             set_interaction_type("Type 2")
 
             -- Menu will be blocked so you can go ahead and start sending the messages
-            log('npc_inject() called from [0x034] with Menu ID of ['..tostring(get_menu_id())..']')
+            log('npc_inject() called from [0x034] with Menu ID of ['..get_menu_id()..']')
             npc_inject()
 
             --Blocks the menu
@@ -386,9 +596,12 @@ do
 
     -- Update Character
     function packet_in_0x037(data)
+        local packet = parse_packet('incoming', data)
+        if not packet then return end
+
         local p = get_player()
         if not p then return end
-        local packet = parse_packet('incoming', data)
+
         -- Used to calculate relative time
         set_server_offset(packet['Timestamp'],packet['Time offset?']/60)
 
@@ -409,7 +622,7 @@ do
                 local msg = get_mirror_message()
                 if not msg or #msg == 0 then 
                     log("Player is released from menu")
-                    send_packet(p.id..";mirror_status_completed")
+                    que_packet("mirror_status_completed")
                     set_injecting(false)
                 end
             end
@@ -419,32 +632,40 @@ do
         if packet['Status'] == 0 and p.status == 1 then
             -- Send a disengage packet since not attacking acording to server
             log(p.name.." is not attacking according to server via [0x037] packet")
-            send_packet(p.id..';packet_noattack')
+            que_packet('packet_noattack')
         end
     end
 
     -- Entity Animation
     function packet_in_0x038(data)
         local packet = parse_packet('incoming', data)
-        if packet.Type == "hov1" then
-            log('Hover Shot Animation')
+        if not packet then return end
+
+        local p = get_player()
+        if not p then return end
+
+        if tonumber(packet.Mob) == p.id then
+            if packet.Type == "hov1" then
+                set_hover_shot_particle(true)
+            else
+                set_hover_shot_particle(false)
+            end
         end
     end
 
     -- Open Buy/Sell Menu
     function packet_in_0x03E(data)
+
         -- Set the mode when you are generating a mirror
         if get_mirror_on() and get_mirroring() then
-            local packet = check_incoming_sequence('0x03E',data)
-            if not packet then return end
+            if not check_incoming_sequence('0x03E',data) then return true end
             log('Shop Response - Mirror mode is purchasing')
             set_buy_sell(true)
         end
 
         -- Block the menu if you are mirroring a transaction
         if get_injecting() then
-            local packet = check_incoming_sequence('0x03E',data)
-            if not packet then return end
+            if not check_incoming_sequence('0x03E',data) then return true end
             log("Blocking on the 0x03E Packet [Buy/Sell Menu]")
             return true
         end
@@ -452,17 +673,19 @@ do
 
     -- NPC Release
     function packet_in_0x052(data)
-        local packet = check_incoming_sequence('0x052',data)
-        if not packet then return end
 
         -- Run the check if the mirror is completed
-        if get_injecting() and not get_block_release() then 
+        if get_injecting() and not get_block_release() then
+            local packet = check_incoming_sequence('0x052',data)
+            if not packet then return true end
             npc_in_release(packet)
         end
 
         -- This tells us the Server released the player - next should follow a status from 4 -> 0
         -- The engine is used to make this determination
         if get_mirroring() then
+            local packet = check_incoming_sequence('0x052',data)
+            if not packet then return true end
             log("Setting mirror_release to true")
             set_mirror_release(true)
         end
@@ -471,8 +694,7 @@ do
     -- Dialog information response
     function packet_in_0x05C(data)
         if not get_injecting() then return end
-        local packet = check_incoming_sequence('0x05C',data)
-        if not packet then return end
+        if not check_incoming_sequence('0x05C',data) then return true end
         log('npc_inject() called from [0x05C]')
         npc_inject()
     end
@@ -486,13 +708,29 @@ do
 
     -- Repositioning
     function packet_in_0x065(data)
-        --Sortie.lua Addon
-        sortie_position()
+        local packet = parse_packet('incoming', data)
+        if not packet then return end
+        set_force_warp(false)
+        sortie_position() --Sortie.lua Addon
+        local w = get_world()
+        if not w then return end
+        local zone = get_res_all_zones()[w.zone]
+        if not zone then return end
+        if zone.en ~= "Walk of Echoes [P1]" and zone.en ~= "Walk of Echoes [P2]" then return end
+        log('Repositioning Packet: ['..packet['X']..'] ['..packet['Y']..'] ['..packet['Z']..']')
+        if packet['X'] == 20 and packet['Y'] == 12 and packet['Z'] == -.5 then
+            if get_enabled() then
+                set_enabled(false)
+                que_packet("stop")
+            end
+        end
     end
 
     -- Pet status update
     function packet_in_0x068(data)
         local packet = parse_packet('incoming', data)
+        if not packet then return end
+
         local p = get_player()
         if packet['Owner ID'] == p.id then
             local player_pet = get_player_pet()
@@ -524,9 +762,10 @@ do
     -- Reraise Dialog
     function packet_in_0x0F9(data)
         local packet = parse_packet('incoming', data)
+        if not packet then return end
         if packet['Category'] ~= 1 then return end
         log("Reraise Menu")
-        send_packet(get_player_id()..';packet_reraise_')
+        que_packet('packet_reraise_')
     end
 
     -----------------------------------------------------------------------
@@ -541,13 +780,13 @@ do
 
         -- Turn off Silmaril
         if get_enabled() then
-            send_packet(get_player_id()..";stop")
+            que_packet("stop")
         end
 
         -- Finish the mirror since you are leaving
         if get_injecting() then
             log("Zone - Mirroring completed")
-            send_packet(get_player_id()..";mirror_status_completed")
+            que_packet("mirror_status_completed")
         end
 
         -- You are mirroring and zoning so complete the action
@@ -565,11 +804,19 @@ do
 
     -- Player Update
     function packet_out_0x015(data)
+        local packet = parse_packet('outgoing', data)
+        if not packet then return end
+
+        -- Store last out going postion packet
+        server_position.x = packet['X']
+        server_position.y = packet['Y']
+        server_position.z = packet['Z']
+
         -- Start the spoof sequence
         if get_force_warp() then
             -- Modifiy the packet
             local target = get_mirror_target()
-            local packet = parse_packet('outgoing', data)
+
             packet['X'] = tonumber(target.x)
             packet['Y'] = tonumber(target.y)
             packet['Z'] = tonumber(target.z)
@@ -589,54 +836,106 @@ do
             return false, build_packet(packet)
         end
     end
+
     -- Action
     function packet_out_0x01A(data)
-        local packet = parse_packet('outgoing', data)  
-        if packet['Category'] == 0x00 then  -- NPC Interaction
+        local packet = parse_packet('outgoing', data)
+        if not packet then return end
+
+        -- NPC Interaction
+        if packet['Category'] == 0x00 then
             if not get_mirror_on() then return end
             local p = get_player()
             for index, value in ipairs(p.buffs) do
                 if value == 254 then log('Battle Field Exit') return end
             end
-            -- Clear old action
             log("Clearing from Action out - 0x01A")
             clear_npc_data()
             npc_mirror_start(packet)
-        elseif packet['Category'] == 0x02 then  -- Engage monster
+
+        -- Engage monster
+        elseif packet['Category'] == 0x02 then
             log('Engage packet ['..tostring(packet['Target Index'])..']')
-            send_packet(get_player_id()..';packet_engage_'..packet['Target Index'])
-        elseif packet['Category'] == 0x0F then  -- Switch target
-            log('Switch packet ['..tostring(packet['Target Index'])..']')
-            send_packet(get_player_id()..';packet_switch_'..packet['Target Index'])
-        elseif packet['Category'] == 0x04 then  -- Disengage monster
+            que_packet('packet_engage_'..packet['Target Index'])
+
+        -- Cast Spell and apply an offset if needed
+        elseif packet['Category'] == 0x03 then
+            local watch_spell = get_watch_spell()
+            if not watch_spell then return end
+            if watch_spell['Target'] ~= packet['Target'] then clear_watch_spell() return end
+            if watch_spell['Target Index'] ~= packet['Target Index'] then clear_watch_spell() return end
+            if watch_spell['Category'] ~= packet['Category'] then clear_watch_spell() return end
+            if watch_spell['Param'] ~= packet['Param'] then clear_watch_spell() return end
+            local spell_option = watch_spell['Option']:split(',')
+            packet["X Offset"] = tonumber(spell_option[1])
+            packet["Y Offset"] = tonumber(spell_option[2])
+            packet["Z Offset"] = tonumber(spell_option[3])
+            clear_watch_spell()
+            -- Release the modified packet
+            return false, build_packet(packet)
+
+        -- Disengage monster
+        elseif packet['Category'] == 0x04 then
             log('Disengage from an enemy')
-            send_packet(get_player_id()..';packet_disengage')
+
+        -- Switch target
+        elseif packet['Category'] == 0x0F then
+            log('Switch packet ['..tostring(packet['Target Index'])..']')
+            que_packet('packet_switch_'..packet['Target Index'])
+
+        -- Ranged Attack
+        elseif packet['Category'] == 0x10 then
+            log('Ranged Attack Action packet ['..tostring(packet['Target Index'])..']')
+            set_last_hover_time(os.clock())
+            set_hover_shot(true)
+
+        -- Ranged Attack
+        elseif packet['Category'] == 0x07 then
+            log('Weaponskill Action packet ['..tostring(packet['Target Index'])..']')
+            local ws = get_weaponskill(packet.param)
+            if not ws then return end
+            if ws.skill == 26 or ws.skill == 25 then 
+                set_last_hover_time(os.clock())
+                set_hover_shot(true)
+            end
         end
     end
 
     -- Menu Item (Trade)
     function packet_out_0x036(data)
-        if true then return end -- Disabled
+        if not get_mirror_on() then return end
         local packet = check_outcoming_sequence('0x036',data)
         if not packet then return end
+
+        -- Start the mirroring actions if not black listed
+        set_trade(true)
+        npc_mirror_start(packet)
+
+        -- Do nothing if its blacklisted
+        if not get_mirroring() then return end
+
+        if not packet['Number of Items'] then return end
+
         local items = get_items(0)
-        local formattedString = ","
-        for i=0,9 do
+        local formattedString = ""
+        for i=1,packet['Number of Items'] do
             local item = 'Item Index '..string.format("%i",i)
             local item_count = 'Item Count '..string.format("%i",i)
-            if items[packet[item]] then -- found in inventory
-                local inv_item = items[packet[item]].id
+            if packet[item_count] > 0 then -- traded quantity
                 local inv_count = packet[item_count]
-                formattedString = formattedString..inv_item..'|'..inv_count..','
+                local inv_item = 0
+                if packet[item] ~= 0 then inv_item = items[packet[item]].id end -- not gil so get item id
+                formattedString = formattedString..inv_item..'\\'..inv_count..','
             end
         end
         formattedString = formattedString:sub(1, #formattedString - 1)
-        npc_mirror_start(packet) -- Start the mirroring actions
+        formattedString = formattedString..'|'..packet['Number of Items']
         npc_out_trade(packet, formattedString) -- Send the trade message
-
     end
+
     -- User dialog
     function packet_out_0x05B(data)
+
         -- Used with automatic dialogs like warps/doors
         if get_block_release() then
             local packet = check_outcoming_sequence('0x05B',data)
@@ -667,24 +966,26 @@ do
     -- Zone Line
     function packet_out_0x05E(data)
 
+        local packet = parse_packet('outgoing', data)
+        if not packet then return end
+
         -- Turn off move_to_exit
         zone_completed()
 
         -- Turn off Silmaril
-        if get_enabled() then
-            send_packet(get_player_id()..";stop")
-        end
+        if get_enabled() then que_packet("stop") end
 
         local p = get_player()
         if not p then return end
 
-        local p_loc = get_player_location()
+        local p_loc = get_player_info()
         if not p_loc then return end
 
         local w = get_world()
         if not w then return end
 
         local packet = parse_packet('outgoing', data)
+        if not packet then return end
 
         send_ipc('silmaril zone '..
             p.id..' '..
@@ -716,17 +1017,50 @@ do
     function check_incoming_sequence(id, data)
         -- Check to verify unique sequence ID
         local packet = parse_packet('incoming', data)
-        if last_sequence_in[id] == packet['_sequence'] then log("Duplicate ["..id.."]") return false end
-        last_sequence_in[id] = packet['_sequence']
+        if packet_validate(last_sequence_in[id], packet, id) then 
+            log("Duplicate ["..id.."] Sequence ["..packet['_sequence']..']')
+            packet_log(packet, 'Incoming')
+            return false 
+        end
+        last_sequence_in[id] = packet
         return packet
     end
 
     function check_outcoming_sequence(id, data)
         -- Check to verify unique sequence ID
         local packet = parse_packet('outgoing', data)
-        if last_sequence_out[id] == packet['_sequence'] then log("Duplicate ["..id.."]") return false end
-        last_sequence_out[id] = packet['_sequence']
+        if packet_validate(last_sequence_out[id], packet, id) then 
+            log("Duplicate ["..id.."] Sequence ["..packet['_sequence']..']')
+            packet_log(packet, 'Outgoing')
+            return false 
+        end
+        last_sequence_out[id] = packet
         return packet
     end
 
+    function get_server_position()
+        return server_position
+    end
+
+    function packet_validate(old, new, id)
+        if old['_raw'] == new['_raw'] then
+            return true
+        else
+            return false
+        end
+    end
+
+    function get_packet_buffs()
+        return packet_buffs
+    end
+
+    function reset_packet_buffs()
+        local now = os.clock()
+        for index, target in pairs(packet_buffs) do
+            if now - target.time > 2 then -- Removes after 2 seconds
+                log('Removing ['..target.id..'] ['..target.buff..'] ['..target.time..']')
+                table.remove(packet_buffs, index)
+            end
+        end
+    end
 end

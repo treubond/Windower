@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <settings>
+  <launcher>
+    <branch>stable</branch>
+  </launcher>
   <autoload>
     <addon>GearSwap</addon>
-    <addon>InfoBar</addon>
     <addon>DistancePlus</addon>
     <addon>send</addon>
     <addon>findAll</addon>
@@ -12,6 +14,7 @@
     <addon>indinope</addon>
     <addon>temps</addon>
     <addon>enternity</addon>
+    <addon>switch_focus</addon>
     <plugin>LightLuggage</plugin>
     <plugin>Sandbox</plugin>
     <plugin>DelayMeNot</plugin>
@@ -19,6 +22,9 @@
   </autoload>
   <profile name="">
     <consolekey>Insert</consolekey>
+    <windowmode>Window</windowmode>
+    <width>1920</width>
+    <height>1000</height>
     <gamma>0.2086957</gamma>
     <uiscale>1</uiscale>
     <hardwaremouse>false</hardwaremouse>

@@ -182,7 +182,7 @@ function init_gear_sets()
 	EMPY ={}
 	
 	AF.Head = ""
-	AF.Body = "Pumm. Lorica +2"
+	AF.Body = "Pumm. Lorica +3"
 	AF.Hands = ""
 	AF.Legs = "Pumm. Cuisses +3"
 	AF.Feet = "Pumm. Calligae +3"

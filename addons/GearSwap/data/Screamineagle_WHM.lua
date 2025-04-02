@@ -29,7 +29,7 @@ state.OffenseMode:set('DT')
 Organizer = false
 
 --Weapons options
-state.WeaponMode:options('Seraph Strike','Black Halo','Asclepius','Unlocked')
+state.WeaponMode:options('Seraph Strike','Black Halo','Asclepius','Unlocked','Yagrush')
 state.WeaponMode:set('Unlocked')
 
 --Command to Lock Style and Set the correct macros
@@ -45,19 +45,20 @@ function get_sets()
 	Telchine = {}
 
 	INYANGA.Head = "Inyanga Tiara"
-	INYANGA.Body = "Inyanga Jubbah +1"
+	INYANGA.Body = "Inyanga Jubbah +2"
 	INYANGA.Hands = "Inyanga Dastanas"
 	--INYANGA.Legs = ""
 	INYANGA.Feet = "Inyanga Crackows"
 
-	EMPY.Head = "Ebers Cap +1"
+	EMPY.Head = "Ebers Cap +2"
 	--EMPY.Body = ""
 	--EMPY.Hands = ""
-	EMPY.Legs = "Ebers Pant. +1"
+	EMPY.Legs = "Ebers Pant. +2"
 	--EMPY.Feet = ""
 
-	--Telchine.Head = ""
-	Telchine.Body = { name="Telchine Chas.", augments={'"Cure" potency +8%','Enh. Mag. eff. dur. +9',}}
+	Telchine.Head = { name="Telchine Cap", augments={'Spell interruption rate down -3%','Enh. Mag. eff. dur. +9',}}
+    Telchine.Body = { name="Telchine Chas.", augments={'"Cure" potency +8%','Enh. Mag. eff. dur. +9',}}
+	Telchine.Hands = { name="Telchine Gloves", augments={'"Cure" potency +7%','Enh. Mag. eff. dur. +10',}}
 
 
 	-- Weapon setup
@@ -80,6 +81,10 @@ function get_sets()
 		
 	}
 
+	sets.Weapons['Yagrush'] = {
+		main="Yagrush",
+	}
+
 	sets.Weapons.Shield = {
 		--sub="Genmei Shield",
 	}
@@ -91,18 +96,18 @@ function get_sets()
 	-- Standard Idle set with -DT,Refresh,Regen and movement gear
 	sets.Idle = {
 		main="Daybreak",
-		sub="Sors Shield",
-		ammo="Fortune Egg",
-		head="Ebers Cap",
-		body="Inyanga Jubbah +1",
-		hands="Inyanga Dastanas",
-		legs="Ayanmo Cosciales",
+		sub="Ammurapi Shield",
+		ammo="Hydrocera",
+		head=EMPY.Head,
+		body=INYANGA.Body,
+		hands=INYANGA.Hands,
+		legs=EMPY.Legs,
 		feet="Regal Pumps +1",
 		neck="Sanctity Necklace",
-		waist="Hierarch Belt",
+		waist="Acuity Belt +1",
 		left_ear="Malignance Earring",
-		right_ear="Eabani Earring",
-		left_ring="Defending Ring",
+		right_ear="Ebers Earring +1",
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
 		right_ring="Shneddick Ring",
 		back="Fi Follet Cape +1",
 		--[[ main="Daybreak",
@@ -131,7 +136,9 @@ function get_sets()
 	    --feet={ name="Chironic Slippers", augments={'CHR+4','Attack+21','"Refresh"+2','Mag. Acc.+19 "Mag.Atk.Bns."+19',}},
 	}
 
-	sets.Idle.DT = {}
+	sets.Idle.DT = {
+		left_ring="Defending Ring",
+	}
 
 	-- Movement Gear
 	sets.Movement = {
@@ -148,7 +155,19 @@ function get_sets()
 	}
 
 	sets.OffenseMode = {
+		ammo="Hydrocera",
+		head="Aya. Zucchetto +1",
+		body="Ayanmo Corazza +1",
+		hands="Aya. Manopolas +1",
+		legs="Aya. Cosciales +2",
+		feet="Aya. Gambieras +1",
+		neck="Null Loop",
 		waist="Eschan Stone",
+		left_ear="Brutal Earring",
+		right_ear="Heartseeker Earring",
+		left_ring="Ilabrat Ring",
+		right_ring="Chirich Ring",
+		back="Solemnity Cape",
 		--[[ ammo="Hasty Pinion +1",
 		head="Bunzi's Hat",
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -164,25 +183,32 @@ function get_sets()
 		back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}, ]]
 	}
 	-- Base TP set
-	sets.OffenseMode.TP = {}
+	sets.OffenseMode.TP = set_combine(sets.OffenseMode, {})
 
 	-- Set to use when Dual Wielding
-	sets.OffenseMode.TP.DW = {}
+	sets.OffenseMode.TP.DW = set_combine(sets.OffenseMode, {})
 	
 	-- TP set when in -Damage Taken mode
-	sets.OffenseMode.DT = {}
+	sets.OffenseMode.DT = set_combine(sets.OffenseMode, {
+
+	})
 
 	-- TP set to use when mode is in accuracy
-	sets.OffenseMode.ACC = {}
+	sets.OffenseMode.ACC = set_combine(sets.OffenseMode, {})
 
 	sets.Precast = {}
 	-- Used for Magic Spells (Cap 80%)
-	sets.Precast.FastCast = {
-		body=INYANGA.Body, -- 13 (for the +1)
-		legs="Ayanmo Cosciales", -- 3
+	sets.Precast.FastCast = { -- 64~67 + 10% with Light Arts
+		head=EMPY.Head, -- 10
+		body=INYANGA.Body, -- 14
+		hands="Gendewitha Gages", -- 7
+		legs="Aya. Cosciales +2", -- 6
 		feet="Regal Pumps +1", -- 5~7
+		neck="Voltsurge Torque", -- 4
 		waist="Embla Sash", -- 5
 		right_ear="Malignance Earring", -- 4
+		left_ring="Kishar Ring", -- 4
+		right_ring="Prolix Ring", -- 2
 		back="Fi Follet +1", -- 10
 		--[[ ammo="Hasty Pinion +1",
 		head="Ebers Cap +3", -- 13
@@ -235,20 +261,20 @@ function get_sets()
 	--This set is used as base as is overwrote by specific gear changes (Spell Interruption Rate Down)
 	sets.Midcast.SIRD = {}
 	-- Cure Set
-	sets.Midcast.Cure = { -- Cap is 50
+	sets.Midcast.Cure = { -- 67 (Cap is 50)
 		main="Daybreak", -- 30
 		sub="Sors Shield", -- 3
-		ammo="Fortune Egg",
-		head=EMPY.Head, -- 16 (+1)
+		ammo="Hydrocera",
+		head=EMPY.Head, -- 19 (+2)
 		body=Telchine.Body, -- 8
-		hands=INYANGA.Hands,
+		hands=Telchine.Hands,
 		legs=EMPY.Legs,
 		feet="Regal Pumps +1",
 		neck="Mizu. Kubikazari",
 		waist="Rumination Sash",
 		left_ear="Malignance Earring",
-		right_ear="Eabani Earring",
-		left_ring="Serket Ring",
+		right_ear="Ebers Earring +1",
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
 		right_ring="Metamor. Ring +1",
 		back="Solemnity Cape", -- 7
 		--[[ main="Asclepius",
@@ -277,8 +303,11 @@ function get_sets()
 
 	-- Used for base duration
 	sets.Midcast.Enhancing = {
+		head=Telchine.Head,
 		body=Telchine.Body,
+		hands=Telchine.Hands,
 		waist="Embla Sash",
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
 		--[[ main={ name="Gada", augments={'Enh. Mag. eff. dur. +5','MND+5','Mag. Acc.+3','"Mag.Atk.Bns."+20',}},
 		sub={ name="Ammurapi Shield", priority=3},
 		ammo="Hydrocera",
@@ -301,6 +330,9 @@ function get_sets()
 
 	--'Barfire','Barblizzard','Baraero','Barstone','Barthunder','Barwater','Barfira','Barblizzara','Baraera','Barstonra','Barthundra','Barwatera'
 	sets.Midcast.Enhancing.Elemental = set_combine(sets.Midcast.Enhancing, {
+		head=EMPY.Head,
+		legs=EMPY.Legs,
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 	    --[[ main="Beneficus",
 		head="Ebers Cap +3",
 		body="Ebers Bliaut +3",
@@ -313,6 +345,9 @@ function get_sets()
 
 	--'Barsleepra','Barpoisonra','Barparalyzra','Barblindra','Barvira','Barpetra','Baramnesra','Barsilencera','Barsleep','Barpoison','Barparalyze','Barblind','Barvirus','Barpetrify','Baramnesia','Barsilence'
 	sets.Midcast.Enhancing.Status = set_combine(sets.Midcast.Enhancing, {
+		head=EMPY.Head,
+		legs=EMPY.Legs,
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 	    --[[ main="Beneficus",
 		head="Ebers Cap +3",
 		body="Ebers Bliaut +3",
@@ -325,7 +360,8 @@ function get_sets()
 
 	--'Temper','Temper II','Enaero','Enstone','Enthunder','Enwater','Enfire','Enblizzard','Boost-STR','Boost-DEX','Boost-VIT','Boost-AGI','Boost-INT','Boost-MND','Boost-CHR'
 	sets.Midcast.Enhancing.Skill = set_combine(sets.Midcast.Enhancing, {
-	    hands=INYANGA.Hands,
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
+	    --hands=INYANGA.Hands,
 		--right_ring={ name="Stikini Ring +1", bag="wardrobe3"},
 		--left_ear={ name="Odnowa Earring +1", augments={'Path: A',}, priority=1},
 		--back={ name="Alaunus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+20','Haste+10','Damage taken-5%',}},
@@ -334,19 +370,19 @@ function get_sets()
 	-- High MACC for landing spells
 	sets.Midcast.Enfeebling = {
 		main="Daybreak",
-		sub="Sors Shield",
-		ammo="Fortune Egg",
-		head="Inyanga Tiara",
-		body="Inyanga Jubbah +1",
-		hands="Inyanga Dastanas",
-		legs="Ayanmo Cosciales",
-		feet="Inyanga Crackows",
-		neck="Sanctity Necklace",
+		sub="Ammurapi Shield",
+		ammo="Hydrocera",
+		head=EMPY.Head,
+		body=INYANGA.Body,
+		hands=INYANGA.Hands,
+		legs=EMPY.Legs,
+		feet=INYANGA.Feet,
+		neck="Null Loop",
 		waist="Eschan Stone",
 		left_ear="Malignance Earring",
 		right_ear="Eabani Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Balrahn's Ring",
+		left_ring="Kishar Ring",
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 		back="Kumbira Cape",
 		--[[ main="Maxentius",
 		sub="Ammurapi Shield",
@@ -366,6 +402,9 @@ function get_sets()
 	}
 
 	sets.Midcast["Cursna"] = {
+		main="Yagrush",
+		feet="Vanya Clogs",
+		right_ear="Ebers Earring +1",
 		--[[ main="Yagrush",
 		sub="Ammurapi Shield",
 		ammo="Hasty Pinion +1",
@@ -384,8 +423,8 @@ function get_sets()
 	}
 
 	sets.Midcast["Erase"] = set_combine(sets.Midcast, {
-		--[[ main="Yagrush",
-		neck={ name="Clr. Torque +2", augments={'Path: A',}}, ]]
+		main="Yagrush",
+		-- neck={ name="Clr. Torque +2", augments={'Path: A',}}, 
 	})
 
 	sets.Midcast["Esuna"] = set_combine(sets.Midcast, {
@@ -393,33 +432,33 @@ function get_sets()
 	})
 
 	sets.Midcast["Silena"] = set_combine(sets.Midcast, {
-		--[[ hands="Ebers Mitts +3",
-		main="Yagrush" ]]
+		--hands="Ebers Mitts +3",
+		main="Yagrush",
 	})
 
 	sets.Midcast["Poisona"] = set_combine(sets.Midcast, {
-		--[[ hands="Ebers Mitts +3",
-		main="Yagrush" ]]
+		--hands="Ebers Mitts +3",
+		main="Yagrush",
 	})
 
 	sets.Midcast["Paralyna"] = set_combine(sets.Midcast, {
-		--[[ hands="Ebers Mitts +3",
-		main="Yagrush" ]]
+		-- hands="Ebers Mitts +3",
+		main="Yagrush",
 	})
 
 	sets.Midcast["Stona"] = set_combine(sets.Midcast, {
-		--[[ hands="Ebers Mitts +3",
-		main="Yagrush" ]]
+		--hands="Ebers Mitts +3",
+		main="Yagrush",
 	})
 
 	sets.Midcast["Blindna"] = set_combine(sets.Midcast, {
-		--[[ hands="Ebers Mitts +3",
-		main="Yagrush" ]]
+		--hands="Ebers Mitts +3",
+		main="Yagrush",
 	})
 
 	sets.Midcast["Viruna"] = set_combine(sets.Midcast, {
-		--[[ hands="Ebers Mitts +3",
-		main="Yagrush" ]]
+		--hands="Ebers Mitts +3",
+		main="Yagrush",
 	})
 
 	sets.Midcast["Auspice"] = set_combine(sets.Midcast, {
@@ -447,9 +486,9 @@ function get_sets()
 	})
 	-- Specific gear for spells
 	sets.Midcast["Stoneskin"] = set_combine(sets.Midcast.Enhancing, {
+		neck="Nodens Gorget",
 		--[[ left_ear="Earthcry Earring",
-		waist="Siegel Sash",
-		neck="Nodens Gorget", ]]
+		waist="Siegel Sash", ]]
 	})
 
 	sets.Midcast["Aquaveil"] = set_combine(sets.Midcast.Enhancing, {

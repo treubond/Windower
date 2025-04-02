@@ -537,7 +537,7 @@ function init_gear_sets()
         }
 
     sets.midcast.CureWeather = set_combine(sets.midcast.Cure, {
-        --waist="Hachirin-no-Obi",
+        waist="Hachirin-no-Obi",
         --[[ main="Chatoyant Staff",
         sub="Enki Strap",
         back="Twilight Cape",
@@ -1329,7 +1329,7 @@ function init_gear_sets()
         waist="Gishdubar Sash", --10 ]]
         }
 
-    sets.Obi = {--[[ waist="Hachirin-no-Obi" ]]}
+    sets.Obi = {waist="Hachirin-no-Obi"}
     -- sets.CP = {back="Mecisto. Mantle"}
 
     sets.TreasureHunter = {--[[ head="Volte Cap", feet="Volte Boots", waist="Chaac Belt" ]]}

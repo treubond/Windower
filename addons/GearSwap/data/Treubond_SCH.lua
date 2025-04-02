@@ -245,6 +245,29 @@ function get_sets()
     Telchine_ENH_legs = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
     Telchine_ENH_feet = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
 
+	--Sets
+	AF = {}
+	RELIC = {}
+	EMPY ={}
+	
+	AF.Head = ""
+	AF.Body = ""
+	AF.Hands = ""
+	AF.Legs = ""
+	AF.Feet = ""
+	
+	RELIC.Head = ""
+	RELIC.Body = ""
+	RELIC.Hands = ""
+	RELIC.Legs = ""
+	RELIC.Feet = ""
+	
+	EMPY.Head = "Arbatel Bonnet +2"
+	EMPY.Body = "Arbatel Gown +2"
+	EMPY.Hands = "Arbatel Bracers +2"
+	EMPY.Legs = "Arbatel Pants +2"
+	EMPY.Feet = "Arbatel Loafers +2"
+
     -- Your idle set
     sets.me.idle.refresh = {
         main="Daybreak", --1
@@ -253,7 +276,7 @@ function get_sets()
         head="Befouled Crown", --1
         body="Jhakri Robe +2", --4
         hands="Nyame Gauntlets",
-        legs="Arbatel Pants +2",
+        legs=EMPY.Legs,
         feet="Mallquis Clogs",
         neck="Morgana's Choker",
         waist="Hierarch Belt",
@@ -273,10 +296,10 @@ function get_sets()
         --main="Malignance Pole", --20
         --sub="Benthos Grip",
         ammo="Staunch Tathlum", --2
-        head="Arbatel Bonnet +2", --9
+        head=EMPY.Head, --9
         body="Jhakri Robe +2",
         hands="Nyame Gauntlets", --7
-        legs="Arbatel Pants +2", --11
+        legs=EMPY.Legs, --11
         feet="Mallquis Clogs", --7% dmg to MP
         neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
         waist="Plat. Mog. Belt", --3
@@ -385,16 +408,16 @@ function get_sets()
     ------------	
     -- Gear that needs to be worn to **actively** enhance a current player buff.
     -- Fill up following with your avaible pieces.
-    sets.buff['Rapture'] = {head="Arbatel bonnet +2"}
-    sets.buff['Perpetuance'] = {hands="Arbatel Bracers +2"}
-    sets.buff['Immanence'] = {hands="Arbatel Bracers +2"}
-    sets.buff['Penury'] = {legs="Arbatel Pants +2"}
-    sets.buff['Parsimony'] = {legs="Arbatel Pants +2"}
+    sets.buff['Rapture'] = {head=EMPY.Head}
+    sets.buff['Perpetuance'] = {hands=EMPY.Hands}
+    sets.buff['Immanence'] = {hands=EMPY.Hands}
+    sets.buff['Penury'] = {legs=EMPY.Legs}
+    sets.buff['Parsimony'] = {legs=EMPY.Legs}
     sets.buff['Celerity'] = {--[[ feet="Peda. Loafers" ]]}
     sets.buff['Alacrity'] = {--[[ feet="Peda. Loafers" ]]}
-    sets.buff['Klimaform'] = {feet="Arbatel Loafers +2"}	
+    sets.buff['Klimaform'] = {feet=EMPY.Feete}	
     -- Ebulience set empy now as we get better damage out of a good Merlinic head
-    sets.buff['Ebullience'] = {head="Arbatel Bonnet +2"} -- I left it there still if it becomes needed so the SCH.lua file won't need modification should you want to use this set
+    sets.buff['Ebullience'] = {head=EMPY.Head} -- I left it there still if it becomes needed so the SCH.lua file won't need modification should you want to use this set
    
    	
 	
@@ -509,11 +532,38 @@ function get_sets()
 	-----------------------------------------------------------------------------------------------
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
     sets.midcast.DarkHelix = {
+        head="Pixie Hairpin +1",
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
+        feet=EMPY.Feet,
         neck={ name="Argute Stole +1", augments={'Path: A',}},
+        right_ring="Archon Ring",
+        waist="Sacro Cord",
+        right_ring="Mallquis Ring",
+    }
+    sets.midcast.LightHelix = {
+        main="Daybreak",
+        sub="Culminus",
+        head=EMPY.Head,
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
+        feet=EMPY.Feet,
+        neck={ name="Argute Stole +1", augments={'Path: A',}},
+        waist="Sacro Cord",
+        right_ring="Mallquis Ring",
     }
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
     sets.midcast.Helix = {
+        head=EMPY.Head,
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
+        feet=EMPY.Feet,
         neck={ name="Argute Stole +1", augments={'Path: A',}},
+        waist="Sacro Cord",
+        right_ring="Mallquis Ring",
     }	
 
     -- Whatever you want to equip mid-cast as a catch all for all spells, and we'll overwrite later for individual spells
@@ -531,10 +581,10 @@ function get_sets()
         main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
         sub="Enki Strap",
         ammo="Ghastly Tathlum +1",
-        head="Arbatel Bonnet +2",
-        body="Arbatel Gown +2",
+        head=EMPY.Head,
+        body=EMPY.Body,
         hands={ name="Agwu's Gages", augments={'Path: A',}},
-        legs="Arbatel Pants +2",
+        legs=EMPY.Legs,
         feet={ name="Agwu's Pigaches", augments={'Path: A',}},
         neck="Saevus Pendant +1",
         waist="Sacro Cord",
@@ -560,10 +610,10 @@ function get_sets()
         main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}}, --10
         sub="Elan Strap",
         ammo="Ghastly Tathlum +1",
-        head="Arbatel Bonnet +2",
-        body="Arbatel Gown +2",
+        head=EMPY.Head,
+        body=EMPY.Body,
         hands={ name="Agwu's Gages", augments={'Path: A',}}, --8/3
-        legs="Arbatel Pants +2",
+        legs=EMPY.Legs,
         feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --6
         neck={ name="Argute Stole +1", augments={'Path: A',}}, --7
         waist="Sacro Cord",
@@ -575,10 +625,10 @@ function get_sets()
 	    --[[ main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
         sub="Elan Strap",
         ammo="Ghastly Tathlum +1",
-        head="Arbatel Bonnet +2",
-        body="Arbatel Gown +2",
-        hands="Arbatel Bracers +2",
-        legs="Arbatel Pants +2",
+        head=EMPY.Head,
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
         feet="Jhakri Pigaches +2",
         neck={ name="Argute Stole +1", augments={'Path: A',}},
         waist="Penitent's Rope",
@@ -590,16 +640,18 @@ function get_sets()
     })
 	
     sets.midcast.nuking.acc = {  -- MAB 329, MACC 379, MAB 19/4
-        main="Bunzi's Rod",
-        sub="Ammurapi Shield",
+        --main="Bunzi's Rod",
+        --sub="Ammurapi Shield",
+        main="Marin Staff +1",
+        sub="Enki Strap",
         ammo="Ghastly Tathlum +1",
-        head="Arbatel Bonnet +2",
-        body="Arbatel Gown +2",
-        hands="Arbatel Bracers +2",
-        legs="Arbatel Pants +2",
-        feet="Arbatel Loafers +2",
+        head=EMPY.Head,
+        body=EMPY.Body,
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
+        feet=EMPY.Feete,
         neck={ name="Argute Stole +1", augments={'Path: A',}},
-        waist="Sacro Cord",
+        waist="Acuity Belt +1",
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
@@ -611,8 +663,9 @@ function get_sets()
     -- Pieces to swap from freen nuke to Magic Burst
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {  -- MAB 314, MACC , MB 29/4
         sub="Kaja Grip",
-        hands="Arbatel Bracers +2",
-        feet="Arbatel Loafers +2",
+        hands=EMPY.Hands,
+        feet=EMPY.Feete,
+        waist="Acuity Belt +1",
     })	
 	
     -- Enfeebling
@@ -623,14 +676,14 @@ function get_sets()
     sets.midcast.IntEnfeebling = {
         main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
         sub="Enki Grip",
-        ammo="Sturm's Report",
-        head="Arbatel Bonnet +2",
+        ammo="Ghastly Tathlum +1",
+        head=EMPY.Head,
         body="Jhakri Robe +2",
         hands="Jhakri Cuffs +2",
         legs="Jhakri Slops +2",
         feet="Jhakri Pigaches +2",
         neck={ name="Argute Stole +1", augments={'Path: A',}},
-        waist="Sacro Cord",
+        waist="Actuiy Belt +1",
         left_ear="Malignance Earring",
         right_ear="Regal Earring",
         left_ring="Omega Ring",
@@ -656,12 +709,12 @@ function get_sets()
     sets.midcast.MndEnfeebling = {
         main="Daybreak",
         sub="Ammurapi Shield",
-        ammo="Sturm's Report",
-        head="Arbatel Bonnet +2",
+        ammo="Elis Tome",
+        head=EMPY.Head,
         body="Jhakri Robe +2",
-        hands="Arbatel Bracers +2",
-        legs="Arbatel Pants +2",
-        feet="Arbatel Loafers +2",
+        hands=EMPY.Hands,
+        legs=EMPY.Legs,
+        feet=EMPY.Feete,
         neck={ name="Argute Stole +1", augments={'Path: A',}},
         waist="Sacro Cord",
         left_ear="Malignance Earring",
@@ -777,7 +830,7 @@ function get_sets()
     sets.midcast.regen.hybrid = {
         main="Bolelabunga",
         sub="Ammurapi Shield",
-        head="Arbatel Bonnet +2",
+        head=EMPY.Head,
         body=Telchine_ENH_body,
         hands=Telchine_ENH_hands,
         legs=Telchine_ENH_legs,

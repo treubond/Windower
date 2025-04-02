@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>3.3</Version>
+  <Version>3.4.16 Beta</Version>
   <Priority>
     <Priority_Rank>
       <string>Combat</string>
@@ -10,6 +10,7 @@
       <string>Skillchain (Follower 2)</string>
       <string>Skillchain (Leader)</string>
       <string>Job Abilities</string>
+      <string>Fighting</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -29,8 +30,10 @@
       <Combat_Script>
         <Enabled>false</Enabled>
         <Reset>false</Reset>
-        <Enable_Enemy_Target>false</Enable_Enemy_Target>
-        <Target />
+        <Enable_Script_Target>false</Enable_Script_Target>
+        <Enable_Action_Target>false</Enable_Action_Target>
+        <Script_Target />
+        <Action_Target />
         <Name />
         <Command>/ma "Dia II"</Command>
         <Category />
@@ -55,8 +58,10 @@
       <Combat_Script_2>
         <Enabled>false</Enabled>
         <Reset>false</Reset>
-        <Enable_Enemy_Target>false</Enable_Enemy_Target>
-        <Target />
+        <Enable_Script_Target>false</Enable_Script_Target>
+        <Enable_Action_Target>false</Enable_Action_Target>
+        <Script_Target />
+        <Action_Target />
         <Name />
         <Command />
         <Category />
@@ -81,8 +86,10 @@
       <Combat_Script_3>
         <Enabled>false</Enabled>
         <Reset>false</Reset>
-        <Enable_Enemy_Target>false</Enable_Enemy_Target>
-        <Target />
+        <Enable_Script_Target>false</Enable_Script_Target>
+        <Enable_Action_Target>false</Enable_Action_Target>
+        <Script_Target />
+        <Action_Target />
         <Name />
         <Command />
         <Category />
@@ -107,8 +114,10 @@
       <Combat_Script_4>
         <Enabled>false</Enabled>
         <Reset>false</Reset>
-        <Enable_Enemy_Target>false</Enable_Enemy_Target>
-        <Target />
+        <Enable_Script_Target>false</Enable_Script_Target>
+        <Enable_Action_Target>false</Enable_Action_Target>
+        <Script_Target />
+        <Action_Target />
         <Name />
         <Command />
         <Category />
@@ -133,8 +142,10 @@
       <Combat_Script_5>
         <Enabled>false</Enabled>
         <Reset>false</Reset>
-        <Enable_Enemy_Target>false</Enable_Enemy_Target>
-        <Target />
+        <Enable_Script_Target>false</Enable_Script_Target>
+        <Enable_Action_Target>false</Enable_Action_Target>
+        <Script_Target />
+        <Action_Target />
         <Name />
         <Command />
         <Category />
@@ -159,8 +170,10 @@
       <Combat_Script_6>
         <Enabled>false</Enabled>
         <Reset>false</Reset>
-        <Enable_Enemy_Target>false</Enable_Enemy_Target>
-        <Target />
+        <Enable_Script_Target>false</Enable_Script_Target>
+        <Enable_Action_Target>false</Enable_Action_Target>
+        <Script_Target />
+        <Action_Target />
         <Name />
         <Command />
         <Category />
@@ -225,6 +238,7 @@
         <Face>false</Face>
         <Max_Distance>1</Max_Distance>
         <Disengage>false</Disengage>
+        <Pause>false</Pause>
         <Interrupt>false</Interrupt>
       </Fast_Follow>
     </Movement>
@@ -232,6 +246,8 @@
       <Leader>
         <Enabled>true</Enabled>
         <Partner>Hybridkiller</Partner>
+        <Target />
+        <Enable_Lock_On>false</Enable_Lock_On>
         <Partner_TP_Threshold>1000</Partner_TP_Threshold>
         <Partner_Engaged>true</Partner_Engaged>
         <Player_Engaged>true</Player_Engaged>
@@ -283,13 +299,13 @@
       </Follower3>
       <Follower4>
         <Enabled>true</Enabled>
-        <Partner>Treubond</Partner>
-        <Partner_WeaponType>Great Axe</Partner_WeaponType>
-        <Partner_WeaponSkill>Upheaval</Partner_WeaponSkill>
+        <Partner>Khrone</Partner>
+        <Partner_WeaponType>Sword</Partner_WeaponType>
+        <Partner_WeaponSkill>Savage Blade</Partner_WeaponSkill>
         <Start>2.5</Start>
         <End>5.5</End>
         <WeaponType>Great Katana</WeaponType>
-        <WeaponSkill>Tachi: Shoha</WeaponSkill>
+        <WeaponSkill>Tachi: Fudo</WeaponSkill>
         <Script />
         <Cycle>12</Cycle>
         <Pause>true</Pause>
@@ -395,8 +411,9 @@
       <Impact_Burst>false</Impact_Burst>
     </Burst>
     <Offense>
-      <Enabled>false</Enabled>
+      <Enabled>true</Enabled>
       <Validate_IDs>true</Validate_IDs>
+      <Smart_Target>false</Smart_Target>
       <Fighting_Mode>Aggressive</Fighting_Mode>
       <Targeting_Mode>White List</Targeting_Mode>
       <Player />
@@ -405,9 +422,12 @@
       <Enemy_Distance>20</Enemy_Distance>
       <Enemy_Elevation>10</Enemy_Elevation>
       <Claim_Timeout>10</Claim_Timeout>
-      <Enemy_List>
+      <Claim_Delay>1</Claim_Delay>
+      <Priority_List />
+      <Black_List />
+      <White_List>
         <string>Locus Dire Bat</string>
-      </Enemy_List>
+      </White_List>
     </Offense>
   </Fighting>
   <Healing>
@@ -553,6 +573,26 @@
       <string>Petrification</string>
       <string>Max HP Down</string>
     </High_Priority>
+    <Normal_Priority>
+      <string>Sleep</string>
+      <string>Lullaby</string>
+      <string>Paralysis</string>
+      <string>Silence</string>
+      <string>Slow</string>
+      <string>Elegy</string>
+      <string>Amnesia</string>
+      <string>Poison</string>
+      <string>Blindness</string>
+      <string>Disease</string>
+      <string>Bind</string>
+      <string>Weight</string>
+      <string>Addle</string>
+      <string>Plague</string>
+      <string>Dia</string>
+      <string>Bio</string>
+      <string>Max MP Down</string>
+      <string>Max TP Down</string>
+    </Normal_Priority>
     <Low_Priority>
       <string>Flash</string>
       <string>Burn</string>
@@ -579,107 +619,31 @@
       <string>Magic Acc. Down</string>
       <string>Magic Atk. Down</string>
     </Low_Priority>
-    <Normal_Priority>
-      <string>Sleep</string>
-      <string>Lullaby</string>
-      <string>Paralysis</string>
-      <string>Silence</string>
-      <string>Slow</string>
-      <string>Elegy</string>
-      <string>Amnesia</string>
-      <string>Poison</string>
-      <string>Blindness</string>
-      <string>Disease</string>
-      <string>Bind</string>
-      <string>Weight</string>
-      <string>Addle</string>
-      <string>Plague</string>
-      <string>Dia</string>
-      <string>Bio</string>
-      <string>Max MP Down</string>
-      <string>Max TP Down</string>
-    </Normal_Priority>
   </Debuff>
   <Enfeebling>
-    <Immuno_Count>0</Immuno_Count>
+    <Dispelling_Enable>false</Dispelling_Enable>
+    <Mode />
+    <Assist />
+    <Targeting_Mode />
+    <Priority_Mode />
     <Enemy_Count>1</Enemy_Count>
+    <Claim_Delay>1</Claim_Delay>
+    <Smart_Target>false</Smart_Target>
+    <Validate_IDs>false</Validate_IDs>
+    <Immuno_Mode>false</Immuno_Mode>
+    <Immuno_Count>0</Immuno_Count>
+    <Dispel_AoE>false</Dispel_AoE>
+    <Dia_AoE>false</Dia_AoE>
+    <Break_AoE>false</Break_AoE>
+    <Sleep_AoE>false</Sleep_AoE>
+    <Poison_AoE>false</Poison_AoE>
     <High_Enable>false</High_Enable>
     <Normal_Enable>false</Normal_Enable>
     <Low_Enable>false</Low_Enable>
-    <Dispelling_Enable>false</Dispelling_Enable>
-    <Auto_Mode>false</Auto_Mode>
-    <Immuno_Mode>false</Immuno_Mode>
-    <Break_AoE>false</Break_AoE>
-    <Sleep_AoE>false</Sleep_AoE>
-    <Dia_AoE>false</Dia_AoE>
-    <Poison_AoE>false</Poison_AoE>
-    <Dispel_AoE>false</Dispel_AoE>
-    <Assist />
-    <Mode />
-    <Priority_Mode />
-    <Enemy_Enfeebling>
-      <Name>All Enemies</Name>
-      <Addle>false</Addle>
-      <Bind>false</Bind>
-      <Blind>false</Blind>
-      <Break>false</Break>
-      <Dia>false</Dia>
-      <Distract>false</Distract>
-      <Frazzle>false</Frazzle>
-      <Gravity>false</Gravity>
-      <Paralyze>false</Paralyze>
-      <Poison>false</Poison>
-      <Sleep>false</Sleep>
-      <Silence>false</Silence>
-      <Slow>false</Slow>
-      <Bio>false</Bio>
-      <Flash>false</Flash>
-      <Inundation>false</Inundation>
-      <Shock>false</Shock>
-      <Rasp>false</Rasp>
-      <Choke>false</Choke>
-      <Frost>false</Frost>
-      <Burn>false</Burn>
-      <Drown>false</Drown>
-      <Elegy>false</Elegy>
-      <Nocturne>false</Nocturne>
-      <Requiem>false</Requiem>
-      <Threnody>false</Threnody>
-      <Attack_Down>false</Attack_Down>
-      <Inhibit_TP>false</Inhibit_TP>
-      <Fire_Threnody>false</Fire_Threnody>
-      <Ice_Threnody>false</Ice_Threnody>
-      <Wind_Threnody>false</Wind_Threnody>
-      <Earth_Threnody>false</Earth_Threnody>
-      <Ltng_Threnody>false</Ltng_Threnody>
-      <Water_Threnody>false</Water_Threnody>
-      <Light_Threnody>false</Light_Threnody>
-      <Dark_Threnody>false</Dark_Threnody>
-      <Protect>false</Protect>
-      <Shell>false</Shell>
-      <Haste>false</Haste>
-      <Spikes>false</Spikes>
-      <Warcry>false</Warcry>
-      <Enspell>false</Enspell>
-      <Phalanx>false</Phalanx>
-      <Stoneskin>false</Stoneskin>
-      <Aquaveil>false</Aquaveil>
-      <Regen>false</Regen>
-      <Accuracy_Boost>false</Accuracy_Boost>
-      <Attack_Boost>false</Attack_Boost>
-      <Evasion_Boost>false</Evasion_Boost>
-      <Defense_Boost>false</Defense_Boost>
-      <Magic_Atk_Boost>false</Magic_Atk_Boost>
-      <Magic_Def_Boost>false</Magic_Def_Boost>
-      <Magic_Acc_Boost>false</Magic_Acc_Boost>
-      <Magic_Evasion_Boost>false</Magic_Evasion_Boost>
-      <Paeon>false</Paeon>
-      <Minne>false</Minne>
-      <Minuet>false</Minuet>
-      <Madrigal>false</Madrigal>
-      <March>false</March>
-    </Enemy_Enfeebling>
-    <Enfeebling_List />
+    <Default_List />
+    <Priority_List />
+    <Black_List />
+    <White_List />
     <High_Priority>
       <string>Slow</string>
       <string>Paralyze</string>
@@ -794,6 +758,13 @@
     <High_Priority>
       <string>Reraise</string>
     </High_Priority>
+    <Normal_Priority>
+      <string>Haste</string>
+      <string>Refresh</string>
+      <string>Utsusemi</string>
+      <string>Protect</string>
+      <string>Shell</string>
+    </Normal_Priority>
     <Low_Priority>
       <string>Regen</string>
       <string>Phalanx</string>
@@ -815,13 +786,6 @@
       <string>Bar-Status</string>
       <string>Storms</string>
     </Low_Priority>
-    <Normal_Priority>
-      <string>Haste</string>
-      <string>Refresh</string>
-      <string>Utsusemi</string>
-      <string>Protect</string>
-      <string>Shell</string>
-    </Normal_Priority>
   </Enhancing>
   <Abilities>
     <Enabled>true</Enabled>
@@ -967,7 +931,7 @@
         <Nether_Void_Spell />
         <Souleater_BloodWeapon>false</Souleater_BloodWeapon>
       </Dark_Knight>
-      <Beast_Master>
+      <Beastmaster>
         <Familiar>false</Familiar>
         <Charm>false</Charm>
         <Gauge>false</Gauge>
@@ -978,7 +942,31 @@
         <Feral_Howl>false</Feral_Howl>
         <Killer_Instinct>false</Killer_Instinct>
         <Unleash>false</Unleash>
-      </Beast_Master>
+        <Pet>
+          <Name />
+          <Type>Beast</Type>
+          <Family />
+          <TP_Moves />
+          <Jug_Name />
+          <Melee>Blunt</Melee>
+          <Level>0</Level>
+        </Pet>
+        <Reward_HPP>0</Reward_HPP>
+        <Fight>false</Fight>
+        <Heel>false</Heel>
+        <Leave>false</Leave>
+        <Stay>false</Stay>
+        <Snarl>false</Snarl>
+        <Ready>false</Ready>
+        <Spur>false</Spur>
+        <Run_Wild>false</Run_Wild>
+        <Ready_Target>false</Ready_Target>
+        <Ready_Only>false</Ready_Only>
+        <Assist />
+        <Fight_Mode />
+        <Pet_Ready_Target />
+        <Pet_Ready />
+      </Beastmaster>
       <Bard>
         <Soul_Voice>false</Soul_Voice>
         <Pianissimo>false</Pianissimo>
@@ -1017,13 +1005,15 @@
         <Apogee>false</Apogee>
         <Mana_Cede>false</Mana_Cede>
         <Astral_Conduit>false</Astral_Conduit>
+        <Maintain_Avatar>false</Maintain_Avatar>
         <Assault>false</Assault>
         <Retreat>false</Retreat>
         <Release>false</Release>
         <BP_Rage>false</BP_Rage>
+        <BP_Ward>false</BP_Ward>
         <BP_Rage_Ability />
         <BP_Rage_Avatar />
-        <BP_Ward>false</BP_Ward>
+        <Avatar />
         <Favor>false</Favor>
         <Switch>0.5</Switch>
         <Assist />
@@ -1164,6 +1154,14 @@
         <Triple_Shot>false</Triple_Shot>
         <Cutting_Cards>false</Cutting_Cards>
         <Bolters>false</Bolters>
+        <Fire>false</Fire>
+        <Ice>false</Ice>
+        <Wind>false</Wind>
+        <Earth>false</Earth>
+        <Thunder>false</Thunder>
+        <Water>false</Water>
+        <Light>false</Light>
+        <Dark>false</Dark>
       </Corsair>
       <Puppetmaster>
         <Overdrive>false</Overdrive>
@@ -1479,7 +1477,7 @@
         <Nether_Void_Spell />
         <Souleater_BloodWeapon>false</Souleater_BloodWeapon>
       </Dark_Knight>
-      <Beast_Master>
+      <Beastmaster>
         <Familiar>false</Familiar>
         <Charm>false</Charm>
         <Gauge>false</Gauge>
@@ -1490,7 +1488,31 @@
         <Feral_Howl>false</Feral_Howl>
         <Killer_Instinct>false</Killer_Instinct>
         <Unleash>false</Unleash>
-      </Beast_Master>
+        <Pet>
+          <Name />
+          <Type>Beast</Type>
+          <Family />
+          <TP_Moves />
+          <Jug_Name />
+          <Melee>Blunt</Melee>
+          <Level>0</Level>
+        </Pet>
+        <Reward_HPP>0</Reward_HPP>
+        <Fight>false</Fight>
+        <Heel>false</Heel>
+        <Leave>false</Leave>
+        <Stay>false</Stay>
+        <Snarl>false</Snarl>
+        <Ready>false</Ready>
+        <Spur>false</Spur>
+        <Run_Wild>false</Run_Wild>
+        <Ready_Target>false</Ready_Target>
+        <Ready_Only>false</Ready_Only>
+        <Assist />
+        <Fight_Mode />
+        <Pet_Ready_Target />
+        <Pet_Ready />
+      </Beastmaster>
       <Bard>
         <Soul_Voice>false</Soul_Voice>
         <Pianissimo>false</Pianissimo>
@@ -1529,13 +1551,15 @@
         <Apogee>false</Apogee>
         <Mana_Cede>false</Mana_Cede>
         <Astral_Conduit>false</Astral_Conduit>
+        <Maintain_Avatar>false</Maintain_Avatar>
         <Assault>false</Assault>
         <Retreat>false</Retreat>
         <Release>false</Release>
         <BP_Rage>false</BP_Rage>
+        <BP_Ward>false</BP_Ward>
         <BP_Rage_Ability />
         <BP_Rage_Avatar />
-        <BP_Ward>false</BP_Ward>
+        <Avatar />
         <Favor>false</Favor>
         <Switch>0.5</Switch>
         <Assist />
@@ -1676,6 +1700,14 @@
         <Triple_Shot>false</Triple_Shot>
         <Cutting_Cards>false</Cutting_Cards>
         <Bolters>false</Bolters>
+        <Fire>false</Fire>
+        <Ice>false</Ice>
+        <Wind>false</Wind>
+        <Earth>false</Earth>
+        <Thunder>false</Thunder>
+        <Water>false</Water>
+        <Light>false</Light>
+        <Dark>false</Dark>
       </Corsair>
       <Puppetmaster>
         <Overdrive>false</Overdrive>
@@ -1863,6 +1895,8 @@
     <Entrust_Target />
     <Entrust_Assist />
     <Entrust_Check_Enabled>false</Entrust_Check_Enabled>
+    <Geo_Offset>0</Geo_Offset>
+    <Geo_Position />
   </Geomancy>
   <Items>
     <Enable_Medicine>false</Enable_Medicine>
@@ -1961,7 +1995,7 @@
     <Enabled>false</Enabled>
     <Dummy_Count>0</Dummy_Count>
     <Base_Count>4</Base_Count>
-    <Total_Song_Count>0</Total_Song_Count>
+    <Total_Song_Count>4</Total_Song_Count>
     <Pianissmo_Dummy>false</Pianissmo_Dummy>
     <Dummy_First>false</Dummy_First>
     <Song_1>
@@ -2076,6 +2110,34 @@
       <Buff2 />
       <ID>0</ID>
     </Pianissimo_6>
+    <Pianissimo_7>
+      <Name />
+      <Target />
+      <Buff />
+      <Buff2 />
+      <ID>0</ID>
+    </Pianissimo_7>
+    <Pianissimo_8>
+      <Name />
+      <Target />
+      <Buff />
+      <Buff2 />
+      <ID>0</ID>
+    </Pianissimo_8>
+    <Pianissimo_9>
+      <Name />
+      <Target />
+      <Buff />
+      <Buff2 />
+      <ID>0</ID>
+    </Pianissimo_9>
+    <Pianissimo_10>
+      <Name />
+      <Target />
+      <Buff />
+      <Buff2 />
+      <ID>0</ID>
+    </Pianissimo_10>
     <Rebuff_Time>0</Rebuff_Time>
     <Marcato />
     <NiTro_Recast>0</NiTro_Recast>

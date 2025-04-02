@@ -28,9 +28,9 @@ function job_setup()
     state.Buff.Doom = buffactive.Doom or false
 
     --Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'SakpataSword', 'Club', 'Burtgang'} --'ShiningOne', 'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'SakpataSword', 'Club', 'Burtgang', 'Trial'} --'ShiningOne', 'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
-    state.ShieldSet = M{['description']='Shield Set', 'Blurred', 'Duban', 'Aegis', 'Demers', 'Thibron'}
+    state.ShieldSet = M{['description']='Shield Set', 'Blurred', 'Duban', 'Aegis', 'Demers', 'Thibron', 'AlberStrap'}
     
 end
  
@@ -192,23 +192,28 @@ function init_gear_sets()
  
     sets.precast.Enmity = {
         ammo="Staunch Tathlum",
-        head=EMPY.Head,
-        body=EMPY.Body,
-        hands="Sulev. Gauntlets +2",
-        legs="Vlr. Breeches +1",
-        feet=EMPY.Feet,
-        neck="Unmoving Collar +1",
+        head={ name="Souv. Schaller +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
+        body=EMPY.Body, --14 (+2)
+        hands={ name="Souv. Handsch. +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
+        legs="Vlr. Breeches +1", --4
+        feet=EMPY.Feet, --11 (+1)
+        neck="Moonlight Necklace", --15
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Cryptic Earring",
-        right_ear="Odnowa Earring +1",
-        left_ring="Defending Ring",
-        right_ring="Odium Ring",
-        back="Atheling Mantle",
+        left_ear="Cryptic Earring", --4
+        right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+        left_ring="Petrov Ring", --4
+        right_ring="Odium Ring", --4
+        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}}, --5
         --[[ ammo="Paeapua",
         head="Caballarius Coronet +1",neck="Unmoving Collar +1",ear2="Friomisi Earring",
         body="Reverence Surcoat +2",hands="Caballarius Gauntlets +1",ring1="Supershear Ring",ring2="Provocare Ring",
         back=gear.RudianosEnm,waist="Creed Baudrier",legs="Caballarius Breeches +1",feet="Caballarius Leggings +1" ]]}
  
+        
+    -- Added Foil
+    sets.Foil = set_combine(sets.precast.Enmity, {neck="Moonlight Necklace",})
+
+
     -- Precast sets to enhance JAs
     sets.precast.JA['Invincible'] = set_combine(sets.precast.Enmity, {--[[ legs="Caballarius Breeches +1" ]]})
     sets.precast.JA['Holy Circle'] = set_combine(sets.precast.Enmity, {--[[ feet="Reverence Leggings +1" ]]})
@@ -216,7 +221,7 @@ function init_gear_sets()
     sets.precast.JA['Sentinel'] = set_combine(sets.precast.Enmity, {--[[ feet="Caballarius Leggings +1" ]]})
     sets.precast.JA['Rampart'] = set_combine(sets.precast.Enmity, {--[[ head="Caballarius Coronet +1" ]]})
     sets.precast.JA['Fealty'] = set_combine(sets.precast.Enmity, {--[[ body="Caballarius Surcoat +1" ]]})
-    sets.precast.JA['Divine Emblem'] = set_combine(sets.precast.Enmity, {--[[ feet="Chevalier's Sabatons" ]]})
+    sets.precast.JA['Divine Emblem'] = set_combine(sets.precast.Enmity, {feet=EMPY.Feet})
     sets.precast.JA['Sepulcher'] = sets.precast.Enmity
     sets.precast.JA['Palisade'] = sets.precast.Enmity
     sets.precast.JA['Cover'] = set_combine(sets.precast.Enmity, {--[[ head="Reverence Coronet +1" ]]})
@@ -333,6 +338,7 @@ function init_gear_sets()
  
     sets.Phalanx = {
         main="Sakpata's Sword",
+        head={ name="Valorous Mask", augments={'Rng.Acc.+22','Accuracy+24','Phalanx +3','Mag. Acc.+8 "Mag.Atk.Bns."+8',}},
         body={ name="Odyss. Chestplate", augments={'DEX+7','CHR+15','Phalanx +4','Mag. Acc.+5 "Mag.Atk.Bns."+5',}},
         hands="Souv. Handsch. +1",
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
@@ -349,19 +355,20 @@ function init_gear_sets()
          
     sets.midcast.Enmity = set_combine(sets.precast.Enmity, {})
      
-    sets.midcast.SIRD = { -- 93
+    sets.midcast.SIRD = { -- 108
         ammo="Staunch Tathlum", --10
         head="Souv. Schaller +1", --20
         body=EMPY.Body, --15
-        legs="Carmine Cuisses +1", -- 20
-        neck="Moonbeam Necklace", -- 10
+        legs="Founder's Hose", --30
+        --legs="Carmine Cuisses +1", -- 20
+        neck="Moonlight Necklace", -- 15
         waist="Rumination Sash", -- 10
         right_ear="Magnetic Earring", -- 8
         --[[ ammo="Staunch Tathlum", ear2="Knightly Earring",
         waist="Resolute Belt", legs="Carmine Cuisses +1" ]]}
  
     sets.midcast.Flash = set_combine(sets.midcast.Enmity, {--[[ neck="Nesanica Torque" ]]})
-    sets.midcast.Flash.SIRD = set_combine(sets.midcast.Flash, sets.midcast.SIRD)
+    sets.midcast.Flash.SIRD = set_combine(sets.midcast.SIRD, sets.midcast.Flash)
      
     sets.midcast.Stun = set_combine(sets.midcast.Enmity, {})
     sets.midcast.Stun.SIRD = set_combine(sets.midcast.Stun, sets.midcast.SIRD)
@@ -382,6 +389,9 @@ function init_gear_sets()
      
     sets.midcast['Enhancing Magic'] = {--[[ legs="Reverence Breeches +1" ]]}
     sets.midcast['Enhancing Magic'].SIRD = set_combine(sets.midcast['Enhancing Magic'], sets.midcast.SIRD)
+
+    -- Added Foil
+    sets.midcast["Foil"] = set_combine(sets.precast.Enmity, {})
      
     sets.midcast.Protect = {--[[ ring1="Sheltered Ring" ]]}
     sets.midcast.Protect.SIRD = set_combine(sets.midcast.Protect, sets.midcast.SIRD)
@@ -412,7 +422,7 @@ function init_gear_sets()
         legs=EMPY.Legs,
         feet=EMPY.Feet,
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
-        waist="Flume Belt",
+        waist="Flume Belt +1",
         left_ear="Odnowa Earring +1",
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
         left_ring="Defending Ring",
@@ -469,7 +479,7 @@ function init_gear_sets()
     -- Extra defense sets.  Apply these on top of melee or defense sets.
     sets.Knockback = {--[[ ring1="Vocane Ring +1",back="Repulse Mantle" ]]}
     sets.HP = {}
-    sets.MP = {--[[ ammo="Homiliary",neck="Creed Collar",]]waist="Flume Belt", } --Chev. Armet +1
+    sets.MP = {--[[ ammo="Homiliary",neck="Creed Collar",]]waist="Flume Belt +1", } --Chev. Armet +1
     sets.MP_Knockback = set_combine(sets.MP, sets.Knockback)
      
     -- If EquipShield toggle is on (Win+F10 or Win+F11), equip the weapon/shield combos here
@@ -488,7 +498,7 @@ function init_gear_sets()
         legs=EMPY.Legs,
         feet="Sulev. Leggings +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
-        waist="Flume Belt",
+        waist="Flume Belt +1",
         left_ear="Cessance Earring",
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
         left_ring="Defending Ring", --10
@@ -541,7 +551,7 @@ function init_gear_sets()
         legs=EMPY.Legs,
         feet="Sulev. Leggings +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
-        waist="Flume Belt",
+        waist="Flume Belt +1",
         left_ear="Cessance Earring",
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
         left_ring="Defending Ring",
@@ -588,7 +598,7 @@ function init_gear_sets()
         legs=EMPY.Legs,
         feet="Sulev. Leggings +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
-        waist="Flume Belt",
+        waist="Flume Belt +1",
         left_ear="Cessance Earring",
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
         left_ring="Defending Ring",
@@ -630,12 +640,14 @@ function init_gear_sets()
     sets.SakpataSword   = {main="Sakpata's Sword"--[[ , sub="Aegis" ]]}
     --sets.ShiningOne      = {main="Shining One", sub="Alber Strap"}
     sets.Club           = {main="Beryllium Mace"--[[ , sub="Blurred Shield +1" ]]}
+    sets.Trial          = {main="Albion"}
 
     sets.Duban          = {sub="Duban"}
     sets.Aegis          = {sub="Aegis"}
     sets.Blurred        = {sub="Blurred Shield +1"}
     sets.Demers         = {sub="Demers. Degen +1"}
     sets.Thibron        = {sub="Thibron"}
+    sets.AlberStrap     = {sub="Alber Strap"}
 
     -------------------------------------------------------------------------------------------------------------------
     -- Hybrid Sets
@@ -885,7 +897,7 @@ function select_default_macro_book()
     elseif player.sub_job == 'THF' then
         set_macro_page(6, 9)
     elseif player.sub_job == 'SAM' then
-        set_macro_page(7, 9)
+        set_macro_page(1, 9)
     elseif player.sub_job == 'RNG' then
         set_macro_page(8, 9)
     elseif player.sub_job == 'PLD' then

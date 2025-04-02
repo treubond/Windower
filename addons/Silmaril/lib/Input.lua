@@ -1,5 +1,7 @@
 do
     local is_japanese = is_japanese()
+    local hover_shot_ID = get_res_all_buffs():with('en','Hover Shot').id
+    local watch_spell = nil
 
     function input_message(type, index, param, option, option2)
 
@@ -34,6 +36,15 @@ do
 	    elseif type == "Magic" then
             if not target.valid_target then log('Not a valid target') return end
             if math.sqrt(target.distance) > 22 then log('Enemy too far') return end
+            if #option > 0 and option ~= "0,0,0" then
+                log("Spell Option Detected")
+                watch_spell = {}
+                watch_spell['Target'] = target.id
+                watch_spell['Target Index'] = target.index
+                watch_spell['Category'] = 0x03
+                watch_spell['Param'] = tonumber(param)
+                watch_spell['Option'] = option
+            end
             Action_Message('0x03',target,param)
 
 	    elseif type == "WeaponSkill" then
@@ -219,7 +230,7 @@ do
             local ability = get_ability(tonumber(param))
             if not ability then return log("Ability not found") end
             local ability_name = ability.en
-            if is_japanese then ability_name = Remap_Command(ability.ja) end
+            if is_japanese then ability_name = shift_jis(ability.ja) end
             local command = ability.prefix..' "'..ability_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -227,7 +238,7 @@ do
             local weaponskill = get_weaponskill(tonumber(param))
             if not weaponskill then return log("Weaponskill not found") end
             local weaponskill_name = weaponskill.en
-            if is_japanese then weaponskill_name = Remap_Command(weaponskill.ja) end
+            if is_japanese then weaponskill_name = shift_jis(weaponskill.ja) end
             local command = weaponskill.prefix..' "'..weaponskill_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -235,7 +246,7 @@ do
             local ability = get_ability(tonumber(param))
             if not ability then return log("Ability not found") end
             local ability_name = ability.en
-            if is_japanese then ability_name = Remap_Command(ability.ja) end
+            if is_japanese then ability_name = shift_jis(ability.ja) end
             local command = ability.prefix..' "'..ability_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -243,7 +254,7 @@ do
             local spell = get_spell(tonumber(param))
             if not spell then return log("Spell not found") end
             local spell_name = spell.en
-            if is_japanese then spell_name = Remap_Command(spell.ja) end
+            if is_japanese then spell_name = shift_jis(spell.ja) end
             local command = spell.prefix..' "'..spell_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -251,7 +262,7 @@ do
             local item = get_item(tonumber(param))
             if not item then return log("Item not found") end
             local item_name = item.en
-            if is_japanese then item_name = Remap_Command(item.ja) end
+            if is_japanese then item_name = shift_jis(item.ja) end
             local command = '/item "'..item_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -267,6 +278,8 @@ do
             send_command(param)
             log(param)
         else
+            local p = get_player()
+            -- OFFSET ONLY FOR GEO SPELLS!
             local packet = new_packet('outgoing', 0x1A, 
             {
 			    ['Target'] = target.id,
@@ -275,13 +288,17 @@ do
                 ['Param'] = param, -- Spell ID
 	        })
             inject_packet(packet)
-            log("Packet Injected ["..category..'] ['..target.name..']')
+            log("Packet Injected Category:["..packet['Category']..'] Target:['..packet['Target']..']')
         end
     end
 
-    function Remap_Command(name)
-        local ability_name = windower.to_shift_jis(ability.ja)
-        return ability_name
+    function get_watch_spell()
+        return watch_spell
+    end
+
+    function clear_watch_spell()
+        watch_spell = nil
+        log('Clear Watch Spell')
     end
 
 end

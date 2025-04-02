@@ -221,7 +221,7 @@ function init_gear_sets()
         right_ear="Magnetic Earring",
         left_ring="Omega Ring",
         right_ring="Balrahn's Ring",
-        back="Izdubar Mantle",
+        back={ name="Fi Follet Cape +1", augments={'Path: A',}}, --10
         }
 
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {
@@ -402,6 +402,7 @@ function init_gear_sets()
         hands=gear.Telchine_ENH_hands,
         legs=gear.Telchine_ENH_legs,
         feet=gear.Telchine_ENH_feet,
+        back={ name="Fi Follet Cape +1", augments={'Path: A',}}, --10
         waist="Embla Sash",
         --[[ main="Gada",
         sub="Ammurapi Shield",

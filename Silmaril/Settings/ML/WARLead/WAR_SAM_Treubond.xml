@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>3.2</Version>
+  <Version>3.3</Version>
   <Priority>
     <Priority_Rank>
-      <string>Enfeebling (High Priority)</string>
+      <string>Fighting</string>
       <string>Skillchain (Follower 4)</string>
       <string>Skillchain (Follower 3)</string>
       <string>Skillchain (Follower 2)</string>
       <string>Skillchain (Follower 1)</string>
-      <string>Weaponskills</string>
       <string>Skillchain (Leader)</string>
       <string>Job Abilities</string>
       <string>Combat</string>
-      <string>Fighting</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -193,10 +191,11 @@
       </Shooting>
     </Combat_Action>
     <Weaponskills>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <Engaged>false</Engaged>
       <Enable_Enemy_HP>true</Enable_Enemy_HP>
       <MP_Limit>false</MP_Limit>
+      <Enable_Lock_On>false</Enable_Lock_On>
       <WeaponType>Great Axe</WeaponType>
       <WeaponSkill>Full Break</WeaponSkill>
       <Target />
@@ -239,7 +238,7 @@
         <Player_Engaged>true</Player_Engaged>
         <Leader_TP_Threshold>1000</Leader_TP_Threshold>
         <WeaponType>Great Axe</WeaponType>
-        <WeaponSkill>Upheaval</WeaponSkill>
+        <WeaponSkill>Steel Cyclone</WeaponSkill>
         <Script />
         <Cycle>14</Cycle>
         <Strat>0</Strat>
@@ -248,7 +247,7 @@
         <Enabled>true</Enabled>
         <Partner>Treubond</Partner>
         <Partner_WeaponType>Great Axe</Partner_WeaponType>
-        <Partner_WeaponSkill>Full Break</Partner_WeaponSkill>
+        <Partner_WeaponSkill>Steel Cyclone</Partner_WeaponSkill>
         <Start>2.5</Start>
         <End>8</End>
         <WeaponType>Great Axe</WeaponType>
@@ -285,7 +284,7 @@
       </Follower3>
       <Follower4>
         <Enabled>true</Enabled>
-        <Partner>Khrone</Partner>
+        <Partner>Hybridkiller</Partner>
         <Partner_WeaponType>Sword</Partner_WeaponType>
         <Partner_WeaponSkill>Savage Blade</Partner_WeaponSkill>
         <Start>2.5</Start>
@@ -404,7 +403,7 @@
       <Player />
       <Movement>Self</Movement>
       <Enemy_Count>1</Enemy_Count>
-      <Enemy_Distance>17.5</Enemy_Distance>
+      <Enemy_Distance>23</Enemy_Distance>
       <Enemy_Elevation>10</Enemy_Elevation>
       <Claim_Timeout>10</Claim_Timeout>
       <Enemy_List>
@@ -605,7 +604,7 @@
   <Enfeebling>
     <Immuno_Count>0</Immuno_Count>
     <Enemy_Count>1</Enemy_Count>
-    <High_Enable>true</High_Enable>
+    <High_Enable>false</High_Enable>
     <Normal_Enable>false</Normal_Enable>
     <Low_Enable>false</Low_Enable>
     <Dispelling_Enable>false</Dispelling_Enable>
@@ -616,7 +615,7 @@
     <Dia_AoE>false</Dia_AoE>
     <Poison_AoE>false</Poison_AoE>
     <Dispel_AoE>false</Dispel_AoE>
-    <Assist>Treubond</Assist>
+    <Assist />
     <Mode>Global</Mode>
     <Priority_Mode>Free</Priority_Mode>
     <Enemy_Enfeebling>
@@ -733,6 +732,7 @@
       <Temper>false</Temper>
       <Stoneskin>false</Stoneskin>
       <Auspice>false</Auspice>
+      <Reprisal>false</Reprisal>
       <STR>false</STR>
       <DEX>false</DEX>
       <VIT>false</VIT>
@@ -846,7 +846,7 @@
         <Aggressor_TP>1000</Aggressor_TP>
         <Blood_Rage_TP>1000</Blood_Rage_TP>
         <Tomahawk_TP>1000</Tomahawk_TP>
-        <Warriors_Charge_TP>0</Warriors_Charge_TP>
+        <Warriors_Charge_TP>1300</Warriors_Charge_TP>
         <Provoke_Range>3</Provoke_Range>
       </Warrior>
       <Monk>
@@ -943,7 +943,6 @@
         <Intervene>false</Intervene>
         <Flash>false</Flash>
         <Mode />
-        <Reprisal>false</Reprisal>
         <Chivalry_TP>0</Chivalry_TP>
         <Chivalry_MP>0</Chivalry_MP>
       </Paladin>
@@ -995,6 +994,7 @@
         <Sharpshot>false</Sharpshot>
         <Sharpshot_Barrage>false</Sharpshot_Barrage>
         <Scavenge>false</Scavenge>
+        <Scavenge_Delay>60</Scavenge_Delay>
         <Camouflage>false</Camouflage>
         <Camouflage_Barrage>false</Camouflage_Barrage>
         <Barrage>false</Barrage>
@@ -1070,7 +1070,8 @@
         <Jump>false</Jump>
         <Spirit_Link>false</Spirit_Link>
         <Spirit_Link_HPP>0</Spirit_Link_HPP>
-        <Jump_TP>0</Jump_TP>
+        <Jump_High_TP>0</Jump_High_TP>
+        <Jump_Low_TP>0</Jump_Low_TP>
         <High_Jump>false</High_Jump>
         <Super_Jump>false</Super_Jump>
         <Spirit_Bond>false</Spirit_Bond>
@@ -1216,6 +1217,7 @@
         <Saber_Dance>false</Saber_Dance>
         <Fan_Dance>false</Fan_Dance>
         <No_Foot_Rise>false</No_Foot_Rise>
+        <Presto_Only>false</Presto_Only>
         <Presto_Quickstep>false</Presto_Quickstep>
         <Presto_Stutter_Step>false</Presto_Stutter_Step>
         <Presto_Box_Step>false</Presto_Box_Step>
@@ -1276,6 +1278,8 @@
         <Bar_Force>false</Bar_Force>
         <Haste_Perpetuance>false</Haste_Perpetuance>
         <Haste_Force>false</Haste_Force>
+        <Animus_Perpetuance>false</Animus_Perpetuance>
+        <Animus_Force>false</Animus_Force>
         <Debuff_Accession>false</Debuff_Accession>
         <Klimaform_Manifestation>false</Klimaform_Manifestation>
         <Klimaform_Force>false</Klimaform_Force>
@@ -1451,7 +1455,6 @@
         <Intervene>false</Intervene>
         <Flash>false</Flash>
         <Mode />
-        <Reprisal>false</Reprisal>
         <Chivalry_TP>0</Chivalry_TP>
         <Chivalry_MP>0</Chivalry_MP>
       </Paladin>
@@ -1503,6 +1506,7 @@
         <Sharpshot>false</Sharpshot>
         <Sharpshot_Barrage>false</Sharpshot_Barrage>
         <Scavenge>false</Scavenge>
+        <Scavenge_Delay>60</Scavenge_Delay>
         <Camouflage>false</Camouflage>
         <Camouflage_Barrage>false</Camouflage_Barrage>
         <Barrage>false</Barrage>
@@ -1578,7 +1582,8 @@
         <Jump>false</Jump>
         <Spirit_Link>false</Spirit_Link>
         <Spirit_Link_HPP>0</Spirit_Link_HPP>
-        <Jump_TP>0</Jump_TP>
+        <Jump_High_TP>0</Jump_High_TP>
+        <Jump_Low_TP>0</Jump_Low_TP>
         <High_Jump>false</High_Jump>
         <Super_Jump>false</Super_Jump>
         <Spirit_Bond>false</Spirit_Bond>
@@ -1724,6 +1729,7 @@
         <Saber_Dance>false</Saber_Dance>
         <Fan_Dance>false</Fan_Dance>
         <No_Foot_Rise>false</No_Foot_Rise>
+        <Presto_Only>false</Presto_Only>
         <Presto_Quickstep>false</Presto_Quickstep>
         <Presto_Stutter_Step>false</Presto_Stutter_Step>
         <Presto_Box_Step>false</Presto_Box_Step>
@@ -1784,6 +1790,8 @@
         <Bar_Force>false</Bar_Force>
         <Haste_Perpetuance>false</Haste_Perpetuance>
         <Haste_Force>false</Haste_Force>
+        <Animus_Perpetuance>false</Animus_Perpetuance>
+        <Animus_Force>false</Animus_Force>
         <Debuff_Accession>false</Debuff_Accession>
         <Klimaform_Manifestation>false</Klimaform_Manifestation>
         <Klimaform_Force>false</Klimaform_Force>
@@ -1862,11 +1870,20 @@
     <Enable_Tools>false</Enable_Tools>
     <Enable_Ammo>false</Enable_Ammo>
     <Enable_Food>false</Enable_Food>
+    <Enable_Potions>false</Enable_Potions>
     <Food_List />
+    <MP_Potion_List />
+    <HP_Potion_List />
+    <MP_Potion_Threshold>0</MP_Potion_Threshold>
+    <HP_Potion_Threshold>0</HP_Potion_Threshold>
     <Warning_Type />
     <Warning_Name />
     <Echo_Drop>false</Echo_Drop>
     <Echo_Drop_Warning>0</Echo_Drop_Warning>
+    <Eye_Drop>false</Eye_Drop>
+    <Eye_Drop_Warning>0</Eye_Drop_Warning>
+    <Antidote>false</Antidote>
+    <Antidote_Warning>0</Antidote_Warning>
     <Remedy>false</Remedy>
     <Remedy_Warning>0</Remedy_Warning>
     <Holy_Water>false</Holy_Water>
@@ -1941,6 +1958,7 @@
     <Uchitake>false</Uchitake>
   </Items>
   <Songs>
+    <Ignore_List />
     <Enabled>false</Enabled>
     <Dummy_Count>0</Dummy_Count>
     <Base_Count>4</Base_Count>
@@ -2068,7 +2086,6 @@
     <NiTro_Warning_Time>0</NiTro_Warning_Time>
     <NiTro_Range>21</NiTro_Range>
     <NiTro_Players>0</NiTro_Players>
-    <Song_Counts />
   </Songs>
   <Scripts>
     <On_Load />

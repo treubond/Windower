@@ -44,8 +44,7 @@ do
 			text={size=10,font='Consolas',red=255,green=255,blue=255,alpha=255},
 			pos={x=1313,y=623},
 			bg={visible=true,red=0,green=0,blue=0,alpha=102},
-		},
-	}
+		},}
 
 	-- Loads the default settings
 	local settings = config.load(default_settings)
@@ -77,7 +76,10 @@ do
 
         -- Debug window
         if settings.debug then
+			sm_debug:show()
             sm_debug:text(debug_box_refresh())
+        else
+            sm_debug:hide()
         end
 
         -- Mirroring Window
@@ -92,7 +94,7 @@ do
 	-- Used to show if Silmaril is running
 	function display_box_refresh()
 		local pt_loc = get_party_location()
-		local p_loc = get_player_location()
+		local p_loc = get_player_info()
 		local w = get_world()
 		local maxWidth = 23
 
@@ -116,6 +118,7 @@ do
 			lines:insert('')
 			sm_display:bg_color(0,0,0)
 		end
+
 		for index, member in pairs(pt_loc) do
 			if member.zone == w.zone and p_loc and tostring(member.id) ~= get_player_id() then
 				local delta = {x = member.x - p_loc.x, y = member.y - p_loc.y}
@@ -123,6 +126,7 @@ do
 				lines:insert('  '..member.name..string.format('[%3.1f]',distance):lpad(' ',maxWidth - string.len(member.name) - 2))
 			end
 		end
+
 		lines:insert('')
 		local maxWidth = math.max(1, table.reduce(lines, function(a, b) return math.max(a, #b) end, '1'))
 		for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth - string.len(gears[gear])) end
@@ -136,9 +140,9 @@ do
         tracking_window:text(lines:concat('\n'))
 	end
 
-	-- Used to help debug issues - 20 chacaters long
+	-- Used to help debug issues 
 	function debug_box_refresh()
-		local maxWidth = 20
+		local maxWidth = 20 -- 20 chacaters long
 		local target = get_mirror_target()
 		local target_index = 'nil'
 		if target and target.index then
@@ -243,7 +247,7 @@ do
 	end
 
 	function debug_command()
-        if settings.debug == true then
+        if settings.debug then
             settings.debug = false
             sm_debug:hide()
 			send_to_chat(80,'------- Debugging [OFF] -------')
@@ -255,7 +259,7 @@ do
 	end
 
 	function info_command()
-	    if settings.info == true then
+	    if settings.info then
             settings.info = false
 			send_to_chat(80,'------- Info [OFF] -------')
 		else

@@ -8,22 +8,22 @@ do
     function get_all_spells() 
         local formattedString = get_player_id()..";spelldata_"
         local all_spell_count = 0
+
         for id, spell in pairs(all_spells) do
-            local player_spell = false
-            for level, job in pairs(spell.levels) do
-                player_spell = true
-                break
-            end   
-            if (not spell.unlearnable and player_spell) or spell.en == "Dispelga" then
-                formattedString = formattedString..spell.id..'|'..spell.en..'|'..spell.cast_time..'|'..spell.mp_cost..'|'..spell.range..'|'..spell.type..'|'..targets_table(spell.targets)..','
-                if spell.id and tonumber(spell.id) > tonumber(all_spell_count) then
-                    all_spell_count = spell.id
-                end
+            -- For Buffs of Spells
+            local status = '0'
+            if spell.status then status = spell.status end
+
+            formattedString = formattedString..spell.id..'|'..spell.en..'|'..spell.cast_time..'|'..spell.mp_cost..'|'..spell.range..'|'..spell.type..'|'..targets_table(spell.targets)..'|'..status..','
+
+            if spell.id and tonumber(spell.id) > tonumber(all_spell_count) then
+                all_spell_count = spell.id
             end
+
         end
-        formattedString = formattedString:sub(1, #formattedString - 1)..'_'..all_spell_count
+        formattedString = formattedString:sub(1, #formattedString - 1)
         --log(formattedString)
-        return formattedString
+        return formattedString..'_'..all_spell_count
     end
 
     function get_spell_recast()

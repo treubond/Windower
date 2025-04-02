@@ -445,6 +445,10 @@ function init_gear_sets()
 	sets.precast.WS.FullTPMagical = {left_ear="Hecate's Earring"}
 	sets.precast.WS.FullTPPhysical = {--[[ left_ear={ name="Lugra Earring +1", augments={'Path: A',}}, ]]}
 		
+	sets.precast.WS['Tachi: Fudo'] = set_combine(sets.precast.WS, {
+		head="Mpaca's Cap",
+	})
+
 	sets.precast.WS['Tachi: Shoha'] = set_combine(sets.precast.WS, {
 		ammo="Knobkierrie",
 		head="Mpaca's Cap",
@@ -550,6 +554,7 @@ function init_gear_sets()
 	sets.precast.WS['Sonic Thrust'] = sets.precast.WS['Impulse Drive']
 	
 	sets.precast.WS['Stardiver'] = set_combine(sets.precast.WS, {
+		waist="Fotia Belt",
 	    --[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body="Mpaca's Doublet",
@@ -565,6 +570,7 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}, ]]})
 		
 	sets.precast.WS['Stardiver'].ATKCAP = {
+		waist="Fotia Belt",
 	    --[[ ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head={ name="Mpaca's Cap", augments={'Path: A',}},
 		body="Mpaca's Doublet",

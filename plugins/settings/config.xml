@@ -1,7 +1,5 @@
 <settings>
     <global>
-        <!--2 for 30 FPS, 1 for 60 FPS, 0 for uncapped frame rates-->
-        <FrameRateDivisor>0</FrameRateDivisor>
         <!--If set to true will automatically determine the correct aspect ratio-->
         <AdjustAspectRatio>true</AdjustAspectRatio>
         <!--Explicitly define the aspect ratio (x:y resolution), will be ignored if "AdjustAspectRatio" is enabled-->
@@ -16,21 +14,7 @@
         <FootstepEffects>true</FootstepEffects>
         <!--Time in minutes of inactivity until a disconnect, 0 to disable-->
         <AutoDisconnectTime>0</AutoDisconnectTime>
+        <!--2 for 30 FPS, 1 for 60 FPS, 0 for uncapped frame rates-->
+        <FrameRateDivisor>2</FrameRateDivisor>
     </global>
-    <Hybridkiller>
-        <!--2 for 30 FPS, 1 for 60 FPS, 0 for uncapped frame rates-->
-        <FrameRateDivisor>2</FrameRateDivisor>
-    </Hybridkiller>
-    <Khrone>
-        <!--2 for 30 FPS, 1 for 60 FPS, 0 for uncapped frame rates-->
-        <FrameRateDivisor>2</FrameRateDivisor>
-    </Khrone>
-    <Screamineagle>
-        <!--2 for 30 FPS, 1 for 60 FPS, 0 for uncapped frame rates-->
-        <FrameRateDivisor>2</FrameRateDivisor>
-    </Screamineagle>
-    <Treubond>
-        <!--2 for 30 FPS, 1 for 60 FPS, 0 for uncapped frame rates-->
-        <FrameRateDivisor>2</FrameRateDivisor>
-    </Treubond>
 </settings>

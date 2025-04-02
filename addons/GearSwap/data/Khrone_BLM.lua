@@ -62,6 +62,7 @@ include('organizer-lib') -- Can remove this if you dont use organizer
 res = require('resources')
 texts = require('texts')
 include('Modes.lua')
+include('Global-Binds.lua')
 
 
 
@@ -77,7 +78,7 @@ nukeModes = M('normal', 'acc', 'occult')
 -- Setting this to true will stop the text spam, and instead display modes in a UI.
 -- Currently in construction.
 use_UI = true
-hud_x_pos = 1000    --important to update these if you have a smaller screen
+hud_x_pos = 600    --important to update these if you have a smaller screen
 hud_y_pos = 200     --important to update these if you have a smaller screen
 hud_draggable = true
 hud_font_size = 10
@@ -181,8 +182,8 @@ function get_sets()
       feet=EMPY.Feet,
       neck={ name="Loricate Torque +1", augments={'Path: A',}},
       waist="Plat. Mog. Belt",
-      left_ear="Ethereal Earring",
-      right_ear="Crep. Earring",
+      left_ear="Crep. Earring",
+      right_ear="Ethereal Earring",
       left_ring="Shneddick Ring",
       right_ring="Metamorph Ring",
       back="Solemnity Cape",
@@ -260,6 +261,17 @@ function get_sets()
     
     -- Combat Related Sets
     sets.me.melee = {
+      head=EMPY.Head,
+      body=EMPY.Body,
+      hands=EMPY.Hands,
+      legs=EMPY.Legs,
+      feet=EMPY.Feet,
+      left_ring="Chirich Ring +1",
+      right_ring="Lehko's Ring",
+      neck="Asperity Necklace",
+      left_ear="Crep. Earring",
+      right_ear="Telos Earring",
+      waist="Eschan Stone",
       --[[ ammo="Staunch Tathlum +1",
       head={ name="Nyame Helm", augments={'Path: B',}},
       body="Nyame Mail",
@@ -373,6 +385,7 @@ function get_sets()
     })
 
     sets.me["Seraph Strike"] = {
+      waist="Hachirin-no-Obi",
       --[[ ammo="Pemphredo Tathlum",
       head="Agwu's Cap",
       body="Agwu's Robe",
@@ -565,7 +578,7 @@ function get_sets()
     ----------
 
     -- Just go make it, inventory will thank you and making rules for each is meh.
-    sets.midcast.Obi             = { --[[ waist="Hachirin-no-Obi" ]]   }
+    sets.midcast.Obi             = { waist="Hachirin-no-Obi"   }
     sets.midcast.Orpheus         = { --[[ waist="Orpheus's Sash" ]]    }
     sets.midcast.MPReturn        = { --[[ body="Spaekona's Coat +3" ]] }
     sets.midcast.JaSpellDuration = { legs=EMPY.Legs  }
@@ -951,6 +964,7 @@ function get_sets()
     })
 
     sets.midcast['Death'] = {
+      waist="Hachirin-no-Obi",
       --[[ main="Hvergelmir",
       sub="Khonsu",
       ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},

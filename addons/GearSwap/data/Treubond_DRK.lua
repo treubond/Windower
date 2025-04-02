@@ -6,8 +6,8 @@ include('Mirdain-Include')
 include('Global-Binds.lua')
 
 --Set to ingame lockstyle and Macro Book/Set
-LockStylePallet = "13"
-MacroBook = "2"
+LockStylePallet = "21"
+MacroBook = "17"
 MacroSet = "1"
 
 -- Use "gs c food" to use the specified food item 
@@ -30,18 +30,59 @@ state.OffenseMode:options('DT','TP','PDL','ACC','SB') -- ACC effects WS and TP m
 state.OffenseMode:set('TP')
 
 --Weapon Modes
-state.WeaponMode:options('Scythe','Great Sword','Sword','Club','Great Axe')
-state.WeaponMode:set('Great Axe')
+state.WeaponMode:options('Apocalypse','Caladbolg','Sword','Club','Great Axe')
+state.WeaponMode:set('Caladbolg')
 
 -- Initialize Player
 jobsetup(LockStylePallet,MacroBook,MacroSet)
 
 function get_sets()
 
+	--Abilities
+
+	if player.sub_job == 'SAM' then
+        send_command('bind ![ input /ja "Hasso" <me>')
+        send_command('bind !] input /ja "Seigan" <me>')
+        send_command('bind !t input /ja "Third Eye" <me>')
+        send_command('bind !w input /ja "Sekkanoki" <me>')
+    end
+
+    -- WS Binds
+    send_command('bind ^numpad7 input /ws "Torcleaver" <t>')
+    send_command('bind ^numpad9 input /ws "Ground Strike" <t>')
+    send_command('bind ^numpad4 input /ws "Resolution" <t>')
+    send_command('bind ^numpad5 input /ws "Shockwave" <t>')
+    send_command('bind ^numpad6 input /ws "Steel Cyclone" <t>')
+	send_command('bind ^numpad1 input /ws "Savage Blade" <t>')
+
+	--Sets
+	AF = {}
+	RELIC = {}
+	EMPY ={}
+	
+	AF.Head = ""
+	AF.Body = ""
+	AF.Hands = ""
+	AF.Legs = ""
+	AF.Feet = ""
+	
+	RELIC.Head = ""
+	RELIC.Body = ""
+	RELIC.Hands = ""
+	RELIC.Legs = "Fallen's Flanchard +3"
+	RELIC.Feet = ""
+	
+	EMPY.Head = "Heath. Burgeon. +2"
+	EMPY.Body = "Heath. Cuirass +2"
+	EMPY.Hands = "Heath. Gauntlets +2"
+	EMPY.Legs = "Heath. Flanchard +2"
+	EMPY.Feet = "Heath. Sollerets +2"
+
+
 	sets.Weapons = {}
 
-	sets.Weapons['Scythe'] = {
-		--main={ name="Trishula", augments={'Path: A',}},
+	sets.Weapons['Apocalypse'] = {
+		main="Apocalypse",
 		sub="Utu Grip",
 	}
 
@@ -50,8 +91,8 @@ function get_sets()
 		sub="Utu Grip",
 	}
 
-	sets.Weapons['Great Sword'] = {
-		--main={ name="Trishula", augments={'Path: A',}},
+	sets.Weapons['Caladbolg'] = {
+		main="Caladbolg",
 		sub="Utu Grip",
 	}
 
@@ -73,8 +114,10 @@ function get_sets()
 		legs="Sakpata's Cuisses",
 		feet="Sakpata's Leggings",
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		waist="Flume Belt +1",
 		--waist="Carrier's Sash",
 		left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ear="Eabani Earring",
 		--right_ear="Etiolation Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Moonlight Ring",
@@ -107,19 +150,20 @@ function get_sets()
 
 	--Base TP set to build off
 	sets.OffenseMode.TP = {
-		ammo="Ginsen",
+		ammo="Coiste Bodhar",
 		head="Flam. Zucchetto +2",
 		body="Sakpata's Plate",
 		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
 		legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
 		feet="Flam. Gambieras +2",
-		neck={ name="Vim Torque +1", augments={'Path: A',}},
+		neck="Abyssal Beads +2",
+		--neck={ name="Vim Torque +1", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear="Schere Earring",
+		left_ear="Cessance Earring",
 		right_ear="Telos Earring",
-		left_ring="Chirich Ring +1",
+		left_ring="Niqmaddu Ring",
 		right_ring="Lehko's Ring",
-		back={ name="Mecisto. Mantle", augments={'Cap. Point+49%','Rng.Atk.+3','DEF+2',}},
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 		--[[ ammo="Coiste Bodhar",
 		head="Flam. Zucchetto +2",
 		body="Sakpata's Plate",
@@ -136,9 +180,10 @@ function get_sets()
 	}
 
 	sets.OffenseMode.DT = set_combine(sets.OffenseMode.TP, {
-	    head="Nyame Helm",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
+	    head="Sakpata's Helm",
+		--head="Nyame Helm",
+		--hands="Nyame Gauntlets",
+		--legs="Nyame Flanchard",
 	})
 	
 	--Same TP set but WSD can be altered also
@@ -159,7 +204,13 @@ function get_sets()
 	sets.Precast = {}
 
 	-- Used for Magic Spells (Fast Cast)
-	sets.Precast.FastCast = {
+	sets.Precast.FastCast = { --24
+		body="Sacro Breastplate", --10
+		legs={ name="Founder's Hose", augments={'MND+3','Mag. Acc.+3','Attack+7','Breath dmg. taken -1%',}},
+		neck="Baetyl Pendant", --4
+		left_ear="Malignance Earring", --4
+		right_ear="Loquac. Earring", --2
+		right_ring="Kishar Ring", --4
 		--[[ ammo="Sapience Orb", --2
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}}, --14
 		body={ name="Taeon Tabard", augments={'"Fast Cast"+5','HP+44',}}, --9
@@ -197,11 +248,32 @@ function get_sets()
 	})
 
 	sets.Midcast.Enfeebling.Drain = set_combine(sets.Midcast.Enfeebling, {
+		ammo="Ghastly Tathlum +1",
+		head=EMPY.Head,
+		body=EMPY.Body,
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs=EMPY.Legs,
+		feet=EMPY.Feet,
+		neck="Erra Pendant",
+		waist="Eschan Stone",
+		left_ear="Malignance Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
+		left_ring="Kishar Ring",
+		right_ring="Archon Ring",
+	})
+
+	sets.Midcast.Enfeebling.Aspir = set_combine(sets.Midcast.Drain, {
 	
 	})
 
-	sets.Midcast.Enfeebling.Aspir = set_combine(sets.Midcast.Enfeebling, {
-	
+	sets.Midcast.Enhancing = set_combine(sets.Midcast, {
+		body = EMPY.Body,		
+	})
+
+	sets.Midcast.Dark = {}
+
+	sets.Midcast.Dark.Absorb = set_combine(sets.Midcast.Dark, {
+		hands = EMPY.Hands,
 	})
 	
 	--Job Abilities
@@ -217,23 +289,34 @@ function get_sets()
 	sets.JA["Hasso"] = {}
 	sets.JA["Seigan"] = {}
 
+	sets.JA["Last Resort"] = {}
+	sets.JA["Dark Seal"] = {}
+	sets.JA["Diaboloic Eye"] = {}
+	sets.JA["Nether Void"] = {legs=EMPY.Legs,}
+	sets.JA["Scarlet Delirium"] = {}
+	sets.JA["Blood Weapon"] = {}
+	sets.JA["Souleater"] = {}
+	sets.JA["Arcane Circle"] = {}
+	sets.JA["Arcane Crest"] = {}
+	sets.JA["Consume Mana"] = {}
+	sets.JA["Soul Enslavement"] = {}
 
 	--WS Sets
 	sets.WS = {
 		ammo="Knobkierrie",
-		head="Flam. Zucchetto +2",
-		body="Sakpata's Plate",
-		hands="Sakpata's Gauntlets",
-		legs="Sakpata's Cuisses",
-		feet="Sulev. Leggings +2",
-		neck="Rep. Plat. Medal",
-		--neck="Fotia Gorget",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs=RELIC.Legs,
+		feet=EMPY.Feet,
+		neck="Abyssal Beads +2",
+		--neck="Rep. Plat. Medal",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-		right_ear="Heath. Earring +1",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
 		left_ring="Niqmaddu Ring",
 		right_ring="Regal Ring",
-		--back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
 	--This set is used when OffenseMode is ACC and a WS is used (Augments the WS base set)
@@ -320,7 +403,16 @@ function self_command_custom(command)
 end
 --Function is called when a lua is unloaded
 function user_file_unload()
-
+	send_command('unbind ![')
+    send_command('unbind !]')
+	send_command('unbind !t')
+    send_command('unbind !w')
+    send_command('unbind ^numpad7')
+    send_command('unbind ^numpad9')
+	send_command('unbind ^numpad4')
+    send_command('unbind ^numpad5')
+    send_command('unbind ^numpad6')
+    send_command('unbind ^numpad1')
 end
 
 --Function used to automate Job Ability use

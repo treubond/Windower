@@ -6,3 +6,5 @@ wait 0.5;
 send Screamineagle exec sell2
 wait 0.5;
 send Hybridkiller exec sell2
+wait 0.5;
+send Swifman exec sell2

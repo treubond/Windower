@@ -80,6 +80,7 @@ bind !f6 input /ta <a25>
 lua load superwarp
 lua load fastfollow
 //lua load silmaril
+lua load trade
 
 // NEXTGames Edits:
 // The below line is to enable DressUp BlinkMeNot Functionality.
@@ -112,3 +113,9 @@ lua load fastfollow
 
 // The below command uncaps FPS to 60.  Setting it to 0 uncaps it and setting it to 2 is the default setting of 30.
 // config FrameRateDivisor 1
+
+// ALIASES
+alias on send @all sm on
+alias off send @all sm off
+alias ringwarp exec ringwarp
+alias reisenwarp exec reisenwarp

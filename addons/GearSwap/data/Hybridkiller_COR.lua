@@ -134,16 +134,16 @@ function user_setup()
     state.WeaponskillMode:options('Normal', 'HighBuff')
     state.IdleMode:options('Normal', 'DT')
 
-    state.Gun = M{['description']='Gun', 'Anarchy', 'DeathPenalty', 'Fomalhaut', } --'Armageddon', 'Fomalhaut', 'Ataktos'}
-    state.WeaponSet = M{['description']='Melee', 'Slashing', 'Piercing', 'Ranged'}
+    state.Gun = M{['description']='Gun', 'Anarchy', 'DeathPenalty', 'Fomalhaut', } --'Armageddon', 'Ataktos'}
+    state.WeaponSet = M{['description']='Melee', 'Slashing', 'Piercing', 'Ranged', 'MagicDMG'}
     -- state.CP = M(false, "Capacity Points Mode")
     state.WeaponLock = M(false, 'Weapon Lock')
 
     gear.RAbullet = "Chrono Bullet" --"Chrono Bullet"
     gear.RAccbullet = "Chrono Bullet" --"Devastating Bullet"
     gear.WSbullet = "Chrono Bullet" --"Chrono Bullet"
-    gear.MAbullet = "Chrono Bullet" --"Living Bullet"
-    gear.QDbullet = "Chrono Bullet" --"Living Bullet"
+    gear.MAbullet = "Living Bullet"
+    gear.QDbullet = "Living Bullet"
     options.ammo_warning_limit = 10
 
     AF = {}
@@ -419,7 +419,7 @@ function init_gear_sets()
         legs="Nyame Flanchard",
         feet=REL.Feet,
         neck="Comm. Charm +1",
-        waist="Eschan Stone",
+        waist="Fotia Belt",
         left_ear="Crep. Earring",
         right_ear="Enervating Earring",
         left_ring="Crepuscular Ring",
@@ -497,6 +497,7 @@ function init_gear_sets()
         })
 
     sets.precast.WS['Evisceration'] = set_combine(sets.precast.WS, {
+        waist="Fotia Belt",
         --[[ head="Blistering Sallet +1",
         body="Meg. Cuirie +2",
         hands=gear.Adhemar_B_hands,
@@ -535,6 +536,8 @@ function init_gear_sets()
         })
 
     sets.precast.WS['Savage Blade'].HighBuff = set_combine(sets.precast.WS['Savage Blade'], sets.HighBuffMelee)
+
+    sets.precast.WS['Swift Blade'] = set_combine(sets.precast.WS, {})
 
     sets.precast.WS['Requiescat'] = set_combine(sets.precast.WS['Swift Blade'], {
         --[[ hands="Meg. Gloves +2",
@@ -1299,7 +1302,7 @@ function init_gear_sets()
         }
 
     sets.FullTP = {--[[ ear1="Crematio Earring" ]]}
-    sets.Obi = {--[[ waist="Hachirin-no-Obi" ]]}
+    sets.Obi = {waist="Hachirin-no-Obi"}
     -- sets.CP = {back="Mecisto. Mantle"}
     --sets.Reive = {neck="Ygnas's Resolve +1"}
 
@@ -1316,6 +1319,7 @@ function init_gear_sets()
     sets.Slashing = {main="Naegling", sub="Blurred Knife +1"}
     sets.Ranged = {main="Kustawi +1", sub="Nusku Shield"--[[ main="Lanun Knife", sub="Kustawi +1" ]]}
     sets.Tauret = {--[[ main="Tauret", sub="Gleti's Knife" ]]}
+    sets.MagicDMG = {main="Naegling", sub="Tauret"}
 
     sets.DefaultShield = {sub="Nusku Shield"}
 

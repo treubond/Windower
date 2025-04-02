@@ -1,5 +1,4 @@
 do
-
     local delay_time = .5
     local statuses = {}
     local zones = {}
@@ -11,52 +10,45 @@ do
 
     -- Called from Connection.lua
     function initialize()
+
         -- Make sure the player is logged in
         while not validate_load() do sleep_time(1) end
 
-        -- Set the player in Player.lua
-        local p = get_player_data()
-        set_player(p)
-        set_player_id(tostring(p.id))
+        -- Player is now loaded and can progress
 
-        -- Set the player's location in Player.lua
-        set_player_location(get_mob_by_id(p.id))
-
-        -- Set the world in World.lua
-        set_world(get_info())
+        -- Set default values in Player.lua
+        first_time_buffs()
 
         -- gets the spells the player can use via Spells.lua
         get_player_spells()
 
-        first_time_buffs()
+        -- Set a random time to offset the players
+        random_delay(get_player_id())
 
-        random_delay(p)
-
+        -- sleep a random duration
         sleep_time(delay_time)
-    end
-
-    function random_delay(player)
-        math.randomseed(os.time() + player.id)
-        math.random()
-        math.random() 
-        math.random()
-        delay_time = math.random(1, 5000) / 10000
     end
 
     function validate_load()
 
-        local toon = get_player_data()
-        if not toon then return false end
+        local player = get_player_data()
+        if not player then return false end
 
-        local pos = get_mob_by_id(toon.id)
-        if not pos then return false end
+        local player_info = get_mob_by_id(player.id)
+        if not player_info then return false end
 
-        local w = get_info()
-        if not w then return false end
-
-        sleep_time(1)
+        local world = get_info()
+        if not world then return false end
 
         return true
+    end
+
+    function random_delay(id)
+        math.randomseed(os.time() + id)
+        math.random()
+        math.random()
+        math.random()
+        delay_time = math.random(1, 5000) / 10000
     end
 
     function sync_data(type)
@@ -84,6 +76,8 @@ do
             send_packet(get_all_day())
         elseif type == 'monster' then
             send_packet(get_all_monster_abilities())
+        elseif type == 'monster2' then
+            send_packet(get_all_monster_abilities2())
         end
         -- Speed up the sync process so send a follow up request
         request()

@@ -114,9 +114,19 @@ function get_sets()
 	--Ogma.Cure =  { name= "Ogma's Cape", augments={ 'MND+20','Eva.+20 /Mag. Eva.+20','HP+20','"Cure" potency +10%','Phys. dmg. taken-10%', } }
 	
 ------End of Augmented Gear-----------------------------------------------------------------------------------------------------------------------------
+	--Phalanx Master Set--
+	sets.Phalanx = {
+		head=RELIC.Head,
+		body={ name="Herculean Vest", augments={'Blood Pact Dmg.+7','Pet: DEX+3','Phalanx +4','Accuracy+4 Attack+4','Mag. Acc.+5 "Mag.Atk.Bns."+5',}},
+		hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
+		legs={ name="Taeon Tights", augments={'Phalanx +3',}},
+		feet={ name="Taeon Boots", augments={'Phalanx +3',}},
+		Ogma.SIR,
+	}
+
 	--Idle Sets--
 	sets.Idle = {}
-	sets.Idle.index = { 'Standard', 'DT', 'Evasion', 'Kiting', 'Phalanx'	}
+	sets.Idle.index = { 'Standard', 'DT', 'Phalanx' }--'Evasion', --'Kiting', 'Phalanx'}
 	Idle_ind = 1
 
 	sets.Idle.Standard = {
@@ -233,14 +243,9 @@ function get_sets()
 		legs = "Carmine Cuisses +1",
 		feet = "Erilaz Greaves +3" ]]
 	}
-	sets.Idle.Phalanx = {
-		head=RELIC.Head,
-		body={ name="Herculean Vest", augments={'Attack+2','"Triple Atk."+1','Phalanx +2','Mag. Acc.+14 "Mag.Atk.Bns."+14',}},
-		hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
-		legs={ name="Taeon Tights", augments={'Phalanx +3',}},
-		feet={ name="Taeon Boots", augments={'Phalanx +3',}},
-		Ogma.SIR,
-		--[[ ammo="Staunch Tathlum +1",
+	sets.Idle.Phalanx = set_combine(sets.Idle.Standard, sets.Phalanx)
+	--[[{
+		ammo="Staunch Tathlum +1",
 		head={ name="Fu. Bandeau +3", augments={'Enhances "Battuta" effect',}},
 		body={ name="Herculean Vest", augments={'Rng.Acc.+14 Rng.Atk.+14','"Conserve MP"+2','Phalanx +4','Accuracy+17 Attack+17',}},
 		hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
@@ -252,8 +257,10 @@ function get_sets()
 		right_ear={ name="Erilaz Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
 		left_ring="Moonlight Ring",
 		right_ring="Defending Ring",
-		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Parrying rate+5%',}}, ]]
-}
+		back={ name="Ogma's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10','Parrying rate+5%',}}, 
+	}) ]]
+
+
 		--Dat Waifu--
 	-- sets.Idle.Town = set_combine(sets.Idle.Standard, {
 		-- legs = "Carmine Cuisses +1",
@@ -488,7 +495,7 @@ function get_sets()
 	------------------- 
 	
 	sets.TankingTP = {}
-	sets.TankingTP.index = { 'Tank', 'Subtleblow', 'DDHyb', 'MagicRes', 'MagicParry', 'Ailment', 'MagicEva',}
+	sets.TankingTP.index = { 'Tank', 'DDHyb', 'Phalanx'} --'Subtleblow', 'DDHyb', 'MagicRes', 'MagicParry', 'Ailment', 'MagicEva', 'Phalanx'}
 	TankingTP_ind = 1
 	
 	sets.TankingTP.Tank = {
@@ -633,6 +640,8 @@ function get_sets()
 		legs = "Erilaz Leg Guards +3",
 		feet = "Erilaz Greaves +3" ]]
 	})	
+
+	sets.TankingTP.Phalanx = set_combine(sets.TankingTP.Tank, sets.Phalanx)
 	
 ------End of TP--------------------------------------------------------------------------------------------------------------------	
 	---------------------
@@ -1024,14 +1033,14 @@ function get_sets()
 		ring2 = "Kunaji Ring", ]]
 	})
 	--Spell Interruption Rate--
-	sets.SIR = { -- 103
+	sets.SIR = { -- 108
 		ammo="Staunch Tathlum", -- 10
 		head=EMPY.Head, -- 20
 		body="Nyame Mail", -- 0
 		hands="Rawhide Gloves", -- 15
 		legs="Carmine Cuisses +1", -- 20
 		feet=EMPY.Feet, -- 0
-		neck="Moonbeam Necklace", -- 10
+		neck="Moonlight Necklace", -- 15
 		waist="Rumination Sash", -- 10
 		left_ear="Odnowa Earring +1", -- 0
 		right_ear="Magnetic Earring", -- 8
@@ -1058,11 +1067,11 @@ function get_sets()
 	sets.Enmity = {
         ammo="Crepuscular Pebble",
         head=EMPY.Head,
-        body="Emet Harness +1",
+        body="Emet Harness +1", --10
         hands=EMPY.Hands,
         legs=EMPY.Legs,
         feet=EMPY.Feet,
-        neck="Unmoving Collar +1",
+        neck="Moonlight Necklace", --15
         waist="Plat. Mog. Belt",
         left_ear="Cryptic Earring",
         right_ear="Magnetic Earring",
@@ -1161,11 +1170,11 @@ function get_sets()
 		hands=EMPY.Hands,
 		legs="Carmine Cuisses +1",
 		feet=EMPY.Feet,
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
+		neck="Moonlight Necklace",
 		waist="Rumination Sash",
 		left_ear="Odnowa Earring +1",
 		right_ear="Magnetic Earring",
-		left_ring="Patricius Ring",
+		left_ring="Moonlight Ring",
 		right_ring="Defending Ring",
 		back=Ogma.SIR,
 		--[[ ammo="Staunch Tathlum +1",
@@ -1241,6 +1250,7 @@ function get_sets()
 	
 	sets.Enhancing.Phalanx = set_combine(sets.Enhancing.Base, {
 		head=RELIC.Head,
+		body={ name="Herculean Vest", augments={'Blood Pact Dmg.+7','Pet: DEX+3','Phalanx +4','Accuracy+4 Attack+4','Mag. Acc.+5 "Mag.Atk.Bns."+5',}},
 		hands={ name="Taeon Gloves", augments={'Phalanx +3',}},
 		legs={ name="Taeon Tights", augments={'Phalanx +3',}},
 		feet={ name="Taeon Boots", augments={'Phalanx +3',}},
@@ -1729,7 +1739,7 @@ include('Global-Binds.lua')
 --@ means win
 send_command('bind f9 gs c toggle TP set') --This means if you hit f9 it toggles the sets
 send_command('bind f10 gs c toggle WS set') --Changes Reso and Dimidiation sets
-send_command('bind ^f10 gs c toggle Phalanx set') --Toggle phalanx set
+send_command('bind ^f10 gs c toggle Phalanx') --Toggle phalanx set
 send_command('bind f11 gs c toggle TH') --Toggles TH mode
 send_command('bind f12 gs c toggle Idle set')
 send_command('bind ^f8 gs c toggle SIR') -- Turns Spell Interruption Rate set on

@@ -4,6 +4,7 @@
 
 --  ALT = !
 --  CTL = ^
+--  SHIFT = ~
 --  WIN = @
 --  MENU = #
 
@@ -44,6 +45,13 @@
     send_command('bind @f5 input //sm all toggle')
     send_command('bind #f input //sm all follow')
     send_command('bind #m input //sm mirror')
+    send_command('bind #b input //send @cor /ja "Bolter\'s Roll" <me>')
+
+    --Switch focus
+    send_command('bind ~f1 input //switch to Treubond')
+    send_command('bind ~f2 input //switch to Khrone')
+    send_command('bind ~f3 input //switch to Hybridkiller')
+    send_command('bind ~f4 input //switch to Screamineagle')
     
 
     -- Default Spell HotKeys
@@ -72,7 +80,7 @@
     send_command('bind !i input /ma "Aquaveil" <me>')
     send_command('bind !o input /ma "Cure IV" <stpc>')
 
-    -- Default Status Cure HotKeys
+    -- Default Status Cure HotKeys (Alt)
     send_command('bind !numpad7 input /ma "Paralyna" <t>')
     send_command('bind !numpad8 input /ma "Silena" <t>')
     send_command('bind !numpad9 input /ma "Blindna" <t>')
@@ -84,7 +92,7 @@
     send_command('bind !numpad0 input /ma "Sacrifice" <t>')
     send_command('bind !numpad. input /ma "Esuna" <me>')
 
-    -- Default Status Enfeebling HotKeys
+    -- Default Status Enfeebling HotKeys (Shift)
     send_command('bind ~numpad7 input /ma "Paralyze" <t>')
     send_command('bind ~numpad8 input /ma "Silence" <t>')
     send_command('bind ~numpad9 input /ma "Blind" <t>')
@@ -95,7 +103,7 @@
     send_command('bind ~numpad2 input /ma "Frazzle" <t>')
     send_command('bind ~numpad0 input /ma "Dia II" <t>')
 
-    -- Default Item HotKeys
+    -- Default Item HotKeys (Win)
     send_command('bind @numpad7 input /item "Remedy" <me>')
     send_command('bind @numpad8 input /item "Echo Drops" <me>')
     send_command('bind @numpad9 input /item "Eye Drops" <me>')

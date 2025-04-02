@@ -15,11 +15,10 @@ do
 
 		-- Get the player
 		local p = get_player()
-		if not p or not p.id then runstop() return end
+		if not p then runstop() return end
 
 		-- Update the player location
-		p_loc = get_mob_by_id(p.id)
-		set_player_location(p_loc)
+		p_loc = get_player_info()
 		if not p_loc then return end
 
 		if not autorun_target then return end
@@ -150,6 +149,10 @@ do
 		local w = get_world()
 		if not w then runstop() return end
 
+		-- Update the player location
+		p_loc = get_player_info()
+		if not p_loc then return end
+
 		if target.zone and target.zone ~= w.zone then return end
 
 		local angle = 0
@@ -212,7 +215,7 @@ do
 		if not fast_follow_target then return end
 
 		-- Wrong member zoned so disregard
-		if tonumber(fast_follow_target.id) ~= tonumber(player_id) then log("Wrong Player ["..player_id.."]") return end
+		if fast_follow_target.id ~= tonumber(player_id) then log("Wrong Player ["..player_id.."]") return end
 
 		-- Get the world data and retun is not correct zone
 		local w = get_world()
@@ -251,6 +254,10 @@ do
 
 	function set_following(value)
 		following = value
+	end
+
+	function get_fast_follow_target()
+		return fast_follow_target
 	end
 
 	function get_following()

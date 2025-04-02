@@ -43,6 +43,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -62,6 +63,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -81,6 +83,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -100,6 +103,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -131,6 +135,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -150,6 +155,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -169,6 +175,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -188,6 +195,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -207,6 +215,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -226,6 +235,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -245,6 +255,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -264,6 +275,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -283,6 +295,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -302,6 +315,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -321,6 +335,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -340,6 +355,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -359,6 +375,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -378,6 +395,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -397,6 +415,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -416,6 +435,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -435,6 +455,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -454,6 +475,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -473,6 +495,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -504,6 +527,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -523,6 +547,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>177</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -554,6 +579,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -573,6 +599,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -592,6 +619,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -611,6 +639,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -642,6 +671,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -661,6 +691,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -680,6 +711,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -699,6 +731,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -730,6 +763,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -749,6 +783,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -768,6 +803,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -787,6 +823,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>182</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -818,6 +855,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -837,6 +875,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -856,6 +895,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -875,6 +915,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -894,6 +935,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -913,6 +955,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -932,6 +975,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -951,6 +995,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -970,6 +1015,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -989,6 +1035,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1008,6 +1055,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1027,6 +1075,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1046,6 +1095,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1065,6 +1115,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1084,6 +1135,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1103,6 +1155,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1122,6 +1175,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1141,6 +1195,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1160,6 +1215,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1179,6 +1235,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1198,6 +1255,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1217,6 +1275,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1236,6 +1295,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1255,6 +1315,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1274,6 +1335,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1293,6 +1355,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -1324,6 +1387,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1343,6 +1407,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1362,6 +1427,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1381,6 +1447,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1400,6 +1467,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1419,6 +1487,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1438,6 +1507,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1457,6 +1527,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1476,6 +1547,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1495,6 +1567,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1514,6 +1587,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1533,6 +1607,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1552,6 +1627,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1571,6 +1647,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1590,6 +1667,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1609,6 +1687,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1628,6 +1707,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1647,6 +1727,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1666,6 +1747,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1685,6 +1767,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1704,6 +1787,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1723,6 +1807,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1742,6 +1827,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1761,6 +1847,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1780,6 +1867,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1799,6 +1887,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -1830,6 +1919,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1849,6 +1939,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1868,6 +1959,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1887,6 +1979,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1906,6 +1999,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1925,6 +2019,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1944,6 +2039,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1963,6 +2059,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -1982,6 +2079,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2001,6 +2099,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2020,6 +2119,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2039,6 +2139,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2058,6 +2159,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2077,6 +2179,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2096,6 +2199,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2115,6 +2219,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2134,6 +2239,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2153,6 +2259,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2172,6 +2279,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2191,6 +2299,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2210,6 +2319,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2229,6 +2339,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2248,6 +2359,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2267,6 +2379,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2286,6 +2399,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2305,6 +2419,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>888</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -2336,6 +2451,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>79</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2355,6 +2471,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>79</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -2386,6 +2503,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>52</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2405,6 +2523,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>52</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -2436,6 +2555,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>79</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2455,6 +2575,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>79</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -2486,6 +2607,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2505,6 +2627,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2524,6 +2647,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2543,6 +2667,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2562,6 +2687,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2581,6 +2707,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2600,6 +2727,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2619,6 +2747,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2638,6 +2767,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2657,6 +2787,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2676,6 +2807,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2695,6 +2827,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -2726,6 +2859,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2745,6 +2879,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2764,6 +2899,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2783,6 +2919,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2802,6 +2939,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2821,6 +2959,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2840,6 +2979,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2859,6 +2999,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -2890,6 +3031,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2909,6 +3051,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2928,6 +3071,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2947,6 +3091,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2966,6 +3111,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -2985,6 +3131,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3004,6 +3151,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3023,6 +3171,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3042,6 +3191,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3061,6 +3211,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3080,6 +3231,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3099,6 +3251,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -3130,6 +3283,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3149,6 +3303,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3168,6 +3323,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3187,6 +3343,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3206,6 +3363,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3225,6 +3383,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -3256,6 +3415,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3275,6 +3435,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3294,6 +3455,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3313,6 +3475,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3332,6 +3495,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3351,6 +3515,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3370,6 +3535,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3389,6 +3555,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3408,6 +3575,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3427,6 +3595,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3446,6 +3615,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3465,6 +3635,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3484,6 +3655,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3503,6 +3675,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>false</Automated_Message>
@@ -3534,6 +3707,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3553,6 +3727,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3572,6 +3747,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3591,6 +3767,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3610,6 +3787,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3629,6 +3807,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3648,6 +3827,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3667,6 +3847,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3686,6 +3867,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3705,6 +3887,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3724,6 +3907,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3743,6 +3927,7 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>true</Automated_Message>
@@ -3762,11 +3947,64 @@
           <Unknown_3 />
           <Unknown_4 />
           <Shop_Slot />
+          <Trade />
           <Count />
           <Target_Index>154</Target_Index>
           <Automated_Message>false</Automated_Message>
           <Zone>249</Zone>
           <Menu_ID>386</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+      </Mirror_Messages>
+    </Reflect>
+    <Reflect>
+      <X>-346.354</X>
+      <Y>-184.252</Y>
+      <Z>-10.001</Z>
+      <Name>CP Musketeer Gun</Name>
+      <NPC_Name>Rabid Wolf</NPC_Name>
+      <Index>52</Index>
+      <ID>17739828</ID>
+      <Zone>235</Zone>
+      <Mirror_Messages>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739828</Target_ID>
+          <Option_Index>32837</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Unknown_3 />
+          <Unknown_4 />
+          <Shop_Slot />
+          <Trade />
+          <Count />
+          <Target_Index>52</Target_Index>
+          <Automated_Message>true</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>32761</Menu_ID>
+          <X />
+          <Y />
+          <Z />
+          <Rotation />
+        </Mirror_Message>
+        <Mirror_Message>
+          <Type>0x05B</Type>
+          <Target_ID>17739828</Target_ID>
+          <Option_Index>32837</Option_Index>
+          <Unknown_1>0</Unknown_1>
+          <Unknown_2>0</Unknown_2>
+          <Unknown_3 />
+          <Unknown_4 />
+          <Shop_Slot />
+          <Trade />
+          <Count />
+          <Target_Index>52</Target_Index>
+          <Automated_Message>false</Automated_Message>
+          <Zone>235</Zone>
+          <Menu_ID>32761</Menu_ID>
           <X />
           <Y />
           <Z />
@@ -3950,18 +4188,6 @@
         <Comment>Moblin Maze Mongers</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
-        <Name>Chest</Name>
-        <Zone>0</Zone>
-        <Index>0</Index>
-        <Comment>Odyssey Chests</Comment>
-      </Mirror_Blacklist>
-      <Mirror_Blacklist>
-        <Name>Coffer</Name>
-        <Zone>0</Zone>
-        <Index>0</Index>
-        <Comment>Odyssey Coffer</Comment>
-      </Mirror_Blacklist>
-      <Mirror_Blacklist>
         <Name>Nomad Moogle</Name>
         <Zone>0</Zone>
         <Index>0</Index>
@@ -4047,309 +4273,309 @@
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #A1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #A2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #A3</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #A4</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #A5</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #A1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #A2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #A</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #B1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #B2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #B3</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #B4</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #B5</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #B1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #B2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #B</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #C1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #C2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #C3</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #C4</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #C5</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #C1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #C2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #C</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #D1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #D2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #D3</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #D4</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #D5</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #D1</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #D2</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #D</Name>
-        <Zone>133</Zone>
-        <Index>0</Index>
-        <Comment>Sortie Chest</Comment>
-      </Mirror_Blacklist>
-      <Mirror_Blacklist>
-        <Name>Aurum Coffer</Name>
-        <Zone>133</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #E</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #E1</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #E2</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #E</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #F</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #F1</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #F2</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #F</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #G</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #G1</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #G2</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #G</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest #H</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #H1</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Casket #H2</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Coffer #H</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Sortie Chest</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Chest</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
-        <Comment>Sortie Chest</Comment>
+        <Comment>Odyssey Chest</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Coffer</Name>
+        <Zone>0</Zone>
+        <Index>0</Index>
+        <Comment>Odyssey Coffer</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Aurum Coffer</Name>
-        <Zone>189</Zone>
+        <Zone>0</Zone>
         <Index>0</Index>
-        <Comment>Sortie Chest</Comment>
+        <Comment>Odyssey/Sortie Aurum Coffer</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Runic Lamp</Name>
@@ -4361,13 +4587,13 @@
         <Name>Rune of Transfer</Name>
         <Zone>77</Zone>
         <Index>0</Index>
-        <Comment>Nyzle Isle Lamps</Comment>
+        <Comment>Nyzle Isle Rune of Transfer</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Armoury Crate</Name>
         <Zone>77</Zone>
         <Index>0</Index>
-        <Comment>Nyzle Isle Lamps</Comment>
+        <Comment>Nyzle Isle Crates</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Iron Gate</Name>
@@ -4431,5 +4657,5 @@
       </Mirror_Blacklist>
     </Mirror_Blacklists>
   </Blacklists>
-  <Key>EF-F4-66-C1-68-5D-0D-0B-7A-B0-D7-DA-6C-6A-E6-B6-C5-80-BC-07-C0-54-55-0B-0A-61-DE-07-EA-C6-FF-4C-9D-5C-74-95-6B-63-09-B6-AE-C6-11-C8-33-F7-7F-C0-32-52-07-CE-E2-D1-98-F5-BF-4B-F5-7A-06-B0-EB-EF-29-35-E6-59-BA-19-53-05-43-7D-27-3B-C5-27-B6-79-B8-5C-B8-F9-4B-F8-E5-E7-38-C9-2D-81-2C-1E-41-84-5F-36-74-49-57-3D-CF-BE-EF-E3-D8-EE-6A-28-34-A2</Key>
+  <Key>14-8C-46-4B-13-0A-D3-98-26-02-5C-E7-87-22-E8-05-AC-62-0C-03-27-78-23-40-42-DE-DF-34-50-FA-3D-92-69-E1-1F-FE-46-4B-CD-7A-F6-82-EF-7C-79-A8-BA-F4-C3-40-AB-B1-F5-70-95-2B-23-0B-66-18-20-56-C1-6D-91-36-DA-0D-6A-C7-55-89-2B-8E-3E-7C-C7-7C-E0-48-EE-47-D4-33-12-F2-97-60-73-DD-1E-7D-A0-24-F0-AA-F3-17-A0-C3-8D-91-6C-56-76-82-92-A9-8C-F2-52-96-06-9D-F2-64-5B-3F-CC-31-A4-EF-91-4E-61-EC-56-83-10-BE-88-ED-1B-7E-6F-6B-44-C2-84-E7-32-45-90-7F-9D-E4-A6-35-45-A3-AC-EE-22-24-56-78-30-54-73-22</Key>
 </GlobalConfig>

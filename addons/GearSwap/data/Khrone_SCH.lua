@@ -506,7 +506,7 @@ function get_sets()
 	
     -- Just go make it, inventory will thank you and making rules for each is meh.
     sets.midcast.Obi = {
-    	--waist="Hachirin-no-Obi",
+    	waist="Hachirin-no-Obi",
     }
 	
 	-----------------------------------------------------------------------------------------------

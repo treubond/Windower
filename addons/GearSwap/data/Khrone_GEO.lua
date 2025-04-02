@@ -215,14 +215,14 @@ function get_sets()
 		main="Idris",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
-		head="Weath. Corona +1",
+		head=EMPY.Head,
 		body="Jhakri Robe +2",
-		hands={ name="Telchine Gloves", augments={'"Cure" potency +7%',}},
-		legs="Weath. Pants +1",
-		feet="Weath. Souliers +1",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet=EMPY.Feet,
 		neck="Sanctity Necklace",
 		waist="Embla Sash",
-		left_ear="Aredan Earring",
+		left_ear="Odnowa Earring +1",
 		right_ear="Ethereal Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",
@@ -250,6 +250,7 @@ function get_sets()
 	
     -- Your idle MasterDT set (Notice the sets.me, means no Luopan is out)
     sets.me.idle.dt = set_combine(sets.me.idle.normal,{
+		body="Nyame Mail",
 	--[[ 		main = "Malignance Pole",
 			sub = "Enki Strap",
 			body = "Mallquis Saio +2",
@@ -258,7 +259,7 @@ function get_sets()
 
     })
     sets.me.idle.mdt = set_combine(sets.me.idle.normal,{
-
+		body="Nyame Mail",
     })	
     -- Your MP Recovered Whilst Resting Set
     sets.me.resting = { 
@@ -284,7 +285,7 @@ function get_sets()
 		feet=RELIC.Feet,
 		neck={ name="Bagua Charm +1", augments={'Path: A',}},
 		waist="Isa Belt",
-		--left_ear="Aredan Earring",
+		left_ear="Odnowa Earring +1",
 		right_ear="Ethereal Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",
@@ -308,10 +309,10 @@ function get_sets()
 	
 	-- This is when you have a Luopan out but want to sacrifice some slot for master DT, put those slots in.
     sets.pan.idle.dt = set_combine(sets.pan.idle.normal,{
-
+		body="Nyame Mail",
     })   
     sets.pan.idle.mdt = set_combine(sets.pan.idle.normal,{
-
+		body="Nyame Mail",
     })   
     -- Combat Related Sets
       
@@ -327,8 +328,8 @@ function get_sets()
 		feet = "Jhakri Pigaches +2",
 		neck = "Sanctity Necklace",
 		waist = "Potent Belt",
-		left_ear = "Mache Earring",
-		right_ear = "Ethereal Earring",
+		left_ear = "Cessance Earring",
+		right_ear = "Crep. Earring",
 		left_ring = "Jhakri Ring",
 		right_ring = "Rajas Ring",
 		--[[ neck = "Lissome Necklace",
@@ -342,6 +343,8 @@ function get_sets()
     -- Luopan is out
 	sets.pan.melee = set_combine(sets.pan.idle[idleMode],{
 		neck={ name="Bagua Charm +1", augments={'Path: A',}},
+		left_ear="Cessance Earring",
+		right_ear="Crep. Earring",
     }) 
     
     -- Weapon Skill sets
@@ -372,19 +375,17 @@ function get_sets()
     }
 	
     sets.me["Exudation"] = {
-		--neck = "Sibyl Scarf",
-		--waist = "Acuity Belt +1",
-		--left_ear = "Malignance Earring",
-		--right_ear = "", --Regal
-		left_ring = "Metamorph Ring",
+		neck = "Sibyl Scarf",
+		waist = "Acuity Belt +1",
+		left_ear = "Malignance Earring",
+		right_ear = "Regal Earring", --Regal
+		left_ring = "Metamor. Ring +1",
 
     }
 	
 	sets.me["Cataclysm"] = {
-		--[[ head = "Pixie Hairpin +1",
-		
-		left_ring = "Archon Ring", ]]
-		
+		-- head = "Pixie Hairpin +1",
+		left_ring = "Archon Ring",		
 	}
     -- Feel free to add new weapon skills, make sure you spell it the same as in game.
   
@@ -404,6 +405,7 @@ function get_sets()
     -- Generic Casting Set that all others take off of. Here you should add all your fast cast  
     sets.precast.casting = {
 		sub="Chanter's Shield",
+		back="Fi Follet Cape +1",
 		--[[ main = "Solstice",
 		range = "Dunna",
 		body = "Merlinic Jubbah",
@@ -419,17 +421,17 @@ function get_sets()
     })
     -- Enhancing Magic, eg. Siegal Sash, etc
     sets.precast.enhancing = set_combine(sets.precast.casting,{
-
+		waist="Siegel Sash"
     })
   
     -- Stoneskin casting time -, works off of enhancing -
     sets.precast.stoneskin = set_combine(sets.precast.enhancing,{
-
+		head="Umuthi Hat",
     })
       
     -- Curing Precast, Cure Spell Casting time -
     sets.precast.cure = set_combine(sets.precast.casting,{
-
+		main="Vadeose Rod",
     })
     sets.precast.regen = set_combine(sets.precast.casting,{
 
@@ -511,11 +513,11 @@ function get_sets()
 		legs="Jhakri Slops +2",
 		feet = EMPY.Feet,
 		neck="Sanctity Necklace",
-		waist="Olympus Sash",
+		waist="Acuity Belt +1",
 		left_ear="Hecate's Earring",
 		right_ear="Aredan Earring",
-		left_ring="Jhakri Ring",
-		right_ring="Stikini Ring",
+		left_ring="Metamor. Ring +1",
+		right_ring="Stikini Ring +1",
 		back="Searing Cape",
 		--[[ ammo = "Ghastly Tathlum +1",
 		head = EMPY.Head,

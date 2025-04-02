@@ -30,20 +30,27 @@
 		<addon>silmaril</addon>
 		<addon>battlemod</addon>
 		<addon>fastcs</addon>
+		<addon>InfoBar</addon>
+		<addon>react</addon>
 	</Treubond>
 	<Khrone>
 		<addon>silmaril</addon>
+		<addon>react</addon>
 	</Khrone>
 	<Hybridkiller>
 		<addon>silmaril</addon>
+		<addon>react</addon>
 	</Hybridkiller>
 	<Screamineagle>
 		<addon>silmaril</addon>
+		<addon>react</addon>
 	</Screamineagle>
 	<Soliene>
 		<addon>silmaril</addon>
+		<addon>react</addon>
 	</Soliene>
 	<Swifman>
 		<addon>silmaril</addon>
+		<addon>react</addon>
 	</Swifman>
 </settings>

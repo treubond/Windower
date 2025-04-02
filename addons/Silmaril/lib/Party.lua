@@ -1,5 +1,5 @@
 do
-    local party_position = {p0='0',p1='1',p2='2',p3='3',p4='4',p5='5',a10='6',a11='7',a12='8',a13='9',a14='10',a15='11',a20='12',a21='13',a22='14',a23='15',a24='16',a25='17'}
+    local party_position = {p0=1,p1=2,p2=3,p3=4,p4=5,p5=6,a10=7,a11=8,a12=9,a13=10,a14=11,a15=12,a20=13,a21=14,a22=15,a23=16,a24=17,a25=18}
     local party_ids = {}
     local alliance_ids = {}
     local party_location = {}
@@ -20,7 +20,8 @@ do
         if not party then return party_data end
         for position, member in pairs(party) do
             if type(member) == "table" and member.name and member.name ~= '' then
-                local formattedString = "party_"..party_position[position]..'_'..member.name..','
+                local position_location = party_position[position] - 1
+                local formattedString = "party_"..position_location..'_'..member.name..','
                 ..string.format("%i",member.hp)..','..string.format("%i",member.hpp)..','..string.format("%i",member.mp)..','
                 ..string.format("%i",member.mpp)..','..string.format("%i",member.tp)..','..string.format("%i",member.zone)
                 if member.mob then
@@ -28,12 +29,13 @@ do
                     local local_player = party_location[member.mob.id]
 
                     -- Build a party table to use later
-                    if tonumber(party_position[position]) < 6 then
+                    if party_position[position] < 7 then
                         party_ids[member.mob.id] = position
                         if member.mob.is_npc then
                             trust_ids[member.mob.id] = position
                         end
                     end
+
                     alliance_ids[member.mob.id] = position
 
                     if local_player then -- update with local IPC information
@@ -57,15 +59,15 @@ do
                         elseif index == 'status' then
                             mob[4] = string.format("%i",value)
                         elseif index == 'heading' then
-                            mob[5] = string.format("%.3f",value)
+                            mob[5] = string.format(value)
                         elseif index == 'x' then
-                            mob[6] = string.format("%.3f",value)
+                            mob[6] = string.format(value)
                         elseif index == 'y' then
-                            mob[7] = string.format("%.3f",value)
+                            mob[7] = string.format(value)
                         elseif index == 'z' then
-                            mob[8] = string.format("%.3f",value)
+                            mob[8] = string.format(value)
                         elseif index == 'model_size' then
-                            mob[9] = string.format("%.3f",value)
+                            mob[9] = string.format(value)
                         elseif index == 'is_npc' then
                             mob[10] = tostring(value)
                         elseif index == 'pet_index' then
@@ -137,28 +139,26 @@ do
                 --log(formattedString)
             end
         end
-        --Fill in remainder of first part
-        if not party or not party.party1_leader then
-            party.party1_count = 1
-        end
-        for i = party.party1_count, 5 do
-            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
+
+        if not party or not party.party1_leader then party.party1_count = 2 end
+        if not party or not party.party2_leader then party.party2_count = 0 end
+        if not party or not party.party3_leader then party.party3_count = 0 end
+
+        -- Fill in remainder of first part
+        for i = party.party1_count + 1, 6 do
+            local formattedString = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
-        --Fill in remainder of second party
-        if not party or not party.party2_leader then
-            party.party2_count = 0
-        end
-        for i = party.party2_count + 6, 11 do
-            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
+
+        -- Fill in remainder of second party
+        for i = party.party2_count + 7, 12 do
+            local formattedString = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
+
         --Fill in remainder of third part
-        if not party or not party.party3_leader then
-            party.party3_count = 0
-        end
-        for i = party.party3_count + 12, 17 do
-            local formattedString = "party_"..string.format("%i",i)..'_Player '..string.format("%i",i+1)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
+        for i = party.party3_count + 13, 18 do
+            local formattedString = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
             party_data[i] = formattedString
         end
         return party_data

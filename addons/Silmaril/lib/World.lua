@@ -1,11 +1,13 @@
 do
     local player_enemy_data = "enemy_"
     local player_npc_data = "npc_"
-    local world = {}
+    local world = nil
+    local mob_array = nil
 
     function get_world_data()
         local formattedString = "world_"
 
+        world = get_info()
         if not world then return formattedString end
 
         get_mob_data() -- refresh the Enemy and NPC lists
@@ -61,7 +63,12 @@ do
         return world
     end
 
-    function set_world(w)
-        world = w
+    function set_world(value)
+        world = value
     end
+
+    function get_all_enemies()
+        return mob_array
+    end
+
 end

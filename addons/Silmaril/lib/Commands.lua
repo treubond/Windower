@@ -12,6 +12,8 @@ function commands(cmd, args)
             all_command(args)
         elseif cmd == "load" then
             load_command(args)
+        elseif cmd == "reflect" then
+            reflect_command(args)
         elseif cmd == 'debug' then
             debug_command() -- via Display.lua
         elseif cmd == 'info' then
@@ -26,6 +28,8 @@ function commands(cmd, args)
             sortie_command(args)
         elseif cmd == 'zero' then
             zero_command()
+        elseif cmd == 'protection' then
+            get_protection_report()
         elseif cmd == "input" then
             input_message(args[1], args[2], args[3]) -- sm input JobAbility 99 125
         elseif cmd == "script" then
@@ -40,10 +44,10 @@ function start_command(args)
     if args[1] then
         local sub_command = args[1]:lower()
         if sub_command == "all" then
-            send_packet(get_player_id()..";start_all")
+            que_packet("start_all")
         end
     else
-        send_packet(get_player_id()..";start")
+        que_packet("start")
     end
 end
 
@@ -51,10 +55,10 @@ function stop_command(args)
     if args[1] then
         local sub_command = args[1]:lower()
         if sub_command == "all" then
-            send_packet(get_player_id()..";stop_all")
+            que_packet("stop_all")
         end
     else
-        send_packet(get_player_id()..";stop")
+        que_packet("stop")
     end
 end
 
@@ -72,17 +76,19 @@ function follow_command(args)
     if not args[1] then return end
     local sub_command = args[1]:lower()
     if sub_command == 'off' then
-        send_packet(get_player_id()..";follow_off_none")
+        que_packet("follow_off_")
     elseif sub_command == 'on' then
-        send_packet(get_player_id()..";follow_on_"..get_player_name())
+        que_packet("follow_on_"..args[2])
     elseif sub_command == 'toggle' then
         if get_following() then
-            send_packet(get_player_id()..";follow_off_none")
+            que_packet("follow_off_")
         else
-            send_packet(get_player_id()..";follow_on_"..get_player_name())
+            if args[2] then
+                que_packet("follow_on_"..args[2])
+            end
         end
     elseif sub_command and #sub_command > 0 then
-        send_packet(get_player_id()..";follow_on_"..sub_command)
+        que_packet("follow_on_"..sub_command)
     end
 end
 
@@ -91,40 +97,46 @@ function all_command(args)
     local sub_command = args[1]:lower()
     if sub_command == 'mirror' then info("Don't do that - use sm mirror instead") end
     if sub_command == 'start' or sub_command == 'on' or (sub_command == "toggle" and not get_enabled()) then
-        send_packet(get_player_id()..";start_all")
+        que_packet("start_all")
     elseif sub_command == 'off' or sub_command == 'stop' or (sub_command == "toggle" and get_enabled()) then
-        send_packet(get_player_id()..";stop_all")
+        que_packet("stop_all")
     elseif sub_command == 'follow' then
-        if get_following() then -- Set follow to off if you are following
-            send_packet(get_player_id()..";follow_all_none")
+        if get_following() then
+            local target = get_fast_follow_target()
+            if target.name == get_player_name() then
+                que_packet("follow_all_none")
+            else
+                que_packet("follow_all_")
+            end
         else
-            send_packet(get_player_id()..";follow_all_"..get_player_name())
+            que_packet("follow_all_")
         end
     elseif sub_command == 'load' then
-        local command_string = ""
-        for i = 1, #args do
-            command_string = command_string..args[i].." "
-        end
-        command_string = command_string:sub(1, #command_string - 1)
-        send_ipc('silmaril '..command_string)
-        send_command('silmaril '..command_string)
-        log(command_string)
+        local smModePath = ""
+        for i = 2, #args do smModePath = smModePath..args[i].."_" end
+        smModePath = smModePath:sub(1, #smModePath - 1)
+        que_packet("load_all_"..smModePath)
+    elseif sub_command == 'reflect' then
+        que_packet("reflect_all_"..args[2])
     end
 end
 
 function load_command(args)
+
     local p = get_player()
     if not p then return end
 
     local smModePath = ""
 
-    for i = 1, #args do
-        smModePath = smModePath..args[i].."_"
-    end
+    for i = 1, #args do smModePath = smModePath..args[i].."_" end
 
     if p.sub_job then
-        send_packet(p.id..";load_"..smModePath..p.main_job.."_"..p.sub_job.."_"..get_player_name())
+        que_packet("load_"..smModePath..p.main_job.."_"..p.sub_job.."_"..get_player_name())
     else
-        send_packet(p.id..";load_"..smModePath..p.main_job.."_"..get_player_name())
+        que_packet("load_"..smModePath..p.main_job.."_"..get_player_name())
     end
+end
+
+function reflect_command(args)
+    que_packet("reflect_"..args[1])
 end
