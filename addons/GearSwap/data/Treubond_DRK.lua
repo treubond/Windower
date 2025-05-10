@@ -40,12 +40,12 @@ function get_sets()
 
 	--Abilities
 
-	if player.sub_job == 'SAM' then
+	--if player.sub_job == 'SAM' then
         send_command('bind ![ input /ja "Hasso" <me>')
         send_command('bind !] input /ja "Seigan" <me>')
         send_command('bind !t input /ja "Third Eye" <me>')
         send_command('bind !w input /ja "Sekkanoki" <me>')
-    end
+    --end
 
     -- WS Binds
     send_command('bind ^numpad7 input /ws "Torcleaver" <t>')
@@ -66,9 +66,9 @@ function get_sets()
 	AF.Legs = ""
 	AF.Feet = ""
 	
-	RELIC.Head = ""
+	RELIC.Head = "Fall. Burgeonet +3"
 	RELIC.Body = ""
-	RELIC.Hands = ""
+	RELIC.Hands = "Fall. Fin. Gaunt. +2"
 	RELIC.Legs = "Fallen's Flanchard +3"
 	RELIC.Feet = ""
 	
@@ -107,7 +107,7 @@ function get_sets()
 	}
 
 	sets.Idle = {
-		ammo="Staunch Tathlum",
+		ammo="Staunch Tathlum +1",
 		head="Sakpata's Helm",
 		body="Sakpata's Plate",
 		hands="Sakpata's Gauntlets",
@@ -121,7 +121,8 @@ function get_sets()
 		--right_ear="Etiolation Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Moonlight Ring",
-		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}},
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		--back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
 
 	sets.Idle.DT = set_combine(sets.Idle, {
@@ -135,15 +136,16 @@ function get_sets()
 	
 
 	sets.Movement = {
-		legs={ name="Carmine Cuisses +1", augments={'HP+80','STR+12','INT+12',}},
+		legs="Carmine Cuisses +1",
+		--legs={ name="Carmine Cuisses +1", augments={'HP+80','STR+12','INT+12',}},
 	}
 
 	-- Set to be used if you get 
 	sets.Cursna_Received = {
-	    neck="Nicander's Necklace",
-	    left_ring={ name="Saida Ring", bag="wardrobe1", priority=2},
-		right_ring={ name="Saida Ring", bag="wardrobe3", priority=1},
-		waist="Gishdubar Sash",
+	    --neck="Nicander's Necklace",
+	    --left_ring={ name="Saida Ring", bag="wardrobe1", priority=2},
+		--right_ring={ name="Saida Ring", bag="wardrobe3", priority=1},
+		--waist="Gishdubar Sash",
 	}
 
 	sets.OffenseMode = {}
@@ -163,7 +165,7 @@ function get_sets()
 		right_ear="Telos Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Lehko's Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		back="Null Shawl",
 		--[[ ammo="Coiste Bodhar",
 		head="Flam. Zucchetto +2",
 		body="Sakpata's Plate",
@@ -249,9 +251,9 @@ function get_sets()
 
 	sets.Midcast.Enfeebling.Drain = set_combine(sets.Midcast.Enfeebling, {
 		ammo="Ghastly Tathlum +1",
-		head=EMPY.Head,
+		head=RELIC.Head,
 		body=EMPY.Body,
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		hands=RELIC.Hands,
 		legs=EMPY.Legs,
 		feet=EMPY.Feet,
 		neck="Erra Pendant",

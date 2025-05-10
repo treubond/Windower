@@ -4,7 +4,7 @@ do
     local old_character = nil -- hold the last character data to compare to new
     local player_buff_ids = {} -- This stores the buff and end times
     local motion = false
-    local player = nil
+    local player_data = nil
     local player_id = "0" -- used for when the lua is being unloaded
     local player_pet = nil
     local player_info = nil
@@ -13,61 +13,17 @@ do
     local epoch_ticks = 10
     local server_delta = 0
 
-    -- A built string to send to silmaril with the character information called via Update.lua
-    function update_player()
-        local player_string = "player"
-
-        if not player then return player_string end
-
-        local jp_spent = player.job_points[player.main_job:lower()].jp_spent
-
-        local locked_on = false
-
-        --target_locked
-        if player.target_locked then
-            locked_on = true
-        end
-
-        -- No sub job unlocked or Oddy
-        if not player.sub_job_id then
-            player.sub_job_id = 0
-            player.sub_job_level = 0
-        end
-
-        -- Update character status
-        player_string = 'player_'..
-            string.format("%i",player.main_job_id)..','..
-            string.format("%i",player.main_job_level)..','..
-            string.format("%i",player.sub_job_id)..','..
-            string.format("%i",player.sub_job_level)..','..
-            string.format("%i",jp_spent)..','..
-            tostring(locked_on)..','..
-            tostring(player_moving)..','..
-            tostring(get_following())..','..
-            string.format("%i",get_autorun_target())..','..
-            string.format("%i",get_autorun_type())..','..
-            tostring(get_mirroring())..','..
-            tostring(get_injecting())..','
-
-        return player_string
-    end
-
     function update_player_info()
 
-        player = get_player_data()
-        if not player then return end
+        player_data = get_player()
+        if not player_data then return end
 
         -- Update the position info
-        player_info = get_mob_by_id(player.id)
+        player_info = get_mob_by_id(player_data.id)
         if not player_info then return end
 
         -- This is updated at high speed
         local now = os.clock()
-
-        -- get/set the world data
-        local w = get_info()
-        set_world(w)
-        if not w then return end
 
         -- Determine if player is moving
         local movement = math.sqrt((player_info.x-old_pos.x)^2 + (player_info.y-old_pos.y)^2 + (player_info.z-old_pos.z)^2 ) > 0.025
@@ -92,9 +48,13 @@ do
 	    old_pos.z = player_info.z
 
         --target_index
-        if not player.target_index then
-            player.target_index = 0
+        if not player_data.target_index then
+            player_data.target_index = 0
         end
+
+        -- get the world data
+        local w = get_world()
+        if not w then return end
 
         local update_character = 
             'silmaril update '..
@@ -106,7 +66,7 @@ do
             player_info.z..' '..
             player_info.heading..' '..
             player_info.status..' '..
-            player_info.target_index
+            player_data.target_index
 
         -- No update to the character found
         if update_character == old_character then return end
@@ -121,7 +81,7 @@ do
             z = player_info.z, 
             heading = player_info.heading, 
             status = player_info.status,
-            target_index = player_info.target_index}
+            target_index = player_data.target_index}
 
         -- Update the party table with your information
 		set_party_location(character)
@@ -133,11 +93,50 @@ do
         old_character = update_character
     end
 
+    -- A built string to send to silmaril with the character information called via Update.lua
+    function send_player_update()
+        local player_string = "player"
+
+        if not player_data then return player_string end
+
+        local jp_spent = player_data.job_points[player_data.main_job:lower()].jp_spent
+
+        local locked_on = false
+
+        --target_locked
+        if player_data.target_locked then
+            locked_on = true
+        end
+
+        -- No sub job unlocked or Oddy
+        if not player_data.sub_job_id then
+            player_data.sub_job_id = 0
+            player_data.sub_job_level = 0
+        end
+
+        -- Update character status
+        player_string = 'player_'..
+            string.format("%i",player_data.main_job_id)..','..
+            string.format("%i",player_data.main_job_level)..','..
+            string.format("%i",player_data.sub_job_id)..','..
+            string.format("%i",player_data.sub_job_level)..','..
+            string.format("%i",jp_spent)..','..
+            tostring(locked_on)..','..
+            tostring(player_moving)..','..
+            tostring(get_following())..','..
+            string.format("%i",get_autorun_target())..','..
+            string.format("%i",get_autorun_type())..','..
+            tostring(get_mirroring())..','..
+            tostring(get_injecting())..','
+
+        return player_string
+    end
+
     function first_time_buffs()
         if not player then return end
 
-        for i=1, #player.buffs do
-            player_buff_ids[i] = {id = player.buffs[i], time = 'Unknown'}
+        for i=1, #player_data.buffs do
+            player_buff_ids[i] = {id = player_data.buffs[i], time = 'Unknown'}
         end
     end
 
@@ -164,8 +163,8 @@ do
 		return moving
 	end
 
-    function get_player()
-		return player
+    function get_player_data()
+		return player_data
 	end
 
     function get_player_info()
@@ -179,25 +178,22 @@ do
 
     function get_player_name()
 
-        -- player is null so give it a shot again
-        if not player then player = get_player_data() end
-
         -- Something wrong happened here - couldn't find the player
-        if not player or not player.name then info("Player not found") return "Unknown" end
+        if not player_data or not player_data.name then log("Player not found") return "Unknown" end
 
         -- return the normal name if protection off
-        if not get_protection() then return player.name end
+        if not get_protection() then return player_data.name end
 
         -- Protection is on so get the reverse name
         local cache = get_name_cache()
 
         -- No table is set so return default name
-        if not cache then log("No name cache set") return player.name end
+        if not cache then log("No name cache set") return player_data.name end
 
-        if cache[player.name] then return cache[player.name] end
+        if cache[player_data.name] then return cache[player_data.name] end
 
         -- Wasn't found in table so return normal name anyway
-        return player.name
+        return player_data.name
     end
 
     function set_player_pet(value)
@@ -209,8 +205,8 @@ do
     end
 
     function get_player_id()
-        if not player or not player.id then return '0' end
-        return tostring(player.id)
+        if not player_data or not player_data.id then return '0' end
+        return tostring(player_data.id)
     end
 
     function get_player_buff_ids()
@@ -231,18 +227,20 @@ do
     function validate_player_buffs()
         -- Generate the string
         player_buffs = ''
-        if not player then return '' end
+        if not player_data then return '' end
 
-        -- Check for held packet buffs
+        -- Check for held packet buffs in Packets.lua
+        -- The intent is to hold buffs from JA's and Spells for 2 seconds until the packet comes from server with the update
         local packet_buffs = get_packet_buffs()
 
         for index, target in pairs(packet_buffs) do
 
             -- the buff is for the player
-            if target.id == player.id then
+            if target.id == player_data.id then
 
                 -- Check to make sure no duplicates
                 local need_buff = true
+
                 for i=1, #player_buff_ids do
                     if player_buff_ids[i] and player_buff_ids[i].id == target.buff then
                         need_buff = false
@@ -251,10 +249,10 @@ do
                 end
 
                 if need_buff then
-                    log('Adding Buff ['..target.buff..'] to the player.')
                     player_buffs = player_buffs..target.buff..',Unknown|'
                 end
             end
+
         end
 
         for i=1, #player_buff_ids do

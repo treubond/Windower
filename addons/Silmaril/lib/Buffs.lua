@@ -18,6 +18,7 @@ do
             -- Limit packets being sent and dont send self (grabs it from status update)
             if Uid and Uid ~= player_id then
                 formattedString = "partybuffs_"..Uid.."_"
+
                 for i = 1, 32 do
                     local current_buff = data:byte(k * 48 + 5 + 16 + i - 1) + 256 * (math.floor(data:byte(k * 48 + 5 + 8 + math.floor((i - 1) / 4)) / 4 ^ ((i - 1) % 4)) % 4)
                     if current_buff ~= 255 and current_buff ~= 0 then

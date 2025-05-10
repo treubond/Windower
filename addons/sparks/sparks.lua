@@ -193,7 +193,7 @@ windower.register_event('addon command', function (command, ...)
 		if currentzone == 231 or currentzone == 235 then 
             col = build_item(item)
             --local purchasable = math.floor(current_sparks/col.Cost)
-            local purchasable = 40 -- Will cause issues
+            local purchasable = 60 -- Will cause issues
 
             local free_space = count_inv()
 

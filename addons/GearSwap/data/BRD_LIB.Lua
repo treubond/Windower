@@ -900,6 +900,9 @@ function self_command(command)
      
     if #commandArgs:split(' ') >= 2 then
         commandArgs = T(commandArgs:split(' '))
+        for i=4,#commandArgs do
+            commandArgs[3] = commandArgs[3] .. " " .. commandArgs[i]
+        end
         
         if commandArgs[1] == 'toggle' then
             if commandArgs[2] == 'melee' then
@@ -975,7 +978,84 @@ function self_command(command)
                 end
             end
         end
-        
+
+        if commandArgs[1] == 'set' then
+            if commandArgs[2] == 'melee' then
+                -- //gs c toggle melee will toggle melee mode on and off.
+                -- This basically locks the slots that will cause you to lose TP if changing them,
+                -- As well as equip your melee set if you're engaged
+                meleeing:set(commandArgs[3])
+                lockMainHand(meleeing.value)
+			elseif commandArgs[2] == 'THMode' then
+				THMode:set(commandArgs[3])
+                if use_UI == true then
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(4,"----- TH MODE set now: "..tostring(THMode.value))
+                end				
+			elseif commandArgs[2] == 'HYBRIDmode' then
+				HYBRIDmode:set(commandArgs[3])
+				idle()
+                if use_UI == true then
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(4,"----- HYBRID MODE set now: "..tostring(HYBRIDmode.value))
+                end				
+            elseif commandArgs[2] == 'runspeed' then
+                runspeed:set(commandArgs[3])
+                updateRunspeedGear(runspeed.value) 
+
+            elseif commandArgs[2] == 'idlemode' then
+                idleModes:set(commandArgs[3])
+                idle()
+                if use_UI == true then
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(4,"----- Idle mode Now focus on: "..tostring(idleModes.value))
+                end
+            elseif commandArgs[2] == 'meleemode' then
+                meleeModes:set(commandArgs[3])
+                idle()
+                if use_UI == true then
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(4,"----- Idle mode Now focus on: "..tostring(idleModes.value))
+                end
+            elseif commandArgs[2] == 'mainweapon' then
+                mainWeapon:set(commandArgs[3])
+                idle()
+                if use_UI == true then
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(4,"----- Main Weapon set now: "..tostring(mainWeapon.value))
+                end
+            elseif commandArgs[2] == 'subweapon' then
+                subWeapon:set(commandArgs[3])
+                idle()
+                if use_UI == true then
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(4,"----- Sub Weapons set now: "..tostring(subWeapon.value))
+                end
+            elseif commandArgs[2] == 'nukemode' then
+                nukeModes:set(commandArgs[3])               
+                if use_UI == true then                    
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(8,"----- Nuking Mode is now: "..tostring(nukeModes.current)) 
+                end   
+            elseif commandArgs[2] == 'matchsc' then
+                matchsc:set(commandArgs[3])               
+                if use_UI == true then                    
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(8,"----- Matching SC Mode is now: "..tostring(matchsc.current)) 
+                end
+            end
+        end
+
+
+
         if commandArgs[1]:lower() == 'scholar' then
             handle_strategems(commandArgs)
 

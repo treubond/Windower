@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>3.4 Main Release</Version>
+  <Version>3.6 Main</Version>
   <Priority>
     <Priority_Rank>
       <string>Job Abilities</string>
@@ -26,22 +26,27 @@
         <Auto_Distance>false</Auto_Distance>
         <Name>Treubond</Name>
         <Engage>false</Engage>
+        <Disengage>false</Disengage>
         <Run>true</Run>
         <Face_Toward>true</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
         <Max_Distance>4.75</Max_Distance>
         <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Combat_Script_1>
         <Enabled>true</Enabled>
         <Reset>false</Reset>
         <Enable_Script_Target>false</Enable_Script_Target>
+        <Script_Target_Engaged>false</Script_Target_Engaged>
         <Enable_Action_Target>true</Enable_Action_Target>
         <Script_Target />
         <Action_Target>Treubond</Action_Target>
         <Name />
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Category>Magic</Category>
         <Type>White Magic</Type>
         <Action>Cure II</Action>
@@ -65,11 +70,13 @@
         <Enabled>false</Enabled>
         <Reset>false</Reset>
         <Enable_Script_Target>false</Enable_Script_Target>
+        <Script_Target_Engaged>false</Script_Target_Engaged>
         <Enable_Action_Target>false</Enable_Action_Target>
         <Script_Target />
         <Action_Target />
         <Name />
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Category />
         <Type />
         <Action />
@@ -93,11 +100,13 @@
         <Enabled>false</Enabled>
         <Reset>false</Reset>
         <Enable_Script_Target>false</Enable_Script_Target>
+        <Script_Target_Engaged>false</Script_Target_Engaged>
         <Enable_Action_Target>false</Enable_Action_Target>
         <Script_Target />
         <Action_Target />
         <Name />
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Category />
         <Type />
         <Action />
@@ -121,11 +130,13 @@
         <Enabled>false</Enabled>
         <Reset>false</Reset>
         <Enable_Script_Target>false</Enable_Script_Target>
+        <Script_Target_Engaged>false</Script_Target_Engaged>
         <Enable_Action_Target>false</Enable_Action_Target>
         <Script_Target />
         <Action_Target />
         <Name />
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Category />
         <Type />
         <Action />
@@ -149,11 +160,13 @@
         <Enabled>false</Enabled>
         <Reset>false</Reset>
         <Enable_Script_Target>false</Enable_Script_Target>
+        <Script_Target_Engaged>false</Script_Target_Engaged>
         <Enable_Action_Target>false</Enable_Action_Target>
         <Script_Target />
         <Action_Target />
         <Name />
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Category />
         <Type />
         <Action />
@@ -177,11 +190,13 @@
         <Enabled>false</Enabled>
         <Reset>false</Reset>
         <Enable_Script_Target>false</Enable_Script_Target>
+        <Script_Target_Engaged>false</Script_Target_Engaged>
         <Enable_Action_Target>false</Enable_Action_Target>
         <Script_Target />
         <Action_Target />
         <Name />
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Category />
         <Type />
         <Action />
@@ -210,14 +225,16 @@
     </Combat_Action>
     <Weaponskills>
       <Enabled>true</Enabled>
-      <Engaged>false</Engaged>
+      <Engaged_Check>false</Engaged_Check>
       <Enable_Enemy_HP>false</Enable_Enemy_HP>
       <MP_Limit>false</MP_Limit>
       <Enable_Lock_On>false</Enable_Lock_On>
       <WeaponType>Club</WeaponType>
       <WeaponSkill>Starlight</WeaponSkill>
+      <Enable_Target>false</Enable_Target>
       <Target />
       <Script />
+      <Command_Pause>2</Command_Pause>
       <TP_Threshold>1000</TP_Threshold>
       <High_MP_Threshold>100</High_MP_Threshold>
       <Low_MP_Threshold>0</Low_MP_Threshold>
@@ -252,6 +269,7 @@
       <Leader>
         <Enabled>false</Enabled>
         <Partner>Treubond</Partner>
+        <Enable_Target>false</Enable_Target>
         <Target />
         <Enable_Lock_On>false</Enable_Lock_On>
         <Partner_TP_Threshold>1000</Partner_TP_Threshold>
@@ -261,6 +279,7 @@
         <WeaponType>Great Axe</WeaponType>
         <WeaponSkill>Full Break</WeaponSkill>
         <Script />
+        <Command_Pause>2</Command_Pause>
         <Cycle>19</Cycle>
         <Strat>0</Strat>
       </Leader>
@@ -274,6 +293,7 @@
         <WeaponType>Great Axe</WeaponType>
         <WeaponSkill>Upheaval</WeaponSkill>
         <Script />
+        <Command_Pause>2</Command_Pause>
         <Cycle>18</Cycle>
         <Pause>true</Pause>
       </Follower1>
@@ -287,6 +307,7 @@
         <WeaponType>Great Axe</WeaponType>
         <WeaponSkill>Ukko's Fury</WeaponSkill>
         <Script />
+        <Command_Pause>2</Command_Pause>
         <Cycle>17</Cycle>
         <Pause>true</Pause>
       </Follower2>
@@ -300,6 +321,7 @@
         <WeaponType>Great Axe</WeaponType>
         <WeaponSkill>Ukko's Fury</WeaponSkill>
         <Script />
+        <Command_Pause>2</Command_Pause>
         <Cycle>16</Cycle>
         <Pause>true</Pause>
       </Follower3>
@@ -313,6 +335,7 @@
         <WeaponType />
         <WeaponSkill />
         <Script />
+        <Command_Pause>2</Command_Pause>
         <Cycle>5</Cycle>
         <Pause>false</Pause>
       </Follower4>
@@ -325,8 +348,12 @@
         <Promote>false</Promote>
         <Demote>true</Demote>
         <Ebullience>false</Ebullience>
+        <Elemental_Seal>false</Elemental_Seal>
         <Delay>0</Delay>
+        <Low_HP_Threshold>0</Low_HP_Threshold>
+        <High_HP_Threshold>100</High_HP_Threshold>
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Mode>Priority Element</Mode>
         <Element>Fire</Element>
         <Type>Spell</Type>
@@ -339,8 +366,12 @@
         <Promote>false</Promote>
         <Demote>true</Demote>
         <Ebullience>false</Ebullience>
+        <Elemental_Seal>false</Elemental_Seal>
         <Delay>0</Delay>
+        <Low_HP_Threshold>0</Low_HP_Threshold>
+        <High_HP_Threshold>100</High_HP_Threshold>
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Mode>Priority Element</Mode>
         <Element>Fire</Element>
         <Type>Spell</Type>
@@ -353,8 +384,12 @@
         <Promote>false</Promote>
         <Demote>false</Demote>
         <Ebullience>false</Ebullience>
+        <Elemental_Seal>false</Elemental_Seal>
         <Delay>0</Delay>
+        <Low_HP_Threshold>0</Low_HP_Threshold>
+        <High_HP_Threshold>100</High_HP_Threshold>
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Mode />
         <Element />
         <Type />
@@ -367,8 +402,12 @@
         <Promote>false</Promote>
         <Demote>false</Demote>
         <Ebullience>false</Ebullience>
+        <Elemental_Seal>false</Elemental_Seal>
         <Delay>0</Delay>
+        <Low_HP_Threshold>0</Low_HP_Threshold>
+        <High_HP_Threshold>100</High_HP_Threshold>
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Mode />
         <Element />
         <Type />
@@ -381,8 +420,12 @@
         <Promote>false</Promote>
         <Demote>false</Demote>
         <Ebullience>false</Ebullience>
+        <Elemental_Seal>false</Elemental_Seal>
         <Delay>0</Delay>
+        <Low_HP_Threshold>0</Low_HP_Threshold>
+        <High_HP_Threshold>100</High_HP_Threshold>
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Mode />
         <Element />
         <Type />
@@ -395,8 +438,12 @@
         <Promote>false</Promote>
         <Demote>false</Demote>
         <Ebullience>false</Ebullience>
+        <Elemental_Seal>false</Elemental_Seal>
         <Delay>0</Delay>
+        <Low_HP_Threshold>0</Low_HP_Threshold>
+        <High_HP_Threshold>100</High_HP_Threshold>
         <Command />
+        <Command_Pause>2</Command_Pause>
         <Mode />
         <Element />
         <Type />
@@ -420,6 +467,7 @@
       <Enabled>false</Enabled>
       <Validate_IDs>true</Validate_IDs>
       <Smart_Target>false</Smart_Target>
+      <Target_Lockon>false</Target_Lockon>
       <Fighting_Mode>Passive</Fighting_Mode>
       <Targeting_Mode>Any</Targeting_Mode>
       <Player />
@@ -437,7 +485,7 @@
   <Healing>
     <Party>true</Party>
     <Alliance>false</Alliance>
-    <Manual_Cure>true</Manual_Cure>
+    <Manual_Cure>false</Manual_Cure>
     <Priority_Enable>false</Priority_Enable>
     <Priority_Count>0</Priority_Count>
     <Cure_List />
@@ -456,7 +504,7 @@
         <Cure_V_Enabled>false</Cure_V_Enabled>
         <Cure_VI>810</Cure_VI>
         <Cure_VI_Enabled>false</Cure_VI_Enabled>
-        <Threshold>65</Threshold>
+        <Threshold>80</Threshold>
         <Priority_Threshold>85</Priority_Threshold>
         <Priority_Promote_Rate>0</Priority_Promote_Rate>
         <Over_Cure>30</Over_Cure>
@@ -1478,6 +1526,8 @@
         <Flash>false</Flash>
         <Vivacious_HP>0</Vivacious_HP>
         <Vivacious_MP>0</Vivacious_MP>
+        <Flash_Speed>0</Flash_Speed>
+        <Foil_Speed>0</Foil_Speed>
         <Mode />
         <Runes_1 />
         <Runes_2 />
@@ -2044,6 +2094,8 @@
         <Flash>false</Flash>
         <Vivacious_HP>0</Vivacious_HP>
         <Vivacious_MP>0</Vivacious_MP>
+        <Flash_Speed>0</Flash_Speed>
+        <Foil_Speed>0</Foil_Speed>
         <Mode />
         <Runes_1 />
         <Runes_2 />
@@ -2319,10 +2371,378 @@
     <NiTro_Players>0</NiTro_Players>
   </Songs>
   <Scripts>
-    <On_Load />
+    <On_Load>gs c toggle mb;</On_Load>
     <On_Unload />
     <On_Start />
     <On_Stop />
     <Command />
   </Scripts>
+  <Triggers>
+    <Trigger_I>
+      <Enabled>false</Enabled>
+      <Completed>false</Completed>
+      <Actor_Type />
+      <Actor />
+      <Actor_All>false</Actor_All>
+      <Category />
+      <Type />
+      <Action />
+      <Buff_State />
+      <Response_Command />
+      <Command_Pause>2</Command_Pause>
+      <Response_Category />
+      <Response_Type />
+      <Response_Action />
+      <Response_Target_Type />
+      <Response_Target />
+      <Response_Target_Actor>false</Response_Target_Actor>
+      <Delay>0</Delay>
+      <Time_Out>5</Time_Out>
+      <Reset_Enable>true</Reset_Enable>
+      <Reset>10</Reset>
+      <Enable_Lock_On>false</Enable_Lock_On>
+      <Enable_Engaged>false</Enable_Engaged>
+      <Enable_HP>false</Enable_HP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
+      <Enable_MP>false</Enable_MP>
+      <Enable_TP>false</Enable_TP>
+      <HP_Limit_High>100</HP_Limit_High>
+      <HP_Limit_Low>0</HP_Limit_Low>
+      <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
+      <Actor_HP_Limit_Low>0</Actor_HP_Limit_Low>
+      <MP_Limit_High>100</MP_Limit_High>
+      <MP_Limit_Low>0</MP_Limit_Low>
+      <TP_Limit_High>3000</TP_Limit_High>
+      <TP_Limit_Low>0</TP_Limit_Low>
+      <Combat>
+        <Enabled>true</Enabled>
+        <Auto_Distance>false</Auto_Distance>
+        <Name />
+        <Engage>false</Engage>
+        <Disengage>false</Disengage>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
+        <Face_Away>false</Face_Away>
+        <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
+        <Max_Distance>30</Max_Distance>
+        <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
+      </Combat>
+      <Start_Type>Default</Start_Type>
+      <Warning_Enable_Start>false</Warning_Enable_Start>
+      <Warning_Message_Start />
+      <Warning_Type_Start />
+      <Warning_Name_Start />
+      <Warning_Enable_End>false</Warning_Enable_End>
+      <Warning_Message_End />
+      <Warning_Type_End />
+      <Warning_Name_End />
+    </Trigger_I>
+    <Trigger_II>
+      <Enabled>false</Enabled>
+      <Completed>false</Completed>
+      <Actor_Type />
+      <Actor />
+      <Actor_All>false</Actor_All>
+      <Category />
+      <Type />
+      <Action />
+      <Buff_State />
+      <Response_Command />
+      <Command_Pause>2</Command_Pause>
+      <Response_Category />
+      <Response_Type />
+      <Response_Action />
+      <Response_Target_Type />
+      <Response_Target />
+      <Response_Target_Actor>false</Response_Target_Actor>
+      <Delay>0</Delay>
+      <Time_Out>5</Time_Out>
+      <Reset_Enable>true</Reset_Enable>
+      <Reset>10</Reset>
+      <Enable_Lock_On>false</Enable_Lock_On>
+      <Enable_Engaged>false</Enable_Engaged>
+      <Enable_HP>false</Enable_HP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
+      <Enable_MP>false</Enable_MP>
+      <Enable_TP>false</Enable_TP>
+      <HP_Limit_High>100</HP_Limit_High>
+      <HP_Limit_Low>0</HP_Limit_Low>
+      <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
+      <Actor_HP_Limit_Low>0</Actor_HP_Limit_Low>
+      <MP_Limit_High>100</MP_Limit_High>
+      <MP_Limit_Low>0</MP_Limit_Low>
+      <TP_Limit_High>3000</TP_Limit_High>
+      <TP_Limit_Low>0</TP_Limit_Low>
+      <Combat>
+        <Enabled>true</Enabled>
+        <Auto_Distance>false</Auto_Distance>
+        <Name />
+        <Engage>false</Engage>
+        <Disengage>false</Disengage>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
+        <Face_Away>false</Face_Away>
+        <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
+        <Max_Distance>30</Max_Distance>
+        <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
+      </Combat>
+      <Start_Type>Default</Start_Type>
+      <Warning_Enable_Start>false</Warning_Enable_Start>
+      <Warning_Message_Start />
+      <Warning_Type_Start />
+      <Warning_Name_Start />
+      <Warning_Enable_End>false</Warning_Enable_End>
+      <Warning_Message_End />
+      <Warning_Type_End />
+      <Warning_Name_End />
+    </Trigger_II>
+    <Trigger_III>
+      <Enabled>false</Enabled>
+      <Completed>false</Completed>
+      <Actor_Type />
+      <Actor />
+      <Actor_All>false</Actor_All>
+      <Category />
+      <Type />
+      <Action />
+      <Buff_State />
+      <Response_Command />
+      <Command_Pause>2</Command_Pause>
+      <Response_Category />
+      <Response_Type />
+      <Response_Action />
+      <Response_Target_Type />
+      <Response_Target />
+      <Response_Target_Actor>false</Response_Target_Actor>
+      <Delay>0</Delay>
+      <Time_Out>5</Time_Out>
+      <Reset_Enable>true</Reset_Enable>
+      <Reset>10</Reset>
+      <Enable_Lock_On>false</Enable_Lock_On>
+      <Enable_Engaged>false</Enable_Engaged>
+      <Enable_HP>false</Enable_HP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
+      <Enable_MP>false</Enable_MP>
+      <Enable_TP>false</Enable_TP>
+      <HP_Limit_High>100</HP_Limit_High>
+      <HP_Limit_Low>0</HP_Limit_Low>
+      <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
+      <Actor_HP_Limit_Low>0</Actor_HP_Limit_Low>
+      <MP_Limit_High>100</MP_Limit_High>
+      <MP_Limit_Low>0</MP_Limit_Low>
+      <TP_Limit_High>3000</TP_Limit_High>
+      <TP_Limit_Low>0</TP_Limit_Low>
+      <Combat>
+        <Enabled>true</Enabled>
+        <Auto_Distance>false</Auto_Distance>
+        <Name />
+        <Engage>false</Engage>
+        <Disengage>false</Disengage>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
+        <Face_Away>false</Face_Away>
+        <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
+        <Max_Distance>30</Max_Distance>
+        <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
+      </Combat>
+      <Start_Type>Default</Start_Type>
+      <Warning_Enable_Start>false</Warning_Enable_Start>
+      <Warning_Message_Start />
+      <Warning_Type_Start />
+      <Warning_Name_Start />
+      <Warning_Enable_End>false</Warning_Enable_End>
+      <Warning_Message_End />
+      <Warning_Type_End />
+      <Warning_Name_End />
+    </Trigger_III>
+    <Trigger_IV>
+      <Enabled>false</Enabled>
+      <Completed>false</Completed>
+      <Actor_Type />
+      <Actor />
+      <Actor_All>false</Actor_All>
+      <Category />
+      <Type />
+      <Action />
+      <Buff_State />
+      <Response_Command />
+      <Command_Pause>2</Command_Pause>
+      <Response_Category />
+      <Response_Type />
+      <Response_Action />
+      <Response_Target_Type />
+      <Response_Target />
+      <Response_Target_Actor>false</Response_Target_Actor>
+      <Delay>0</Delay>
+      <Time_Out>5</Time_Out>
+      <Reset_Enable>true</Reset_Enable>
+      <Reset>10</Reset>
+      <Enable_Lock_On>false</Enable_Lock_On>
+      <Enable_Engaged>false</Enable_Engaged>
+      <Enable_HP>false</Enable_HP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
+      <Enable_MP>false</Enable_MP>
+      <Enable_TP>false</Enable_TP>
+      <HP_Limit_High>100</HP_Limit_High>
+      <HP_Limit_Low>0</HP_Limit_Low>
+      <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
+      <Actor_HP_Limit_Low>0</Actor_HP_Limit_Low>
+      <MP_Limit_High>100</MP_Limit_High>
+      <MP_Limit_Low>0</MP_Limit_Low>
+      <TP_Limit_High>3000</TP_Limit_High>
+      <TP_Limit_Low>0</TP_Limit_Low>
+      <Combat>
+        <Enabled>true</Enabled>
+        <Auto_Distance>false</Auto_Distance>
+        <Name />
+        <Engage>false</Engage>
+        <Disengage>false</Disengage>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
+        <Face_Away>false</Face_Away>
+        <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
+        <Max_Distance>30</Max_Distance>
+        <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
+      </Combat>
+      <Start_Type>Default</Start_Type>
+      <Warning_Enable_Start>false</Warning_Enable_Start>
+      <Warning_Message_Start />
+      <Warning_Type_Start />
+      <Warning_Name_Start />
+      <Warning_Enable_End>false</Warning_Enable_End>
+      <Warning_Message_End />
+      <Warning_Type_End />
+      <Warning_Name_End />
+    </Trigger_IV>
+    <Trigger_V>
+      <Enabled>false</Enabled>
+      <Completed>false</Completed>
+      <Actor_Type />
+      <Actor />
+      <Actor_All>false</Actor_All>
+      <Category />
+      <Type />
+      <Action />
+      <Buff_State />
+      <Response_Command />
+      <Command_Pause>2</Command_Pause>
+      <Response_Category />
+      <Response_Type />
+      <Response_Action />
+      <Response_Target_Type />
+      <Response_Target />
+      <Response_Target_Actor>false</Response_Target_Actor>
+      <Delay>0</Delay>
+      <Time_Out>5</Time_Out>
+      <Reset_Enable>true</Reset_Enable>
+      <Reset>10</Reset>
+      <Enable_Lock_On>false</Enable_Lock_On>
+      <Enable_Engaged>false</Enable_Engaged>
+      <Enable_HP>false</Enable_HP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
+      <Enable_MP>false</Enable_MP>
+      <Enable_TP>false</Enable_TP>
+      <HP_Limit_High>100</HP_Limit_High>
+      <HP_Limit_Low>0</HP_Limit_Low>
+      <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
+      <Actor_HP_Limit_Low>0</Actor_HP_Limit_Low>
+      <MP_Limit_High>100</MP_Limit_High>
+      <MP_Limit_Low>0</MP_Limit_Low>
+      <TP_Limit_High>3000</TP_Limit_High>
+      <TP_Limit_Low>0</TP_Limit_Low>
+      <Combat>
+        <Enabled>true</Enabled>
+        <Auto_Distance>false</Auto_Distance>
+        <Name />
+        <Engage>false</Engage>
+        <Disengage>false</Disengage>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
+        <Face_Away>false</Face_Away>
+        <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
+        <Max_Distance>30</Max_Distance>
+        <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
+      </Combat>
+      <Start_Type>Default</Start_Type>
+      <Warning_Enable_Start>false</Warning_Enable_Start>
+      <Warning_Message_Start />
+      <Warning_Type_Start />
+      <Warning_Name_Start />
+      <Warning_Enable_End>false</Warning_Enable_End>
+      <Warning_Message_End />
+      <Warning_Type_End />
+      <Warning_Name_End />
+    </Trigger_V>
+    <Trigger_VI>
+      <Enabled>false</Enabled>
+      <Completed>false</Completed>
+      <Actor_Type />
+      <Actor />
+      <Actor_All>false</Actor_All>
+      <Category />
+      <Type />
+      <Action />
+      <Buff_State />
+      <Response_Command />
+      <Command_Pause>2</Command_Pause>
+      <Response_Category />
+      <Response_Type />
+      <Response_Action />
+      <Response_Target_Type />
+      <Response_Target />
+      <Response_Target_Actor>false</Response_Target_Actor>
+      <Delay>0</Delay>
+      <Time_Out>5</Time_Out>
+      <Reset_Enable>true</Reset_Enable>
+      <Reset>10</Reset>
+      <Enable_Lock_On>false</Enable_Lock_On>
+      <Enable_Engaged>false</Enable_Engaged>
+      <Enable_HP>false</Enable_HP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
+      <Enable_MP>false</Enable_MP>
+      <Enable_TP>false</Enable_TP>
+      <HP_Limit_High>100</HP_Limit_High>
+      <HP_Limit_Low>0</HP_Limit_Low>
+      <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
+      <Actor_HP_Limit_Low>0</Actor_HP_Limit_Low>
+      <MP_Limit_High>100</MP_Limit_High>
+      <MP_Limit_Low>0</MP_Limit_Low>
+      <TP_Limit_High>3000</TP_Limit_High>
+      <TP_Limit_Low>0</TP_Limit_Low>
+      <Combat>
+        <Enabled>true</Enabled>
+        <Auto_Distance>false</Auto_Distance>
+        <Name />
+        <Engage>false</Engage>
+        <Disengage>false</Disengage>
+        <Run>false</Run>
+        <Face_Toward>false</Face_Toward>
+        <Face_Away>false</Face_Away>
+        <Lockon>false</Lockon>
+        <Lockoff>false</Lockoff>
+        <Max_Distance>30</Max_Distance>
+        <Min_Distance>0</Min_Distance>
+        <Allow_Interruptions>false</Allow_Interruptions>
+      </Combat>
+      <Start_Type>Default</Start_Type>
+      <Warning_Enable_Start>false</Warning_Enable_Start>
+      <Warning_Message_Start />
+      <Warning_Type_Start />
+      <Warning_Name_Start />
+      <Warning_Enable_End>false</Warning_Enable_End>
+      <Warning_Message_End />
+      <Warning_Type_End />
+      <Warning_Name_End />
+    </Trigger_VI>
+  </Triggers>
 </PlayerConfig>

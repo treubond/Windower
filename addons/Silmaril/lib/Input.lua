@@ -278,7 +278,7 @@ do
             send_command(param)
             log(param)
         else
-            local p = get_player()
+            local p = get_player_data()
             -- OFFSET ONLY FOR GEO SPELLS!
             local packet = new_packet('outgoing', 0x1A, 
             {

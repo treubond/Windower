@@ -29,6 +29,26 @@ profiles['ore'] = S{
 profiles['junk'] = S{
     'chestnut',
     'san d\'Or. carrot',
+    'bat fang',
+    'bat wing',
+    'carbite',
+    'fenrite',
+    'garudite',
+    'ifritite',
+    'leviatite',
+    'ramuite',
+    'shivite',
+    'titanite',
+    'aqua geode',
+    'breeze geode',
+    'flame geode',
+    'light geode',
+    'shadow geode',
+    'snow geode',
+    'soil geode',
+    'thunder geode',
+    'beastman blood',
+    'fiend blood',
     }
 
 return profiles

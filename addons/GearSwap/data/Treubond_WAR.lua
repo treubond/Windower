@@ -91,7 +91,7 @@ function user_setup()
     state.WeaponskillMode:options('Normal', 'MidAcc', 'FullAcc')
     state.HybridMode:options('Normal', 'Hybrid')
     state.CastingMode:options('Normal')
-    state.IdleMode:options('Normal', 'Regen', 'Weak')
+    state.IdleMode:options('Town', 'Regen', 'Weak')
     state.RestingMode:options('Normal')
     state.PhysicalDefenseMode:options('PDT', 'Reraise')
     state.MagicalDefenseMode:options('MDT')
@@ -112,6 +112,7 @@ function user_setup()
     send_command('bind f9 gs c cycle OffenseMode')
     send_command('bind ^f9 gs c cycle HybridMode')
     send_command('bind f10 gs c toggle Phalanx')
+    send_command('bind !f11 gs c cycle IdleMode')
 
     -- Ability Binds
     send_command('bind ^numpad/ input /ja "Berserk" <me>')
@@ -134,6 +135,7 @@ function user_setup()
     send_command('bind ^numpad5 input /ws "Fell Cleave" <t>')
     send_command('bind ^numpad6 input /ws "Steel Cyclone" <t>')
 	send_command('bind ^numpad1 input /ws "Savage Blade" <t>')
+    send_command('bind ^numpad3 input /ws "Judgment" <t>')
 	
 	--Macro Book and Lockstyle
     select_default_macro_book()
@@ -163,12 +165,14 @@ function file_unload()
     send_command('unbind f9')
     send_command('unbind ^f9')
     send_command('unbind f10')
+    send_command('unbind !f11')
     send_command('unbind ^numpad7')
     send_command('unbind ^numpad9')
 	send_command('unbind ^numpad4')
     send_command('unbind ^numpad5')
     send_command('unbind ^numpad6')
     send_command('unbind ^numpad1')
+    send_command('unbind ^numpad3')
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -320,9 +324,9 @@ function init_gear_sets()
         head="Boii Mask +3",
         body="Boii Lorica +2",
         hands="Boii Mufflers +3",
-        legs="Sulev. Cuisses +2",
+        legs="Sakpata's Cuisses",
         feet="Boii Calligae +2",
-        neck="Sanctity Necklace",
+        neck="Bathy Choker +1",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Odnowa Earring +1",
         right_ear="Boii Earring +1",
@@ -333,7 +337,9 @@ function init_gear_sets()
     
     sets.idle.Field = set_combine(sets.idle.Town, { })
 
-    sets.idle.Regen = set_combine(sets.idle.Field, { })
+    sets.idle.Regen = set_combine(sets.idle.Field, {
+        body="Sacro Breastplate",
+     })
  
     -- Twilight goes here
 	sets.idle.Weak = set_combine(sets.idle.Field, { })

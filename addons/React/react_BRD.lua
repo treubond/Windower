@@ -43,4 +43,16 @@ return {
             ["ready_reaction"]="sm off; runaway 13"
         }
     },
+	["Garbage Gel"]={
+        ["Fluid Spread"]={
+            ["complete_reaction"]="", 
+            ["ready_reaction"]="input /ws 'Flat Blade' <t>"
+        }
+    },
+    ["Lady Lilith"]={
+        ["Dark Thorn"]={
+            ["complete_reaction"]="input /ma 'Magic Finale' <bt>", 
+            ["ready_reaction"]=""
+        }
+    },
 }

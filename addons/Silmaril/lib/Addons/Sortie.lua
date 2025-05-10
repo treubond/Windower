@@ -1,8 +1,12 @@
 do
+    local enabled = true
+    local tracking_window = texts.new("", {
+			text={size=10,font='Consolas',red=255,green=255,blue=255,alpha=255},
+			pos={x=0,y=0},
+			bg={visible=true,red=0,green=0,blue=0,alpha=102},})
     local location = ""
     local bitzer_position = {}
     local mob_tracking = {}
-    local enabled = true
     local old_zone = 0
     local zone_1 = 133
     local zone_2 = 189
@@ -37,38 +41,38 @@ do
     end
 
     function sortie_engine()
-        if enabled then
-            world = get_world()
-            p_loc = get_player_info()
 
-            -- Zone change or just starting addon
-            if old_zone ~= world.zone then
-                sortie_initialize()
-                old_zone = world.zone
-                log("Sortie Reset")
-                if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
-                    log("Sortie Window Show")
-                    sortie_command("A")
-                    tracking_command(true) -- Sortie window
-                else
-                    log("Sortie Window Hide")
-                    tracking_command(false) -- Sortie window
-                end
-            end
+        if not enabled then return end
 
+        world = get_world()
+        p_loc = get_player_info()
+
+        -- Zone change or just starting addon
+        if old_zone ~= world.zone then
+            sortie_initialize()
+            old_zone = world.zone
+            log("Sortie Reset")
             if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
-                tracking_update() -- Sortie addon
+                log("Sortie Window Show")
+                sortie_command("A")
+                tracking_window:show()
+            else
+                log("Sortie Window Hide")
+                tracking_window:hide()
             end
+        end
 
-            -- Wait till you finish moving to check for area
-            if repositioned then
-                if os.clock() - position_time > 2 then
-                    repositioned = false
-                    if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
-                    position_update()
-                end
+        if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
+            tracking_update() -- Sortie addon
+        end
+
+        -- Wait till you finish moving to check for area
+        if repositioned then
+            if os.clock() - position_time > 2 then
+                repositioned = false
+                if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
+                position_update()
             end
-
         end
     end
 
@@ -418,5 +422,20 @@ do
     function set_sortie_enabled(value)
         enabled = value
     end
+
+    -- Sortie tracking box
+	function tracking_box_refresh(lines)
+		local maxWidth = 41
+        for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth) end
+        tracking_window:text(lines:concat('\n'))
+	end
+
+    function get_sortie_window()
+		return tracking_window
+	end
+
+	function set_sortie_window(value)
+		tracking_window = value
+	end
 
 end

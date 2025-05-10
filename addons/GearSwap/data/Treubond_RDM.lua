@@ -293,7 +293,7 @@ function init_gear_sets()
 
     -- Fast cast sets for spells
     sets.precast.FC = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head={ name="Nyame Helm", augments={'Path: B',}},
         body={ name="Merlinic Jubbah", augments={'"Fast Cast"+5','Mag. Acc.+13',}},
         hands="Nyame Gauntlets",
@@ -504,7 +504,7 @@ function init_gear_sets()
     sets.midcast.Utsusemi = sets.midcast.SpellInterrupt
 
     sets.midcast.Cure = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head={ name="Nyame Helm", augments={'Path: B',}},
         body={ name="Merlinic Jubbah", augments={'"Fast Cast"+5','Mag. Acc.+13',}},
         hands={ name="Telchine Gloves", augments={'Spell interruption rate down -10%','Enh. Mag. eff. dur. +10',}},
@@ -577,7 +577,7 @@ function init_gear_sets()
         })
 
     sets.midcast['Enhancing Magic'] = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=Telchine_ENH_head,
         body=Telchine_ENH_body,
         hands=Telchine_ENH_hands,
@@ -608,7 +608,7 @@ function init_gear_sets()
         }
 
     sets.midcast.EnhancingDuration = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=Telchine_ENH_head,
         body=Telchine_ENH_body,
         hands=Telchine_ENH_hands,
@@ -635,7 +635,7 @@ function init_gear_sets()
         }
 
     sets.midcast.EnhancingSkill = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=Telchine_ENH_head,
         body=Telchine_ENH_body,
         hands=Telchine_ENH_hands,
@@ -670,7 +670,7 @@ function init_gear_sets()
         })
 
     sets.midcast.RefreshSelf = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=Telchine_ENH_head,
         body=Telchine_ENH_body,
         hands=Telchine_ENH_hands,
@@ -702,6 +702,7 @@ function init_gear_sets()
         })
 
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
+        left_ring="Freke Ring",
         --[[ ammo="Staunch Tathlum +1",
         head="Amalric Coif +1",
         hands="Regal Cuffs",
@@ -849,6 +850,7 @@ function init_gear_sets()
     sets.midcast['Bio III'] = set_combine(sets.midcast['Dark Magic'], {--[[ legs="Viti. Tights +3" ]]})
 
     sets.midcast['Elemental Magic'] = {
+        left_ring="Freke Ring",
         --[[ main="Marin Staff +1",
         sub="Enki Strap",
         ammo="Ghastly Tathlum +1",
@@ -908,7 +910,7 @@ function init_gear_sets()
     ------------------------------------------------------------------------------------------------
 
     sets.idle = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head="Befouled Crown",
         body="Jhakri Robe +2",
         hands="Nyame Gauntlets",

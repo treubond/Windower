@@ -276,6 +276,7 @@ function get_sets()
     -- Luopan's Out --  notice sets.pan 
     -- This is the base for all perpetuation scenarios, as seen below
     sets.pan.idle.normal = {
+		main="Idris",
 		sub="Culminus",
 		range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
 		head = EMPY.Head,
@@ -321,6 +322,8 @@ function get_sets()
 	-- No Luopan out
 	-- they end in [idleMode] so it will derive from either the normal or the dt set depending in which mode you are then add the pieces filled in below.
     sets.me.melee = set_combine(sets.me.idle[idleMode],{
+		main = "Maxentius",
+		sub = "Culminus",
 		head = "Jhakri Coronal +2",
 		body = "Jhakri Robe +2",
 		hands = "Jhakri Cuffs +2",

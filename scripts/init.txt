@@ -119,3 +119,6 @@ alias on send @all sm on
 alias off send @all sm off
 alias ringwarp exec ringwarp
 alias reisenwarp exec reisenwarp
+alias seal send @all /item "abdhaljs seal" <me>
+alias kitty send @all byakko
+alias getoff send @all /dismount

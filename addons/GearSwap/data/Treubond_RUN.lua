@@ -159,7 +159,7 @@ function get_sets()
 	}
 	
 	sets.Idle.DT = {
-		ammo = "Staunch Tathlum",
+		ammo = "Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body=EMPY.Body,
 		hands=EMPY.Hands,
@@ -227,7 +227,7 @@ function get_sets()
 		left_ear="Eabani Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
+		right_ring="Moonlight Ring",
 		back=Ogma.DA,
 		--[[ ammo = "Staunch Tathlum +1",
 		head = "Nyame Helm",
@@ -499,7 +499,7 @@ function get_sets()
 	TankingTP_ind = 1
 	
 	sets.TankingTP.Tank = {
-		ammo="Staunch Tathlum",
+		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body=EMPY.Body,
 		hands="Turms Mittens +1",
@@ -511,7 +511,7 @@ function get_sets()
 		left_ear="Odnowa Earring +1",
 		right_ear="Eabani Earring",
 		left_ring="Lehko's Ring",
-		right_ring="Shadow Ring",
+		right_ring="Moonlight Ring",
 		back=Ogma.DA,
 		--[[ ammo = "Staunch Tathlum +1",
 		head = "Nyame Helm",
@@ -999,7 +999,7 @@ function get_sets()
 
 	--Curing Sets--
 	sets.Cures = {
-		ammo="Staunch Tathlum",
+		ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body="Nyame Mail",
 		hands=EMPY.Hands,
@@ -1033,8 +1033,8 @@ function get_sets()
 		ring2 = "Kunaji Ring", ]]
 	})
 	--Spell Interruption Rate--
-	sets.SIR = { -- 108
-		ammo="Staunch Tathlum", -- 10
+	sets.SIR = { -- 109
+		ammo="Staunch Tathlum +1", -- 11
 		head=EMPY.Head, -- 20
 		body="Nyame Mail", -- 0
 		hands="Rawhide Gloves", -- 15
@@ -1164,7 +1164,7 @@ function get_sets()
 	sets.Enhancing = {}
 	
 	sets.Enhancing.Base = {	
-		ammo="Staunch Tathlum",
+		ammo="Staunch Tathlum +1",
 		head=EMPY.Head,
 		body="Nyame Mail",
 		hands=EMPY.Hands,
@@ -1441,7 +1441,7 @@ function get_sets()
 	sets.precast.FC = {}
 
 	sets.precast.FC.Standard = {
-		ammo="Staunch Tathlum",
+		ammo="Staunch Tathlum +1",
 		head=AF.Head,
 		body=EMPY.Body,
 		hands={ name="Agwu's Gages", augments={'Path: A',}},

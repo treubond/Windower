@@ -1,6 +1,6 @@
 _addon.name = 'Silmaril'
 _addon.author = 'Mirdain'
-_addon.version = '3.4 Main Release'
+_addon.version = '3.6 Main'
 _addon.description = 'A multi-boxer tool'
 _addon.commands = {'silmaril','sm'}
 
@@ -44,7 +44,8 @@ require 'lib./World' --Gets information about the world
 require 'lib./Protection' -- Credit goes to witnessprotection for the idea - 'Lili'
 
 -- Addons
-require 'lib./Addons./Sortie'
+require 'lib./Addons./Sortie' -- Addon to help track objectives
+require 'lib./Addons./Insight' -- Replacement for TP part to make windower4 more efficient
 
 
 windower_hook()

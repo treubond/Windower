@@ -45,6 +45,8 @@ do
             return packet_in_0x03E(data)
         elseif id == 0x052 then -- NPC Release
             return packet_in_0x052(data)
+        elseif id == 0x053 then -- System Messages
+            return packet_in_0x053(data)
         elseif id == 0x063 then -- Player buff duration
             return packet_in_0x063(data)
         elseif id == 0x065 then -- Repositioning
@@ -137,13 +139,10 @@ do
 
         if not get_connected() then return end
 
-        local p = get_player()
-	    if not p then return end
-
         local packet = parse_action_packet(data)
 
         -- Player actions
-        if packet.actor_id == p.id then
+        if tostring(packet.actor_id) == get_player_id() then
 
             -- [2] = 'Ranged attack finish'
             if packet.category == 2 and packet.param == 26739 then
@@ -163,6 +162,7 @@ do
                     local particle = 'false'
                     if get_hover_shot_particle() then particle = "true" end
                     que_packet('weaponskill_finished_'..ws.id..'_'..ws.en..'_'..packet.targets[1].id..'_'..particle)
+                    log("PACKET: Weaponskill Finished")
                     -- Check for Hover shot
                     if ws.skill == 26 or ws.skill == 25 then 
                         hover_distance() 
@@ -174,7 +174,7 @@ do
 
             -- [4] = 'Casting finish'
             elseif packet.category == 4 then
-                que_packet('casting_finished_'..packet.param..'_'..packet.targets[1].id..'_'..packet.targets[1].actions[1].message)
+                que_packet('casting_finished_'..packet.param..'_'..packet.targets[1].id..'_'..packet.targets[1].actions[1].message..'_'..packet.recast)
                 log('PACKET: Casting has finished')
 
             -- [5] = 'Item finish'
@@ -230,6 +230,15 @@ do
                     log("PACKET: Item use started")
                 end
 
+             -- [14] = 'DNC or RUN ability'
+            elseif packet.category == 14 or packet.category == 15 then
+                local option = packet.targets[1].actions[1].message
+			    local ability = get_ability(packet.param)
+			    if ability then
+                    que_packet('jobability_blocked_'..ability.id..'_'..ability.en..'_'..packet.targets[1].id..'_'..option..'_'..packet.targets[1].actions[1].param)
+                    log('PACKET: Ability ['..ability.en..'], Target ['..packet.targets[1].id..'], Message ['..option..'], param ['..packet.targets[1].actions[1].param..']')
+			    end
+
             -- [12] = 'Ranged attack start'
             elseif packet.category == 12 then
                 if packet.param == 24931 then -- shooting
@@ -244,9 +253,9 @@ do
         end
 
         -- NPC, Enemy, or out of party buffs
-        if packet.category == 11 or packet.category == 4 or packet.category == 14 then 
-            local buff_gain = S{194,203,205,230,236,237,266,267,268,269,270,271,272,277,278,279,280,319,320,519,520,521,591,645}
-            local buff_wear = S{64,204,206,321,322,341,342,343,344,350,351,378,531,647} 
+        if packet.category == 3 or packet.category == 4 or packet.category == 5 or packet.category == 6 or packet.category == 11 or packet.category == 13 or packet.category == 14 then 
+            local buff_gain = S{82,127,141,160,164,166,186,194,203,205,230,236,237,242,243,266,267,268,269,270,271,272,277,278,279,280,319,320,374,375,412,519,520,521,591,645,754,755}
+            local buff_wear = S{64,83,123,159,168,204,206,321,322,341,342,343,344,350,351,378,453,531,647,806} 
 
             for index, target in pairs(packet.targets) do
                 if target.id and target.actions[1].message and target.actions[1].param then
@@ -259,7 +268,6 @@ do
                         if daze and daze.id then buff = daze.id..'|'..target.actions[1].param end
                     end
 
-                    -- Buff Gain 
                     if buff_gain[tonumber(target.actions[1].message)] then 
                         que_packet('packet_statusgains_'..buff..'_'..target.id)
 
@@ -267,10 +275,11 @@ do
                     elseif buff_wear[tonumber(target.actions[1].message)] then 
                         que_packet('packet_statuswears_'..buff..'_'..target.id)
                     end
-
                 end
             end
         end
+
+        -- Trigger Section
 
         -- [3] = 'Weapon Skill finish'
         if packet.category == 3 and packet.param ~= 0 then
@@ -283,15 +292,24 @@ do
 
                 -- Make a list of all the targets
                 local target_list = ''
+                local result_list = ''
                 for index, target in pairs(packet.targets) do
-                    if target.id then target_list = target_list..target.id..'|' end
+                    if target.id then 
+                        target_list = target_list..target.id..'|' 
+                        result_list = result_list..target.actions[1].message..'|' 
+                    end
                 end
                 target_list = target_list:sub(1, #target_list - 1)
+                result_list = result_list:sub(1, #result_list - 1)
 
                 if mob_array[packet.actor_id] and mob_array[packet.actor_id].spawn_type ~= 1 then
-                    que_packet('packet_npc_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                    que_packet('packet_npcend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
                 else
-                    que_packet('packet_weaponskill_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                    if packet.targets[1].actions[1].message == 110 then
+                        que_packet('packet_abilityend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
+                    else
+                        que_packet('packet_weaponskillend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
+                    end
                 end
             end
 
@@ -302,7 +320,7 @@ do
                 run_burst(packet)
             end
 
-        -- [4] = 'Casting finish'
+        -- [4] = 'Casting finish
         elseif packet.category == 4 then
             
             -- Process the action
@@ -310,6 +328,7 @@ do
 
                 -- Make a list of all the targets
                 local target_list = ''
+                local result_list = ''
                 local alliance_party = get_alliance_ids()
                 local now = os.clock()
 
@@ -317,18 +336,21 @@ do
                 local spell = get_spell(packet.param)
 
                 for index, target in pairs(packet.targets) do
-                    if target.id then target_list = target_list..target.id..'|' end
+                    if target.id then 
+                        target_list = target_list..target.id..'|' 
+                        result_list = result_list..target.actions[1].message..'|' 
+                    end
 
                     -- Used to store the buff
                     if alliance_party and alliance_party[target.id] and spell and spell.status then
                        local buff = { id = target.id, buff = spell.status, time = now }
                        table.insert(packet_buffs, buff)
                     end
-
                 end
 
                 target_list = target_list:sub(1, #target_list - 1)
-                que_packet('packet_spell_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                result_list = result_list:sub(1, #result_list - 1)
+                que_packet('packet_spellend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
 
             end
 
@@ -344,8 +366,8 @@ do
                 end
             end
 
-        -- [6] = 'Job Ability'
-        elseif packet.category == 6 then
+        -- [6] = 'Job Ability Finish'
+        elseif packet.category == 6 or packet.category == 14 or packet.category == 15 then
             
             if not packet.param or not packet.targets or not packet.actor_id then return end
 
@@ -358,13 +380,14 @@ do
                 if ability then
                     monster_ability = true    
                 else
-                    info('Unable to parse ['..packet.param..'] ability.')
+                    log('Cat 6: Unable to parse ['..packet.param..'] ability.')
                     return
                 end
             end
 
             -- Make a list of all the targets
             local target_list = ''
+            local result_list = ''
             local alliance_party = get_alliance_ids()
             local now = os.clock()
 
@@ -378,21 +401,63 @@ do
             end
 
             for index, target in pairs(packet.targets) do
-                if target.id then target_list = target_list..target.id..'|' end
+                if target.id then 
+                    target_list = target_list..target.id..'|' 
+                    result_list = result_list..target.actions[1].message..'|' 
+                end
 
                 -- Used to store the buff for two seconds before removing it
                 if status and alliance_party and alliance_party[target.id] then
                     local buff = { id = target.id, buff = status, time = now }
                     table.insert(packet_buffs, buff)
                 end
-
             end
             target_list = target_list:sub(1, #target_list - 1)
+            result_list = result_list:sub(1, #result_list - 1)
 
             if monster_ability then
-                que_packet('packet_npc_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                que_packet('packet_npcend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
             else
-                que_packet('packet_ability_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                que_packet('packet_abilityend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
+            end
+
+        -- [7] = 'Weaponskill Start'
+        elseif packet.category == 7 then
+        
+            if not packet.param and packet.param ~= 24931 or not packet.targets or not packet.actor_id then return end
+
+            local action_param = packet.targets[1].actions[1].param
+
+            if action_param ~= 0 then
+                -- Check if its an enemy or trust
+                local monster_tp = false
+                local ws = get_weaponskill(action_param)
+
+                if not ws then
+                    ws = get_monster_ability(action_param)
+                    if ws then
+                        monster_tp = true    
+                    else
+                        log('Cat 7: Unable to parse ['..action_param..'] weaponskill.')
+                        return
+                    end
+                end
+
+                if monster_tp then
+                    que_packet('packet_npcstart_'..ws.id..'_'..packet.actor_id..'_'..packet.targets[1].id)
+                else
+                    que_packet('packet_weaponskillstart_'..ws.id..'_'..packet.actor_id..'_'..packet.targets[1].id)
+                end
+            end
+
+        -- [8] = 'Casting Start'
+        elseif packet.category == 8 then
+        
+            if not packet.param and packet.param ~= 24931 then return end
+
+            -- Process the action
+            if packet.actor_id and packet.targets[1].actions[1].param then
+                que_packet('packet_spellstart_'..packet.targets[1].actions[1].param..'_'..packet.actor_id..'_'..packet.targets[1].id)
             end
 
         -- [11] = 'NPC TP finish',
@@ -403,12 +468,17 @@ do
 
                 -- Make a list of all the targets
                 local target_list = ''
+                local result_list = ''
                 for index, target in pairs(packet.targets) do
-                    if target.id then target_list = target_list..target.id..'|' end
+                    if target.id then 
+                        target_list = target_list..target.id..'|' 
+                        result_list = result_list..target.actions[1].message..'|' 
+                    end
                 end
                 target_list = target_list:sub(1, #target_list - 1)
+                result_list = result_list:sub(1, #result_list - 1)
 
-                que_packet('packet_npc_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                que_packet('packet_npcend_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
             end
 
             -- NPC TP Finish (Trusts)
@@ -426,12 +496,16 @@ do
 
                 -- Make a list of all the targets
                 local target_list = ''
+                local result_list = ''
                 for index, target in pairs(packet.targets) do
-                    if target.id then target_list = target_list..target.id..'|' end
+                    if target.id then 
+                        target_list = target_list..target.id..'|' 
+                        result_list = result_list..target.actions[1].message..'|' 
+                    end
                 end
                 target_list = target_list:sub(1, #target_list - 1)
 
-                que_packet('packet_avatar_'..packet.param..'_'..packet.actor_id..'_'..target_list)
+                que_packet('packet_avatar_'..packet.param..'_'..packet.actor_id..'_'..target_list..'_'..result_list)
             end
 
             -- Avatar TP Finish
@@ -440,7 +514,6 @@ do
                 run_ws_skillchain(packet, "Avatar")
                 run_burst(packet)
             end
-
         end
     end
 
@@ -479,7 +552,7 @@ do
 
             log("interact called 0x032")
             packet['Target'] = packet['NPC']
-            local p = get_player()
+            local p = get_player_data()
             for index, value in ipairs(p.buffs) do
                 if value == 254 then log('Battle Field Exit') clear_npc_data() return end
             end
@@ -524,7 +597,7 @@ do
 
             log("interact called 0x033")
             packet['Target'] = packet['NPC']
-            local p = get_player()
+            local p = get_player_data()
             for index, value in ipairs(p.buffs) do
                 if value == 254 then log('Battle Field Exit') clear_npc_data() return end
             end
@@ -569,7 +642,7 @@ do
 
             log("interact called 0x034")
             packet['Target'] = packet['NPC']
-            local p = get_player()
+            local p = get_player_data()
             for index, value in ipairs(p.buffs) do
                 if value == 254 then log('Battle Field Exit') clear_npc_data() return end
             end
@@ -599,9 +672,6 @@ do
         local packet = parse_packet('incoming', data)
         if not packet then return end
 
-        local p = get_player()
-        if not p then return end
-
         -- Used to calculate relative time
         set_server_offset(packet['Timestamp'],packet['Time offset?']/60)
 
@@ -628,6 +698,9 @@ do
             end
         end
 
+        local p = get_player_data()
+        if not p then return end
+
         -- This to handle where the client and server are out of sync
         if packet['Status'] == 0 and p.status == 1 then
             -- Send a disengage packet since not attacking acording to server
@@ -641,10 +714,7 @@ do
         local packet = parse_packet('incoming', data)
         if not packet then return end
 
-        local p = get_player()
-        if not p then return end
-
-        if tonumber(packet.Mob) == p.id then
+        if tostring(packet.Mob) == get_player_id() then
             if packet.Type == "hov1" then
                 set_hover_shot_particle(true)
             else
@@ -691,6 +761,17 @@ do
         end
     end
 
+    -- System Messages
+    function packet_in_0x053(data)
+        local packet = parse_packet('incoming', data)
+        if not packet then return end
+        if packet['Message ID'] == 300 then
+            que_packet('system_enmity')
+        elseif packet['Message ID'] == 299 then
+            que_packet('system_duplicate')
+        end
+    end
+
     -- Dialog information response
     function packet_in_0x05C(data)
         if not get_injecting() then return end
@@ -731,8 +812,7 @@ do
         local packet = parse_packet('incoming', data)
         if not packet then return end
 
-        local p = get_player()
-        if packet['Owner ID'] == p.id then
+        if tostring(packet['Owner ID']) == get_player_id() then
             local player_pet = get_player_pet()
             -- No pet info so get info
             if not player_pet then
@@ -845,7 +925,7 @@ do
         -- NPC Interaction
         if packet['Category'] == 0x00 then
             if not get_mirror_on() then return end
-            local p = get_player()
+            local p = get_player_data()
             for index, value in ipairs(p.buffs) do
                 if value == 254 then log('Battle Field Exit') return end
             end
@@ -975,9 +1055,6 @@ do
         -- Turn off Silmaril
         if get_enabled() then que_packet("stop") end
 
-        local p = get_player()
-        if not p then return end
-
         local p_loc = get_player_info()
         if not p_loc then return end
 
@@ -988,7 +1065,7 @@ do
         if not packet then return end
 
         send_ipc('silmaril zone '..
-            p.id..' '..
+            p_loc.id..' '..
             w.zone..' '..
             p_loc.x..' '..
             p_loc.y..' '..
@@ -1063,4 +1140,5 @@ do
             end
         end
     end
+
 end

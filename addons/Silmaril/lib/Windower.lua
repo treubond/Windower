@@ -15,6 +15,7 @@ do
 
 	    --Commands recieved and sent to addon
         windower.register_event('addon command', function(input, ...)
+            log('Input Log ['..input..']')
             local args = L{...}
             commands(input, args)
         end)
@@ -65,11 +66,11 @@ do
         end)
 
         windower.register_event('logout', function()
-            send_packet(get_player_id()..";reset")
+            send_packet(get_player_id()..";clear")
         end)
 
         windower.register_event('unload', function()
-            send_packet(get_player_id()..";reset")
+            send_packet(get_player_id()..";clear")
         end)
     end
 
@@ -137,7 +138,7 @@ do
 	    return windower.ffxi.get_abilities()
     end
 
-    function get_player_data()
+    function get_player()
 	    return windower.ffxi.get_player()
     end
 
@@ -180,6 +181,14 @@ do
         else
             return windower.ffxi.get_items()
         end
+    end
+
+    function get_screen_size_x()
+        return windower.get_windower_settings().ui_x_res
+    end
+
+    function get_screen_size_y()
+        return windower.get_windower_settings().ui_y_res
     end
 
     -- FFXI Game commands

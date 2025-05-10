@@ -410,8 +410,8 @@ function init_gear_sets()
 
     sets.resting = {}
 
-    sets.idle = { --50/52
-        ammo="Staunch Tathlum", --2/2
+    sets.idle = { --51/53
+        ammo="Staunch Tathlum +1", --3/3
         head="Nyame Helm", --7/7
         body="Nyame Mail", --9/9
         hands="Nyame Gauntlets", --7/7
@@ -502,7 +502,7 @@ function init_gear_sets()
         left_ear="Eabani Earring",
         right_ear="Suppanomimi",
         left_ring="Lehko's Ring",
-        right_ring="Chirich Ring +1",
+        right_ring="Gere Ring",
         back="Izdubar Mantle",
         --[[ ammo="Aurgelmir Orb +1",
         ammo="Yamarang",

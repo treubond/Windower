@@ -25,6 +25,7 @@ do
     -- Called from Engine.lua
     function request()
         skillchain_reset()
+        update_player_info()
         local request = get_player_id()..";request;".._addon.version..';'..get_player_name()
         log(request)
         send_packet(request) -- Send directly
@@ -100,6 +101,9 @@ do
                 -- Turn the addon off
                 elseif cmd == "off" then
                     off_cmd()
+
+                elseif cmd == "addon" then
+                    addon_commands(message) -- via Addons.lua
 
                 -- Display the mirroring results
                 elseif cmd == "results" then
@@ -229,12 +233,14 @@ do
         for item in string.gmatch(param, "([^,]+)") do
             table.insert(commands, item)
         end
+
         -- Toggles Mode of mirroring via Mirroring.lua
         npc_mirror_state(commands[1])
+
         -- Sets the Dress Up addon reloading via Protection.lua
         set_dressup_enable(commands[2])
+
         -- Sets the state of random player names via Protection.lua
-        log("Anon is set to ["..commands[3].."]")
         set_anon(commands[3])
     end
 

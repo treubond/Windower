@@ -29,4 +29,10 @@ return {
             ["ready_reaction"]=""
         }
     },
+    ["Lady Lilith"]={
+        ["Dark Thorn"]={
+            ["complete_reaction"]="input /ma Dispel <bt>", 
+            ["ready_reaction"]=""
+        }
+    },
 }

@@ -59,8 +59,11 @@ do
 
                 -- load the initial settings
                 if auto_load and now - auto_load_time > 5 then 
-                    log("Auto Load Settings")
+                    -- Auto default load settings
                     load_command("")
+                    -- Update all the configuration
+                    que_packet("update")
+
                     auto_load = false;
                 end
 
@@ -75,7 +78,7 @@ do
 
                     -- Player was generating a mirror and recieved a release packet.  Now just wait till status ~= 4
                     if get_mirror_on() and get_mirroring() then
-                        local p = get_player()
+                        local p = get_player_data()
                         local w = get_world()
 
                         -- Normal interactions
@@ -137,7 +140,7 @@ do
                                 if not get_mirror_message() or #get_mirror_message() == 0 then
                                     log("Timed out and all message are sent - Consider complete and reseting.")
                                     -- Check is the player is in a menu
-                                    local p = get_player()
+                                    local p = get_player_data()
                                     if p.status == 4 then
                                         log("Player is in menu - Reset before finishing")
                                         npc_reset()

@@ -7,7 +7,7 @@ include('Global-Binds.lua')
 
 --Set to ingame lockstyle and Macro Book/Set
 LockStylePallet = "16"
-MacroBook = "7"
+MacroBook = "18"
 MacroSet = "1"
 
 -- Use "gs c food" to use the specified food item 
@@ -48,7 +48,7 @@ function get_sets()
 	AF.Body = ""
 	AF.Hands = ""
 	AF.Legs = ""
-	AF.Feet = ""
+	AF.Feet = "Anch. Gaiters +3"
 	
 	RELIC.Head = ""
 	RELIC.Body = ""
@@ -61,6 +61,13 @@ function get_sets()
 	EMPY.Hands = "Bhikku Gloves +2"
 	EMPY.Legs = "Bhikku Hose +3"
 	EMPY.Feet = "Bhikku Gaiters +2"
+
+    -- Ability Binds
+	if player.sub_job == 'WAR' then
+		send_command('bind ^numpad/ input /ja "Berserk" <me>')
+		send_command('bind ^numpad* input /ja "Warcry" <me>')
+		send_command('bind ^numpad- input /ja "Aggressor" <me>')
+	end
 
 	-- WS Binds
 	send_command('bind ^numpad7 input /ws "Victory Smite" <t>')
@@ -96,18 +103,20 @@ function get_sets()
 	}
 
 	-- Standard Idle set with -DT, Refresh, Regen and movement gear
-	sets.Idle = {
-		ammo="Staunch Tathlum",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs=EMPY.Legs,
-		feet="Malignance Boots",
-		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Moonbow Belt",
-		left_ear="Handler's Earring +1",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Defending Ring",
+	sets.Idle = { --70
+		ammo="Staunch Tathlum +1", --2
+		head="Malignance Chapeau", --6
+		body="Malignance Tabard", --9
+		hands="Nyame Gauntlets", --7
+		legs=EMPY.Legs, --14
+		feet="Nyame Sollerets", --7
+		neck="Bathy Choker +1",
+		--neck={ name="Loricate Torque +1", augments={'Path: A',}}, --6
+		waist="Moonbow Belt +1", --6
+		left_ear="Tuisto Earring", 
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}}, --3
+		left_ring="Chirich Ring +1",
+		--left_ring="Defending Ring", --10
 		right_ring="Shneddick Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	    --[[ ammo="Staunch Tathlum +1",
@@ -142,16 +151,16 @@ function get_sets()
 	--Base TP set to build off
 	sets.OffenseMode.TP = {
 		ammo="Coiste Bodhar",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
+		head="Adhemar Bonnet +1",
+		body="Ken. Samue +1",
+		hands="Adhemar Wrist. +1",
 		legs=EMPY.Legs,
-		feet="Malignance Boots",
-		neck="Asperity Necklace",
-		waist="Moonbow Belt",
+		feet=AF.Feet,
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Schere Earring",
-		left_ring="Lehko's Ring",
+		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Coiste Bodhar",
@@ -196,7 +205,13 @@ function get_sets()
 	--This set is used when OffenseMode is SB and Enaged (Augments the TP base set)
 	-- MNK gets 35 Native Subtle Blow
 	-- Cap is 75% - 40% in either I or II
-	sets.OffenseMode.SB = set_combine(sets.OffenseMode.DT, {
+	sets.OffenseMode.SB = set_combine(sets.OffenseMode.DT, { -- SB 15, SB II 25 = 40
+		body="Ken. Samue +1", -- SB 12
+		waist="Moonbow Belt +1", -- SB II 15
+		left_ear="Sherida Earring", -- SB II 5
+		right_ear="Schere Earring", -- SB 3
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring", -- SB II 5
 		--[[ head="Malignance Chapeau",
 		hands="Malignance Gloves",
 		feet="Malignance Boots",
@@ -229,6 +244,7 @@ function get_sets()
 	} -- FC 64
 
 	sets.Enmity = {
+		neck="Moonlight Necklace", --15
 	    --[[ ammo="Sapience Orb", -- 2
 		neck="Moonlight Necklace", -- 15
 		body="Emet Harness +1", -- 10
@@ -263,8 +279,8 @@ function get_sets()
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		--neck={ name="Unmoving Collar +1", augments={'Path: A',}},
-		--waist="Moonbow Belt +1",
-		--left_ear="Tuisto Earring",
+		waist="Moonbow Belt +1",
+		left_ear="Tuisto Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring="Regal Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
@@ -285,13 +301,13 @@ function get_sets()
 	--Default WS set base
 	sets.WS = { -- VS Base with Impetus Down
 		ammo="Knobkierrie",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands="Malignance Gloves",
+		head="Adhemar Bonnet +1",
+		body="Adhemar Jacket +1",
+		hands="Mpaca's Gloves",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
-		waist="Moonbow Belt",
+		waist="Moonbow Belt +1",
 		left_ear="Sherida Earring",
 		right_ear="Schere Earring",
 		left_ring="Regal Ring",
@@ -332,6 +348,11 @@ function get_sets()
 	sets.WS.PDL = set_combine(sets.WS,{})
 
 	sets.WS.Kicks = set_combine(sets.WS,{
+		feet=AF.Feet,
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		waist="Moonbow Belt +1",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Crepuscular Pebble",
 		head="Mpaca's Cap",
@@ -354,11 +375,13 @@ function get_sets()
 	sets.WS["One Inch Punch"] = set_combine(sets.WS,{})
 	sets.WS["Backhand Blow"] = set_combine(sets.WS,{})
 	sets.WS["Raging Fists"] = set_combine(sets.WS,{
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		--[[ neck="Mnk. Nodowa +2",
 		feet="Ken. Sune-Ate +1", ]]
 	})
 	sets.WS["Spinning Attack"] = set_combine(sets.WS,{})
 	sets.WS["Howling Fist"] = set_combine(sets.WS,{
+		neck={ name="Mnk. Nodowa +2", augments={'Path: A',}},
 		--[[ neck="Mnk. Nodowa +2",
 		feet="Ken. Sune-Ate +1", ]]
 	})
@@ -542,6 +565,9 @@ end
 
 -- This function is called when the job file is unloaded
 function user_file_unload()
+	send_command('unbind ^numpad/')
+    send_command('unbind ^numpad*')
+	send_command('unbind ^numpad-')
 	send_command('unbind ^numpad7')
     send_command('unbind ^numpad9')
 	send_command('unbind ^numpad4')

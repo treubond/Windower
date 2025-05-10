@@ -174,7 +174,7 @@ function get_sets()
 
     -- Your idle set
     sets.me.idle.refresh = {
-      ammo="Staunch Tathlum",
+      ammo="Staunch Tathlum +1",
       head="Befouled Crown",
       body="Jhakri Robe +2",
       hands=EMPY.Hands,
@@ -209,7 +209,7 @@ function get_sets()
 
     -- Your idle DT set
     sets.me.idle.dt = set_combine(sets.me.idle[refreshType], { --50/50
-      ammo="Staunch Tathlum", --2
+      ammo="Staunch Tathlum", --3
       head=EMPY.Head, --10
       hands=EMPY.Hands, --12
       feet=EMPY.Feet, --10
@@ -670,7 +670,7 @@ function get_sets()
     waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
-    left_ring="Jhakri Ring",
+    left_ring="Freke Ring",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
      --[[ head={ name="Merlinic Hood", augments={'"Fast Cast"+7','"Mag.Atk.Bns."+14',}}, -- 15 fc, 6 haste
@@ -699,7 +699,7 @@ function get_sets()
     waist="Sacro Cord",
     left_ear="Malignance Earring",
     right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+11','Enmity-1',}},
-    left_ring="Jhakri Ring",
+    left_ring="Freke Ring",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
     --[[ ammo="Ghastly Tathlum +1",
@@ -762,6 +762,7 @@ function get_sets()
     head=EMPY.Head,
     hands=EMPY.Hands,
     neck="Sanctity Necklace",
+    left_ring="Freke Ring",
      --[[ body="Wicce Coat +3",
      legs="Wicce Chausses +3",
      right_ring="Freke Ring", ]]

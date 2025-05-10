@@ -272,7 +272,7 @@ function get_sets()
     sets.me.idle.refresh = {
         main="Daybreak", --1
         sub="Genbu's Shield",
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head="Befouled Crown", --1
         body="Jhakri Robe +2", --4
         hands="Nyame Gauntlets",
@@ -292,10 +292,10 @@ function get_sets()
 
     })   
     -- Your idle DT set
-    sets.me.idle.dt = set_combine(sets.me.idle[refreshType],{ --DT 52 + 7%dmg to MP
+    sets.me.idle.dt = set_combine(sets.me.idle[refreshType],{ --DT 53 + 7%dmg to MP
         --main="Malignance Pole", --20
         --sub="Benthos Grip",
-        ammo="Staunch Tathlum", --2
+        ammo="Staunch Tathlum +1", --3
         head=EMPY.Head, --9
         body="Jhakri Robe +2",
         hands="Nyame Gauntlets", --7
@@ -486,7 +486,7 @@ function get_sets()
     sets.precast.cure = set_combine(sets.precast.casting,{
         main="Vadose Rod", --16
         sub="Sors Shield",
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head="Jhakri Coronal +2",
         body="Jhakri Robe +2",
         hands="Jhakri Cuffs +2",
@@ -591,7 +591,7 @@ function get_sets()
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        right_ring="Jhakri Ring",
+        right_ring="Freke Ring",
         back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
 	    --[[
         legs="Amalric Slops",
@@ -606,7 +606,7 @@ function get_sets()
     }
     -- used with toggle, default: F10
     -- Pieces to swap from freen nuke to Magic Burst
-    sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MAB 327, MACC 334, MB 33/3
+    sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, { -- MAB 327, MACC 334, MB 31/8
         main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}}, --10
         sub="Elan Strap",
         ammo="Ghastly Tathlum +1",
@@ -620,7 +620,7 @@ function get_sets()
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        right_ring="Jhakri Ring", --2
+        right_ring="Mujin Band", --0/5
         back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
 	    --[[ main={ name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}},
         sub="Elan Strap",
@@ -643,7 +643,7 @@ function get_sets()
         --main="Bunzi's Rod",
         --sub="Ammurapi Shield",
         main="Marin Staff +1",
-        sub="Enki Strap",
+        sub="Khonsu",
         ammo="Ghastly Tathlum +1",
         head=EMPY.Head,
         body=EMPY.Body,
@@ -655,17 +655,18 @@ function get_sets()
         left_ear="Malignance Earring",
         right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+10',}},
         left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        right_ring="Jhakri Ring",
+        right_ring="Freke Ring",
         back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
     }
     
     -- used with toggle, default: F10
     -- Pieces to swap from freen nuke to Magic Burst
     sets.midcast.MB.acc = set_combine(sets.midcast.MB.normal, {  -- MAB 314, MACC , MB 29/4
-        sub="Kaja Grip",
+        sub="Khonsu",
         hands=EMPY.Hands,
         feet=EMPY.Feete,
         waist="Acuity Belt +1",
+        right_ring="Freke Ring",
     })	
 	
     -- Enfeebling

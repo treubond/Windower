@@ -29,7 +29,7 @@ state.OffenseMode:set('DT')
 jobsetup (LockStylePallet,MacroBook,MacroSet)
 
 --Modes for TP
-state.WeaponMode:options('Unlocked', 'Savage Blade', 'Domain')--'Seraph Blade', 'Sanguine Blade', 'Chant du Cygne','Savage Blade', 'Eviceration', 'Aeolian Edge', 'Black Halo', 'Ullr', 'Unlocked')
+state.WeaponMode:options('Unlocked', 'Savage Blade', 'Domain', 'Black Halo', 'Crocea Mors')--'Seraph Blade', 'Sanguine Blade', 'Chant du Cygne', 'Eviceration', 'Aeolian Edge', 'Ullr')
 state.WeaponMode:set('Unlocked')
 
 -- Set to true to run organizer on job changes
@@ -81,6 +81,11 @@ function get_sets()
 	sets.Weapons['Chant du Cygne'] ={
 		main={ name="Crocea Mors", augments={'Path: C',}},
 		sub={ name="Demers. Degen +1", augments={'Path: A',}},
+	}
+
+	sets.Weapons['Crocea Mors'] ={
+		main="Crocea Mors",
+		sub="Demers. Degen +1",
 	}
 
 --[[ 	if (player.sub_job == 'DNC' or player.sub_job == 'NIN') then
@@ -157,10 +162,11 @@ function get_sets()
 		hands=EMPY.Hands,
 		legs=EMPY.Legs,
 		feet=EMPY.Feet,
-		neck="Null Loop",
+		neck="Dls. Torque +2",
+		--neck="Null Loop",
 		waist="Acuity Belt +1",
 		left_ear="Eabani Earring",
-		right_ear="Malignance Earring",
+		right_ear="Etiolation Earring",
 		left_ring="Shneddick Ring",
 		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
@@ -391,7 +397,7 @@ function get_sets()
 		hands=AF.Hands, -- 20
 		legs=EMPY.Legs,
 		feet=EMPY.Feet, -- 35
-		neck="Mizu. Kubikazari",
+		neck="Dls. Torque +2",
 		waist="Embla Sash", -- 10
 		left_ear="Malignance Earring",
 		right_ear="Leth. Earring +1", -- 8
@@ -442,7 +448,7 @@ function get_sets()
 
 	-- Enfeebling
 	sets.Midcast.Enfeebling = {
-		main="Daybreak",
+		main="Crocea Mors",
 		sub="Ammurapi Shield",
 		ammo="Kaja Bow",
 		head=EMPY.Head,
@@ -535,7 +541,7 @@ function get_sets()
 	}) -- Max Enhancing 613
 
 	sets.Midcast["Diaga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter)
-	sets.Midcast["Dispelga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter, {neck="Dls. Torque +2"})
+	sets.Midcast["Dispelga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter, {main="Daybreak", neck="Dls. Torque +2"})
 
 	sets.Midcast.Refresh = set_combine(sets.Midcast.Enhancing, {
 		body=AF.Body,
@@ -603,7 +609,7 @@ function get_sets()
 	sets.WS = {
 		--ammo="Fortune Egg",
 		head="Jhakri Coronal +1",
-		body="Jhakri Robe +1",
+		body="Jhakri Robe +2",
 		hands=AF.Hands,
 		legs="Jhakri Slops +1",
 		feet=EMPY.Feet,

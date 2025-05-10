@@ -44,7 +44,7 @@ function get_sets()
 	EMPY = {}
 	Telchine = {}
 
-	INYANGA.Head = "Inyanga Tiara"
+	INYANGA.Head = "Inyanga Tiara +1"
 	INYANGA.Body = "Inyanga Jubbah +2"
 	INYANGA.Hands = "Inyanga Dastanas"
 	--INYANGA.Legs = ""
@@ -209,7 +209,7 @@ function get_sets()
 		right_ear="Malignance Earring", -- 4
 		left_ring="Kishar Ring", -- 4
 		right_ring="Prolix Ring", -- 2
-		back="Fi Follet +1", -- 10
+		back="Fi Follet Cape +1", -- 10
 		--[[ ammo="Hasty Pinion +1",
 		head="Ebers Cap +3", -- 13
 		body="Inyanga Jubbah +2", -- 14
@@ -467,6 +467,7 @@ function get_sets()
 
 	-- Regen Set
 	sets.Midcast.Regen = set_combine(sets.Midcast.Enhancing, {
+		head=INYANGA.Head,
 		main="Bolelabunga",
 		--[[ main="Bolelabunga",
 		sub="Ammurapi Shield",

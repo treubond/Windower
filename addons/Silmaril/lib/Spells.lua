@@ -59,7 +59,7 @@ do
         player_trusts = {}
 
         -- Load in the player data
-        local p = get_player()
+        local p = get_player_data()
         if not p then return end
 
         -- Try to get the spell data from the game

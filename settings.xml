@@ -45,8 +45,8 @@
   <profile name="QuadBox">
     <consolekey>Insert</consolekey>
     <windowmode>Window</windowmode>
-    <width>800</width>
-    <height>600</height>
+    <width>1080</width>
+    <height>607</height>
     <uiscale>1</uiscale>
     <hardwaremouse>false</hardwaremouse>
     <alwaysplaysound>false</alwaysplaysound>

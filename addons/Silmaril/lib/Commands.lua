@@ -20,8 +20,6 @@ function commands(cmd, args)
             info_command() -- via Display.lua
         elseif cmd == 'display' then
             display_command() -- via Display.lua
-        elseif cmd == 'save' then
-            save_command() -- via Display.lua
         elseif cmd == 'reset' then
             reset_command(args)
         elseif cmd == 'sortie' then
@@ -123,7 +121,7 @@ end
 
 function load_command(args)
 
-    local p = get_player()
+    local p = get_player_data()
     if not p then return end
 
     local smModePath = ""

@@ -14,7 +14,7 @@ do
 	function movement()
 
 		-- Get the player
-		local p = get_player()
+		local p = get_player_data()
 		if not p then runstop() return end
 
 		-- Update the player location
@@ -26,6 +26,8 @@ do
 		now = os.clock()
 
 		if now - move_time > 2 then runstop() return end
+
+		if get_injecting() then runstop() return end
 
 		-- Silmaril not connected
 		if not get_connected() then runstop() return end
@@ -185,7 +187,7 @@ do
 
 	function lockon(target, lock)
 		-- Get the player
-		local p = get_player()
+		local p = get_player_data()
 		if not p then return end
 		if not get_enabled() then return end
 		if p.target_locked and lock == "0" then 

@@ -135,9 +135,7 @@ do
         if not original_name then return data end
 
         if id == 0x0E2 then
-        	local p = get_player()
-	        if not p then return end
-            if p.id ~= packet['ID'] then return true end
+            if tostring(packet['ID']) ~= get_player_id() then return true end
         end
 
         -- PC Update

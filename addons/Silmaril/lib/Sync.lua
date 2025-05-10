@@ -16,6 +16,9 @@ do
 
         -- Player is now loaded and can progress
 
+        -- Do a first time read on the player
+        update_player_info()
+
         -- Set default values in Player.lua
         first_time_buffs()
 
@@ -31,7 +34,8 @@ do
 
     function validate_load()
 
-        local player = get_player_data()
+        -- Direct call to game memory for initial load
+        local player = get_player()
         if not player then return false end
 
         local player_info = get_mob_by_id(player.id)

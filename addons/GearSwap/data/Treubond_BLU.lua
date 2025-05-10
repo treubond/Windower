@@ -357,7 +357,7 @@ function init_gear_sets()
     sets.precast.JA['Enchainment'] = {}
 
     sets.precast.FC = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
         body="Jhakri Robe +2",
         hands=Telchine_ENH_hands,
@@ -742,8 +742,8 @@ function init_gear_sets()
     ---------------------------------------- Hybrid Sets -------------------------------------------
     ------------------------------------------------------------------------------------------------
 
-    sets.engaged.Hybrid = { --52/40 PDT/MDT
-        ammo="Staunch Tathlum", --2
+    sets.engaged.Hybrid = { --53/41 PDT/MDT
+        ammo="Staunch Tathlum +1", --3
         head={ name="Herculean Helm", augments={'Accuracy+3 Attack+3','"Dual Wield"+5','Magic Damage +8','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}, 
         body="Hashishin Mintan +2", --12
         hands="Malignance Gloves", --5

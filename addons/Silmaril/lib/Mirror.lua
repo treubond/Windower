@@ -50,15 +50,12 @@ do
         log('is_npc ['..tostring(npc.is_npc)..']')
         log('entity_type ['..tostring(npc.entity_type)..']')
 
-        local p = get_player()
-        if not p then return end
-
         local w = get_world()
         if not w then return end
 
         if w.mog_house and npc.name == 'Moogle' then return end
 
-        if npc.id == p.id and not temp_menu_id then 
+        if tostring(npc.id) == get_player_id() and not temp_menu_id then 
             log('Cancel due to self') 
             return 
         end
@@ -211,7 +208,7 @@ do
         local w = get_world()
         if not w then return end
 
-        local p = get_player()
+        local p = get_player_data()
         if not p then return end
 
         mirror_target = target

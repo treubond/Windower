@@ -4,7 +4,7 @@ function send_silmaril()
     local packet_data = get_player_id()..';heartbeat'
 
     --Player status from Player.lua
-    packet_data = packet_data..';'..update_player()
+    packet_data = packet_data..';'..send_player_update()
 
     --Party data via Party.Lua
     for index, value in pairs(get_party_data()) do

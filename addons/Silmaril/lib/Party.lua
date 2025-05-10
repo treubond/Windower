@@ -3,27 +3,35 @@ do
     local party_ids = {}
     local alliance_ids = {}
     local party_location = {}
+    local party_info = {}
+    local party_table = {}
 
     function get_party_data()
         local party_data = {}
 
+        -- Update the table of the party
+        party_info = get_party() 
+        if not party_info then return party_data end
+
         -- Get the player info
-        local p = get_player()
+        local p = get_player_data()
         if not p then return party_data end
 
         --Clear old Tables
         party_ids = {}
         alliance_ids = {}
         trust_ids = {}
+        party_table = {}
 
-        local party = get_party() -- Update the table of the party
-        if not party then return party_data end
-        for position, member in pairs(party) do
+        for position, member in pairs(party_info) do
             if type(member) == "table" and member.name and member.name ~= '' then
-                local position_location = party_position[position] - 1
-                local formattedString = "party_"..position_location..'_'..member.name..','
+                local position_location = party_position[position]
+                local formattedString = "party_"..string.format("%i",position_location - 1)..'_'..member.name..','
                 ..string.format("%i",member.hp)..','..string.format("%i",member.hpp)..','..string.format("%i",member.mp)..','
                 ..string.format("%i",member.mpp)..','..string.format("%i",member.tp)..','..string.format("%i",member.zone)
+
+                party_table[position_location] = true
+
                 if member.mob then
                     local mob = {0,0,0,0,0,0,0,0,0,'false','false','|0|0|0|0|0|0|0|0|0|0|0'}
                     local local_player = party_location[member.mob.id]
@@ -123,7 +131,7 @@ do
                         mob[12] = pet_string 
                     end
 
-                    if party['party1_leader'] == member.mob['id'] then
+                    if party_info['party1_leader'] == member.mob['id'] then
                         mob[11] = 'true'
                     else
                         mob[11] = 'false'
@@ -140,27 +148,13 @@ do
             end
         end
 
-        if not party or not party.party1_leader then party.party1_count = 2 end
-        if not party or not party.party2_leader then party.party2_count = 0 end
-        if not party or not party.party3_leader then party.party3_count = 0 end
-
-        -- Fill in remainder of first part
-        for i = party.party1_count + 1, 6 do
-            local formattedString = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
-            party_data[i] = formattedString
+        -- Fill out the remaining party table
+        for i = 1, 18 do
+            if not party_table[i] then 
+                party_data[i] = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
+            end
         end
 
-        -- Fill in remainder of second party
-        for i = party.party2_count + 7, 12 do
-            local formattedString = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
-            party_data[i] = formattedString
-        end
-
-        --Fill in remainder of third part
-        for i = party.party3_count + 13, 18 do
-            local formattedString = "party_"..string.format("%i",i-1)..'_Player '..string.format("%i",i)..',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false,false,|0|0|0|0|0|0|0|0|0|0|0'
-            party_data[i] = formattedString
-        end
         return party_data
     end
 
@@ -174,6 +168,10 @@ do
 
     function get_trust_ids()
         return trust_ids
+    end
+
+    function get_party_info()
+        return party_info
     end
 
     function get_party_location()

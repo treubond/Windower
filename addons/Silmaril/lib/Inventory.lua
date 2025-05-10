@@ -54,6 +54,30 @@ do
         ["Toolbag (Uchi)"]= "Uchitake"
     }
 
+    local cards = {
+        ["Trump Card"] = "Trump Card Case",
+        ["Fire Card"] = "Fire Card Case",
+        ["Ice Card"] = "Ice Card Case",
+        ["Wind Card"] = "Wind Card Case",
+        ["Earth Card"] = "Earth Card Case",
+        ["Thunder Card"] = "Thunder Card Case",
+        ["Water Card"] = "Water Card Case",
+        ["Light Card"] = "Light Card Case",
+        ["Dark Card"] = "Dark Card Case",
+    }
+
+    local cases = {
+        ["Trump Card Case"] = "Trump Card",
+        ["Fire Card Case"] = "Fire Card",
+        ["Ice Card Case"] = "Ice Card",
+        ["Wind Card Case"] = "Wind Card",
+        ["Earth Card Case"] = "Earth Card",
+        ["Thunder Card Case"] = "Thunder Card",
+        ["Water Card Case"] = "Water Card",
+        ["Light Card Case"] = "Light Card",
+        ["Dark CardCase"] = "Dark Card",
+    }
+
     local medicine = {
         ["Remedy"] = "",
         ["Echo Drops"] = "",
@@ -112,6 +136,12 @@ do
                     elseif ninja_tool_bag[item_name] then
                            formattedString = formattedString..item_name..'\\'..string.format("%i",v.id)..'\\'..string.format("%i",v.count)..'\\'
                         ..string.format("%i",v.slot)..'\\Tool Bag\\'..string.format("%i",item.stack)..'\\0\\'..ninja_tool_bag[item_name]..'|'
+                    elseif cases[item_name] then
+                           formattedString = formattedString..item_name..'\\'..string.format("%i",v.id)..'\\'..string.format("%i",v.count)..'\\'
+                        ..string.format("%i",v.slot)..'\\Case\\'..string.format("%i",item.stack)..'\\0\\'..cases[item_name]..'|'
+                    elseif cards[item_name] then
+                           formattedString = formattedString..item_name..'\\'..string.format("%i",v.id)..'\\'..string.format("%i",v.count)..'\\'
+                        ..string.format("%i",v.slot)..'\\Cards\\'..string.format("%i",item.stack)..'\\0\\'..cards[item_name]..'|'
 
                     -- Consumables
                     elseif item["category"] == "Usable" then

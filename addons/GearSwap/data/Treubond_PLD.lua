@@ -156,9 +156,9 @@ function init_gear_sets()
 	
 	EMPY.Head = "Chev. Armet +2"
 	EMPY.Body = "Chev. Cuirass +2"
-	EMPY.Hands = "Chev. Gauntlets +1"
+	EMPY.Hands = "Chev. Gauntlets +2"
 	EMPY.Legs = "Chev. Cuisses +2"
-	EMPY.Feet = "Chev. Sabatons +1"
+	EMPY.Feet = "Chev. Sabatons +2"
 
 
 
@@ -169,7 +169,7 @@ function init_gear_sets()
     -- Fast cast sets for spells
      
     sets.precast.FC = {
-        ammo="Staunch Tathlum",
+        ammo="Incantor Stone",
         head=EMPY.Head,
         body=EMPY.Body,
         hands=EMPY.Hands,
@@ -191,7 +191,7 @@ function init_gear_sets()
     --Enmity
  
     sets.precast.Enmity = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head={ name="Souv. Schaller +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
         body=EMPY.Body, --14 (+2)
         hands={ name="Souv. Handsch. +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
@@ -199,8 +199,8 @@ function init_gear_sets()
         feet=EMPY.Feet, --11 (+1)
         neck="Moonlight Necklace", --15
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Cryptic Earring", --4
-        right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+        left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+        right_ear="Cryptic Earring", --4
         left_ring="Petrov Ring", --4
         right_ring="Odium Ring", --4
         back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}}, --5
@@ -355,8 +355,8 @@ function init_gear_sets()
          
     sets.midcast.Enmity = set_combine(sets.precast.Enmity, {})
      
-    sets.midcast.SIRD = { -- 108
-        ammo="Staunch Tathlum", --10
+    sets.midcast.SIRD = { -- 109
+        ammo="Staunch Tathlum +1", --11
         head="Souv. Schaller +1", --20
         body=EMPY.Body, --15
         legs="Founder's Hose", --30
@@ -415,7 +415,7 @@ function init_gear_sets()
  
     -- Idle sets
     sets.idle = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=EMPY.Head,
         body=EMPY.Body,
         hands=EMPY.Hands,
@@ -450,25 +450,26 @@ function init_gear_sets()
      
     sets.idle.Weak.Reraise = set_combine(sets.idle.Weak, sets.Reraise)
 
-    sets.idle.HP = {
-        ammo="Staunch Tathlum",
-        head="Souv. Schaller +1",
-        body="Sacro Breastplate",
-        hands="Souv. Handsch. +1",
-        legs="Chev. Cuisses +2",
-        feet="Souveran Schuhs +1",
-        neck="Sacro Gorget",
-        waist="Plat. Mog. Belt",
-        left_ear="Eabani Earring",
-        right_ear="Odnowa Earring +1",
-        left_ring="Regal Ring",
-        right_ring="Meridian Ring",
-        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
-    }
+    sets.idle.HP = set_combine(sets.idle, { --1350 + 10%
+        ammo="Staunch Tathlum +1",
+        head="Souv. Schaller +1", --280
+        body="Sacro Breastplate", --182 + regen13
+        hands="Souv. Handsch. +1", --239
+        legs="Chev. Cuisses +2", --117
+        feet="Souveran Schuhs +1", --122 (227 if augmented)
+        --neck="Sacro Gorget", --50
+        waist="Plat. Mog. Belt", --10%
+        left_ear="Odnowa Earring +1", --MPtoHP 110
+        right_ear="Tuisto Earring", --MPtoHP 150
+        left_ring="Moonlight Ring", --110
+        right_ring="Shneddick Ring",
+        --right_ring="Meridian Ring", --90
+        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}}, --40
+    })
      
-    sets.Kiting = {--[[ legs="Carmine Cuisses +1" ]]}
+    sets.Kiting = {legs="Carmine Cuisses +1"}
  
-    sets.latent_refresh = {--[[ waist="Fucho-no-obi" ]]}
+    sets.latent_refresh = {waist="Fucho-no-obi"}
 
  
 
@@ -491,7 +492,7 @@ function init_gear_sets()
     -- Basic defense sets.
          
     sets.defense.PDT = {
-        ammo="Staunch Tathlum", --2
+        ammo="Staunch Tathlum +1", --3
         head=EMPY.Head,
         body="Sulevia's Plate. +2",
         hands="Sulev. Gauntlets +2",
@@ -502,14 +503,14 @@ function init_gear_sets()
         left_ear="Cessance Earring",
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
         left_ring="Defending Ring", --10
-        right_ring="Sulevia's Ring",
+        right_ring="Gelatinous Ring +1",
         back="Solemnity Cape",
         --[[ ammo="Staunch Tathlum",
         head="Sulevia's Mask +2",neck="Twilight Torque",ear1="Impregnable Earring",ear2="Creed Earring",
         body="Reverence Surcoat +2",hands="Sulevia's Gauntlets +2",ring1="Vocane Ring +1",ring2="Defending Ring",
         back=gear.RudianosTP,waist="Tempus Fugit",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +1" ]]}
     sets.defense.HP = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head="Souv. Schaller +1",
         body="Sacro Breastplate",
         hands="Souv. Handsch. +1",
@@ -517,10 +518,10 @@ function init_gear_sets()
         feet="Souveran Schuhs +1",
         neck="Sacro Gorget",
         waist="Plat. Mog. Belt",
-        left_ear="Eabani Earring",
-        right_ear="Odnowa Earring +1",
+        left_ear="Odnowa Earring +1",
+        right_ear="Eabani Earring",
         left_ring="Regal Ring",
-        right_ring="Meridian Ring",
+        right_ring="Gelatinous Ring +1",
         back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
         --[[ ammo="Plumose Sachet",
         head="Caballarius Coronet +1",neck="Twilight Torque",ear1="Oneiros Earring",ear2="Creed Earring",
@@ -544,7 +545,7 @@ function init_gear_sets()
     -- To cap MDT with Shell IV (52/256), need 76/256 in gear.
     -- Shellra V can provide 75/256, which would need another 53/256 in gear.
     sets.defense.MDT = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=EMPY.Head,
         body="Sulevia's Plate. +2",
         hands="Sulev. Gauntlets +2",
@@ -578,9 +579,9 @@ function init_gear_sets()
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear="Cessance Earring",
         right_ear="Telos Earring",
-        left_ring="Chirich Ring +1",
+        left_ring="Moonlight Ring",
         right_ring="Lehko's Ring",
-        back="Solemnity Cape",
+        back="Null Shawl",
     }
  
     sets.engaged.Acc = {
@@ -591,7 +592,7 @@ function init_gear_sets()
     sets.engaged.DW.Acc = set_combine(sets.engaged.Acc, {--[[ ear1="Dudgeon Earring",ear2="Heartseeker Earring" ]]})
  
     sets.engaged.PDT = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head=EMPY.Head,
         body="Sulevia's Plate. +2",
         hands="Sulev. Gauntlets +2",
@@ -602,7 +603,7 @@ function init_gear_sets()
         left_ear="Cessance Earring",
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}},
         left_ring="Defending Ring",
-        right_ring="Sulevia's Ring",
+        right_ring="Gelatinous Ring +1",
         back="Solemnity Cape",
         --[[ ammo="Paeapua",
         head="Sulevia's Mask +2",neck="Twilight Torque",ear1="Steelflash Earring",ear2="Bladeborn Earring",
@@ -610,18 +611,18 @@ function init_gear_sets()
         back=gear.RudianosTP,waist="Tempus Fugit",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +1" ]]}
 
     sets.engaged.HP = {
-        ammo="Staunch Tathlum",
+        ammo="Staunch Tathlum +1",
         head="Souv. Schaller +1",
         body="Sacro Breastplate",
         hands="Souv. Handsch. +1",
         legs="Chev. Cuisses +2",
         feet="Souveran Schuhs +1",
-        neck="Sacro Gorget",
+        neck="Loricate Torque +1",
         waist="Plat. Mog. Belt",
-        left_ear="Eabani Earring",
-        right_ear="Odnowa Earring +1",
-        left_ring="Regal Ring",
-        right_ring="Meridian Ring",
+        left_ear="Odnowa Earring +1",
+        right_ear="Tuisto Earring",
+        left_ring="Moonlight Ring",
+        right_ring="Gelatinous Ring +1",
         back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
     }
      

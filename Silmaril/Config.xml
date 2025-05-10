@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GlobalConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Key>38-DF-4D-0B-EA-CD-75-D7-9F-12-F2-51-51-D2-F0-5D-67-7D-32-06-8F-35-10-DA-D7-6A-5C-98-AE-A1-1C-A9-B4-7B-69-22-17-45-BB-45-F5-D3-22-A8-75-13-B4-82-ED-E7-06-33-D0-82-B1-B6-73-88-86-D3-D6-69-AA-AC-89-9C-7F-1F-2C-A8-77-B5-F6-3E-E0-B8-79-E1-50-25-07-7B-0F-C5-86-FF-3D-09-00-55-0F-3C-7D-FF-C7-35-E8-3F-73-6A-3F-76-D8-CB-C2-80-C0-A2-D5-86-64-50-4B-A8-D4-B9-2C-9B-53-D2-C0-F8-37-E4-FB-53-57-AD-82-25-C2-7A-C4-40-64-97-6A-26-AB-5C-38-9A-90-0C-F1-B5-FF-B9-DC-F2-32-A5-1E-0F-79-28-37-B2-70-D4</Key>
   <Port>2025</Port>
   <Positions>
     <Position>
@@ -28,7 +29,7 @@
       <X>-338.6</X>
       <Y>-176.42</Y>
       <Z>-10.001</Z>
-      <Name>20 Stacks Powders</Name>
+      <Name>20StacksPowders</Name>
       <NPC_Name>Igsli</NPC_Name>
       <Index>182</Index>
       <ID>17739958</ID>
@@ -4032,7 +4033,9 @@
   <Disengage_Delay>2</Disengage_Delay>
   <Switch_Delay>1</Switch_Delay>
   <Message_Delay>20</Message_Delay>
+  <Mirror_Delay>500</Mirror_Delay>
   <Protection>
+    <Enabled>false</Enabled>
     <Dress_Up>false</Dress_Up>
     <Random>false</Random>
     <Original_Party>
@@ -4078,12 +4081,6 @@
         <Zone>0</Zone>
         <Index>0</Index>
         <Comment>Ambuscade Entry</Comment>
-      </Mirror_Blacklist>
-      <Mirror_Blacklist>
-        <Name>Veridical Conflux</Name>
-        <Zone>0</Zone>
-        <Index>0</Index>
-        <Comment>HTB Entry (Selbina)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Entry Gate</Name>
@@ -4635,7 +4632,25 @@
         <Name>Veridical Conflux</Name>
         <Zone>298</Zone>
         <Index>100</Index>
-        <Comment>Walk of Echos</Comment>
+        <Comment>Walk of Echos [P1]</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Veridical Conflux</Name>
+        <Zone>279</Zone>
+        <Index>100</Index>
+        <Comment>Walk of Echos [P2]</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Veridical Conflux</Name>
+        <Zone>248</Zone>
+        <Index>126</Index>
+        <Comment>HTB Entry (Selbina)</Comment>
+      </Mirror_Blacklist>
+      <Mirror_Blacklist>
+        <Name>Veridical Conflux</Name>
+        <Zone>247</Zone>
+        <Index>148</Index>
+        <Comment>HTB Entry (Rabao)</Comment>
       </Mirror_Blacklist>
       <Mirror_Blacklist>
         <Name>Darkened Crevice</Name>
@@ -4657,5 +4672,77 @@
       </Mirror_Blacklist>
     </Mirror_Blacklists>
   </Blacklists>
-  <Key>14-8C-46-4B-13-0A-D3-98-26-02-5C-E7-87-22-E8-05-AC-62-0C-03-27-78-23-40-42-DE-DF-34-50-FA-3D-92-69-E1-1F-FE-46-4B-CD-7A-F6-82-EF-7C-79-A8-BA-F4-C3-40-AB-B1-F5-70-95-2B-23-0B-66-18-20-56-C1-6D-91-36-DA-0D-6A-C7-55-89-2B-8E-3E-7C-C7-7C-E0-48-EE-47-D4-33-12-F2-97-60-73-DD-1E-7D-A0-24-F0-AA-F3-17-A0-C3-8D-91-6C-56-76-82-92-A9-8C-F2-52-96-06-9D-F2-64-5B-3F-CC-31-A4-EF-91-4E-61-EC-56-83-10-BE-88-ED-1B-7E-6F-6B-44-C2-84-E7-32-45-90-7F-9D-E4-A6-35-45-A3-AC-EE-22-24-56-78-30-54-73-22</Key>
+  <Camp_Site_Options>
+    <Camp_Script />
+  </Camp_Site_Options>
+  <Addons>
+    <string>Silmaril</string>
+    <string>Sortie</string>
+    <string>Insight</string>
+  </Addons>
+  <Silmaril>
+    <Silmaril>
+      <Name>Treubond</Name>
+      <Enabled>true</Enabled>
+      <Info>true</Info>
+      <Display_X>1600</Display_X>
+      <Display_Y>680</Display_Y>
+      <Mirror_X>0</Mirror_X>
+      <Mirror_Y>0</Mirror_Y>
+    </Silmaril>
+    <Silmaril>
+      <Name>Khrone</Name>
+      <Enabled>true</Enabled>
+      <Info>true</Info>
+      <Display_X>750</Display_X>
+      <Display_Y>360</Display_Y>
+      <Mirror_X>0</Mirror_X>
+      <Mirror_Y>0</Mirror_Y>
+    </Silmaril>
+    <Silmaril>
+      <Name>Hybridkiller</Name>
+      <Enabled>true</Enabled>
+      <Info>true</Info>
+      <Display_X>750</Display_X>
+      <Display_Y>370</Display_Y>
+      <Mirror_X>0</Mirror_X>
+      <Mirror_Y>0</Mirror_Y>
+    </Silmaril>
+    <Silmaril>
+      <Name>Screamineagle</Name>
+      <Enabled>true</Enabled>
+      <Info>true</Info>
+      <Display_X>940</Display_X>
+      <Display_Y>480</Display_Y>
+      <Mirror_X>0</Mirror_X>
+      <Mirror_Y>0</Mirror_Y>
+    </Silmaril>
+  </Silmaril>
+  <Sortie />
+  <Insight />
+  <Trusts>
+    <Enabled>false</Enabled>
+    <Pause>false</Pause>
+    <Player />
+    <Trust_1_Enable>false</Trust_1_Enable>
+    <Trust_1 />
+    <Trust_1_HP>0</Trust_1_HP>
+    <Trust_1_MP>0</Trust_1_MP>
+    <Trust_2_Enable>false</Trust_2_Enable>
+    <Trust_2 />
+    <Trust_2_HP>0</Trust_2_HP>
+    <Trust_2_MP>0</Trust_2_MP>
+    <Trust_3_Enable>false</Trust_3_Enable>
+    <Trust_3 />
+    <Trust_3_HP>0</Trust_3_HP>
+    <Trust_3_MP>0</Trust_3_MP>
+    <Trust_4_Enable>false</Trust_4_Enable>
+    <Trust_4 />
+    <Trust_4_HP>0</Trust_4_HP>
+    <Trust_4_MP>0</Trust_4_MP>
+    <Trust_5_Enable>false</Trust_5_Enable>
+    <Trust_5 />
+    <Trust_5_HP>0</Trust_5_HP>
+    <Trust_5_MP>0</Trust_5_MP>
+  </Trusts>
 </GlobalConfig>

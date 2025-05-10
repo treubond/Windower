@@ -62,7 +62,7 @@ function get_sets()
 
 	-- Standard Idle set
 	sets.Idle = {
-	    ammo="Staunch Tathlum",
+	    ammo="Staunch Tathlum +1",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},

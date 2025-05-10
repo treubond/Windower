@@ -415,7 +415,7 @@ function init_gear_sets()
     sets.precast.WS = {
         head={ name="Nyame Helm", augments={'Path: B',}},
         body={ name="Nyame Mail", augments={'Path: B',}},
-        hands="Malignance Gloves",
+        hands="Nyame Gauntlets",
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
         feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck="Rep. Plat. Medal",
@@ -817,7 +817,7 @@ function init_gear_sets()
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
 
     sets.engaged = {
-        head="Malignance Chapeau",
+        head="Adhemar Bonnet +1",
         body="Malignance Tabard",
         hands="Malignance Gloves",
         legs="Samnuha Tights",
