@@ -171,8 +171,7 @@ do
             end
 
         elseif type == "Reflect" then
-
-             -- Clear old action
+            -- Clear old action
             clear_npc_data()
 
             -- Turn off mirroring actions to avoid loops
@@ -230,7 +229,7 @@ do
             local ability = get_ability(tonumber(param))
             if not ability then return log("Ability not found") end
             local ability_name = ability.en
-            if is_japanese then ability_name = shift_jis(ability.ja) end
+            if is_japanese then ability_name = to_shift_jis(ability.ja) end
             local command = ability.prefix..' "'..ability_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -238,7 +237,7 @@ do
             local weaponskill = get_weaponskill(tonumber(param))
             if not weaponskill then return log("Weaponskill not found") end
             local weaponskill_name = weaponskill.en
-            if is_japanese then weaponskill_name = shift_jis(weaponskill.ja) end
+            if is_japanese then weaponskill_name = to_shift_jis(weaponskill.ja) end
             local command = weaponskill.prefix..' "'..weaponskill_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -246,7 +245,7 @@ do
             local ability = get_ability(tonumber(param))
             if not ability then return log("Ability not found") end
             local ability_name = ability.en
-            if is_japanese then ability_name = shift_jis(ability.ja) end
+            if is_japanese then ability_name = to_shift_jis(ability.ja) end
             local command = ability.prefix..' "'..ability_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -254,7 +253,7 @@ do
             local spell = get_spell(tonumber(param))
             if not spell then return log("Spell not found") end
             local spell_name = spell.en
-            if is_japanese then spell_name = shift_jis(spell.ja) end
+            if is_japanese then spell_name = to_shift_jis(spell.ja) end
             local command = spell.prefix..' "'..spell_name..'" '..target.id
             send_chat(command)
             log(command)
@@ -262,7 +261,7 @@ do
             local item = get_item(tonumber(param))
             if not item then return log("Item not found") end
             local item_name = item.en
-            if is_japanese then item_name = shift_jis(item.ja) end
+            if is_japanese then item_name = to_shift_jis(item.ja) end
             local command = '/item "'..item_name..'" '..target.id
             send_chat(command)
             log(command)

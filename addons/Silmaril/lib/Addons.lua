@@ -5,6 +5,8 @@ do
         sortie_engine()
         -- TP Party Addon
         insight_engine()
+        -- Augmenation Addon
+        augmentation_engine()
     end
 
     function addon_commands(message)
@@ -41,21 +43,21 @@ do
             result_display:pos_y(tonumber(message[9]))
             set_result_window(result_display)
 
-
         elseif message[3] == "sortie" then
-            local tracking_window = get_sortie_window()
-
              -- Display window
             if message[4] == 'True' then
-                set_sortie_enabled(true)
+                set_sortie_display(true)
             else
-                set_sortie_enabled(false)
+                set_sortie_display(false)
             end
+            local window = get_sortie_window()
+            window:pos_x(tonumber(message[5]))
+            window:pos_y(tonumber(message[6]))
+            set_sortie_window(window)
 
-            tracking_window:pos_x(tonumber(message[5]))
-            tracking_window:pos_y(tonumber(message[6]))
-
-            set_sortie_window(tracking_window)
+        elseif message[3] == "warp" then
+            sortie_command(message[4])
+            sortie_position()
 
         elseif message[3] == "insight" then
 
@@ -66,6 +68,35 @@ do
                 set_insight_enabled(false)
             end
 
+        elseif message[3] == "augmentation" then
+            local settings = get_augmentation_settings()
+
+            settings.trade_item = message[5]
+            settings.trade_material = message[6]
+            settings.augment_1 = message[7]:lower()
+            settings.augment_2 = message[8]:lower()
+            settings.augment_3 = message[9]:lower()
+            settings.watch_value_1 = tonumber(message[10])
+            settings.watch_value_2 = tonumber(message[11])
+            settings.watch_value_3 = tonumber(message[12])
+            settings.mode = message[13]
+            settings.delay = tonumber(message[14])
+
+            if message[15] == 'True' then
+                log('Augmenation Mode is [OR]')
+                settings.augment_mode = 'or'
+            else
+                log('Augmenation Mode is [AND]')
+                settings.augment_mode = 'and'
+            end
+
+            set_augmentation_settings(settings)
+
+            if message[4] == 'True' then
+                start_augmentation()
+            else
+                stop_augmentation()
+            end
         end
 
     end

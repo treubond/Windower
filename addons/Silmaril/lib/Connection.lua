@@ -33,7 +33,7 @@ do
 
     -- Builts a packet to send to silmaril
     function que_packet (msg)
-        if msg then
+        if msg and get_connected() then
             action_packets[action_count] = msg
             action_count = action_count +1
             log(msg)
@@ -42,7 +42,7 @@ do
 
     -- Builts a packet to send to silmaril without a log
     function que_packet_silent (msg)
-        if msg then
+        if msg and get_connected() then
             action_packets[action_count] = msg
             action_count = action_count +1
         end
@@ -83,7 +83,7 @@ do
 
                 -- Notify if the versions do not match and unload the addon
                 elseif cmd == "version" then
-                    info('Version miss match!')
+                    info('Version miss match - unloading the in game Lua!')
                     send_command('lua u silmaril')
 
                 -- Reset command from silmaril (Rest Button)
@@ -93,6 +93,7 @@ do
                 -- If any character logs - reset the party table.
                 elseif cmd == "clear" then
                     clear_party_location()
+                    log('Clearing Party Tables')
 
                 -- Turn the addon on
                 elseif cmd == "on" then
@@ -115,7 +116,7 @@ do
 
                 -- Raw commands that do not require processing
                 elseif cmd == "script" then
-                    send_command(shift_jis(message[3]))
+                    send_command(to_shift_jis(message[3]))
 
                 -- Sent the skillchains to watch for
                 elseif cmd == "skillchain" then

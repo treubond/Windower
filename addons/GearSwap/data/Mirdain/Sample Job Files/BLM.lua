@@ -4,7 +4,7 @@
 include('Mirdain-Include')
 
 --Set to ingame lockstyle and Macro Book/Set
-LockStylePallet = "12"
+LockStylePallet = "14"
 MacroBook = "20"
 MacroSet = "1"
 
@@ -27,11 +27,6 @@ state.OffenseMode:set('DT')
 state.WeaponMode:options('Nuke','Unlocked')
 state.WeaponMode:set('Nuke')
 
--- Set to true to run organizer on job changes
-Organizer = false
-
-elemental_ws = S{'Aeolian Edge'}
-
 --Command to Lock Style and Set the correct macros
 jobsetup (LockStylePallet,MacroBook,MacroSet)
 
@@ -40,12 +35,12 @@ function get_sets()
 	sets.Weapons = {}
 
 	sets.Weapons['Nuke'] ={
-		main={ name="Marin Staff +1", augments={'Path: A',}},
+		main={ name="Mpaca's Staff", augments={'Path: A',}},
 		sub="Enki Strap",
 	}
 
 	sets.Weapons['Unlocked'] ={
-		main={ name="Marin Staff +1", augments={'Path: A',}},
+		main={ name="Mpaca's Staff", augments={'Path: A',}},
 		sub="Enki Strap",
 	}
 
@@ -75,7 +70,7 @@ function get_sets()
 	sets.Cursna_Received = {
 	    neck="Nicander's Necklace",
 	    left_ring={ name="Saida Ring", bag="wardrobe1", priority=2},
-		right_ring={ name="Saida Ring", bag="wardrobe3", priority=1},
+		right_ring={ name="Saida Ring", bag="wardrobe2", priority=1},
 		waist="Gishdubar Sash",
 	}
 
@@ -99,7 +94,7 @@ function get_sets()
 		hands={ name="Merlinic Dastanas", augments={'"Fast Cast"+7','"Mag.Atk.Bns."+5',}}, -- 7
 		legs="Agwu's Slops", -- 7
 		feet={ name="Merlinic Crackows", augments={'"Fast Cast"+7','CHR+10','Mag. Acc.+8',}}, -- 12
-		neck={ name="Unmoving Collar +1", augments={'Path: A',}}, 
+		neck={ name="Unmoving Collar +1", augments={'Path: A',}, priority=1}, 
 		waist="Embla Sash", -- 5
 		left_ear="Malignance Earring", -- 4
 		right_ear="Etiolation Earring", -- 1
@@ -186,11 +181,11 @@ function get_sets()
 
 	sets.Midcast.Nuke = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head="Wicce Petasos +3",
+		head="Ea Hat +1",
 		body="Wicce Coat +3",
-		hands="Wicce Gloves +3",
+		hands={ name="Agwu's Gages", augments={'Path: A',}},
 		legs="Wicce Chausses +3",
-		feet="Wicce Sabots +3",
+		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
 		neck={ name="Src. Stole +2", augments={'Path: A',}},
 		waist={ name="Acuity Belt +1", augments={'Path: A',}},
 		left_ear="Malignance Earring",
@@ -200,8 +195,32 @@ function get_sets()
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}},
 	}
 
+	sets.Midcast.Nuke.Earth = {
+	    neck="Quanpur Necklace",
+	}
+
 	sets.Midcast.Burst = set_combine(sets.Midcast.Nuke, {
-		left_ring="Mujin Band",
+
+	})
+
+	sets.Midcast.Dark = set_combine(sets.Midcast.Enfeebling, {
+
+	})
+
+	sets.Midcast.Dark.MACC = set_combine(sets.Midcast.Enfeebling.MACC, {
+
+	})
+
+	sets.Midcast.Dark.Absorb = set_combine(sets.Midcast.Enfeebling, {
+
+	})
+
+	sets.Midcast['Impact'] = set_combine(sets.Midcast.Nuke, {
+		hands="Wicce Gloves +3",
+		legs="Wicce Chausses +3",
+		feet="Wicce Sabots +3",
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
+		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 	})
 
 	-- Misc Sets
@@ -274,60 +293,64 @@ function pretarget_custom(spell,action)
 end
 -- Augment basic equipment sets
 function precast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 -- Augment basic equipment sets
 function midcast_custom(spell)
-	equipSet = {}
-	if spell.skill == 'Elemental Magic' and not Elemental_Magic_Enfeeble:contains(spell.name) then
-		if player.MPP < 50 then
-			windower.add_to_chat(8,'Recover MP!')
+	local equipSet = {}
+	if spell.skill == 'Elemental Magic' and not Elemental_Enfeeble:contains(spell.name) then
+		if player.MPP < 30 then
+			windower.add_to_chat(8,'Player Less than 30% MP - Recover MP!')
 			equipSet = sets.MP_Recover
+		end
+		if spell.element == "Earth" then
+			equipSet = set_combine(equipSet, sets.Midcast.Nuke.Earth)
+			windower.add_to_chat(8,'Earth Element Detected!')
 		end
 	end
 	return equipSet
 end
 -- Augment basic equipment sets
 function aftercast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 --Function is called when the player gains or loses a buff
 function buff_change_custom(name,gain)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 --This function is called when a update request the correct equipment set
 function choose_set_custom()
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 --Function is called when the player changes states
 function status_change_custom(new,old)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 
 function pet_change_custom(pet,gain)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 
 function pet_aftercast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 
 function pet_midcast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
@@ -342,14 +365,16 @@ function user_file_unload()
 
 end
 
+--Function used to automate Job Ability use - Checked first
 function check_buff_JA()
-	buff = 'None'
+	local buff = 'None'
 	--local ja_recasts = windower.ffxi.get_ability_recasts()
 	return buff
 end
 
+--Function used to automate Spell use
 function check_buff_SP()
-	buff = 'None'
+	local buff = 'None'
 	--local sp_recasts = windower.ffxi.get_spell_recasts()
 	return buff
 end

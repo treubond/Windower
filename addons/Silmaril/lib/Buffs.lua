@@ -2,13 +2,14 @@ do
     local party_buffs = {}
     local all_buffs = get_res_all_buffs()
 
+    -- This is only for other members in the party (Not the player)
     function run_buffs(data)
 
         -- Clear the table
         party_buffs = {}
 
         local player_id = tonumber(get_player_id())
-        local packet_buffs = get_packet_buffs()
+        local packet_buffs = get_packet_buffs() -- Table kept of buffs from Packets.lua
 
         for k = 0, 5 do
             local formattedString = nil
@@ -38,6 +39,7 @@ do
 
                 formattedString = formattedString..buff_string
                 party_buffs[Uid] = formattedString
+                --log(formattedString)
             end
         end
     end

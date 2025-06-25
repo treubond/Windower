@@ -1,5 +1,5 @@
 
---Inyana
+--Yavanna
 
 -- Load and initialize the include file.
 include('Mirdain-Include')
@@ -22,6 +22,7 @@ Lockstyle_List = {1,2,6,12}
 Food = "Tropical Crepe"
 
 --Set default mode (TP,ACC,DT)
+state.OffenseMode:options('TP','ACC','DT','PDL','SB','Enspell')
 state.OffenseMode:set('DT')
 
 --Command to Lock Style and Set the correct macros
@@ -30,11 +31,6 @@ jobsetup (LockStylePallet,MacroBook,MacroSet)
 --Modes for TP
 state.WeaponMode:options('Seraph Blade', 'Sanguine Blade', 'Chant du Cygne','Savage Blade', 'Eviceration', 'Aeolian Edge', 'Black Halo', 'Ullr', 'Unlocked')
 state.WeaponMode:set('Sanguine Blade')
-
--- Set to true to run organizer on job changes
-Organizer = false
-
-elemental_ws = S{'Aeolian Edge', 'Seraph Blade', 'Shining Blade','Red Lotus Blade', 'Burning Blade', 'Sanguine Blade', 'Energy Drain','Energy Steal','Cyclone','Gust Slash'}
 
 -- Goal 2100 hp and 1300 MP
 function get_sets()
@@ -83,7 +79,7 @@ function get_sets()
 
 	sets.Weapons['Ullr'] = {
 		range="Ullr",
-		ammo="Stone Arrow",
+		ammo="Beryllium Arrow",
 	}
 
 	sets.Weapons['Unlocked'] ={
@@ -101,8 +97,8 @@ function get_sets()
 	}
 
 	--Default arrow to use
-	Ammo.RA = "Stone Arrow"
-	Ammo.ACC = "Stone Arrow"
+	Ammo.RA = "Beryllium Arrow"
+	Ammo.ACC = "Beryllium Arrow"
 
 	-- ===================================================================================================================
 	--		sets.Idle
@@ -114,28 +110,34 @@ function get_sets()
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy'}, priority=3}, -- +3 Refresh
 		body="Lethargy Sayon +3", -- 14/14  +4 Refresh
 		hands="Leth. Ganth. +3", -- 11/11
-		legs="Malignance Tights", -- 7/7
-		feet={ name="Chironic Slippers", augments={'CHR+4','Attack+21','"Refresh"+2','Mag. Acc.+19 "Mag.Atk.Bns."+19',}}, -- +2 Refresh
+		legs="Bunzi's Pants", -- 9/9
+		feet={ name="Bunzi's Sabots", augments={'Path: A',}}, -- 6/6
 		neck="Loricate Torque +1", -- 6/6
 		waist="Carrier's Sash",
-		left_ear={ name="Odnowa Earring +1", augments={'Path: A',}, priority=2}, --3/5
-		right_ear={ name="Etiolation Earring", priority=1}, -- 0/1
+		left_ear={ name="Etiolation Earring", priority=1}, -- Used to Keep HP/MP pool
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}, priority=2}, --3/5
 		left_ring={name="Stikini Ring +1", bag="wardrobe1"}, -- +1 Refresh
 		right_ring={name="Stikini Ring +1", bag="wardrobe2"}, -- +1 Refresh
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, -- 10/0
-		-- 50% PDT, 50% MDT, 11 MP/Tic
     }
+	sets.Idle.TP = sets.Idle
+	sets.Idle.ACC = sets.Idle
+	sets.Idle.DT = sets.Idle
+	sets.Idle.PDL = sets.Idle
+	sets.Idle.SB = sets.Idle
+	sets.Idle.MEVA = sets.Idle
+	sets.Idle.Enspell = sets.Idle
+
 	-- Gear to swap out for Movement
 	sets.Movement = {
-		left_ring="Defending Ring",
 		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}}
 	}
 
 	-- Set to be used if you get 
 	sets.Cursna_Received = {
 	    neck="Nicander's Necklace",
-	    left_ring={ name="Saida Ring", bag="wardrobe1", priority=2},
-		right_ring={ name="Saida Ring", bag="wardrobe3", priority=1},
+	    left_ring={ name="Eshmun's Ring", bag="wardrobe1", priority=2},
+		right_ring={ name="Eshmun's Ring", bag="wardrobe2", priority=1},
 		waist="Gishdubar Sash",
 	}
 
@@ -143,8 +145,9 @@ function get_sets()
 	--		sets.OffenseMode
 	-- ===================================================================================================================
 
+	-- 'TP','ACC','DT','PDL','SB','Enspell'
 	sets.OffenseMode = {
-		ammo="Paeapua",
+		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
@@ -153,26 +156,58 @@ function get_sets()
 		neck="Anu Torque",
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Sherida Earring",
-		right_ear="Telos Earring",
-		left_ring="Chirich Ring +1",
-		right_ring="Hetairoi Ring",
+		right_ear={ name="Leth. Earring +1",},
+		left_ring={name="Chirich Ring +1", bag="wardrobe1"},
+		right_ring={name="Chirich Ring +1", bag="wardrobe2"},
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
-	sets.OffenseMode.TP = set_combine(sets.OffenseMode, {
+	sets.OffenseMode.TP = set_combine(sets.OffenseMode, {})
 
+	sets.OffenseMode.ACC = set_combine(sets.OffenseMode, {})
+
+	sets.OffenseMode.DT = set_combine(sets.OffenseMode, {})
+
+	sets.OffenseMode.PDL = set_combine(sets.OffenseMode, {})
+
+	sets.OffenseMode.SB = set_combine(sets.OffenseMode, { 
+		hands="Volte Mittens",
+		legs="Volte Tights",
+		neck="Bathy Choker +1",
+		waist="Sarissapho. Belt",
 	})
 
-	sets.OffenseMode.DT = set_combine(sets.OffenseMode, { 
-	
-	})
-	sets.OffenseMode.ACC = set_combine(sets.OffenseMode, { 
-	
+	sets.OffenseMode.Enspell = set_combine(sets.OffenseMode, { 
+	    sub="Ammurapi Shield",
+		range="Ullr",
+		head="Umuthi Hat",
+		body="Lethargy Sayon +3",
+		hands="Aya. Manopolas +2",
+		legs={ name="Viti. Tights +3", augments={'Enspell Damage','Accuracy',}},
+		feet="Leth. Houseaux +3",
+		neck="Quanpur Necklace",
+		waist="Orpheus's Sash",
+		left_ear="Malignance Earring",
+		right_ear="Leth. Earring +1",
+		left_ring="Freke Ring",
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Damage taken-5%',}},
 	})
 
 	sets.DualWield = {
 		waist="Reiki Yotai",
-		left_ear="Eabani Earring",
+		right_ear="Eabani Earring",
+	}
+
+	sets.Enspell = {}
+
+	sets.Saboteur = {hands="Leth. Ganth. +3",}
+
+	sets.TreasureHunter = {
+		ammo="Per. Lucky Egg",
+		head="Volte Cap",
+	    legs="Volte Hose",
+		waist="Chaac Belt",
 	}
 
 	-- ===================================================================================================================
@@ -182,30 +217,29 @@ function get_sets()
 	-- Used for Magic Spells
 	sets.Precast = {}
 
-	-- 50% Fast Cast is needed on RDM (Fast Cast V - 30%)
+	-- 42% Fast Cast is needed on RDM (Fast Cast IX - 38%)
+	-- 10% is Quick Magic limit
 	sets.Precast.FastCast = {
-	    head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}}, --14
-		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}}, --15
-		hands="Malignance Gloves",
-		legs="Aya. Cosciales +2", -- 6
-		feet="Malignance Boots",
-		neck="Sanctity Necklace",
-		waist="Embla Sash", -- 5
-		left_ear={ name="Eabani Earring", priority=4},
-		right_ear={ name="Etiolation Earring", priority=3}, --1
-		left_ring={ name="Etana Ring", priority=2},
-		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}, priority=1},
-		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --10
-	} -- 51% total Fast Cast
+		ammo="Impatiens", -- 2 Quick Magic
+		head="Bunzi's Hat", -- 10
+		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}}, -- 15
+		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8
+		legs={ name="Kaykaus Tights +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, -- 7
+		feet={ name="Bunzi's Sabots", augments={'Path: A',}},
+		neck={ name="Unmoving Collar +1", augments={'Path: A',}, priority=3},
+		waist="Witful Belt", -- 3 Quick Magic
+		left_ear={ name="Etiolation Earring", priority=1}, -- Used to Keep HP/MP pool
+		right_ear={ name="Leth. Earring +1",}, -- 8
+		left_ring="Lebeche Ring", -- 2 Quick Magic
+		right_ring={ name="Etana Ring", priority=2,},
+		back="Perimede Cape", -- 4 Quick Magic
+	} -- 50%+ total Fast Cast and 11% Quick Magic
 
-	-- Used for Raises and Cures
-	sets.Precast.QuickMagic = set_combine(sets.Precast.FastCast, {
-		-- Cap is 10%
-	    ammo="Impatiens", -- 2
-	    waist="Witful Belt", -- 3
-		left_ring="Lebeche Ring", -- 2
-	    back="Perimede Cape", -- 4
-	})
+	-- Used for Enhancing Magic
+	sets.Precast.Enhancing = set_combine(sets.Precast.FastCast, sets.Precast.QuickMagic, {})
+
+	-- Used for Healing Magic
+	sets.Precast.Cure = set_combine(sets.Precast.FastCast, sets.Precast.QuickMagic, {})
 
 	sets.Precast.RA = set_combine(sets.Precast, {
 		ammo=Ammo.RA,
@@ -213,34 +247,23 @@ function get_sets()
 		right_ring="Crepuscular Ring", -- 3
     })	
 
-	-- Only the bullet needs to be set for ACC sets (so that it will match the sets.Midcast.RA.ACC)
-    sets.Precast.RA.ACC = set_combine(sets.Precast.RA, {
-		ammo=Ammo.ACC,
-    })
+	-- Flurry
+	sets.Precast.RA.Flurry = set_combine(sets.Precast.RA, {}) 
 
-	-- Flurry - 55 Snapshot Needed
-	sets.Precast.RA.Flurry = set_combine(sets.Precast.RA, {
-
-	}) 
-
-	-- Flurry II - 40 Snapshot Needed
-	sets.Precast.RA.Flurry_II = set_combine( sets.Precast.RA.Flurry, { 
-
-    })
+	-- Flurry II
+	sets.Precast.RA.Flurry_II = set_combine( sets.Precast.RA.Flurry, { })
 
 	-- ===================================================================================================================
 	--		sets.midcast
 	-- ===================================================================================================================
 
 	--Base set for midcast - if not defined will notify and use your idle set for surviability
-	sets.Midcast = set_combine(sets.Idle, {
-	
-	})
+	sets.Midcast = set_combine(sets.Idle, {})
+
+	sets.Midcast.Utsusemi = set_combine(sets.Midcast, {})
 
 	-- Ranged Attack Gear (Normal Midshot)
-    sets.Midcast.RA = set_combine(sets.Midcast, {
-
-    })
+    sets.Midcast.RA = set_combine(sets.Midcast, {})
 
 	-- Ranged Attack Gear (High Accuracy Midshot)
     sets.Midcast.RA.ACC = set_combine(sets.Midcast.RA, {
@@ -248,39 +271,37 @@ function get_sets()
     })
 
 	-- Ranged Attack Gear (Physical Damage Limit)
-    sets.Midcast.RA.PDL = set_combine(sets.Midcast.RA, {
-
-    })
+    sets.Midcast.RA.PDL = set_combine(sets.Midcast.RA, {})
 
 	-- Ranged Attack Gear (Critical Build)
-    sets.Midcast.RA.CRIT = set_combine(sets.Midcast.RA, {
-
-    })
+    sets.Midcast.RA.CRIT = set_combine(sets.Midcast.RA, {})
 
 	--This set is used as base as is overwrote by specific gear changes (Spell Interruption Rate Down)
 	sets.Midcast.SIRD = {}
 
 	-- Cure Set
 	sets.Midcast.Cure = {
-		sub="Sacro Bulwark",
 		ammo="Staunch Tathlum +1",
-		head={ name="Kaykaus Mitra +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
-		body={ name="Kaykaus Bliaut +1", augments={'MP+80','"Cure" potency +6%','"Conserve MP"+7',}},
-		hands={ name="Kaykaus Cuffs +1", augments={'MP+80','MND+12','Mag. Acc.+20',}},
-		legs={ name="Kaykaus Tights +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
-		feet={ name="Kaykaus Boots +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}},
+		head={ name="Kaykaus Mitra +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, -- 11
+		body={ name="Kaykaus Bliaut +1", augments={'MP+80','"Cure" potency +6%','"Conserve MP"+7',}}, -- 6
+		hands={ name="Kaykaus Cuffs +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, -- 11
+		legs={ name="Kaykaus Tights +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, -- 11
+		feet={ name="Kaykaus Boots +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, -- 11
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Sacro Cord",
-		left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		right_ear="Etiolation Earring",
-		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		right_ring="Defending Ring",
+		left_ear={ name="Etiolation Earring", priority=1}, -- Used to Keep HP/MP pool
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
+		left_ring="Defending Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
-    }
+    } -- 50% Cure I, 16% Cure II
 
-	sets.Midcast.Curaga = set_combine(sets.Midcast.Cure, {
-	
-	})
+	sets.Midcast.Curaga = set_combine(sets.Midcast.Cure, {})
+
+	-- Regen
+	sets.Midcast.Regen = {
+		feet={ name="Bunzi's Sabots", augments={'Path: A',}},
+	}
 
 	-- Enhancing Duration on SELF
 	sets.Midcast.Enhancing = {
@@ -293,8 +314,8 @@ function get_sets()
 		feet="Leth. Houseaux +3", -- 35
 		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --25
 		waist="Embla Sash", --10
-		left_ear="Leth. Earring +1", -- 8
-		right_ear={ name="Etiolation Earring", priority=2}, -- Used to Keep HP/MP pool
+		left_ear={ name="Etiolation Earring", priority=1}, -- Used to Keep HP/MP pool
+		right_ear="Leth. Earring +1", -- 8
 		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
 		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, -- 20
@@ -307,14 +328,18 @@ function get_sets()
 		legs="Leth. Fuseau +3",
 	})
 
-	-- Regen
-	sets.Midcast.Regen = {
-		feet={ name="Bunzi's Sabots", augments={'Path: A',}},
-	}
-
 	-- Spells that require SKILL - RDM only needs 500 or more except Temper II
 	sets.Midcast.Enhancing.Skill = set_combine(sets.Midcast.Enhancing, {
-
+		sub="Ammurapi Shield",
+		head="Befouled Crown",
+		body={ name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}},
+		hands={ name="Viti. Gloves +3", augments={'Enhancing Magic duration',}},
+		legs="Atrophy Tights +3",
+		feet="Leth. Houseaux +3",
+		neck="Incanter's Torque",
+		waist="Olympus Sash",
+		left_ear="Andoaa Earring",
+		right_ear="Mimir Earring",
 	})
 
 	-- used to boost Gain Spells
@@ -324,8 +349,6 @@ function get_sets()
 
 	-- Enfeebling
 	sets.Midcast.Enfeebling = {
-		main={ name="Crocea Mors", augments={'Path: C',}},
-		sub="Ammurapi Shield",
 		ammo="Regal Gem",
 		head={ name="Viti. Chapeau +3", augments={'Enfeebling Magic duration','Magic Accuracy',}},
 		body="Atrophy Tabard +3",
@@ -342,9 +365,7 @@ function get_sets()
 	}
 
 	-- Skill Based ('Dispel','Aspir','Aspir II','Aspir III','Drain','Drain II','Drain III','Frazzle','Frazzle II','Stun','Poison','Poison II','Poisonga')
-	sets.Midcast.Enfeebling.MACC = set_combine(sets.Midcast.Enfeebling, {
-
-	})
+	sets.Midcast.Enfeebling.MACC = set_combine(sets.Midcast.Enfeebling, {})
 
 	 -- Potency Basted ('Paralyze','Paralyze II','Slow','Slow II','Addle','Addle II','Distract','Distract II','Distract III','Frazzle III','Blind','Blind II')
 	sets.Midcast.Enfeebling.Potency = set_combine(sets.Midcast.Enfeebling, {
@@ -365,10 +386,6 @@ function get_sets()
 		neck={ name="Dls. Torque +2", augments={'Path: A',}}, -- 25%
 	})
 
-	sets.Enspell = {}
-
-	sets.Saboteur = {hands="Leth. Ganth. +3",}
-
 	-- Specific gear for spells
 	sets.Midcast["Stoneskin"] = set_combine(sets.Midcast.Enhancing, {
 		neck="Nodens Gorget",
@@ -383,14 +400,16 @@ function get_sets()
 
 	-- Spells that require SKILL - RDM only needs +500 skill except Temper II
 	sets.Midcast["Temper II"] = set_combine(sets.Midcast.Enhancing, {
-		ammo="Hydrocera",
+		ammo="Psilomene",
 		head="Befouled Crown",
 		hands={ name="Viti. Gloves +3", augments={'Enhancing Magic duration',}},
 		legs="Atrophy Tights +3",
 		neck="Incanter's Torque",
+		left_ear="Mimir Earring",
+		right_ear="Andoaa Earring",
 		waist="Olympus Sash",
 		back="Perimede Cape",
-	}) -- Max Enhancing 613
+	}) -- Max Enhancing 672
 
 	sets.Midcast["Diaga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter)
 	sets.Midcast["Dispelga"] = set_combine (sets.Midcast.Enfeebling, sets.TreasureHunter)
@@ -399,8 +418,13 @@ function get_sets()
 		head="Amalric Coif +1",
 		body="Atrophy Tabard +3",
 		legs="Leth. Fuseau +3",
-		right_ear={ name="Tuisto Earring", priority=1},
 	})
+
+	sets.Midcast.Dark = set_combine(sets.Midcast.Enfeebling, {})
+
+	sets.Midcast.Dark.MACC = set_combine(sets.Midcast.Enfeebling.MACC, {})
+
+	sets.Midcast.Dark.Absorb = set_combine(sets.Midcast.Enfeebling, {})
 
 	sets.Midcast.Nuke = {
 		sub="Ammurapi Shield",
@@ -437,6 +461,25 @@ function get_sets()
 	sets.JA["Convert"] = {}
 	sets.JA["Composure"] = {}
 
+	-- Dancer JA Section
+	sets.Flourish = set_combine(sets.Idle.DT, {})
+
+	sets.Jig = set_combine(sets.Idle.DT, { })
+
+	sets.Step = set_combine(sets.OffenseMode.DT, {})
+
+	sets.Samba = set_combine(sets.Idle.DT, {})
+
+	-------------------------------------------------------------------------------
+	-- Waltz Potency gear caps at 50%, while Waltz received potency caps at 30%. -- 
+	-------------------------------------------------------------------------------
+	sets.Waltz = set_combine(sets.OffenseMode.DT, {
+		legs="Dashing Subligar", -- 10
+		--ammo="Yamarang", -- 5
+		--body={ name="Gleti's Cuirass", augments={'Path: A',}}, -- 10
+		--hands="Slither Gloves +1", -- 5
+	}) -- 10% Potency
+
 	-- ===================================================================================================================
 	--		sets.WS
 	-- ===================================================================================================================
@@ -447,60 +490,56 @@ function get_sets()
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		feet="Leth. Houseaux +3",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
-		waist="Eschan Stone",
-		left_ear="Ishvara Earring",
-		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-		left_ring="Ilabrat Ring",
+		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+		left_ear="Sherida Earring",
+		right_ear={ name="Leth. Earring +1",},
+		left_ring="Cornelia's Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
-	sets.WS.ACC = {}
-
-	sets.WS.WSD = set_combine(sets.WS, { -- Setup for Capped Attack
-
+	sets.WS.ACC = set_combine(sets.WS, {
+	
 	})
 
-	sets.WS.MAB = {
-		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet="Leth. Houseaux +3",
+	sets.WS.PDL = set_combine(sets.WS, 
+	{
+		ammo="Crepuscular Pebble",
+		right_ring="Sroda Ring",
+	})
+
+	sets.WS.WSD = set_combine(sets.WS, 
+	{
+		ammo="Oshasha's Treatise",
+		left_ear="Ishvara Earring",
+	})
+
+	sets.WS.MAB = set_combine(sets.WS, 
+	{
+		ammo="Oshasha's Treatise",
 		neck="Sanctity Necklace",
 		waist="Orpheus's Sash",
 		left_ear="Malignance Earring",
 	    right_ear="Regal Earring",
-		left_ring="Epaminondas's Ring",
-		right_ring="Freke Ring",
-		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%','Damage taken-5%',}},
-	}
+	})
 
-	sets.WS.CRIT = { -- Setup for Capped Attack
+	sets.WS.CRIT = set_combine(sets.WS,{
 		ammo="Yetshila +1",
 		head={ name="Blistering Sallet +1", augments={'Path: A',}},
-		body="Ayanmo Corazza +2",
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Thereoid Greaves",
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
-		left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-		right_ear="Sherida Earring",
-		left_ring="Hetairoi Ring",
-		right_ring="Ilabrat Ring",
+		right_ring="Hetairoi Ring",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Damage taken-5%',}},
-	}
+	})
 
 	sets.WS.RA = set_combine(sets.WS,{
 
 	})
 
 	sets.WS["Seraph Blade"] =  set_combine(sets.WS.MAB, {
-		left_ring="Weather. Ring",
+		right_ring="Weather. Ring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 	})
 
@@ -509,11 +548,11 @@ function get_sets()
 		right_ring="Archon Ring",
 	})
 
-	sets.WS["Red Lotus Blade"] = sets.WS.MAB
-
 	sets.WS["Aeolian Edge"] = set_combine(sets.WS.MAB, {
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 	})
+
+	sets.WS["Red Lotus Blade"] = sets.WS.MAB
 
 	sets.WS["Chant du Cygne"] = sets.WS.CRIT
 
@@ -521,20 +560,11 @@ function get_sets()
 
 	sets.WS["Black Halo"] = sets.WS.WSD
 
-	sets.TreasureHunter = {
-		ammo="Per. Lucky Egg",
-		head="Volte Cap",
-	    legs="Volte Hose",
-		waist="Chaac Belt",
-	}
-
 end
 
 -------------------------------------------------------------------------------------------------------------------
 -- DO NOT EDIT BELOW THIS LINE UNLESS YOU NEED TO MAKE JOB SPECIFIC RULES
 -------------------------------------------------------------------------------------------------------------------
-
-Enspell_Buff = false
 
 -- Called when the player's subjob changes.
 function sub_job_change_custom(new, old)
@@ -547,14 +577,14 @@ function pretarget_custom(spell,action)
 end
 -- Augment basic equipment sets
 function precast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
 
 -- Augment basic equipment sets
 function midcast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 	if buffactive['Saboteur'] and spell.skill == 'Enfeebling Magic' then
 		equipSet = sets.Saboteur
 	end
@@ -563,40 +593,28 @@ end
 
 -- Augment basic equipment sets
 function aftercast_custom(spell)
-	equipSet = {}
-	if not buffactive['Composure'] and spell.name ~=  "Composure" then
-		--add_to_chat(8,'Composure is down')
-	end
-	coroutine.schedule(Enspell_Check,1) -- windower is not firing buff_change correctly with Enspells and has a delay
+	local equipSet = {}
 
-	if player.status == "Engaged" and Enspell_Buff then
-		equipSet = set_combine(equipSet, sets.Enspell)
-	end
 	return equipSet
 end
 
 --Function is called when the player gains or loses a buff
 function buff_change_custom(name,gain)
-	equipSet = {}
-	Enspell_Check()
+	local equipSet = {}
 	return equipSet
 end
 
 --This function is called when a update request the correct equipment set
 function choose_set_custom()
-	equipSet = {}
-	if player.status == "Engaged" and Enspell_Buff then
-		equipSet = set_combine(equipSet, sets.Enspell)
-	end
+	local equipSet = {}
+
 	return equipSet
 end
 
 --Function is called when the player changes states
 function status_change_custom(new,old)
-	equipSet = {}
-	if player.status == "Engaged" and Enspell_Buff then
-		equipSet = set_combine(equipSet, sets.Enspell)
-	end
+	local equipSet = {}
+
 	return equipSet
 end
 
@@ -610,30 +628,34 @@ function user_file_unload()
 
 end
 
-function Enspell_Check()
-	-- Tier I
-	if buffactive["Enfire"] or buffactive["Enwater"] or buffactive["Enthunder"] or buffactive["Enstone"] or buffactive["Enblizzard"] or buffactive["Enaero"] then
-		Enspell_Buff = true
-		send_command('gs c update auto')
-	-- Tier II
-	elseif buffactive["Enfire II"] or buffactive["Enwater II"] or buffactive["Enthunder II"] or buffactive["Enstone II"] or buffactive["Enblizzard II"] or buffactive["Enaero II"] then
-		Enspell_Buff = true
-		send_command('gs c update auto')
-	else
-		Enspell_Buff = false
-	end
-end
-
 --Function used to automate Job Ability use
 function check_buff_JA()
-	buff = 'None'
+	local buff = 'None'
 
 	return buff
 end
 
 --Function used to automate Spell use
 function check_buff_SP()
-	buff = 'None'
+	local buff = 'None'
 
 	return buff
+end
+
+function pet_change_custom(pet,gain)
+	local equipSet = {}
+	
+	return equipSet
+end
+
+function pet_aftercast_custom(spell)
+	local equipSet = {}
+
+	return equipSet
+end
+
+function pet_midcast_custom(spell)
+	local equipSet = {}
+
+	return equipSet
 end

@@ -1,0 +1,18 @@
+sets.exported={
+    main="Kaja Sword",
+    sub={ name="Rostam", augments={'Path: C',}},
+    range={ name="Anarchy +2", augments={'Delay:+60','TP Bonus +1000',}},
+    ammo="Bronze Bullet",
+    head="Mummu Bonnet +2",
+    body="Mummu Jacket +2",
+    hands="Meg. Gloves +2",
+    legs="Meg. Chausses +2",
+    feet="Mummu Gamash. +2",
+    neck="Sanctity Necklace",
+    waist="Sailfi Belt +1",
+    left_ear="Eabani Earring",
+    right_ear="Ishvara Earring",
+    left_ring="Mummu Ring",
+    right_ring="Meghanada Ring",
+    back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+}

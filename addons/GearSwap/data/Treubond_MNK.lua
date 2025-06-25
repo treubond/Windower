@@ -57,7 +57,7 @@ function get_sets()
 	RELIC.Feet = ""
 	
 	EMPY.Head = "Bhikku Crown +2"
-	EMPY.Body = "Bhikku Cyclas +2"
+	EMPY.Body = "Bhikku Cyclas +3"
 	EMPY.Hands = "Bhikku Gloves +2"
 	EMPY.Legs = "Bhikku Hose +3"
 	EMPY.Feet = "Bhikku Gaiters +2"
@@ -133,6 +133,16 @@ function get_sets()
 		left_ring="Archon Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}, ]]
     }
+	
+	sets.Idle.TP = sets.Idle
+	sets.Idle.ACC = sets.Idle
+	sets.Idle.DT = sets.Idle
+	sets.Idle.PDL = sets.Idle
+	sets.Idle.SB = sets.Idle
+	sets.Idle.MEVA = sets.Idle
+
+	sets.Weapons.Shield = {}
+
 	--Used to swap into movement gear when the player is detected movement when not engaged
 	sets.Movement = {
 		--feet="Hermes' Sandals",

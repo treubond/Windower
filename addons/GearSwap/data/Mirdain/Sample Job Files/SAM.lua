@@ -1,5 +1,5 @@
 
---Mirdain
+--Morwen
 
 -- Load and initialize the include file.
 include('Mirdain-Include')
@@ -9,50 +9,36 @@ LockStylePallet = "4"
 MacroBook = "10"
 MacroSet = "1"
 
---Upon Job change will use a random lockstyleset
-Random_Lockstyle = false
-
---Lockstyle sets to randomly equip
-Lockstyle_List = {1,2,6,12}
-
 -- Use "gs c food" to use the specified food item 
 Food = "Sublime Sushi"
 
---Uses Items Automatically
-AutoItem = false
-
 -- 'TP','ACC','DT' are standard Default modes.  You may add more and assigne equipsets for them ( Idle.X and OffenseMode.X )
-state.OffenseMode:options('TP','ACC','DT','SB','PDL') -- ACC effects WS and TP modes
+state.OffenseMode:options('TP','ACC','DT','SB','PDL','CRIT','MEVA') -- ACC effects WS and TP modes
 
---Set default mode (TP,ACC,DT,PDL) etc
-state.OffenseMode:set('DT')
+jobsetup (LockStylePallet,MacroBook,MacroSet)
 
 --Weapons specific to Samurai
 state.WeaponMode:options('Masamune', 'Dojikiri', 'Shining One', 'Yoichinoyumi')
 state.WeaponMode:set('Masamune')
 
-jobsetup (LockStylePallet,MacroBook,MacroSet)
-
 function get_sets()
 
 	-- Weapon setup
-	sets.Weapons = {}
-
 	sets.Weapons['Dojikiri'] = {
 		main={ name="Dojikiri Yasutsuna", augments={'Path: A',}},
 		sub="Utu Grip",
 	}
 
-	sets.Weapons['Masamune'] = {
-		main={ name="Masamune", augments={'Path: A',}},
-		sub="Utu Grip",
-	}
-	
 	sets.Weapons['Yoichinoyumi'] = {
 		main={ name="Dojikiri Yasutsuna", augments={'Path: A',}},
 		sub="Utu Grip",
-		range="Yoichinoyumi",
-		ammo="Yoichi's Arrow",
+		--range="Yoichinoyumi",
+		--ammo="Stone Arrow"
+	}
+
+	sets.Weapons['Masamune'] = {
+		main={ name="Masamune", augments={'Path: A',}},
+		sub="Utu Grip",
 	}
 
 	sets.Weapons['Shining One'] = {
@@ -60,176 +46,148 @@ function get_sets()
 		sub="Utu Grip",
 	}
 
-	--Default arrow to use
-	Ammo.RA = "Yoichi's Arrow"
-
 	-- Standard Idle set with -DT, Refresh and Regen gear
 	sets.Idle = {
-		ammo="Staunch Tathlum +1",
-		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
+		sub="Utu Grip",
+		ammo="Crepuscular Pebble",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
-		waist="Carrier's Sash",
-		left_ear="Eabani Earring",
+		waist="Flume Belt +1",
+		left_ear="Etiolation Earring",
 		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		left_ring="Defending Ring",
+		left_ring="Archon Ring",
 		right_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
-		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}},
     }
+	sets.Idle.TP = sets.Idle
+	sets.Idle.ACC = sets.Idle
+	sets.Idle.DT = sets.Idle
+	sets.Idle.PDL = sets.Idle
+	sets.Idle.CRIT = sets.Idle
+	sets.Idle.MEVA = sets.Idle
+	sets.Idle.Resting = sets.Idle
 
 	sets.Movement = {
 		feet="Danzo Sune-Ate"
     }
 
-	-- Set to be used if you get 
+    -- Set to be used if you get cursna casted on you
 	sets.Cursna_Received = {
 	    neck="Nicander's Necklace",
-	    left_ring={ name="Saida Ring", bag="wardrobe3", priority=2},
-		right_ring={ name="Saida Ring", bag="wardrobe4", priority=1},
+	    left_ring={ name="Saida Ring", bag="wardrobe2", priority=2},
+		right_ring={ name="Saida Ring", bag="wardrobe3", priority=1},
 		waist="Gishdubar Sash",
 	}
 
-	sets.OffenseMode = {}
-
 	--Base TP set to build off
-	sets.OffenseMode.TP = {
+	sets.OffenseMode = {
 		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-		head="Flam. Zucchetto +2",
-		body="Kasuga Domaru +2",
+		head="Kasuga Kabuto +3",
+		body="Kasuga Domaru +3",
 		hands="Ken. Tekko +1",
-		legs="Kasuga Haidate +2",
+		legs="Kasuga Haidate +3",
 		feet="Ken. Sune-Ate +1",
 		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+		--waist="Ioskeha Belt +1",
 		left_ear="Telos Earring",
 		right_ear={ name="Schere Earring", augments={'Path: A',}},
 		left_ring="Chirich Ring +1",
 		right_ring="Niqmaddu Ring",
-		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
 
+	sets.OffenseMode.TP = set_combine (sets.OffenseMode, {})
+
 	--This set is used when OffenseMode is DT and Enaged (Augments the TP base set)
-	sets.OffenseMode.DT = set_combine(sets.OffenseMode.TP, {
-		head="Kasuga Kabuto +2",
-		hands="Mpaca's Gloves",
+	sets.OffenseMode.DT = set_combine (sets.OffenseMode, {
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Defending Ring",
 	})
 
 	--This set is used when OffenseMode is ACC and Enaged (Augments the TP base set)
-	sets.OffenseMode.ACC = set_combine(sets.OffenseMode.TP, {
-		head="Kasuga Kabuto +2",
+	sets.OffenseMode.ACC = set_combine (sets.OffenseMode, {
+	    head="Ken. Jinpachi +1",
+		body="Ken. Samue +1",
+		hands="Ken. Tekko +1",
+		legs="Ken. Hakama +1",
+		feet="Ken. Sune-Ate +1",
+	})
+
+	sets.OffenseMode.CRIT = set_combine (sets.OffenseMode, {
+	    head="Ken. Jinpachi +1",
+		body="Ken. Samue +1",
+		hands="Ken. Tekko +1",
+		legs="Ken. Hakama +1",
+		feet="Ken. Sune-Ate +1",
 	})
 
 	--This set is used when OffenseMode is ACC and Enaged (Augments the TP base set)
-	sets.OffenseMode.SB = set_combine(sets.OffenseMode.TP, {
-		-- 29 SB I and 5 SB II on TP gear
-		head="Ken. Jinpachi +1",  --8
-		body="Ken. Samue +1", -- 8
-		waist="Sarissapho. Belt", -- 5
+	sets.OffenseMode.SB = set_combine (sets.OffenseMode, {
+		head="Ken. Jinpachi +1",
+		body="Ken. Samue +1",
+		legs={ name="Mpaca's Hose", augments={'Path: A',}},
+		back="Null Shawl",
 	})
 
-	sets.Precast = {}
+	sets.OffenseMode.PDL = set_combine(sets.OffenseMode.TP, {});
 
-	-- 70 snapshot is Cap
-	-- Rapid shot is like quick magic
-	-- Snapshot is like Fast Cast
-
-	-- True Shot Ranges (Increases RA and WS)
-		-- Distances listed below are effected by Monster Size
-		-- Gun ~6.5 yalms
-		-- Short Bow ~8.6 yalms
-		-- Crossbow ~10.7 yalms
-		-- Long Bow ~ 11.8 yalms
-
-	-- Flurry is 15% Snapshot
-	-- Flurry II 30% Snapshot
-
-	-- Snapshot / Rapidshot
-	sets.Precast.RA = set_combine(sets.Precast, { -- 5 Snapshot on Perun +1 Augment if used
-		ammo=Ammo.RA,
-		waist="Yemaya Belt", -- 0 / 5
-		right_ring="Crepuscular Ring", -- 3
-    })	
-
-	-- Only the bullet needs to be set for ACC sets (so that it will match the sets.Midcast.RA.ACC)
-    sets.Precast.RA.ACC = set_combine(sets.Precast.RA, {
-		ammo=Ammo.ACC,
-    })
-
-	-- Flurry - 55 Snapshot Needed
-	sets.Precast.RA.Flurry = set_combine(sets.Precast.RA, {
-
-	}) 
-
-	-- Flurry II - 40 Snapshot Needed
-	sets.Precast.RA.Flurry_II = set_combine( sets.Precast.RA.Flurry, { 
-
-    })
+	sets.OffenseMode.MEVA = set_combine(sets.OffenseMode.DT, {
+	    ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+		head="Kasuga Kabuto +3",
+		body="Kasuga Domaru +3",
+		hands="Ken. Tekko +1",
+		legs="Kasuga Haidate +3",
+		feet="Ken. Sune-Ate +1",
+		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
+		waist="Carrier's Sash",
+		left_ear="Telos Earring",
+		right_ear={ name="Schere Earring", augments={'Path: A',}},
+		left_ring="Defending Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}},
+	});
 
 	-- Used for Magic Spells (Fast Cast)
-	sets.Precast.FastCast = set_combine (sets.Idle.DT, {
-		ammo="Sapience Orb",
-		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-		neck="Voltsurge Torque",
-		waist="Tempus Fugit",
+	sets.Precast.FastCast = {
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
-		left_ring="Prolix Ring",
-	})
+	}
 
-	sets.Precast.Enmity = set_combine (sets.Idle.DT, {
-	    ammo="Sapience Orb", -- 2
-		neck="Warder's Charm +1", -- 1-8 
+	sets.Enmity = {
+	    ammo="Paeapua", -- 2
 	    left_ear="Cryptic Earring", -- 4
 		right_ear="Friomisi Earring", --2
-		waist="Kasiri Belt", -- 3
 		left_ring="Petrov Ring", -- 4
-		right_ring="Eihwaz Ring", -- 5
-	})
+	}
 
 	--Base set for midcast - if not defined will notify and use your idle set for surviability
-	sets.Midcast = set_combine(sets.Idle, {
-	
-	})
+	sets.Midcast = set_combine(sets.Idle, {})
 
-		-- Ranged Attack Gear (Normal Midshot)
-    sets.Midcast.RA = set_combine(sets.Midcast, {
+	-- Specific gear for spells
+	sets.Midcast["Stoneskin"] = {
+		waist="Siegel Sash",
+	}
 
-    })
-
-	-- Ranged Attack Gear (High Accuracy Midshot)
-    sets.Midcast.RA.ACC = set_combine(sets.Midcast.RA, {
-		ammo=Ammo.ACC,
-    })
-
-	-- Ranged Attack Gear (Physical Damage Limit)
-    sets.Midcast.RA.PDL = set_combine(sets.Midcast.RA, {
-
-    })
-
-	-- Ranged Attack Gear (Critical Build)
-    sets.Midcast.RA.CRIT = set_combine(sets.Midcast.RA, {
-
-    })
-	
 	--Job Abilities
-	sets.JA = {}
 	sets.JA["Meikyo Shisui"] = {}
 	sets.JA["Berserk"] = {}
 	sets.JA["Warcry"] = {}
 	sets.JA["Defender"] = {}
 	sets.JA["Aggressor"] = {}
-	sets.JA["Provoke"] = sets.Precast.Enmity
+	sets.JA["Provoke"] = sets.Enmity
 	sets.JA["Third Eye"] = {}
 	sets.JA["Meditate"] = {
-	    head="Wakido Kabuto +3",
-		hands={ name="Sakonji Kote +3", augments={'Enhances "Blade Bash" effect',}},
-		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+	    --head="Wakido Kabuto", -- Aug to +3
+		hands={ name="Sakonji Kote +1", augments={'Enhances "Blade Bash" effect',}}, -- aug to +3
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
 	sets.JA["Warding Circle"] = {
-		head="Wakido Kabuto +3",
+		--head="Wakido Kabuto",
 	}
 	sets.JA["Shikikoyo"] = {}
 	sets.JA["Hasso"] = {}
@@ -253,27 +211,41 @@ function get_sets()
 		left_ear="Thrud Earring",
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		left_ring="Epaminondas's Ring",
-		right_ring="Karieyh Ring +1",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+		right_ring="Cornelia's Ring",
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
 	--This set is used when OffenseMode is ACC and a WS is used (Augments the WS base set)
-	sets.WS.ACC = set_combine (sets.WS, {
-
+	sets.WS.ACC = set_combine(sets.WS,{
+		hands="Ken. Tekko +1",
 	})
 
-	sets.WS.SB = set_combine (sets.WS, {
+	sets.WS.AM3 = {}
+	sets.WS.AM3['Masamune'] = {}
 
-	})
-
-	--WS Sets
-	sets.WS["Tachi: Enpi"] = {}
-	sets.WS["Tachi: Hobaku"] = {}
-	sets.WS["Tachi: Jinpu"] = set_combine (sets.WS, {
+	sets.WS.MAB = set_combine(sets.WS, {		
+		waist="Orpheus's Sash",
+		left_ear="Friomisi Earring",
 		neck="Fotia Gorget",
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
+		-- back={ name="Smertrios's Mantle", augments={'STR+20','Mag. Acc+20 Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	})
+
+	sets.WS.CRIT = set_combine(sets.WS,{
+		right_ear={ name="Schere Earring", augments={'Path: A',}},
+	    ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+	})
+
+	sets.WS.MEVA = set_combine(sets.WS, {
+	    neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+	})
+
+	--WS Sets
+	sets.WS["Tachi: Enpi"] = set_combine (sets.WS, {})
+	sets.WS["Tachi: Hobaku"] = set_combine (sets.WS, {})
+	sets.WS["Tachi: Jinpu"] = set_combine (sets.WS.MAB, {})
 	sets.WS["Tachi: Goten"] = set_combine (sets.WS, {})
 	sets.WS["Tachi: Kagero"] = set_combine (sets.WS, {})
 	sets.WS["Tachi: Koki"] = set_combine (sets.WS, {})
@@ -284,21 +256,24 @@ function get_sets()
 	sets.WS["Tachi: Ageha"] = set_combine (sets.WS, {})
 	sets.WS["Tachi: Fudo"] = set_combine (sets.WS, {})
 	sets.WS["Tachi: Shoha"] = set_combine (sets.WS, {})
+	sets.WS["Impulse Drive"] = sets.WS.CRIT
 
+	--Custome sets for each jobsetup
 	sets.Seigan = {
-	    head="Kasuga Kabuto +2",
-		body="Kasuga Domaru +2",
+		head="Kasuga Kabuto +3",
+		body="Kasuga Domaru +3",
 	}
+
 	sets.ThirdEye = {
-		--legs={ name="Sakonji Haidate +3", augments={'Enhances "Shikikoyo" effect',}},
+
 	}
 
 	-- Used to Tag TH on a mob (TH4 is max in gear non-THF)
 	sets.TreasureHunter = {
 		ammo="Per. Lucky Egg",
-		body="Volte Jupon",
 		waist="Chaac Belt",
 	}
+
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -314,57 +289,45 @@ end
 function pretarget_custom(spell,action)
 
 end
-
 -- Augment basic equipment sets
 function precast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
-
 -- Augment basic equipment sets
 function midcast_custom(spell)
-	equipSet = {}
+	local equipSet = {}
 
 	return equipSet
 end
-
 -- Augment basic equipment sets
 function aftercast_custom(spell)
-	equipSet = {}
-	equipSet = choose_Seigan()
+	local equipSet = choose_Seigan()
 	return equipSet
 end
-
 --Function is called when the player gains or loses a buff
 function buff_change_custom(name,gain)
-	equipSet = {}
-	equipSet = choose_Seigan()
+	local equipSet = choose_Seigan()
 	return equipSet
 end
-
 --This function is called when a update request the correct equipment set
 function choose_set_custom()
-	equipSet = {}
-	equipSet = choose_Seigan()
+	local equipSet = choose_Seigan()
 	return equipSet
 end
-
 --Function is called when the player changes states
 function status_change_custom(new,old)
-	equipSet = {}
-	equipSet = choose_Seigan()
+	local equipSet = choose_Seigan()
 	return equipSet
 end
-
 --Function is called when a self command is issued
 function self_command_custom(command)
 
 end
-
 --Custom Function
 function choose_Seigan()
-	equipSet = {}
+	local equipSet = {}
 		if player.status == "Engaged" then
 			if buffactive.Seigan then
 				--Equip the Seigan custom set when active
@@ -377,14 +340,15 @@ function choose_Seigan()
 		end
 	return equipSet
 end
-
 --Function used to automate Job Ability use
 function check_buff_JA()
-	buff = 'None'
+	local buff = 'None'
 	local ja_recasts = windower.ffxi.get_ability_recasts()
+
 	if not buffactive['Hasso'] and not buffactive['Seigan'] and ja_recasts[138] == 0 then
 		buff = "Hasso"
 	end
+
 	if player.sub_job == 'WAR' and player.sub_job_level == 49 then
 		if not buffactive['Berserk'] and ja_recasts[1] == 0 then
 			buff = "Berserk"
@@ -394,17 +358,38 @@ function check_buff_JA()
 			buff = "Warcry"
 		end
 	end
+
 	return buff
 end
-
 --Function used to automate Spell use
 function check_buff_SP()
-	buff = 'None'
+	local buff = 'None'
 	--local sp_recasts = windower.ffxi.get_spell_recasts()
 	return buff
 end
+-- This function is called when the job file is unloaded
 
 -- This function is called when the job file is unloaded
 function user_file_unload()
 
 end
+
+function pet_change_custom(pet,gain)
+	local equipSet = {}
+	
+	return equipSet
+end
+
+function pet_aftercast_custom(spell)
+	local equipSet = {}
+
+	return equipSet
+end
+
+function pet_midcast_custom(spell)
+	local equipSet = {}
+
+	return equipSet
+end
+
+

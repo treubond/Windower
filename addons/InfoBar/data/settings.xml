@@ -59,9 +59,11 @@
     <treubond>
         <display>
             <pos>
-                <x>-1</x>
-                <y>2</y>
+                <x>-2</x>
             </pos>
+            <text>
+                <red>128</red>
+            </text>
         </display>
     </treubond>
     <treuse>

@@ -2225,7 +2225,11 @@
     <Uchitake>false</Uchitake>
   </Items>
   <Songs>
-    <Ignore_List />
+    <Ignore_List>
+      <string>Felione</string>
+      <string>Thedoktor</string>
+      <string>Valarmorghulis</string>
+    </Ignore_List>
     <Enabled>true</Enabled>
     <Dummy_Count>3</Dummy_Count>
     <Base_Count>4</Base_Count>
@@ -2254,11 +2258,11 @@
       <ID>417</ID>
     </Song_3>
     <Song_4>
-      <Name>Victory March</Name>
+      <Name>Blade Madrigal</Name>
       <Target />
-      <Buff>March</Buff>
+      <Buff>Madrigal</Buff>
       <Buff2 />
-      <ID>420</ID>
+      <ID>400</ID>
     </Song_4>
     <Song_5>
       <Name>Valor Minuet III</Name>

@@ -66,12 +66,20 @@ do
         end)
 
         windower.register_event('logout', function()
-            send_packet(get_player_id()..";clear")
+            send_packet(get_player_id()..";reset")
+            set_connected(false)
+            clear_party_location()
         end)
 
         windower.register_event('unload', function()
-            send_packet(get_player_id()..";clear")
+            send_packet(get_player_id()..";reset")
+            set_connected(false)
+            clear_party_location()
         end)
+    end
+
+    function windower_auto_trans(msg) 
+        return windower.convert_auto_trans(msg)
     end
 
     -- Resources
@@ -225,7 +233,11 @@ do
         return is_japanese
     end
 
-    function shift_jis(value)
+    function from_shift_jis(value)
+        return windower.from_shift_jis(value)
+    end
+
+    function to_shift_jis(value)
         return windower.to_shift_jis(value)
     end
 
@@ -302,6 +314,10 @@ do
 
     function inject_packet(value)
 	    packets.inject(value)
+    end
+
+    function inject_packet_outgoing(id, value)
+        windower.packets.inject_outgoing(id, value)
     end
 
     function new_packet(dir, id, values, ...)

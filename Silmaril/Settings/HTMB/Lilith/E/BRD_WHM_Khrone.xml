@@ -951,7 +951,7 @@
         <Protect>false</Protect>
         <Shell>false</Shell>
         <Haste>false</Haste>
-        <Spikes>false</Spikes>
+        <Spikes>true</Spikes>
         <Warcry>false</Warcry>
         <Enspell>false</Enspell>
         <Phalanx>false</Phalanx>
@@ -2452,11 +2452,11 @@
       <ID>398</ID>
     </Song_2>
     <Song_3>
-      <Name>Lightning Carol II</Name>
+      <Name>Valor Minuet IV</Name>
       <Target />
-      <Buff>Carol</Buff>
+      <Buff>Minuet</Buff>
       <Buff2 />
-      <ID>450</ID>
+      <ID>397</ID>
     </Song_3>
     <Song_4>
       <Name>Victory March</Name>

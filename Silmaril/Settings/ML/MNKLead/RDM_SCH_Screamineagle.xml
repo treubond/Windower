@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>3.6 Main</Version>
+  <Version>3.7.6 Beta</Version>
   <Priority>
     <Priority_Rank>
       <string>Enfeebling (High Priority)</string>
@@ -20,19 +20,19 @@
   <Fighting>
     <Combat_Action>
       <Combat>
+        <Name>Khrone</Name>
         <Enabled>false</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name>Khrone</Name>
         <Engage>true</Engage>
         <Disengage>false</Disengage>
         <Run>true</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>true</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>3</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Combat_Script_1>
         <Enabled>false</Enabled>
@@ -466,6 +466,7 @@
       <Validate_IDs>true</Validate_IDs>
       <Smart_Target>false</Smart_Target>
       <Target_Lockon>false</Target_Lockon>
+      <Pause_Weakened>false</Pause_Weakened>
       <Fighting_Mode>Aggressive</Fighting_Mode>
       <Targeting_Mode>Any</Targeting_Mode>
       <Player />
@@ -679,6 +680,7 @@
     <Enemy_Count>1</Enemy_Count>
     <Claim_Delay>1</Claim_Delay>
     <Smart_Target>false</Smart_Target>
+    <Pause_Weakened>false</Pause_Weakened>
     <Validate_IDs>false</Validate_IDs>
     <Immuno_Mode>false</Immuno_Mode>
     <Immuno_Count>0</Immuno_Count>
@@ -698,7 +700,7 @@
         <Blind>false</Blind>
         <Break>false</Break>
         <Dia>true</Dia>
-        <Distract>false</Distract>
+        <Distract>true</Distract>
         <Frazzle>false</Frazzle>
         <Gravity>false</Gravity>
         <Paralyze>false</Paralyze>
@@ -869,7 +871,7 @@
       </Character_Enhancing>
       <Character_Enhancing>
         <Name>Treubond</Name>
-        <Protect>false</Protect>
+        <Protect>true</Protect>
         <Shell>false</Shell>
         <Haste>true</Haste>
         <Flurry>false</Flurry>
@@ -877,7 +879,7 @@
         <Animus_Minuo>false</Animus_Minuo>
         <Refresh>false</Refresh>
         <Regen>false</Regen>
-        <Phalanx>false</Phalanx>
+        <Phalanx>true</Phalanx>
         <Adloquium>false</Adloquium>
         <Storm_Sand>false</Storm_Sand>
         <Storm_Rain>false</Storm_Rain>
@@ -890,7 +892,7 @@
       </Character_Enhancing>
       <Character_Enhancing>
         <Name>Khrone</Name>
-        <Protect>false</Protect>
+        <Protect>true</Protect>
         <Shell>false</Shell>
         <Haste>true</Haste>
         <Flurry>false</Flurry>
@@ -898,7 +900,7 @@
         <Animus_Minuo>false</Animus_Minuo>
         <Refresh>false</Refresh>
         <Regen>false</Regen>
-        <Phalanx>false</Phalanx>
+        <Phalanx>true</Phalanx>
         <Adloquium>false</Adloquium>
         <Storm_Sand>false</Storm_Sand>
         <Storm_Rain>false</Storm_Rain>
@@ -981,6 +983,69 @@
         <Animus_Augeo>false</Animus_Augeo>
         <Animus_Minuo>false</Animus_Minuo>
         <Refresh>true</Refresh>
+        <Regen>false</Regen>
+        <Phalanx>false</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Valarmorghulis</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>false</Haste>
+        <Flurry>false</Flurry>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Refresh>true</Refresh>
+        <Regen>false</Regen>
+        <Phalanx>false</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Thedoktor</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>true</Haste>
+        <Flurry>false</Flurry>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Refresh>false</Refresh>
+        <Regen>false</Regen>
+        <Phalanx>false</Phalanx>
+        <Adloquium>false</Adloquium>
+        <Storm_Sand>false</Storm_Sand>
+        <Storm_Rain>false</Storm_Rain>
+        <Storm_Wind>false</Storm_Wind>
+        <Storm_Fire>false</Storm_Fire>
+        <Storm_Hail>false</Storm_Hail>
+        <Storm_Thunder>false</Storm_Thunder>
+        <Storm_Void>false</Storm_Void>
+        <Storm_Aurora>false</Storm_Aurora>
+      </Character_Enhancing>
+      <Character_Enhancing>
+        <Name>Felione</Name>
+        <Protect>false</Protect>
+        <Shell>false</Shell>
+        <Haste>true</Haste>
+        <Flurry>false</Flurry>
+        <Animus_Augeo>false</Animus_Augeo>
+        <Animus_Minuo>false</Animus_Minuo>
+        <Refresh>false</Refresh>
         <Regen>false</Regen>
         <Phalanx>false</Phalanx>
         <Adloquium>false</Adloquium>
@@ -1202,18 +1267,8 @@
         <Stay>false</Stay>
         <Snarl>false</Snarl>
         <Ready>false</Ready>
-        <Ready_1>false</Ready_1>
-        <Ready_1_Target>false</Ready_1_Target>
-        <Ready_1_Target_Name />
-        <Ready_2>false</Ready_2>
-        <Ready_2_Target>false</Ready_2_Target>
-        <Ready_2_Target_Name />
-        <Ready_3>false</Ready_3>
-        <Ready_3_Target>false</Ready_3_Target>
-        <Ready_3_Target_Name />
         <Spur>false</Spur>
         <Run_Wild>false</Run_Wild>
-        <Ready_Target>false</Ready_Target>
         <Ready_Only>false</Ready_Only>
         <Auto_Run_To>false</Auto_Run_To>
         <Auto_Run_Away>false</Auto_Run_Away>
@@ -1221,9 +1276,36 @@
         <Assist_Player>false</Assist_Player>
         <Assist />
         <Fight_Mode />
-        <Pet_Ready_1 />
-        <Pet_Ready_2 />
-        <Pet_Ready_3 />
+        <Ready_1>
+          <Enable>false</Enable>
+          <Repeat_Time>0</Repeat_Time>
+          <Move />
+          <Target>false</Target>
+          <Target_Name />
+          <Target_Mode />
+          <Assist_Player />
+          <Ready_Completed>false</Ready_Completed>
+        </Ready_1>
+        <Ready_2>
+          <Enable>false</Enable>
+          <Repeat_Time>0</Repeat_Time>
+          <Move />
+          <Target>false</Target>
+          <Target_Name />
+          <Target_Mode />
+          <Assist_Player />
+          <Ready_Completed>false</Ready_Completed>
+        </Ready_2>
+        <Ready_3>
+          <Enable>false</Enable>
+          <Repeat_Time>0</Repeat_Time>
+          <Move />
+          <Target>false</Target>
+          <Target_Name />
+          <Target_Mode />
+          <Assist_Player />
+          <Ready_Completed>false</Ready_Completed>
+        </Ready_3>
       </Beastmaster>
       <Bard>
         <Soul_Voice>false</Soul_Voice>
@@ -1284,6 +1366,8 @@
         <Third_Eye_HPP>0</Third_Eye_HPP>
         <Hasso>false</Hasso>
         <Meditate>false</Meditate>
+        <Meditate_Engaged_Only>false</Meditate_Engaged_Only>
+        <Meditate_TP>0</Meditate_TP>
         <Seigan>false</Seigan>
         <Sekkanoki>false</Sekkanoki>
         <Konzen_ittai>false</Konzen_ittai>
@@ -1770,18 +1854,8 @@
         <Stay>false</Stay>
         <Snarl>false</Snarl>
         <Ready>false</Ready>
-        <Ready_1>false</Ready_1>
-        <Ready_1_Target>false</Ready_1_Target>
-        <Ready_1_Target_Name />
-        <Ready_2>false</Ready_2>
-        <Ready_2_Target>false</Ready_2_Target>
-        <Ready_2_Target_Name />
-        <Ready_3>false</Ready_3>
-        <Ready_3_Target>false</Ready_3_Target>
-        <Ready_3_Target_Name />
         <Spur>false</Spur>
         <Run_Wild>false</Run_Wild>
-        <Ready_Target>false</Ready_Target>
         <Ready_Only>false</Ready_Only>
         <Auto_Run_To>false</Auto_Run_To>
         <Auto_Run_Away>false</Auto_Run_Away>
@@ -1789,9 +1863,36 @@
         <Assist_Player>false</Assist_Player>
         <Assist />
         <Fight_Mode />
-        <Pet_Ready_1 />
-        <Pet_Ready_2 />
-        <Pet_Ready_3 />
+        <Ready_1>
+          <Enable>false</Enable>
+          <Repeat_Time>0</Repeat_Time>
+          <Move />
+          <Target>false</Target>
+          <Target_Name />
+          <Target_Mode />
+          <Assist_Player />
+          <Ready_Completed>false</Ready_Completed>
+        </Ready_1>
+        <Ready_2>
+          <Enable>false</Enable>
+          <Repeat_Time>0</Repeat_Time>
+          <Move />
+          <Target>false</Target>
+          <Target_Name />
+          <Target_Mode />
+          <Assist_Player />
+          <Ready_Completed>false</Ready_Completed>
+        </Ready_2>
+        <Ready_3>
+          <Enable>false</Enable>
+          <Repeat_Time>0</Repeat_Time>
+          <Move />
+          <Target>false</Target>
+          <Target_Name />
+          <Target_Mode />
+          <Assist_Player />
+          <Ready_Completed>false</Ready_Completed>
+        </Ready_3>
       </Beastmaster>
       <Bard>
         <Soul_Voice>false</Soul_Voice>
@@ -1852,6 +1953,8 @@
         <Third_Eye_HPP>0</Third_Eye_HPP>
         <Hasso>false</Hasso>
         <Meditate>false</Meditate>
+        <Meditate_Engaged_Only>false</Meditate_Engaged_Only>
+        <Meditate_TP>0</Meditate_TP>
         <Seigan>false</Seigan>
         <Sekkanoki>false</Sekkanoki>
         <Konzen_ittai>false</Konzen_ittai>
@@ -2449,6 +2552,23 @@
       <Type />
       <Action />
       <Buff_State />
+      <Buff_Time>30</Buff_Time>
+      <HP_Enabled>false</HP_Enabled>
+      <HP_Low>0</HP_Low>
+      <HP_High>100</HP_High>
+      <MP_Enabled>false</MP_Enabled>
+      <MP_Low>0</MP_Low>
+      <MP_High>100</MP_High>
+      <TP_Enabled>false</TP_Enabled>
+      <TP_Low>0</TP_Low>
+      <TP_High>100</TP_High>
+      <State />
+      <Chat_Type />
+      <Chat_Mode />
+      <Chat_Message />
+      <Chat_Name />
+      <Chat_Time_Out>0</Chat_Time_Out>
+      <Chat_Any>false</Chat_Any>
       <Response_Command />
       <Command_Pause>2</Command_Pause>
       <Response_Category />
@@ -2456,7 +2576,6 @@
       <Response_Action />
       <Response_Target_Type />
       <Response_Target />
-      <Response_Target_Actor>false</Response_Target_Actor>
       <Delay>0</Delay>
       <Time_Out>5</Time_Out>
       <Reset_Enable>true</Reset_Enable>
@@ -2476,19 +2595,19 @@
       <TP_Limit_High>3000</TP_Limit_High>
       <TP_Limit_Low>0</TP_Limit_Low>
       <Combat>
+        <Name />
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
         <Engage>false</Engage>
         <Disengage>false</Disengage>
         <Run>false</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>30</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Start_Type>Default</Start_Type>
       <Warning_Enable_Start>false</Warning_Enable_Start>
@@ -2510,6 +2629,23 @@
       <Type />
       <Action />
       <Buff_State />
+      <Buff_Time>30</Buff_Time>
+      <HP_Enabled>false</HP_Enabled>
+      <HP_Low>0</HP_Low>
+      <HP_High>100</HP_High>
+      <MP_Enabled>false</MP_Enabled>
+      <MP_Low>0</MP_Low>
+      <MP_High>100</MP_High>
+      <TP_Enabled>false</TP_Enabled>
+      <TP_Low>0</TP_Low>
+      <TP_High>100</TP_High>
+      <State />
+      <Chat_Type />
+      <Chat_Mode />
+      <Chat_Message />
+      <Chat_Name />
+      <Chat_Time_Out>0</Chat_Time_Out>
+      <Chat_Any>false</Chat_Any>
       <Response_Command />
       <Command_Pause>2</Command_Pause>
       <Response_Category />
@@ -2517,7 +2653,6 @@
       <Response_Action />
       <Response_Target_Type />
       <Response_Target />
-      <Response_Target_Actor>false</Response_Target_Actor>
       <Delay>0</Delay>
       <Time_Out>5</Time_Out>
       <Reset_Enable>true</Reset_Enable>
@@ -2537,19 +2672,19 @@
       <TP_Limit_High>3000</TP_Limit_High>
       <TP_Limit_Low>0</TP_Limit_Low>
       <Combat>
+        <Name />
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
         <Engage>false</Engage>
         <Disengage>false</Disengage>
         <Run>false</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>30</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Start_Type>Default</Start_Type>
       <Warning_Enable_Start>false</Warning_Enable_Start>
@@ -2571,6 +2706,23 @@
       <Type />
       <Action />
       <Buff_State />
+      <Buff_Time>30</Buff_Time>
+      <HP_Enabled>false</HP_Enabled>
+      <HP_Low>0</HP_Low>
+      <HP_High>100</HP_High>
+      <MP_Enabled>false</MP_Enabled>
+      <MP_Low>0</MP_Low>
+      <MP_High>100</MP_High>
+      <TP_Enabled>false</TP_Enabled>
+      <TP_Low>0</TP_Low>
+      <TP_High>100</TP_High>
+      <State />
+      <Chat_Type />
+      <Chat_Mode />
+      <Chat_Message />
+      <Chat_Name />
+      <Chat_Time_Out>0</Chat_Time_Out>
+      <Chat_Any>false</Chat_Any>
       <Response_Command />
       <Command_Pause>2</Command_Pause>
       <Response_Category />
@@ -2578,7 +2730,6 @@
       <Response_Action />
       <Response_Target_Type />
       <Response_Target />
-      <Response_Target_Actor>false</Response_Target_Actor>
       <Delay>0</Delay>
       <Time_Out>5</Time_Out>
       <Reset_Enable>true</Reset_Enable>
@@ -2598,19 +2749,19 @@
       <TP_Limit_High>3000</TP_Limit_High>
       <TP_Limit_Low>0</TP_Limit_Low>
       <Combat>
+        <Name />
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
         <Engage>false</Engage>
         <Disengage>false</Disengage>
         <Run>false</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>30</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Start_Type>Default</Start_Type>
       <Warning_Enable_Start>false</Warning_Enable_Start>
@@ -2632,6 +2783,23 @@
       <Type />
       <Action />
       <Buff_State />
+      <Buff_Time>30</Buff_Time>
+      <HP_Enabled>false</HP_Enabled>
+      <HP_Low>0</HP_Low>
+      <HP_High>100</HP_High>
+      <MP_Enabled>false</MP_Enabled>
+      <MP_Low>0</MP_Low>
+      <MP_High>100</MP_High>
+      <TP_Enabled>false</TP_Enabled>
+      <TP_Low>0</TP_Low>
+      <TP_High>100</TP_High>
+      <State />
+      <Chat_Type />
+      <Chat_Mode />
+      <Chat_Message />
+      <Chat_Name />
+      <Chat_Time_Out>0</Chat_Time_Out>
+      <Chat_Any>false</Chat_Any>
       <Response_Command />
       <Command_Pause>2</Command_Pause>
       <Response_Category />
@@ -2639,7 +2807,6 @@
       <Response_Action />
       <Response_Target_Type />
       <Response_Target />
-      <Response_Target_Actor>false</Response_Target_Actor>
       <Delay>0</Delay>
       <Time_Out>5</Time_Out>
       <Reset_Enable>true</Reset_Enable>
@@ -2659,19 +2826,19 @@
       <TP_Limit_High>3000</TP_Limit_High>
       <TP_Limit_Low>0</TP_Limit_Low>
       <Combat>
+        <Name />
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
         <Engage>false</Engage>
         <Disengage>false</Disengage>
         <Run>false</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>30</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Start_Type>Default</Start_Type>
       <Warning_Enable_Start>false</Warning_Enable_Start>
@@ -2693,6 +2860,23 @@
       <Type />
       <Action />
       <Buff_State />
+      <Buff_Time>30</Buff_Time>
+      <HP_Enabled>false</HP_Enabled>
+      <HP_Low>0</HP_Low>
+      <HP_High>100</HP_High>
+      <MP_Enabled>false</MP_Enabled>
+      <MP_Low>0</MP_Low>
+      <MP_High>100</MP_High>
+      <TP_Enabled>false</TP_Enabled>
+      <TP_Low>0</TP_Low>
+      <TP_High>100</TP_High>
+      <State />
+      <Chat_Type />
+      <Chat_Mode />
+      <Chat_Message />
+      <Chat_Name />
+      <Chat_Time_Out>0</Chat_Time_Out>
+      <Chat_Any>false</Chat_Any>
       <Response_Command />
       <Command_Pause>2</Command_Pause>
       <Response_Category />
@@ -2700,7 +2884,6 @@
       <Response_Action />
       <Response_Target_Type />
       <Response_Target />
-      <Response_Target_Actor>false</Response_Target_Actor>
       <Delay>0</Delay>
       <Time_Out>5</Time_Out>
       <Reset_Enable>true</Reset_Enable>
@@ -2720,19 +2903,19 @@
       <TP_Limit_High>3000</TP_Limit_High>
       <TP_Limit_Low>0</TP_Limit_Low>
       <Combat>
+        <Name />
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
         <Engage>false</Engage>
         <Disengage>false</Disengage>
         <Run>false</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>30</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Start_Type>Default</Start_Type>
       <Warning_Enable_Start>false</Warning_Enable_Start>
@@ -2754,6 +2937,23 @@
       <Type />
       <Action />
       <Buff_State />
+      <Buff_Time>30</Buff_Time>
+      <HP_Enabled>false</HP_Enabled>
+      <HP_Low>0</HP_Low>
+      <HP_High>100</HP_High>
+      <MP_Enabled>false</MP_Enabled>
+      <MP_Low>0</MP_Low>
+      <MP_High>100</MP_High>
+      <TP_Enabled>false</TP_Enabled>
+      <TP_Low>0</TP_Low>
+      <TP_High>100</TP_High>
+      <State />
+      <Chat_Type />
+      <Chat_Mode />
+      <Chat_Message />
+      <Chat_Name />
+      <Chat_Time_Out>0</Chat_Time_Out>
+      <Chat_Any>false</Chat_Any>
       <Response_Command />
       <Command_Pause>2</Command_Pause>
       <Response_Category />
@@ -2761,7 +2961,6 @@
       <Response_Action />
       <Response_Target_Type />
       <Response_Target />
-      <Response_Target_Actor>false</Response_Target_Actor>
       <Delay>0</Delay>
       <Time_Out>5</Time_Out>
       <Reset_Enable>true</Reset_Enable>
@@ -2781,19 +2980,19 @@
       <TP_Limit_High>3000</TP_Limit_High>
       <TP_Limit_Low>0</TP_Limit_Low>
       <Combat>
+        <Name />
         <Enabled>true</Enabled>
         <Auto_Distance>false</Auto_Distance>
-        <Name />
         <Engage>false</Engage>
         <Disengage>false</Disengage>
         <Run>false</Run>
+        <Allow_Interruptions>false</Allow_Interruptions>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Lockon>false</Lockon>
         <Lockoff>false</Lockoff>
         <Max_Distance>30</Max_Distance>
         <Min_Distance>0</Min_Distance>
-        <Allow_Interruptions>false</Allow_Interruptions>
       </Combat>
       <Start_Type>Default</Start_Type>
       <Warning_Enable_Start>false</Warning_Enable_Start>

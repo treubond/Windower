@@ -55,7 +55,7 @@ end
 
 function job_setup()	
 	--Your Main + Sub Weapon Sets. Add new sets here and define below (sets.Montante etc.)
-    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Chango', 'ShiningOne', 'Club'} --'Montante', 'Reikiono', 'Naegling'}
+    state.WeaponSet = M{['description']='Weapon Set', 'Naegling', 'Chango', 'ShiningOne', 'Club', 'Ragnarok'} --'Montante', 'Reikiono', 'Naegling'}
     state.WeaponLock = M(false, 'Weapon Lock')
     
 	--CP Mode
@@ -445,6 +445,7 @@ function init_gear_sets()
     sets.Chango      = {main="Chango", sub="Utu Grip"}
     sets.ShiningOne  = {main="Shining One", sub="Utu Grip"}
     sets.Club        = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
+    sets.Ragnarok    = {main="Ragnarok", sub="Utu Grip"}
 
 end
 

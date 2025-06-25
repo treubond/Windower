@@ -58,12 +58,9 @@ do
                 end
 
                 -- load the initial settings
-                if auto_load and now - auto_load_time > 5 then 
+                if auto_load and now - auto_load_time > 2 then 
                     -- Auto default load settings
                     load_command("")
-                    -- Update all the configuration
-                    que_packet("update")
-
                     auto_load = false;
                 end
 

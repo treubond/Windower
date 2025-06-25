@@ -460,6 +460,9 @@ do
                 log('Received [Standard] release was a type ['..interaction_type..']')
                 que_packet("mirror_status_completed")
                 clear_npc_data()
+            elseif buy_sell then
+                -- Continue the injection
+                npc_inject()
             end
         elseif packet_in['Type'] == 0x01 then
             log('NPC Release [Event]')

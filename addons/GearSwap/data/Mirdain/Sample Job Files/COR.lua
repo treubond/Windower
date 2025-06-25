@@ -1,4 +1,4 @@
---Relyk
+--Maedhros
 
 -- Load and initialize the include file.
 include('Mirdain-Include')
@@ -20,11 +20,8 @@ Random_Lockstyle = false
 --Lockstyle sets to randomly equip
 Lockstyle_List = {1,2,6,12}
 
--- Set to true to run organizer on job changes
-Organizer = false
-
 -- Add CRIT the base modes to allow AM3 Critical Builds
-state.OffenseMode:options('TP','ACC','DT','PDL','CRIT')
+state.OffenseMode:options('TP','ACC','DT','PDL','CRIT','MEVA')
 state.OffenseMode:set('TP')
 
 --Modes for specific to Corsair
@@ -37,8 +34,6 @@ UI_Name = 'TP Mode'
 --Melee or Ranged Mode
 state.JobMode:options('Standard','Melee','Ranged')
 state.JobMode:set('Standard')
-
-elemental_ws = S{'Aeolian Edge', 'Leaden Salute', 'Wildfire','Earth Shot','Ice Shot','Water Shot','Fire Shot','Wind Shot','Thunder Shot'}
 
 -- load addons
 --send_command('lua l autocor')
@@ -64,7 +59,7 @@ function get_sets()
 
 	sets.Weapons['Evisceration'] = {
 		main="Tauret",
-		sub="Crepuscular Knife",
+		sub={ name="Gleti's Knife", augments={'Path: A',}},
 		range={ name="Anarchy +2", augments={'Delay:+60','TP Bonus +1000',}},
 	}
 
@@ -88,7 +83,7 @@ function get_sets()
 	}
 
 	sets.Weapons.Melee = {
-		sub="Blurred Knife +1",
+		sub={ name="Gleti's Knife", augments={'Path: A',}},
 	}
 
 	sets.Weapons.Ranged = {
@@ -124,12 +119,18 @@ function get_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Loricate Torque +1", augments={'Path: A',}},
 		waist="Carrier's Sash",
-		left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-		right_ear="Sanare Earring",
+		left_ear="Sanare Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
 		left_ring={ name="Gelatinous Ring +1", augments={'Path: A',}},
 		right_ring="Shadow Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
+	sets.Idle.TP = sets.Idle
+	sets.Idle.ACC = sets.Idle
+	sets.Idle.DT = sets.Idle
+	sets.Idle.PDL = sets.Idle
+	sets.Idle.CRIT = sets.Idle
+	sets.Idle.MEVA = sets.Idle
 
 	sets.Movement = {
 		legs={ name="Carmine Cuisses +1", augments={'HP+80','STR+12','INT+12',}},
@@ -139,8 +140,8 @@ function get_sets()
 	-- Set to be used if you get 
 	sets.Cursna_Received = {
 	    neck="Nicander's Necklace",
-	    left_ring={ name="Saida Ring", bag="wardrobe3", priority=2},
-		right_ring={ name="Saida Ring", bag="wardrobe4", priority=1},
+	    left_ring={ name="Saida Ring", bag="wardrobe1", priority=2},
+		right_ring={ name="Saida Ring", bag="wardrobe2", priority=1},
 		waist="Gishdubar Sash",
 	}
 
@@ -158,7 +159,7 @@ function get_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Telos Earring",
 		right_ear="Crep. Earring",
-		left_ring="Chirich Ring +1",
+		left_ring="Lehko's Ring",
 		right_ring="Epona's Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
@@ -166,6 +167,7 @@ function get_sets()
 	--This set is used when OffenseMode is DT and Enaged
 	sets.OffenseMode.DT = set_combine(sets.OffenseMode.TP, {
 	    legs="Chas. Culottes +3",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}, priority=2},
 	})
 
 	--This set is used when OffenseMode is PDL and Enaged
@@ -176,6 +178,22 @@ function get_sets()
 	--This set is used when OffenseMode is CRIT and Enaged
 	sets.OffenseMode.CRIT = set_combine(sets.OffenseMode.TP, {
 
+	})
+
+	--This set is used when OffenseMode is MEVA and Enaged
+	sets.OffenseMode.MEVA = set_combine(sets.OffenseMode.DT, {
+		head="Malignance Chapeau",
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		legs="Chas. Culottes +3",
+		feet="Malignance Boots",
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+		left_ear="Telos Earring",
+		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+		left_ring="Lehko's Ring",
+		right_ring="Defending Ring",
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	})
 
 	--The following sets augment the base TP set above for Dual Wielding
@@ -230,7 +248,7 @@ function get_sets()
 		legs={ name="Herculean Trousers", augments={'Mag. Acc.+7','"Fast Cast"+6',}},  -- 6
 		feet={ name="Carmine Greaves +1", augments={'HP+80','MP+80','Phys. dmg. taken -4',}}, -- 8
 		neck="Voltsurge Torque", -- 4
-		waist="Eschan Stone",
+		waist="Plat. Mog. Belt",
 		left_ear="Loquac. Earring", -- 2
 		right_ear="Etiolation Earring", -- 1
 		left_ring="Lebeche Ring",
@@ -239,12 +257,10 @@ function get_sets()
 	} -- 65 FC
 
 	--Base set for midcast - if not defined will notify and use your idle set for surviability
-	sets.Midcast = set_combine(sets.Idle, {
-	
-	})
+	sets.Midcast = set_combine(sets.Idle, {})
 
 	-- Ranged Attack Gear (Normal Midshot)
-    sets.Midcast.RA = {
+    sets.Midcast.RA = set_combine(sets.Midcast, {
 		ammo=Ammo.Bullet.RA,
 		head="Ikenga's Hat",
 		body="Ikenga's Vest",
@@ -258,23 +274,26 @@ function get_sets()
 		left_ring="Ilabrat Ring",
 		right_ring="Crepuscular Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-    }
+    })
 
-	sets.Midcast.RA.ACC = {}
+	sets.Midcast.RA.ACC = set_combine(sets.Midcast.RA, {})
 
 	-- Ranged PDL
-	sets.Midcast.RA.PDL = {
+	sets.Midcast.RA.PDL = set_combine(sets.Midcast.RA, {
 		left_ring="Sroda Ring",
-    }
+    })
 
 	-- Ranged CRIT
-	sets.Midcast.RA.CRIT = {
-		head="Meghanada Visor +2",
-		body="Nisroch Jerkin",
+	sets.Midcast.RA.CRIT = set_combine(sets.Midcast.RA, {
+		head={ name="Ikenga's Hat", augments={'Path: A',}},
 		feet="Osh. Leggings +1",
+		legs="Ikenga's Trousers",
 		waist="K. Kachina Belt +1",
+		left_ring="Chirich Ring +1",
+		right_ring="Chirich Ring +1",
+		right_ear="Chas. Earring +1",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','Crit.hit rate+10','Damage taken-5%',}},
-    }
+    })
 
 	-- Ranged Attack Gear (Triple Shot Midshot)
 	sets.Midcast.RA.TripleShot = set_combine(sets.Midcast.RA, {
@@ -285,9 +304,7 @@ function get_sets()
         feet="Osh. Leggings +1", --3
     }) --28
 
-	sets.Utsusemi = set_combine(sets.Idle, {
-	
-	})
+	sets.Midcast.Utsusemi = set_combine(sets.Idle, {})
 
 	-- Quick Draw Gear Sets
 	sets.QuickDraw = {}
@@ -380,7 +397,7 @@ function get_sets()
 	}) -- 20% Potency
 
 	--Base Set used for all rolls
-	sets.PhantomRoll = set_combine(sets.Idle, {
+	sets.PhantomRoll = {
 		main={ name="Rostam", augments={'Path: C'}, bag="Wardrobe 2", priority=1}, -- +8 Effect and 60 sec Duration
 		sub={ name="Nusku Shield", priority=2},
 		range="Compensator", -- 20 sec Duration
@@ -389,81 +406,101 @@ function get_sets()
 		neck="Regal Necklace", -- 20 sec Duration
 		right_ring="Luzaf's Ring", -- 16 yalm range
 		back={ name="Camulus's Mantle", augments={'HP+60','HP+20','"Snapshot"+10',}}, -- 30 sec Duration
-	})
+	}
 
-	sets.PhantomRoll['Fighter\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Monk\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Healer\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Wizard\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Warlock\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Rogue\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Gallant\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Chaos Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Beast Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Choral Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Hunter\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Samurai Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Ninja Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Drachen Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Evoker\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Magus\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Corsair\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Puppet Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Dancer\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Scholar\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Bolter\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll["Caster\'s Roll"] = set_combine(sets.PhantomRoll, {legs="Chas. Culottes +3",})
-	sets.PhantomRoll["Tactician\'s Roll"] = set_combine(sets.PhantomRoll, {body="Chasseur's Frac +3"})
-	sets.PhantomRoll["Allies\' Roll"] = set_combine(sets.PhantomRoll, {hands="Chasseur's Gants +3"})
-	sets.PhantomRoll['Miser\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Companion\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Avenger\'s Roll'] = sets.PhantomRoll
-	sets.PhantomRoll['Naturalist\'s Roll'] = sets.PhantomRoll
-    sets.PhantomRoll["Courser\'s Roll"] = set_combine(sets.PhantomRoll, {feet="Chass. Bottes +3"})
-    sets.PhantomRoll["Blitzer\'s Roll"] = set_combine(sets.PhantomRoll, {head="Chass. Tricorne +3"})
+	sets.PhantomRoll["Fighter's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Monk's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Healer's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Wizard's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Warlock's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Rogue's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Gallant's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Chaos Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Beast Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Choral Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Hunter's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Samurai Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Ninja Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Drachen Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Evoker's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Magus's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Corsair's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Puppet Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Dancer's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Scholar's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Bolter's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Caster's Roll"] = set_combine(sets.PhantomRoll, {legs="Chas. Culottes +3",})
+	sets.PhantomRoll["Tactician's Roll"] = set_combine(sets.PhantomRoll, {body="Chasseur's Frac +3"})
+	sets.PhantomRoll["Allies' Roll"] = set_combine(sets.PhantomRoll, {hands="Chasseur's Gants +3"})
+	sets.PhantomRoll["Miser's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Companion's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Avenger's Roll"] = sets.PhantomRoll
+	sets.PhantomRoll["Naturalist's Roll"] = sets.PhantomRoll
+    sets.PhantomRoll["Courser's Roll"] = set_combine(sets.PhantomRoll, {feet="Chass. Bottes +3"})
+    sets.PhantomRoll["Blitzer's Roll"] = set_combine(sets.PhantomRoll, {head="Chass. Tricorne +3"})
 
 	-- Melee Base set
 	sets.WS = {
 		ammo=Ammo.Bullet.WS,
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		hands="Chasseur's Gants +3",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
-		left_ring="Cornelia's Ring",
+		left_ring="Regal Ring",
 		right_ring="Epaminondas's Ring",
 		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
 	-- Ranged Base Set (Augments the sets.WS)
 	sets.WS.RA = {
-		body="Laksa. Frac +3",
+		head={ name="Lanun Tricorne +3", augments={'Enhances "Winning Streak" effect',}},
+		body={ name="Ikenga's Vest", augments={'Path: A',}},
 		hands="Chasseur's Gants +3",
+		legs={ name="Ikenga's Trousers", augments={'Path: A',}},
+		feet={ name="Ikenga's Clogs", augments={'Path: A',}},
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+		right_ear="Ishvara Earring",
+		left_ring="Regal Ring",
+		right_ring="Dingir Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
 	-- Accuracy sets used in OffenseMode.ACC
-	sets.WS.ACC = {}
-	sets.WS.ACC.RA = {}
+	sets.WS.ACC = set_combine(sets.WS, {
+	
+	})
+
+	sets.WS.ACC.RA = set_combine(sets.WS, {
+	
+	})
 
 	-- Equipment to augment WS for Physical Damage Limit (Capped Attack)
-	sets.WS.PDL = {
+	sets.WS.PDL = set_combine(sets.WS, {
 		left_ring="Sroda Ring",
-	}
-	sets.WS.PDL.RA = {
+	})
+
+	sets.WS.PDL.RA = set_combine(sets.WS, {
 		left_ring="Sroda Ring",
 		head="Ikenga's Hat",
 		legs="Ikenga's Trousers",
 		feet="Ikenga's Clogs",
-	}
+	})
 
 	-- Critical Hit set used in OffenseMode.CRIT
-	sets.WS.CRIT = { }
-	sets.WS.CRIT.RA = { }
+	sets.WS.CRIT = set_combine(sets.WS, { 
+	
+	})
+
+	sets.WS.CRIT.RA = set_combine(sets.WS, {
+
+	})
 
 	sets.WS.MAB = set_combine(sets.WS, {
 		ammo=Ammo.Bullet.MAB,
@@ -472,6 +509,11 @@ function get_sets()
 		left_ear="Friomisi Earring",
 		right_ear="Crematio Earring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Damage taken-5%',}},
+	})
+
+	sets.WS.MEVA = set_combine(sets.WS, {
+	    neck="Warder's Charm +1",
+		waist="Carrier's Sash",
 	})
 
 	--These set are used when a weaponskill is used with that level of aftermath with the correct weapon
@@ -489,6 +531,35 @@ function get_sets()
 	sets.WS.AM2.RA['Armageddon'] = {}
 	sets.WS.AM3.RA['Armageddon'] = {}
 
+	sets.WS['Aeolian Edge'] = set_combine(sets.WS.MAB, {
+		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+	})
+
+	sets.WS["Savage Blade"] = set_combine(sets.WS, {
+		left_ring="Sroda Ring",
+	})
+
+	sets.WS["Fast Blade"] = set_combine(sets.WS, {})
+	sets.WS["Burning Blade"] = set_combine(sets.WS, {})
+	sets.WS["Flat Blade"] = set_combine(sets.WS, {})
+	sets.WS["Shining Blade"] = set_combine(sets.WS, {})
+	sets.WS["Circle Blade"] = set_combine(sets.WS, {})
+	sets.WS["Spirits Within"] = set_combine(sets.WS, {})
+	sets.WS["Requiescat"] = set_combine(sets.WS, {})
+
+	-- Ranged WS
+	sets.WS["Hot Shot"] = set_combine(sets.WS, sets.WS.RA, {})
+	sets.WS["Split Shot"] = set_combine(sets.WS, sets.WS.RA, {})
+	sets.WS["Sniper Shot"] = set_combine(sets.WS, sets.WS.RA, {})
+	sets.WS["Numbing Shot"] = set_combine(sets.WS, sets.WS.RA, {})
+	sets.WS["Slug Shot"] = set_combine(sets.WS, sets.WS.RA, {
+		
+	})
+
+	sets.WS["Last Stand"] = set_combine(sets.WS, sets.WS.RA, {
+
+	})
+
 	sets.WS["Wildfire"] = set_combine(sets.WS.MAB, {
 
 	})
@@ -499,33 +570,6 @@ function get_sets()
 		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
 		waist="Svelt. Gouriz +1",   -- Changes based off elemental function
 	})
-
-	sets.WS['Aeolian Edge'] = set_combine(sets.WS.MAB, {
-		right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-	})
-
-	sets.WS["Savage Blade"] = set_combine(sets.WS.WSD, {
-		left_ring="Sroda Ring",
-	})
-
-	sets.WS["Last Stand"] = set_combine(sets.WS.WSD, sets.WS.RA, {
-		neck="Fotia Gorget",
-		waist="Fotia Belt",
-	})
-
-	-- Uses Default WS set
-	sets.WS["Hot Shot"] = set_combine(sets.WS, {})
-	sets.WS["Split Shot"] = set_combine(sets.WS, {})
-	sets.WS["Sniper Shot"] = set_combine(sets.WS, {})
-	sets.WS["Slug Shot"] = set_combine(sets.WS, {})
-	sets.WS["Numbing Shot"] = set_combine(sets.WS, {})
-	sets.WS["Fast Blade"] = set_combine(sets.WS, {})
-	sets.WS["Burning Blade"] = set_combine(sets.WS, {})
-	sets.WS["Flat Blade"] = set_combine(sets.WS, {})
-	sets.WS["Shining Blade"] = set_combine(sets.WS, {})
-	sets.WS["Circle Blade"] = set_combine(sets.WS, {})
-	sets.WS["Spirits Within"] = set_combine(sets.WS, {})
-	sets.WS["Requiescat"] = set_combine(sets.WS, {})
 
 	sets.TreasureHunter = {
 		waist="Chaac Belt",
@@ -642,5 +686,23 @@ function Job_Mode_Check(equipSet)
 			equipSet = set_combine(equipSet, sets.Weapons.Shield)
 		end
 	end
+	return equipSet
+end
+
+function pet_change_custom(pet,gain)
+	equipSet = {}
+	
+	return equipSet
+end
+
+function pet_aftercast_custom(spell)
+	equipSet = {}
+
+	return equipSet
+end
+
+function pet_midcast_custom(spell)
+	equipSet = {}
+
 	return equipSet
 end

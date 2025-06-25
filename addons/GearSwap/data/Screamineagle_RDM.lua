@@ -162,12 +162,12 @@ function get_sets()
 		hands=EMPY.Hands,
 		legs=EMPY.Legs,
 		feet=EMPY.Feet,
-		neck="Dls. Torque +2",
-		--neck="Null Loop",
+		--neck="Dls. Torque +2",
+		neck="Null Loop",
 		waist="Acuity Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Etiolation Earring",
-		left_ring="Shneddick Ring",
+		left_ring={name="Stikini Ring +1", bag="wardrobe1"},
 		right_ring={name="Stikini Ring +1", bag="wardrobe2"},
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 		--[[ ammo="Staunch Tathlum +1", -- 3/3
@@ -185,6 +185,15 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, -- 10/0 ]]
 		-- 50% PDT, 50% MDT, 11 MP/Tic
     }
+	sets.Idle.TP = sets.Idle
+	sets.Idle.ACC = sets.Idle
+	sets.Idle.DT = sets.Idle
+	sets.Idle.PDL = sets.Idle
+	sets.Idle.SB = sets.Idle
+	sets.Idle.MEVA = sets.Idle
+	sets.Idle.Enspell = sets.Idle
+	sets.Idle.Resting = sets.Idle
+	
 	-- Gear to swap out for Movement
 	sets.Movement = {
 		left_ring="Shneddick Ring"
@@ -213,8 +222,8 @@ function get_sets()
 		feet=EMPY.Feet,
 		neck="Null Loop",
 		waist="Sailfi Belt +1",
-		left_ear="Brutal Earring",
-		right_ear="Suppanomimi",
+		left_ear="Sherida Earring",
+		right_ear="Brutal Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Chirich Ring",
 		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
@@ -288,6 +297,13 @@ function get_sets()
 		back={ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --10 ]]
 	} -- 51% total Fast Cast
 
+	
+	-- Used for Enhancing Magic
+	sets.Precast.Enhancing = set_combine(sets.Precast.FastCast, sets.Precast.QuickMagic, {})
+
+	-- Used for Healing Magic
+	sets.Precast.Cure = set_combine(sets.Precast.FastCast, sets.Precast.QuickMagic, {})
+	
 	-- Used for Raises and Cures
 	sets.Precast.QuickMagic = set_combine(sets.Precast.FastCast, {
 		-- Cap is 10%

@@ -1,6 +1,9 @@
 <settings>
 	<global>
 		<!-- This will be used for all the characters that you don't make a specific set of plugins/addons for -->
+		<plugin>JaZero</plugin>
+		<plugin>PacketFlow</plugin>
+		
 		<addon>react</addon>
 	</global>
 	<YourName> <!-- This is just an example. You need to replace "YourName" to the left and below with the character name that you want the set of plugins to work for. -->
@@ -20,7 +23,8 @@
 	<Treubond>
 		<plugin>FFXIDB</plugin>
 		<plugin>Timers</plugin>
-		
+		<plugin>JaZero</plugin>
+				
 		<addon>azuresets</addon>
 		<addon>Debuffed</addon>
 		<addon>pointwatch</addon>
@@ -29,27 +33,54 @@
 		<addon>silmaril</addon>
 		<addon>battlemod</addon>
 		<addon>fastcs</addon>
-		<addon>InfoBar</addon>
 		<addon>react</addon>
 	</Treubond>
 	<Khrone>
+		<plugin>JaZero</plugin>
+		
 		<addon>silmaril</addon>
 		<addon>react</addon>
 	</Khrone>
 	<Hybridkiller>
+		<plugin>JaZero</plugin>
+		
 		<addon>silmaril</addon>
 		<addon>react</addon>
 	</Hybridkiller>
 	<Screamineagle>
+		<plugin>JaZero</plugin>
+		
 		<addon>silmaril</addon>
 		<addon>react</addon>
 	</Screamineagle>
 	<Soliene>
+		<plugin>JaZero</plugin>
+		
 		<addon>silmaril</addon>
 		<addon>react</addon>
 	</Soliene>
 	<Swifman>
+		<plugin>JaZero</plugin>
+		
 		<addon>silmaril</addon>
 		<addon>react</addon>
 	</Swifman>
+	<Valarmorghulis>
+		<plugin>JaZero</plugin>
+		
+		<addon>silmaril</addon>
+		<addon>react</addon>
+	</Valarmorghulis>
+	<Thedoktor>
+		<plugin>JaZero</plugin>
+		
+		<addon>silmaril</addon>
+		<addon>react</addon>
+	</Thedoktor>
+	<Felione>
+		<plugin>JaZero</plugin>
+		
+		<addon>silmaril</addon>
+		<addon>react</addon>
+	</Felione>
 </settings>

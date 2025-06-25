@@ -115,6 +115,7 @@ do
 			target_index = target.index
 		end
 		lines = T{}
+		sm_debug:text()
 		lines:insert('Enabled'..string.format('[%s]',tostring(get_enabled())):lpad(' ',13))
 		lines:insert('Following'..string.format('[%s]',tostring(get_following())):lpad(' ',11))
 		lines:insert('Injecting'..string.format('[%s]',tostring(get_injecting())):lpad(' ',11))

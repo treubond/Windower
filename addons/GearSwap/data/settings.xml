@@ -47,6 +47,29 @@
         <info>true</info>
         <visible>true</visible>
     </global>
+    <Khrone>
+        <Display_Box>
+            <bg>
+                <alpha>102</alpha>
+                <blue>0</blue>
+                <green>0</green>
+                <red>0</red>
+                <visible>true</visible>
+            </bg>
+            <pos>
+                <x>800</x>
+                <y>100</y>
+            </pos>
+            <text>
+                <alpha>255</alpha>
+                <blue>255</blue>
+                <font>Consolas</font>
+                <green>255</green>
+                <red>255</red>
+                <size>10</size>
+            </text>
+        </Display_Box>
+    </Khrone>
     <Screamineagle>
         <Display_Box>
             <bg>
@@ -70,4 +93,73 @@
             </text>
         </Display_Box>
     </Screamineagle>
+    <Valarmorghulis>
+        <Display_Box>
+            <bg>
+                <alpha>102</alpha>
+                <blue>0</blue>
+                <green>0</green>
+                <red>0</red>
+                <visible>true</visible>
+            </bg>
+            <pos>
+                <x>800</x>
+                <y>100</y>
+            </pos>
+            <text>
+                <alpha>255</alpha>
+                <blue>255</blue>
+                <font>Consolas</font>
+                <green>255</green>
+                <red>255</red>
+                <size>10</size>
+            </text>
+        </Display_Box>
+    </Valarmorghulis>
+    <Thedoktor>
+        <Display_Box>
+            <bg>
+                <alpha>102</alpha>
+                <blue>0</blue>
+                <green>0</green>
+                <red>0</red>
+                <visible>true</visible>
+            </bg>
+            <pos>
+                <x>800</x>
+                <y>100</y>
+            </pos>
+            <text>
+                <alpha>255</alpha>
+                <blue>255</blue>
+                <font>Consolas</font>
+                <green>255</green>
+                <red>255</red>
+                <size>10</size>
+            </text>
+        </Display_Box>
+    </Thedoktor>
+    <Felione>
+        <Display_Box>
+            <bg>
+                <alpha>102</alpha>
+                <blue>0</blue>
+                <green>0</green>
+                <red>0</red>
+                <visible>true</visible>
+            </bg>
+            <pos>
+                <x>800</x>
+                <y>100</y>
+            </pos>
+            <text>
+                <alpha>255</alpha>
+                <blue>255</blue>
+                <font>Consolas</font>
+                <green>255</green>
+                <red>255</red>
+                <size>10</size>
+            </text>
+        </Display_Box>
+    </Felione>
 </settings>

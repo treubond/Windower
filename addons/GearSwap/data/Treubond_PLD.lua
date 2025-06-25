@@ -53,7 +53,7 @@ function user_setup()
     state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'HP', 'MP', 'Knockback', 'MP_Knockback'}
     state.EquipShield = M(false, 'Equip Shield w/Defense')
      
-    gear.Weard = { name="Weard Mantle", augments={'VIT+1','DEX+3','Enmity+2','Phalanx +5'}}
+    gear.Weard = { name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}}
     gear.RudianosTP = { name="Rudianos's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10',}}
     gear.RudianosWS = { name="Rudianos's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%',}}
     gear.RudianosFC = { name="Rudianos's Mantle", augments={'HP+60','"Fast Cast"+10',}}
@@ -195,15 +195,15 @@ function init_gear_sets()
         head={ name="Souv. Schaller +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
         body=EMPY.Body, --14 (+2)
         hands={ name="Souv. Handsch. +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
-        legs="Vlr. Breeches +1", --4
-        feet=EMPY.Feet, --11 (+1)
+        legs={ name="Souv. Diechlings +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --9
+        feet=EMPY.Feet, --13 (+2)
         neck="Moonlight Necklace", --15
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
         right_ear="Cryptic Earring", --4
-        left_ring="Petrov Ring", --4
-        right_ring="Odium Ring", --4
-        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}}, --5
+        left_ring="Apeile Ring", --5~9
+        right_ring="Apeile Ring +1", --5~9
+        back=gear.Weard, --5
         --[[ ammo="Paeapua",
         head="Caballarius Coronet +1",neck="Unmoving Collar +1",ear2="Friomisi Earring",
         body="Reverence Surcoat +2",hands="Caballarius Gauntlets +1",ring1="Supershear Ring",ring2="Provocare Ring",
@@ -343,7 +343,7 @@ function init_gear_sets()
         hands="Souv. Handsch. +1",
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
         feet="Souveran Schuhs +1",
-        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
+        back=gear.Weard,
     }
 
     sets.midcast.FastRecast = {
@@ -455,7 +455,7 @@ function init_gear_sets()
         head="Souv. Schaller +1", --280
         body="Sacro Breastplate", --182 + regen13
         hands="Souv. Handsch. +1", --239
-        legs="Chev. Cuisses +2", --117
+        legs="Souv. Diechlings +1", --162
         feet="Souveran Schuhs +1", --122 (227 if augmented)
         --neck="Sacro Gorget", --50
         waist="Plat. Mog. Belt", --10%
@@ -514,7 +514,7 @@ function init_gear_sets()
         head="Souv. Schaller +1",
         body="Sacro Breastplate",
         hands="Souv. Handsch. +1",
-        legs="Chev. Cuisses +2",
+        legs=EMPY.Legs,
         feet="Souveran Schuhs +1",
         neck="Sacro Gorget",
         waist="Plat. Mog. Belt",
@@ -522,7 +522,7 @@ function init_gear_sets()
         right_ear="Eabani Earring",
         left_ring="Regal Ring",
         right_ring="Gelatinous Ring +1",
-        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
+        back=gear.Weard,
         --[[ ammo="Plumose Sachet",
         head="Caballarius Coronet +1",neck="Twilight Torque",ear1="Oneiros Earring",ear2="Creed Earring",
         body="Reverence Surcoat +2",hands="Caballarius Gauntlets +1",ring1="Vocane Ring +1",ring2="Defending Ring",
@@ -570,7 +570,7 @@ function init_gear_sets()
      
     sets.engaged = {
         ammo="Ginsen",
-        head="Sakpata's Helm",
+        head="Hjarrandi Helm",
         body="Sakpata's Plate",
         hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
@@ -615,7 +615,7 @@ function init_gear_sets()
         head="Souv. Schaller +1",
         body="Sacro Breastplate",
         hands="Souv. Handsch. +1",
-        legs="Chev. Cuisses +2",
+        legs=EMPY.Legs,
         feet="Souveran Schuhs +1",
         neck="Loricate Torque +1",
         waist="Plat. Mog. Belt",
@@ -623,7 +623,7 @@ function init_gear_sets()
         right_ear="Tuisto Earring",
         left_ring="Moonlight Ring",
         right_ring="Gelatinous Ring +1",
-        back={ name="Weard Mantle", augments={'VIT+4','DEX+1','Enmity+5','Phalanx +5',}},
+        back=gear.Weard,
     }
      
     sets.engaged.Acc.PDT = sets.engaged.PDT

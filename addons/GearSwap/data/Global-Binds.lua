@@ -42,7 +42,10 @@
     send_command('bind @f2 input //send Khrone //sm toggle')
     send_command('bind @f3 input //send Hybridkiller //sm toggle')
     send_command('bind @f4 input //send Screamineagle //sm toggle')
-    send_command('bind @f5 input //sm all toggle')
+    send_command('bind @f5 input //send ValarMorghulis //sm toggle')
+    send_command('bind @f6 input //send Thedoktor //sm toggle')
+    send_command('bind @f7 input //send Felione //sm toggle')
+    send_command('bind @f8 input //sm all toggle')
     send_command('bind #f input //sm all follow')
     send_command('bind #m input //sm mirror')
     send_command('bind #b input //send @cor /ja "Bolter\'s Roll" <me>')
@@ -52,6 +55,9 @@
     send_command('bind ~f2 input //switch to Khrone')
     send_command('bind ~f3 input //switch to Hybridkiller')
     send_command('bind ~f4 input //switch to Screamineagle')
+    send_command('bind ~f5 input //switch to ValarMorghulis')
+    send_command('bind ~f6 input //switch to Thedoktor')
+    send_command('bind ~f7 input //switch to Felione')
     
 
     -- Default Spell HotKeys

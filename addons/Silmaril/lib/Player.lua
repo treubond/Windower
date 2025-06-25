@@ -153,6 +153,7 @@ do
                 local buff_offset = 1009810800 + ( 4294967296 * epoch_ticks + packet[buff_index] ) / 60 - server_delta
                 local end_time = os.date('%Y-%m-%dT%H:%M:%S',buff_offset)
                 --log('Buff end time ['..end_time..']')
+
                 -- Need to not key off buff ID's because can have multiple of same
                 player_buff_ids[i] = { id = packet[buff], time = end_time }
             end
@@ -209,11 +210,6 @@ do
         return tostring(player_data.id)
     end
 
-    function get_player_buff_ids()
-        info('Get Buff IDs Called')
-        return player_buff_ids
-    end
-
     function set_server_offset(timestamp , offset)
         -- Calculates the roll over times for buffs
         local server_time = timestamp - offset
@@ -241,21 +237,23 @@ do
                 -- Check to make sure no duplicates
                 local need_buff = true
 
-                for i=1, #player_buff_ids do
+                -- Can hold up to 32 buffs
+                for i=1,32 do
                     if player_buff_ids[i] and player_buff_ids[i].id == target.buff then
                         need_buff = false
-                        i = #player_buff_ids 
+                        i = 33
                     end
                 end
 
                 if need_buff then
+                    -- store the unknown buff first and append known later
                     player_buffs = player_buffs..target.buff..',Unknown|'
                 end
             end
 
         end
 
-        for i=1, #player_buff_ids do
+        for i=1,32 do
             if player_buff_ids[i] then
                 player_buffs = player_buffs..player_buff_ids[i].id..','..player_buff_ids[i].time..'|'
             end

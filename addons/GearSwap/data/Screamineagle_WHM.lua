@@ -50,6 +50,8 @@ function get_sets()
 	--INYANGA.Legs = ""
 	INYANGA.Feet = "Inyanga Crackows"
 
+	AF.Body = "Theo. Bliaut +3"
+
 	EMPY.Head = "Ebers Cap +2"
 	--EMPY.Body = ""
 	--EMPY.Hands = ""
@@ -99,7 +101,7 @@ function get_sets()
 		sub="Ammurapi Shield",
 		ammo="Hydrocera",
 		head=EMPY.Head,
-		body=INYANGA.Body,
+		body=AF.Body,
 		hands=INYANGA.Hands,
 		legs=EMPY.Legs,
 		feet="Regal Pumps +1",
@@ -225,6 +227,14 @@ function get_sets()
 		back={ name="Alaunus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+20','Haste+10','Damage taken-5%',}}, ]]
 	} -- 81%
 
+	
+	-- Used for Enhancing Magic
+	sets.Precast.Enhancing = set_combine(sets.Precast.FastCast, sets.Precast.QuickMagic, {})
+
+	-- Used for Healing Magic
+	sets.Precast.Cure = set_combine(sets.Precast.FastCast, sets.Precast.QuickMagic, {})
+	
+
 	-- Cap is 10% Quick Magic - used for Raises and Cures
 	sets.Precast.QuickMagic = set_combine(sets.Precast.FastCast, {
 		--[[ ammo="Impatiens", -- 2
@@ -261,13 +271,13 @@ function get_sets()
 	--This set is used as base as is overwrote by specific gear changes (Spell Interruption Rate Down)
 	sets.Midcast.SIRD = {}
 	-- Cure Set
-	sets.Midcast.Cure = { -- 67 (Cap is 50)
+	sets.Midcast.Cure = { -- 66 (Cap is 50)
 		main="Daybreak", -- 30
 		sub="Sors Shield", -- 3
 		ammo="Hydrocera",
 		head=EMPY.Head, -- 19 (+2)
-		body=Telchine.Body, -- 8
-		hands=Telchine.Hands,
+		body=AF.Body, -- II 6
+		hands=Telchine.Hands, -- 7
 		legs=EMPY.Legs,
 		feet="Regal Pumps +1",
 		neck="Mizu. Kubikazari",

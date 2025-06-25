@@ -465,7 +465,7 @@
       <Targeting_Mode>Any</Targeting_Mode>
       <Player />
       <Movement>Self</Movement>
-      <Enemy_Count>1</Enemy_Count>
+      <Enemy_Count>2</Enemy_Count>
       <Enemy_Distance>22</Enemy_Distance>
       <Enemy_Elevation>10</Enemy_Elevation>
       <Claim_Timeout>15</Claim_Timeout>

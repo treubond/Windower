@@ -171,8 +171,8 @@ function precast(spell)
         return
     end
     --Me added
-    --if spell.mp_cost > 100 then
-    --    cancel_spell()
+    --if spell.mp_cost > 60 then
+    --    gs_skillup.skipped_spells:append(spell.name)
     --    return
     --end
     --end addition

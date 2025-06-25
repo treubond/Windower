@@ -1,77 +1,71 @@
 do
-    local enabled = true
+    local enabled = false
     local tracking_window = texts.new("", {
 			text={size=10,font='Consolas',red=255,green=255,blue=255,alpha=255},
 			pos={x=0,y=0},
 			bg={visible=true,red=0,green=0,blue=0,alpha=102},})
     local location = ""
-    local bitzer_position = {}
-    local mob_tracking = {}
+    local bitzer_position = {
+            [1] = {name = 'Diaphanous Bitzer (E)', index = 837, x = 0, y = 0, z = 0 },
+            [2] = {name = 'Diaphanous Bitzer (F)', index = 838, x = 0, y = 0, z = 0 },
+            [3] = {name = 'Diaphanous Bitzer (G)', index = 839, x = 0, y = 0, z = 0 },
+            [4] = {name = 'Diaphanous Bitzer (H)', index = 840, x = 0, y = 0, z = 0 }, }
+    local mob_tracking = {
+            [1] = {name = 'Abject Obdella', index = 144, distance = 0},
+            [2] = {name = 'Biune Porxie', index = 223, distance = 0},
+            [3] = {name = 'Cachaemic Bhoot', index = 285, distance = 0},
+            [4] = {name = 'Demisang Deleterious', index = 373, distance = 0},
+            [5] = {name = 'Esurient Botulus', index = 427, distance = 0},
+            [6] = {name = 'Fetid Ixion', index = 498, distance = 0},
+            [7] = {name = 'Gyvewrapped Naraka', index = 552, distance = 0},
+            [8] = {name = 'Haughty Tulittia', index = 622, distance = 0},}
     local old_zone = 0
     local zone_1 = 133
     local zone_2 = 189
     local zone_3 = 275
-    local world = nil
     local p_loc = nil
     local position_time = os.clock()
     local repositioned = false
-
-    function sortie_initialize()
-        location = ""
-
-        mob_tracking = 
-        {
-             [1] = {name = 'Abject Obdella', index = 144, distance = 0},
-             [2] = {name = 'Biune Porxie', index = 223, distance = 0},
-             [3] = {name = 'Cachaemic Bhoot', index = 285, distance = 0},
-             [4] = {name = 'Demisang Deleterious', index = 373, distance = 0},
-             [5] = {name = 'Esurient Botulus', index = 427, distance = 0},
-             [6] = {name = 'Fetid Ixion', index = 498, distance = 0},
-             [7] = {name = 'Gyvewrapped Naraka', index = 552, distance = 0},
-             [8] = {name = 'Haughty Tulittia', index = 622, distance = 0},
-        }
-
-        bitzer_position = 
-        {
-            [1] = {name = 'Diaphanous Bitzer (E)', index = 837, x = 0, y = 0, z = 0 },
-            [2] = {name = 'Diaphanous Bitzer (F)', index = 838, x = 0, y = 0, z = 0 },
-            [3] = {name = 'Diaphanous Bitzer (G)', index = 839, x = 0, y = 0, z = 0 },
-            [4] = {name = 'Diaphanous Bitzer (H)', index = 840, x = 0, y = 0, z = 0 },
-        }
-    end
+    local repositioned_tick = os.clock()
+    local display = true
 
     function sortie_engine()
-
         if not enabled then return end
 
-        world = get_world()
-        p_loc = get_player_info()
+        local world = get_world()
+        if not world then return end
 
         -- Zone change or just starting addon
         if old_zone ~= world.zone then
-            sortie_initialize()
             old_zone = world.zone
-            log("Sortie Reset")
-            if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
+            if world.zone == zone_1 or world.zone == zone_2 or world.zone ~= zone_3 then
                 log("Sortie Window Show")
-                sortie_command("A")
-                tracking_window:show()
+                sortie_position()
             else
                 log("Sortie Window Hide")
+                enabled = false
                 tracking_window:hide()
             end
         end
 
         if world.zone == zone_1 or world.zone == zone_2 or world.zone == zone_3 then
-            tracking_update() -- Sortie addon
+            tracking_update()
+        else
+            enabled = false
         end
 
         -- Wait till you finish moving to check for area
         if repositioned then
-            if os.clock() - position_time > 2 then
+            -- Actively try to get the update
+            if os.clock() - repositioned_tick > 2 then
+                position_update()
+                repositioned_tick = os.clock()
+            end
+            -- Time out of trying to find the bitzer
+            if os.clock() - position_time > 5 then
                 repositioned = false
                 if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
-                position_update()
+                info('Bitzer Check Timed Out')
             end
         end
     end
@@ -107,6 +101,8 @@ do
 
     -- Used to track mobs and objectives
     function tracking_update()
+        -- Update the player position
+        p_loc = get_player_info()
         if not p_loc or not p_loc.x or not p_loc.y or not p_loc.z then return end
         local maxWidth = 41
         local lines = T{}
@@ -246,177 +242,190 @@ do
 
     -- NPC Update called from Packets.lua
     function bitzer_Check(data)
-        if not world then return end
-        if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
-
+        if not repositioned then return end
         local packet = parse_packet('incoming', data)
-        local bitzer_index = packet['Index']
-        local x = packet['X']
-        local y = packet['Y']
-        local z = packet['Z']
 
-        if x == 0 and y == 0 and z == 0 then return end
+        if packet['X'] == 0 and packet['Y'] == 0 and packet['Y'] == 0 then return end
 
-        local position = 1
+        local position = 0
 
-        if bitzer_index == bitzer_position[1].index then
+        if packet['Index'] == bitzer_position[1].index then
             position = 1
-        elseif bitzer_index == bitzer_position[2].index then
+        elseif packet['Index'] == bitzer_position[2].index then
             position = 2
-        elseif bitzer_index == bitzer_position[3].index then
+        elseif packet['Index'] == bitzer_position[3].index then
             position = 3
-        elseif bitzer_index == bitzer_position[4].index then
+        elseif packet['Index'] == bitzer_position[4].index then
             position = 4
         else
             return
         end
 
-        bitzer_position[position].x = x
-        bitzer_position[position].y = y
-        bitzer_position[position].z = z
+        -- Update stored position
+        bitzer_position[position].x = packet['X']
+        bitzer_position[position].y = packet['Y']
+        bitzer_position[position].z = packet['Z']
             
-        log('Bitzer Found - '..bitzer_index..' ['..x..'],['..y..'],['..z..']')
-        que_packet('sortie_'..bitzer_index..'_'..x..'_'..y..'_'..z)
+        log('Bitzer Found - '..packet['Index']..' ['..packet['X']..'],['..packet['Y']..'],['..packet['Z']..']')
+        que_packet('sortie_'..packet['Index']..'_'..packet['X']..'_'..packet['Y']..'_'..packet['Z'])
         repositioned = false
     end
 
     -- Command by user or update called
     function sortie_command(args)
         if not args[1] then return end
-        local area = string.gsub(string.lower(args[1]), "%s+", "")
-        local position = 0
+        local area = string.gsub(string.upper(args[1]), "%s+", "")
+        enabled = true
 
         --Top floor
-        if area == 'a' and location ~= "A" then
-            location = "A"
-            position = 1
-        elseif area == 'b' and location ~= "B" then
-            location = "B"
-            position = 2
-        elseif area == 'c' and location ~= "C" then
-            location = "C"
-            position = 3
-        elseif area == 'd' and location ~= "D" then
-            location = "D"
-            position = 4
-
-        -- Basement area
-        elseif area == 'e' and location ~= "E" then
-            location = "E"
-            position = 5
-        elseif area == 'f' and location ~= "F" then
-            location = "F"
-            position = 6
-        elseif area == 'g' and location ~= "G" then
-            location = "G"
-            position = 7
-        elseif area == 'h' and location ~= "H" then
-            location = "H"
-            position = 8
+        if args == 'Boss' then
+            location = 'Boss'
+            track_off()
+        elseif args == 'Off' then
+            if enabled then info('Setting Display Off') end
+            display = true
+            track_off()
+        elseif args == 'On' then
+            if enabled then info('Setting Display On') end
+            display = true
+        elseif area ~= location then
+            location = area
         end
 
-        if position ~= 0 then
-            --Set the NM to track
-            send_to_chat(8,'The Hunt begins for the ['..mob_tracking[position].name..']....')
-            track_on(mob_tracking[position].index)
+        -- Start the Tracking
+        if display and enabled then
+            coroutine.schedule(start_track, 5)
         end
+    end
+
+    function start_track()
+        --Set the NM to track
+        local mob_index = {['A'] = 1, ['B'] = 2, ['C'] = 3, ['D'] = 4, ['E'] = 5, ['F'] = 6, ['G'] = 7, ['H'] = 8 }
+        if not mob_index[location] then return end
+        send_to_chat(8,'The Hunt begins for the ['..mob_tracking[mob_index[location]].name..']....')
+        track_on(mob_tracking[mob_index[location]].index)
     end
 
     -- Repositioning called from Packets.lua
-    function position_update()
-        if not p_loc or not p_loc.x or not p_loc.y or not p_loc.z then return end
-        local zone = 
-        {
-            [1] = {name = 'Zone A Identified', x = -460, y = 65 },
-            [2] = {name = 'Zone B Identified', x = -375, y = -20 },
-            [3] = {name = 'Zone C Identified', x = -460, y = -104 },
-            [4] = {name = 'Zone D Identified', x = -544, y = -20 },
-            [5] = {name = 'Zone E Identified', x = 580, y = 31.5 },
-            [6] = {name = 'Zone F Identified', x = 631.5, y = -20 },
-            [7] = {name = 'Zone G Identified', x = 580, y = -71.5 },
-            [8] = {name = 'Zone H Identified', x = 528.5, y = -20 },
-            [9] = {name = 'Enterance Identified', x = -880, y = -20 },
-            [10] = {name = 'Zone A Identified', x = -900, y = 416 },
-            [11] = {name = 'Zone B Identified', x = -24, y = 420 },
-            [12] = {name = 'Zone C Identified', x = -20, y = -456 },
-            [13] = {name = 'Zone D Identified', x = -896, y = -460 },
-        }
-
-        if ((p_loc.x-zone[1].x)^2 + (p_loc.y-zone[1].y)^2):sqrt() < 50 then -- Zone A
-            log(zone[1].name)
-            sortie_command('A')
-
-        elseif ((p_loc.x-zone[2].x)^2 + (p_loc.y-zone[2].y)^2):sqrt() < 50 then -- Zone B
-            log(zone[2].name)
-            sortie_command('B')
-
-        elseif ((p_loc.x-zone[3].x)^2 + (p_loc.y-zone[3].y)^2):sqrt() < 50 then -- Zone C
-            log(zone[3].name)
-            sortie_command('C')
-
-        elseif ((p_loc.x-zone[4].x)^2 + (p_loc.y-zone[4].y)^2):sqrt() < 50 then -- Zone D
-            log(zone[4].name)
-            sortie_command('D')
-
-        elseif ((p_loc.x-zone[5].x)^2 + (p_loc.y-zone[5].y)^2):sqrt() < 50 then -- Zone E
-            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[1].index })
-            inject_packet(packet)
-            packet_log(packet, "out")
-            log(zone[5].name)
-            sortie_command('E')
-
-        elseif ((p_loc.x-zone[6].x)^2 + (p_loc.y-zone[6].y)^2):sqrt() < 50 then -- Zone F
-            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[2].index })
-            inject_packet(packet)
-            packet_log(packet, "out")
-            log(zone[6].name)
-            sortie_command('F')
-
-        elseif ((p_loc.x-zone[7].x)^2 + (p_loc.y-zone[7].y)^2):sqrt() < 50 then -- Zone G
-            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[3].index })
-            inject_packet(packet)
-            packet_log(packet, "out")
-            log(zone[7].name)
-            sortie_command('G')
-
-        elseif ((p_loc.x-zone[8].x)^2 + (p_loc.y-zone[8].y)^2):sqrt() < 50 then -- Zone H
-            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[4].index })
-            inject_packet(packet)
-            packet_log(packet, "out")
-            log(zone[8].name)
-            sortie_command('H')
-
-        elseif ((p_loc.x-zone[9].x)^2 + (p_loc.y-zone[9].y)^2):sqrt() < 75 then -- Enterance
-            log(zone[9].name)
-            sortie_command('A')
-
-        elseif ((p_loc.x-zone[10].x)^2 + (p_loc.y-zone[10].y)^2):sqrt() < 25 then -- A Boss Exit
-            log(zone[10].name)
-            sortie_command('A')
-
-        elseif ((p_loc.x-zone[11].x)^2 + (p_loc.y-zone[11].y)^2):sqrt() < 25 then -- B Boss Exit
-            log(zone[11].name)
-            sortie_command('B')
-            
-        elseif ((p_loc.x-zone[12].x)^2 + (p_loc.y-zone[12].y)^2):sqrt() < 25 then -- C Boss Exit
-            log(zone[11].name)
-            sortie_command('C')
-                        
-        elseif ((p_loc.x-zone[13].x)^2 + (p_loc.y-zone[13].y)^2):sqrt() < 25 then -- C Boss Exit
-            log(zone[13].name)
-            sortie_command('D')
-        end
-    end
-
     function sortie_position()
-        if not world then return end
-        if world.zone ~= zone_1 and world.zone ~= zone_2 and world.zone ~= zone_3 then return end
         position_time = os.clock()
+        repositioned_tick = os.clock()
         repositioned = true
     end
 
-    function get_sortie_enabled()
-        return enabled
+    -- Called periodically to try to ping for basement bitzer
+    function position_update()
+        -- Zone E
+        if location == 'E' then
+            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[1].index })
+            inject_packet(packet)
+            packet_log(packet, "out")
+        -- Zone F
+        elseif location == 'F' then
+            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[2].index })
+            inject_packet(packet)
+            packet_log(packet, "out")
+        -- Zone G
+        elseif location == 'G' then
+            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[3].index })
+            inject_packet(packet)
+            packet_log(packet, "out")
+        -- Zone H
+        elseif location == 'H' then
+            local packet = new_packet('outgoing', 0x016, {['Target Index'] = bitzer_position[4].index })
+            inject_packet(packet)
+            packet_log(packet, "out")
+        else
+            repositioned = false
+        end
+    end
+
+    function reposition_packet(packet)
+        -- Main
+        if packet['X'] == -836 and packet['Y'] == -20 and packet['Z'] == -178 then
+            sortie_command('A')
+
+        -- A Bitzer
+        elseif packet['X'] == -460 and packet['Y'] == 96 and packet['Z'] == -150 then
+            sortie_command('A')
+        -- Ghatjot Exit
+        elseif packet['X'] == -900 and packet['Y'] == 416 and packet['Z'] == -200 then
+            sortie_command('A')
+
+        -- B Bitzer
+        elseif packet['X'] == -344 and packet['Y'] == -20 and packet['Z'] == -150 then
+            sortie_command('B')
+        -- Leshonn Exit
+        elseif packet['X'] == -24 and packet['Y'] == 420 and packet['Z'] == -200 then
+            sortie_command('B')
+
+        -- C Bitzer
+        elseif packet['X'] == -460 and packet['Y'] == -136 and packet['Z'] == -150 then
+            sortie_command('C')
+        -- Skomora Exit
+        elseif packet['X'] == -20 and packet['Y'] == -456 and packet['Z'] == -200 then
+            sortie_command('C')
+
+        -- D Bitzer
+        elseif packet['X'] == -576 and packet['Y'] == -20 and packet['Z'] == -150 then
+            sortie_command('D')
+        -- Aita Exit
+        elseif packet['X'] == -896 and packet['Y'] == -460 and packet['Z'] == -200 then
+            sortie_command('D')
+
+        -- E Basement Enter
+        elseif packet['X'] == 580 and packet['Y'] == 31.5 and packet['Z'] == 100 then
+            sortie_command('E')
+            sortie_position()
+        -- Dhartok Exit
+        elseif packet['X'] == 280 and packet['Y'] == 276 and packet['Z'] == 70 then
+            sortie_command('E')
+        -- E Basement Exit
+        elseif packet['X'] == -460 and packet['Y'] == 35.5 and packet['Z'] == -140 then
+            sortie_command('A')
+
+        -- F Basement Enter
+        elseif packet['X'] == 631.5 and packet['Y'] == -20 and packet['Z'] == 100 then
+            sortie_command('F')
+            sortie_position()
+        -- Gartell Exit
+        elseif packet['X'] == 876 and packet['Y'] == 280 and packet['Z'] == 70 then
+            sortie_command('F')
+        -- F Basement Exit
+        elseif packet['X'] == -404.5 and packet['Y'] == -20 and packet['Z'] == -140 then
+            sortie_command('B')
+
+        -- G Basement Enter
+        elseif packet['X'] == 580 and packet['Y'] == -71.5 and packet['Z'] == 100 then
+            sortie_command('G')
+            sortie_position()
+        -- Triboulex Exit
+        elseif packet['X'] == 880 and packet['Y'] == -316 and packet['Z'] == 70 then
+            sortie_command('G')
+        -- G Basement Exit
+        elseif packet['X'] == -460 and packet['Y'] == -75.5 and packet['Z'] == -140 then
+            sortie_command('C')
+
+        -- H Basement Enter
+        elseif packet['X'] == 528.5 and packet['Y'] == -20 and packet['Z'] == 100 then
+            sortie_command('H')
+            sortie_position()
+        -- Aita Exit
+        elseif packet['X'] == 284 and packet['Y'] == -320 and packet['Z'] == 70 then
+            sortie_command('H')
+        -- H Basement Exit
+        elseif packet['X'] == -515.5 and packet['Y'] == -20 and packet['Z'] == -140 then
+            sortie_command('D')
+
+        -- Boss Enter
+        elseif packet['X'] == 624 and packet['Y'] == -620 and packet['Z'] == 100 then
+            log('Enter Boss Room - Turning off Display')
+            sortie_command('Boss')
+        end
+    end
+
+    function set_sortie_display(value)
+        display = value
     end
 
     function set_sortie_enabled(value)
@@ -425,9 +434,14 @@ do
 
     -- Sortie tracking box
 	function tracking_box_refresh(lines)
-		local maxWidth = 41
-        for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth) end
-        tracking_window:text(lines:concat('\n'))
+        if display and location ~= 'Boss' then
+		    local maxWidth = 41
+            for i,line in ipairs(lines) do lines[i] = lines[i]:rpad(' ', maxWidth) end
+            tracking_window:text(lines:concat('\n'))
+            tracking_window:show()
+        else
+            tracking_window:hide()
+        end
 	end
 
     function get_sortie_window()

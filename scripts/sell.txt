@@ -7,4 +7,10 @@ send Screamineagle exec sell2
 wait 0.5;
 send Hybridkiller exec sell2
 wait 0.5;
+send Valarmorghulis exec sell2
+wait 0.5;
+send Thedoktor exec sell2
+wait 0.5;
+send Felione exec sell2
+wait 0.5;
 send Swifman exec sell2

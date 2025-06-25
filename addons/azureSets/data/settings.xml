@@ -71,6 +71,27 @@
                 <slot18>occultation</slot18>
                 <slot19>water bomb</slot19>
             </nuking>
+            <orcsambu>
+                <slot01>cocoon</slot01>
+                <slot02>fantod</slot02>
+                <slot03>magic fruit</slot03>
+                <slot04>barbed crescent</slot04>
+                <slot05>thrashing assault</slot05>
+                <slot06>occultation</slot06>
+                <slot07>sudden lunge</slot07>
+                <slot08>nat. meditation</slot08>
+                <slot09>entomb</slot09>
+                <slot10>diffusion ray</slot10>
+                <slot11>dream flower</slot11>
+                <slot12>sickle slash</slot12>
+                <slot13>delta thrust</slot13>
+                <slot14>erratic flutter</slot14>
+                <slot15>acrid stream</slot15>
+                <slot16>heavy strike</slot16>
+                <slot17>sinker drill</slot17>
+                <slot18>tail slap</slot18>
+                <slot19>searing tempest</slot19>
+            </orcsambu>
             <subblutank>
                 <slot01>sheep song</slot01>
                 <slot02>healing breeze</slot02>
