@@ -14,7 +14,7 @@ do
         if message[3] == "silmaril" then
             local sm_display = get_sm_window()
 
-             -- Display window
+            -- Display window
             if message[4] == 'True' then
                 display_command(true)
             else
@@ -44,24 +44,24 @@ do
             set_result_window(result_display)
 
         elseif message[3] == "sortie" then
-             -- Display window
-            if message[4] == 'True' then
-                set_sortie_display(true)
+            -- Specific Command
+            if message[4] == "command" then
+                sortie_command_input(message)
             else
-                set_sortie_display(false)
+                -- Display window
+                if message[4] == 'True' then
+                    set_sortie_display(true)
+                else
+                    set_sortie_display(false)
+                end
+                local window = get_sortie_window()
+                window:pos_x(tonumber(message[5]))
+                window:pos_y(tonumber(message[6]))
+                set_sortie_window(window)
             end
-            local window = get_sortie_window()
-            window:pos_x(tonumber(message[5]))
-            window:pos_y(tonumber(message[6]))
-            set_sortie_window(window)
-
-        elseif message[3] == "warp" then
-            sortie_command(message[4])
-            sortie_position()
 
         elseif message[3] == "insight" then
-
-             -- Display window
+            -- Display window
             if message[4] == 'True' then
                 set_insight_enabled(true)
             else

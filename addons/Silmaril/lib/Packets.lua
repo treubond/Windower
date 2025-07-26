@@ -119,7 +119,7 @@ do
             log('Sortie zone detected')
             if packet['X'] == -940 and packet['Y'] == -20 and packet['Z'] == -191.5 then
                 log('Zoning into Sortie - Enable')
-                set_sortie_enabled(true)
+                coroutine.schedule(sortie_delay_start, 3)
             end
         end
     end
@@ -128,9 +128,9 @@ do
     function packet_in_0x00B(data)
         -- Turn off move_to_exit
         zone_completed()
-
         -- Reload dress up if it hasn't been
         if get_dressup() and get_protection() then
+            que_packet('addons_')
             set_dressup(false)
             send_command("lua u dressup;wait 1;lua l dressup")
         end
@@ -154,10 +154,6 @@ do
 
     -- Chat
     function packet_in_0x017(data)
-        local packet = parse_packet('incoming', data)
-        if not packet then return end
-        if packet['Mode'] == 3 then packet['Sender Name'] = packet['Sender Name']..'>>' end
-        que_packet('chat_'..packet['Mode']..'_'..packet['Sender Name']..'_'..from_shift_jis(windower_auto_trans(packet['Message'])))
     end
 
     -- [1] = 'Melee attack',

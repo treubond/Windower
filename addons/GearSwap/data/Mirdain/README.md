@@ -1,6 +1,8 @@
 # Version 1.4
 Use //gs c version to check your active version
 
+##Discord Link: https://discord.gg/kt68622p
+
 ### Write up: `Sotel` 
 
 # Keybinds
@@ -318,7 +320,6 @@ sets.Precast = {}
 sets.Precast.FastCast = {}
 sets.Precast.FastCast.Enhancing = {}
 sets.Precast.Cure = {}
-sets.Precast.QuickMagic = {}
 sets.Precast.Utsusemi = {}
 sets.Precast.RA = {}
 sets.Precast.RA.Flurry = {}

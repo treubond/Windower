@@ -29,7 +29,7 @@ state.OffenseMode:set('DT')
 jobsetup (LockStylePallet,MacroBook,MacroSet)
 
 --Modes for TP
-state.WeaponMode:options('Unlocked', 'Savage Blade', 'Domain', 'Black Halo', 'Crocea Mors')--'Seraph Blade', 'Sanguine Blade', 'Chant du Cygne', 'Eviceration', 'Aeolian Edge', 'Ullr')
+state.WeaponMode:options('Unlocked', 'Savage Blade', 'Domain', 'Black Halo', 'Crocea Mors', 'Ullr')--'Seraph Blade', 'Sanguine Blade', 'Chant du Cygne', 'Eviceration', 'Aeolian Edge', 'Ullr')
 state.WeaponMode:set('Unlocked')
 
 -- Set to true to run organizer on job changes
@@ -54,7 +54,7 @@ function get_sets()
 	EMPY.Head = "Leth. Chappel +2"
 	EMPY.Body = "Lethargy Sayon +2"
 	EMPY.Hands = "Leth. Gantherots +2"
-	EMPY.Legs = "Leth. Fuseau +2"
+	EMPY.Legs = "Leth. Fuseau +3"
 	EMPY.Feet = "Leth. Houseaux +3"
 
 	Telchine.Head = { name="Telchine Cap", augments={'Spell interruption rate down -3%','Enh. Mag. eff. dur. +9',}}
@@ -214,7 +214,7 @@ function get_sets()
 	-- ===================================================================================================================
 
 	sets.OffenseMode = {
-		ammo="Kaja Bow",
+		range="Ullr",
 		head="Malignance Chapeau",
 		body=EMPY.Body,
 		hands=AF.Hands,
@@ -466,7 +466,7 @@ function get_sets()
 	sets.Midcast.Enfeebling = {
 		main="Crocea Mors",
 		sub="Ammurapi Shield",
-		ammo="Kaja Bow",
+		range="Ullr",
 		head=EMPY.Head,
 		--head="Jhakri Coronal +1",
 		body=AF.Body,
@@ -561,6 +561,7 @@ function get_sets()
 
 	sets.Midcast.Refresh = set_combine(sets.Midcast.Enhancing, {
 		body=AF.Body,
+		legs=EMPY.Legs,
 		--[[ head="Amalric Coif +1",
 		body="Atrophy Tabard +3",
 		legs="Leth. Fuseau +3",

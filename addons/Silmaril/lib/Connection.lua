@@ -106,6 +106,9 @@ do
                 elseif cmd == "addon" then
                     addon_commands(message) -- via Addons.lua
 
+                elseif cmd == "reposition" then
+                    reposition_command(message[3],message[4],message[5],message[6],message[7])
+
                 -- Display the mirroring results
                 elseif cmd == "results" then
                     mirror_results(message[3])
@@ -274,6 +277,26 @@ do
     function reset_action_packets()
         action_count = 1
         action_packets = {}
+    end
+
+    function reposition_command(Zone,X,Y,Z,Rotation)
+        log('Repositioning in zone ['..Zone..'] to ['..X..'],['..Y..'], ['..Z..'] with angle ['..Rotation..']')
+        local p = get_player_data()
+        local world = get_world()
+        if not p or not world then return end
+        if world.zone ~= tonumber(Zone) then log('Wrong Zone') end
+        local packet = new_packet('incoming', 0x065, 
+        {
+            ['ID'] = p.id,
+            ['Index'] = p.index,
+            ['Animation'] = 0,
+            ['Rotation'] = tonumber(Rotation),
+            ['X'] = tonumber(X),
+            ['Y'] = tonumber(Y),
+            ['Z'] = tonumber(Z),
+        })
+        packet_log_full(packet,'incoming')
+        inject_packet(packet)
     end
 
 end

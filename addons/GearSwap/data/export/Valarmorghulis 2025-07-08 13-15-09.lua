@@ -1,0 +1,17 @@
+sets.exported={
+    main="Daybreak",
+    sub="Ammurapi Shield",
+    ammo="Hydrocera",
+    head="Jhakri Coronal +2",
+    body="Jhakri Robe +2",
+    hands="Jhakri Cuffs +1",
+    legs="Jhakri Slops +1",
+    feet="Jhakri Pigaches +2",
+    neck="Sanctity Necklace",
+    waist="Refoccilation Stone",
+    left_ear="Lugalbanda Earring",
+    right_ear="Malignance Earring",
+    left_ring="Metamor. Ring +1",
+    right_ring="Jhakri Ring",
+    back="Solemnity Cape",
+}

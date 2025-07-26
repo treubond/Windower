@@ -78,7 +78,7 @@ function job_setup()
 	include('Mote-TreasureHunter')
 
 	--Your Lockstyle Set Number
-    lockstyleset = 13
+    lockstyleset = 20
 end
  
 ------------------------------------------------------------------------------------------------------------------- 

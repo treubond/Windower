@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>3.7.6 Beta</Version>
+  <Version>3.8 Main</Version>
   <Priority>
     <Priority_Rank>
       <string>Enfeebling (High Priority)</string>
@@ -2544,7 +2544,6 @@
   <Triggers>
     <Trigger_I>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2583,9 +2582,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2621,7 +2620,6 @@
     </Trigger_I>
     <Trigger_II>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2660,9 +2658,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2698,7 +2696,6 @@
     </Trigger_II>
     <Trigger_III>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2737,9 +2734,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2775,7 +2772,6 @@
     </Trigger_III>
     <Trigger_IV>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2814,9 +2810,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2852,7 +2848,6 @@
     </Trigger_IV>
     <Trigger_V>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2891,9 +2886,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2929,7 +2924,6 @@
     </Trigger_V>
     <Trigger_VI>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2968,9 +2962,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>

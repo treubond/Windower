@@ -76,6 +76,12 @@ do
             set_connected(false)
             clear_party_location()
         end)
+
+        windower.register_event('chat message', function(message,sender,mode,gm)
+            if mode == 3 then sender = sender..'>>' end
+            que_packet('chat_'..mode..'_'..sender..'_'..from_shift_jis(message))
+	    end)
+
     end
 
     function windower_auto_trans(msg) 

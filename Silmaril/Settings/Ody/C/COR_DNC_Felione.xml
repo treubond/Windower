@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlayerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Version>3.7.6 Beta</Version>
+  <Version>3.8 Main</Version>
   <Priority>
     <Priority_Rank>
       <string>Combat</string>
@@ -9,6 +9,8 @@
       <string>Job Abilities</string>
       <string>Divine Waltz</string>
       <string>Curing Waltz</string>
+      <string>Follow</string>
+      <string>Fighting</string>
     </Priority_Rank>
   </Priority>
   <Fighting>
@@ -240,13 +242,13 @@
     </Weaponskills>
     <Movement>
       <Follow>
-        <Enabled>false</Enabled>
+        <Enabled>true</Enabled>
         <Face_Toward>false</Face_Toward>
         <Face_Away>false</Face_Away>
         <Face_Same_Direction>false</Face_Same_Direction>
         <Face_Opposite_Direction>false</Face_Opposite_Direction>
-        <Name />
-        <Max_Distance>3</Max_Distance>
+        <Name>Treubond</Name>
+        <Max_Distance>19</Max_Distance>
         <Min_Distance>0</Min_Distance>
       </Follow>
       <Fast_Follow>
@@ -456,21 +458,24 @@
       <Impact_Burst>false</Impact_Burst>
     </Burst>
     <Offense>
-      <Enabled>false</Enabled>
+      <Enabled>true</Enabled>
       <Validate_IDs>true</Validate_IDs>
-      <Smart_Target>false</Smart_Target>
+      <Smart_Target>true</Smart_Target>
       <Target_Lockon>false</Target_Lockon>
       <Pause_Weakened>false</Pause_Weakened>
-      <Fighting_Mode>Aggressive</Fighting_Mode>
-      <Targeting_Mode>Any</Targeting_Mode>
+      <Fighting_Mode>Passive</Fighting_Mode>
+      <Targeting_Mode>Priority</Targeting_Mode>
       <Player />
       <Movement>Self</Movement>
-      <Enemy_Count>1</Enemy_Count>
-      <Enemy_Distance>20</Enemy_Distance>
+      <Enemy_Count>2</Enemy_Count>
+      <Enemy_Distance>30</Enemy_Distance>
       <Enemy_Elevation>10</Enemy_Elevation>
       <Claim_Timeout>15</Claim_Timeout>
       <Claim_Delay>1</Claim_Delay>
-      <Priority_List />
+      <Priority_List>
+        <string>*Halo</string>
+        <string>*Agon</string>
+      </Priority_List>
       <Black_List />
       <White_List />
     </Offense>
@@ -481,7 +486,14 @@
     <Manual_Cure>true</Manual_Cure>
     <Priority_Enable>false</Priority_Enable>
     <Priority_Count>0</Priority_Count>
-    <Cure_List />
+    <Cure_List>
+      <string>Felione</string>
+      <string>Treubond</string>
+      <string>Screamineagle</string>
+      <string>Khrone</string>
+      <string>Valarmorghulis</string>
+      <string>Thedoktor</string>
+    </Cure_List>
     <Spells>
       <Cure>
         <Enabled>false</Enabled>
@@ -539,15 +551,15 @@
         <Enabled>true</Enabled>
         <Curing_Waltz_I>60</Curing_Waltz_I>
         <Curing_Waltz_I_Enabled>false</Curing_Waltz_I_Enabled>
-        <Curing_Waltz_II>130</Curing_Waltz_II>
+        <Curing_Waltz_II>142</Curing_Waltz_II>
         <Curing_Waltz_II_Enabled>true</Curing_Waltz_II_Enabled>
-        <Curing_Waltz_III>270</Curing_Waltz_III>
-        <Curing_Waltz_III_Enabled>false</Curing_Waltz_III_Enabled>
+        <Curing_Waltz_III>303</Curing_Waltz_III>
+        <Curing_Waltz_III_Enabled>true</Curing_Waltz_III_Enabled>
         <Curing_Waltz_IV>450</Curing_Waltz_IV>
         <Curing_Waltz_IV_Enabled>false</Curing_Waltz_IV_Enabled>
         <Curing_Waltz_V>600</Curing_Waltz_V>
         <Curing_Waltz_V_Enabled>false</Curing_Waltz_V_Enabled>
-        <Threshold>60</Threshold>
+        <Threshold>65</Threshold>
         <Priority_Threshold>85</Priority_Threshold>
         <Priority_Promote_Rate>2</Priority_Promote_Rate>
         <Over_Cure>30</Over_Cure>
@@ -558,7 +570,7 @@
         <Divine_Waltz_I_Enabled>true</Divine_Waltz_I_Enabled>
         <Divine_Waltz_II>280</Divine_Waltz_II>
         <Divine_Waltz_II_Enabled>false</Divine_Waltz_II_Enabled>
-        <Threshold>80</Threshold>
+        <Threshold>75</Threshold>
         <Over_Cure>30</Over_Cure>
         <Targets>3</Targets>
       </Divine_Waltz>
@@ -666,7 +678,7 @@
       </Character_Debuff>
       <Character_Debuff>
         <Name>Valarmorghulis</Name>
-        <Sleep>false</Sleep>
+        <Sleep>true</Sleep>
         <Poison>false</Poison>
         <Paralysis>false</Paralysis>
         <Blindness>false</Blindness>
@@ -718,7 +730,7 @@
       </Character_Debuff>
       <Character_Debuff>
         <Name>Felione</Name>
-        <Sleep>false</Sleep>
+        <Sleep>true</Sleep>
         <Poison>false</Poison>
         <Paralysis>false</Paralysis>
         <Blindness>false</Blindness>
@@ -770,7 +782,7 @@
       </Character_Debuff>
       <Character_Debuff>
         <Name>Treubond</Name>
-        <Sleep>false</Sleep>
+        <Sleep>true</Sleep>
         <Poison>false</Poison>
         <Paralysis>false</Paralysis>
         <Blindness>false</Blindness>
@@ -822,7 +834,7 @@
       </Character_Debuff>
       <Character_Debuff>
         <Name>Khrone</Name>
-        <Sleep>false</Sleep>
+        <Sleep>true</Sleep>
         <Poison>false</Poison>
         <Paralysis>false</Paralysis>
         <Blindness>false</Blindness>
@@ -874,7 +886,7 @@
       </Character_Debuff>
       <Character_Debuff>
         <Name>Screamineagle</Name>
-        <Sleep>false</Sleep>
+        <Sleep>true</Sleep>
         <Poison>false</Poison>
         <Paralysis>false</Paralysis>
         <Blindness>false</Blindness>
@@ -2558,7 +2570,6 @@
   <Triggers>
     <Trigger_I>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2597,9 +2608,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2635,7 +2646,6 @@
     </Trigger_I>
     <Trigger_II>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2674,9 +2684,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2712,7 +2722,6 @@
     </Trigger_II>
     <Trigger_III>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2751,9 +2760,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2789,7 +2798,6 @@
     </Trigger_III>
     <Trigger_IV>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2828,9 +2836,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2866,7 +2874,6 @@
     </Trigger_IV>
     <Trigger_V>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2905,9 +2912,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>
@@ -2943,7 +2950,6 @@
     </Trigger_V>
     <Trigger_VI>
       <Enabled>false</Enabled>
-      <Completed>false</Completed>
       <Actor_Type />
       <Actor />
       <Actor_All>false</Actor_All>
@@ -2982,9 +2988,9 @@
       <Enable_Lock_On>false</Enable_Lock_On>
       <Enable_Engaged>false</Enable_Engaged>
       <Enable_HP>false</Enable_HP>
-      <Enable_Actor_HP>false</Enable_Actor_HP>
       <Enable_MP>false</Enable_MP>
       <Enable_TP>false</Enable_TP>
+      <Enable_Actor_HP>false</Enable_Actor_HP>
       <HP_Limit_High>100</HP_Limit_High>
       <HP_Limit_Low>0</HP_Limit_Low>
       <Actor_HP_Limit_High>100</Actor_HP_Limit_High>

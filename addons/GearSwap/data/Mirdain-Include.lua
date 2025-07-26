@@ -1,5 +1,5 @@
 -- Globals Variables
-Mirdain_GS = '1.4.1'
+Mirdain_GS = '1.5.6'
 
 -- Modes is the include file for a mode-tracking variable class.  Used for state vars, below.
 include('Modes')
@@ -24,7 +24,6 @@ sets.Cursna_Received = {}
 
 -- State sets
 sets.OffenseMode = {}
-sets.OffenseMode.Ranged = {}
 sets.OffenseMode.AM = {}
 sets.OffenseMode.AM1 = {}
 sets.OffenseMode.AM2 = {}
@@ -111,34 +110,35 @@ sets.Midcast.Aria = {}
 
 -- Midcast for Ranged Attacks and Aftermath
 sets.Midcast.AM = {}
-sets.Midcast.AM.RA = {}
+sets.Midcast.RA.AM = {}
 sets.Midcast.AM1 = {}
-sets.Midcast.AM1.RA = {}
+sets.Midcast.RA.AM1 = {}
 sets.Midcast.AM2 = {}
-sets.Midcast.AM2.RA = {}
+sets.Midcast.RA.AM2 = {}
 sets.Midcast.AM3 = {}
-sets.Midcast.AM3.RA = {}
+sets.Midcast.RA.AM3 = {}
 
 --Weaponskills
 sets.WS = {}
+sets.WS.RA = {}
 sets.WS.ACC =  {}
-sets.WS.ACC.RA = {}
+sets.WS.RA.ACC = {}
 sets.WS.PDL = {}
-sets.WS.PDL.RA = {}
+sets.WS.RA.PDL = {}
 sets.WS.SB = {}
-sets.WS.SB.RA = {}
+sets.WS.RA.SB = {}
 sets.WS.CRIT = {}
-sets.WS.CRIT.RA = {}
+sets.WS.RA.CRIT = {}
 sets.WS.MEVA = {}
-sets.WS.MEVA.RA = {}
+sets.WS.RA.MEVA = {}
 sets.WS.AM = {}
-sets.WS.AM.RA = {}
+sets.WS.RA.AM = {}
 sets.WS.AM1 = {}
-sets.WS.AM1.RA = {}
+sets.WS.RA.AM1 = {}
 sets.WS.AM2 = {}
-sets.WS.AM2.RA = {}
+sets.WS.RA.AM2 = {}
 sets.WS.AM3 = {}
-sets.WS.AM3.RA = {}
+sets.WS.RA.AM3 = {}
 		
 -- Other Sets
 sets.JA = {}
@@ -167,6 +167,20 @@ sets.Ready.Magic = {}
 sets.Ready.TP = {}
 sets.Ready.Debuff = {}
 sets.Ready.Standard = {}	
+
+Instrument = {}
+Instrument.Count = {}
+Instrument.Potency = {}
+Instrument.Pianissimo = {}
+Instrument.Honor = {}
+Instrument.Aria = {}
+Instrument.AOE_Sleep = {}
+Instrument.Idle = {}
+Instrument.TP = {}
+Instrument.Mordant = {}
+Instrument.QuickMagic = {}
+Instrument.FastCast = {}
+Instrument.MAB = {}
 
 state = state or {}
 
@@ -217,9 +231,6 @@ state.RAMode:set('Bullet')
 --State for Ammunition check
 state.warned = M(false)
 
---Unlock any previously locked gear
-enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','waist','legs','feet')
-
 --Ammunition
 Ammo = {}
 Ammo.Bullet = {}
@@ -236,7 +247,6 @@ command_BP = "None"
 
 is_Busy = false
 AutoItem = false
-Cycle_Time = false
 Random_Lockstyle = false
 Lockstyle_List = {}
 
@@ -269,8 +279,8 @@ Enfeebling_Song = S{ 'Foe Requiem','Foe Requiem II','Foe Requiem III','Foe Requi
 	'Ice Threnody II', 'Wind Threnody II', 'Earth Threnody II', 'Ltng. Threnody II', 'Water Threnody II', 'Light Threnody II','Dark Threnody II','Magic Finale', 'Pining Nocturne'}
 
 Enfeeble_Acc = S{'Dispel','Aspir','Aspir II','Aspir III','Drain','Drain II','Drain III','Frazzle','Frazzle II','Stun','Poison','Poison II','Poisonga'}
-Enfeeble_Potency = S{'Paralyze','Paralyze II','Slow','Slow II','Addle','Addle II','Distract','Distract II','Distract III','Frazzle III','Blind','Blind II'}
-Enfeeble_Duration = S{'Sleep','Sleep II','Sleepga','Sleepga II','Diaga','Dia','Dia II','Dia III','Bio','Bio II','Bio III','Silence','Gravity','Gravity II','Inundation','Break','Breakaga','Bind','Bind II'}
+Enfeeble_Potency = S{'Paralyze','Paralyze II','Slow','Slow II','Addle','Addle II','Distract','Distract II','Distract III','Frazzle III','Blind','Blind II','Gravity','Gravity II'}
+Enfeeble_Duration = S{'Sleep','Sleep II','Sleepga','Sleepga II','Diaga','Dia','Dia II','Dia III','Bio','Bio II','Bio III','Silence','Inundation','Break','Breakaga','Bind','Bind II'}
 
 Dark_Acc = S{'Death','Kaustra','Stun'}
 Dark_Absorb = S{'Absorb-ACC','Absorb-AGI','Absorb-Attri','Absorb-CHR','Absorb-DEX','Absorb-INT','Absorb-MND','Absorb-STR','Absorb-TP','Absorb-VIT','Aspir','Aspir II','Aspir III','Drain','Drain II','Drain III'}
@@ -395,7 +405,6 @@ do
 	local SpellCastTime = 0
 	local Spellstart = os.clock()
 
-	local is_Pianissimo = false
 	local is_moving = false
 	local is_first_time_load = true
 
@@ -409,6 +418,8 @@ do
 	local main_engine_time = os.clock()
 
 	local Require_Update = false
+	local Use_Item_Command = ''
+	local available_bullets = 0
 
 	-- Tracking vars for TH
 	local th_info = {}
@@ -460,6 +471,9 @@ do
 		[768] = {id=768,english='Umbra',elements={'Dark','Ice','Water','Earth'}},
 		[769] = {id=769,english='Radiance',elements={'Light','Lightning','Wind','Fire'}},
 		[770] = {id=770,english='Umbra',elements={'Dark','Ice','Water','Earth'}},}
+
+	--Unlock any previously locked gear
+	enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','waist','legs','feet')
 
 	-------------------------------------------------------------------------------------------------------------------
 	-- This function is called from the default GearSwap Function "pretarget" to validate the user action
@@ -550,7 +564,7 @@ do
 			local min = math.floor(ability_time)
 			local sec = (ability_time - min) * 60
 			if ability_time > 0 then
-				info(''..spell.name..' ['..string.format("%d.%02d",min,sec)..']')
+				info(''..spell.name..' ['..string.format("%d:%02d",min,sec)..']')
 				cancel_spell()
 				return
 			end
@@ -561,24 +575,11 @@ do
 			local min = math.floor(spell_time)
 			local sec = (spell_time - min) * 60
 			if spell_time > 0 then
-				info(''..spell.name..' ['..string.format("%d.%02d",min,sec)..']')
+				info(''..spell.name..' ['..string.format("%d:%02d",min,sec)..']')
 				cancel_spell()
 				return
 			end
-			--Cancel if null target and redirect to self if bard song
-			if not spell.target.type and spell.type == 'BardSong' then
-				if buffactive['Pianissimo'] then
-					if not is_Pianissimo then
-						cancel_spell()
-						windower.chat.input('/ma "'..spell.name..'" <stpc>')
-						is_Pianissimo = true
-					else
-						is_Pianissimo = false
-					end
-				else
-					change_target('<me>')
-				end
-			elseif spell.target.type then
+			if spell.target.type then
 				local cast_spell = res.spells[spell.id]
 				if not cast_spell.targets then
 					info('Unable to find spell ['..spell.name..']')
@@ -601,33 +602,10 @@ do
 				-- Party Buffs
 				elseif tostring(cast_spell.targets) == '{Self, Party}' or tostring(cast_spell.targets) == '{Self, Party, Ally, NPC}' then
 					if spell.target.type == 'MONSTER' then
-						if spell.type == 'BardSong' then
-							if buffactive['pianissimo'] then
-								if is_Pianissimo == false then
-									cancel_spell()
-									--log('Piassimo Redirect - Select Character')
-									windower.chat.input('/ma \"'..spell.name..'\" <stpc>')
-									is_Pianissimo = true
-								else
-									is_Pianissimo = false
-								end
-							else
-								change_target('<me>')
-								log('Redirect Spell:[SELF TARGET]')
-							end
-						else
-							-- Cancel Spell
-							log('Cancel Spell:[PARTY TARGET]')
-							cancel_spell()
-							return
-						end
-					else
-						if spell.type == 'BardSong' and spell.target.type == 'SELF' and buffactive['Pianissimo'] then
-							log('Pianissimo Redirect - Select Character')
-							cancel_spell()
-							windower.chat.input('/ma \"'..spell.name..'\" <stpc>')
-							return
-						end
+						-- Cancel Spell
+						log('Cancel Spell:[PARTY TARGET]')
+						cancel_spell()
+						return
 					end
 				end
 			end
@@ -639,6 +617,7 @@ do
 	-------------------------------------------------------------------------------------------------------------------
 
 	function precastequip(spell)
+		log('precastequip Called')
 		--Cancel for SMN if Avatar is mid action
 		if pet.isvalid and pet_midaction() then return end
 		--Default gearset
@@ -651,63 +630,79 @@ do
 				built_set = set_combine(built_set, sets.WS)
 				local message = ''
 				if spell.skill == "Marksmanship" or spell.skill == "Archery" then
+
 					-- Try to equip a generic ranged WS set
 					if sets.WS.RA then 
 						built_set = set_combine(built_set, sets.WS.RA) 
 					else warn('sets.WS.RA not found!') end
+
+					-- Set is defined
 					if sets.WS[spell.english] then
-						-- Set is defined
 						built_set = set_combine(built_set, sets.WS[spell.english])
-						-- Example would be WS.ACC.RA
-						if state.OffenseMode.value ~= 'TP' and sets.WS[state.OffenseMode.value] and sets.WS[state.OffenseMode.value].RA then
-							built_set = set_combine(built_set, sets.WS[state.OffenseMode.value].RA)
+						-- Example would be WS.RA.ACC
+						if state.OffenseMode.value ~= 'TP' and sets.WS.RA and sets.WS.RA[state.OffenseMode.value] then
+							built_set = set_combine(built_set, sets.WS.RA[state.OffenseMode.value])
 							-- Augment the specified WS
 							if state.OffenseMode.value == 'ACC' then
-								message = '['..spell.english..'] Set with Accuracy (Ranged)'
+								message = '['..spell.english..'] Set with Accuracy'
 							elseif state.OffenseMode.value == 'PDL' then
-								message = '['..spell.english..'] Set with Physical Damage Limit (Ranged)'
+								message = '['..spell.english..'] Set with Physical Damage Limit'
 							elseif state.OffenseMode.value == 'SB' then
-								message = '['..spell.english..'] Set with Subtle Blow (Ranged)'
+								message = '['..spell.english..'] Set with Subtle Blow'
 							elseif state.OffenseMode.value == 'MEVA' then
-								message = '['..spell.english..'] Set with Magic Evasion (Ranged)'
+								message = '['..spell.english..'] Set with Magic Evasion'
 							elseif state.OffenseMode.value == 'CRIT' then
-								message = '['..spell.english..'] Set with Critical Hit (Ranged)'
+								message = '['..spell.english..'] Set with Critical Hit'
 							end
 						else message = '['..spell.english..'] Set' end
+
+					-- Generic
 					else
-						-- Generic
-						if state.OffenseMode.value ~= 'TP' and sets.WS[state.OffenseMode.value] and sets.WS[state.OffenseMode.value].RA then
-							built_set = set_combine(built_set, sets.WS[state.OffenseMode.value].RA)
+						if state.OffenseMode.value ~= 'TP' and sets.WS.RA and sets.WS.RA[state.OffenseMode.value] then
+							built_set = set_combine(built_set, sets.WS.RA[state.OffenseMode.value])
 							if state.OffenseMode.value == 'ACC' then
-								message = 'Using Default WS Set with Accuracy (Ranged)'
+								message = 'Using Default WS Set with Accuracy'
 							elseif state.OffenseMode.value == 'PDL' then
-								message = 'Using Default WS Set with Physical Damage Limit (Ranged)'
+								message = 'Using Default WS Set with Physical Damage Limit'
 							elseif state.OffenseMode.value == 'SB' then
-								message = 'Using Default WS Set with Subtle Blow (Ranged)'
+								message = 'Using Default WS Set with Subtle Blow'
 							elseif state.OffenseMode.value == 'MEVA' then
-								message = 'Using Default WS Set with Magic Evasion (Ranged)'
+								message = 'Using Default WS Set with Magic Evasion'
 							elseif state.OffenseMode.value == 'CRIT' then
-								message = 'Using Default WS Set with Critical Hit (Ranged)'
+								message = 'Using Default WS Set with Critical Hit'
 							end
-						else message = 'Using Default WS Set (Ranged)' end
+						else message = 'Using Default WS Set' end
 					end
+
 					-- Check if Aftermath is active
-					if buffactive['Aftermath: Lv.3'] and sets.WS.AM3 and sets.WS.AM3.RA and sets.WS.AM3.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.WS.AM3.RA[state.WeaponMode.value])
-						message = message..' and Level 3 Aftermath (Ranged)'
-					elseif buffactive['Aftermath: Lv.2'] and sets.WS.AM2 and sets.WS.AM2.RA and sets.WS.AM2.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.WS.AM2.RA[state.WeaponMode.value])
-						message = message..' and Level 2 Aftermath (Ranged)'
-					elseif buffactive['Aftermath: Lv.1'] and sets.WS.AM1 and sets.WS.AM1.RA and sets.WS.AM1.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.WS.AM1.RA[state.WeaponMode.value])
-						message = message..' and Level 1 Aftermath (Ranged)'
-					elseif buffactive['Aftermath'] and sets.WS.AM and sets.WS.AM.RA and sets.WS.AM.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.WS.AM.RA[state.WeaponMode.value])
-						message = message..' and Aftermath (Ranged)'
+					if sets.WS.RA then
+						if buffactive['Aftermath: Lv.3'] and sets.WS.RA.AM3 and sets.WS.RA.AM3[state.WeaponMode.value] then
+							built_set = set_combine(built_set, sets.WS.RA.AM3[state.WeaponMode.value])
+							message = message..' and Level 3 Aftermath ['..state.WeaponMode.value..']'
+						elseif buffactive['Aftermath: Lv.2'] and sets.WS.RA.AM2 and sets.WS.RA.AM2[state.WeaponMode.value] then
+							built_set = set_combine(built_set, sets.WS.RA.AM2[state.WeaponMode.value])
+							message = message..' and Level 2 Aftermath ['..state.WeaponMode.value..']'
+						elseif buffactive['Aftermath: Lv.1'] and sets.WS.RA.AM1 and sets.WS.RA.AM1[state.WeaponMode.value] then
+							built_set = set_combine(built_set, sets.WS.RA.AM1[state.WeaponMode.value])
+							message = message..' and Level 1 Aftermath ['..state.WeaponMode.value..']'
+						elseif buffactive['Aftermath'] and sets.WS.RA.AM and sets.WS.RA.AM[state.WeaponMode.value] then
+							built_set = set_combine(built_set, sets.WS.RA.AM[state.WeaponMode.value])
+							message = message..' and Aftermath ['..state.WeaponMode.value..']'
+						end
 					end
+
+					-- Bullet Check
+					do_bullet_checks(spell, built_set)
+
+					-- Variable Ammo
+					if Ammo and Ammo[state.OffenseMode.value] then built_set = set_combine(built_set, { ammo = Ammo[state.OffenseMode.value] }) end
+
+					message = message..' ['..available_bullets..'x]'
+
 				else
+
+					-- Set is defined
 					if sets.WS[spell.english] then
-						-- Set is defined
 						built_set = set_combine(built_set, sets.WS[spell.english])
 						if state.OffenseMode.value ~= 'TP' and sets.WS[state.OffenseMode.value] then
 							built_set = set_combine(built_set, sets.WS[state.OffenseMode.value])
@@ -724,8 +719,9 @@ do
 								message = '['..spell.english..'] Set with Critical Hit'
 							end
 						else message = '['..spell.english..'] Set' end
+
+					-- Generic
 					else
-						-- Generic
 						if state.OffenseMode.value ~= 'TP' and sets.WS[state.OffenseMode.value] then
 							built_set = set_combine(built_set, sets.WS[state.OffenseMode.value])
 							-- Augment the specified WS
@@ -742,6 +738,7 @@ do
 							end
 						else message = 'Using Default WS Set' end
 					end
+
 					-- Check if Aftermath is active
 					if buffactive['Aftermath: Lv.3'] and sets.WS.AM3 and sets.WS.AM3[state.WeaponMode.value] then
 						built_set = set_combine(built_set, sets.WS.AM3[state.WeaponMode.value])
@@ -757,10 +754,13 @@ do
 						message = message..' and Aftermath'
 					end
 				end
+
 				-- Check if an Obi or Orpheus is to be Equiped
-				built_set =  elemental_check(spell, built_set)
+				if Elemental_WS:contains(spell.name) then built_set =  elemental_check(spell, built_set) end
+
 				info(message)
 			else warn('sets.WS not found!') end
+
 		-- Ranged attack
 		elseif spell.action_type == 'Ranged Attack' then
 			if sets.Precast then
@@ -780,30 +780,43 @@ do
 							built_set = set_combine(built_set, sets.Precast.RA.Flurry_II)
 						else warn('sets.Precast.RA.Flurry_II not found!') end
 					end
+
+					-- Variable Ammo
+					if Ammo and Ammo[state.OffenseMode.value] then built_set = set_combine(built_set, { ammo = Ammo[state.OffenseMode.value] }) end
+
 				else warn('sets.Precast.RA not found!') end
 			else warn('sets.Precast not found!') end
+
+			-- Check for bullets if shooting a round
+			if built_set.ammo ~= "" and built_set.ranged ~= "" then do_bullet_checks(spell, built_set) end
+
 		-- JobAbility
 		elseif spell.type == 'JobAbility' then
 			if sets.JA then
 				built_set = set_combine(built_set, sets.JA)
-				if sets.JA[spell.english] then
+				if spell.name == 'Double-Up' then -- Double Up for distance
+					if sets.PhantomRoll then
+						built_set = set_combine(built_set, sets.PhantomRoll)
+						info('['..spell.english..'] Set')
+					else warn('sets.PhantomRoll not found!') end
+				elseif sets.JA[spell.english] then
 					built_set = set_combine(built_set, sets.JA[spell.english])
 					--Summon the correct jug pet
 					if spell.name == 'Bestial Loyalty' or spell.name == 'Call Beast' then
 						if sets.Jugs[state.JobMode.value] then
 							built_set = set_combine(built_set, sets.Jugs[state.JobMode.value])
-						else warn('sets.Jugs['..state.JobMode.value..'] not found!') end
+						else warn('sets.Jugs.'..state.JobMode.value..' not found!') end
 					end
 					info('['..spell.english..'] Set')
-				elseif spell.id == 123 then -- Double Up for distance
-					if sets.PhantomRoll then
-						built_set = set_combine(built_set, sets.PhantomRoll)
-						info('['..spell.english..'] Set')
-					else warn('sets.PhantomRoll not found!') end
 				else info('JA not set for ['..spell.english..']') end
+				-- Check for bounty shot ammo
+				if spell.name == 'Bounty Shot' then
+					do_bullet_checks(spell, built_set)
+				end
 			else warn('sets.JA not found!') end
 		-- Items
 		elseif spell.type == 'Item' then 
+			log('Item Use - Precast')
 			if sets.Idle then
 				built_set = sets.Idle
 			else warn('sets.Idle not found!') end
@@ -845,6 +858,7 @@ do
 			else warn('sets.JA not found!') end
 		-- CorsairRoll
 		elseif spell.type == 'CorsairRoll' then
+			log('CorsairRoll')
 			if sets.PhantomRoll then
 				built_set = set_combine(built_set, sets.PhantomRoll)
 				if sets.PhantomRoll[spell.english] then
@@ -936,34 +950,73 @@ do
 						else warn('sets.Precast.Utsusemi not found!') end	
 					-- Blue Magic
 					elseif spell.type == 'BlueMagic' then
-						if sets.Precast.Blue_Magic then
-							built_set = set_combine(built_set, sets.Precast.Blue_Magic)
-						else warn('sets.Precast.Blue_Magic not found!') end		
+						if sets.Precast.BlueMagic then
+							built_set = set_combine(built_set, sets.Precast.BlueMagic)
+						else warn('sets.Precast.BlueMagic not found!') end		
 					-- BardSong
 					elseif spell.type == 'BardSong' then
-						if sets.Precast.Songs then
-							built_set = set_combine(built_set, sets.Precast.Songs)
-							-- Equip Marsyas
-							if spell.name == "Honor March" then
-								built_set = set_combine(built_set, {range=Instrument.Honor})
-							-- Equip Loughnashade
-							elseif spell.name == "Aria of Passion" then
-								built_set = set_combine(built_set, {range=Instrument.Aria})
+						if buffactive['Nightingale'] then
+							-- Default BRD song gear is in Midcast
+							if sets.Midcast then 
+								built_set = set_combine(built_set, sets.Midcast)
+							else warn('sets.Midcast not found!') end
+							-- Song Count for Dummy Songs
+							if SongCount:contains(spell.name) then
+								if sets.Midcast.DummySongs then
+									built_set = set_combine(built_set, sets.Midcast.DummySongs)
+								else warn('sets.Midcast.DummySongs not found!') end
+								built_set = set_combine(built_set, { range=Instrument.Count })
+							-- Potency / Instruments
+							else
+								-- Defined Gear Set
+								if sets.Midcast[spell.english] then
+									built_set = set_combine(built_set, sets.Midcast[spell.english])
+								-- Equip Marsyas
+								elseif spell.name == "Honor March" then
+									built_set = set_combine(built_set, {range=Instrument.Honor})
+								-- Equip Loughnashade
+								elseif spell.name == "Aria of Passion" then
+									built_set = set_combine(built_set, {range=Instrument.Aria})
+								-- Equip Harp
+								elseif spell.name:contains('Horde') then
+									if sets.Midcast.Enfeebling then
+										built_set = set_combine(built_set, sets.Midcast.Enfeebling)
+									else warn('sets.Midcast.Enfeebling not found!') end
+									built_set = set_combine(built_set, {range=Instrument.AOE_Sleep})
+								-- Normal Enfeebles
+								elseif Enfeebling_Song:contains(spell.english) then
+									if sets.Midcast.Enfeebling then
+										built_set = set_combine(built_set, sets.Midcast.Enfeebling)
+									else warn('sets.Midcast.Enfeebling not found!') end
+									built_set = set_combine(built_set, {range=Instrument.Potency})
+								-- Augment the buff songs
+								else
+									built_set = set_combine(built_set, {range=Instrument.Potency})
+								end
+								-- Augment the specific Song if set
+								built_set = set_combine(built_set, equip_song_gear(spell, built_set['range']))
 							end
-						else warn('sets.Precast.Songs not found!') end
+						else
+							if sets.Precast.Songs then
+								built_set = set_combine(built_set, sets.Precast.Songs)
+								-- Equip Marsyas
+								if spell.name == "Honor March" then
+									built_set = set_combine(built_set, {range=Instrument.Honor})
+								-- Equip Loughnashade
+								elseif spell.name == "Aria of Passion" then
+									built_set = set_combine(built_set, {range=Instrument.Aria})
+								end
+							else warn('sets.Precast.Songs not found!') end
+						end
 					end
 				else warn('sets.Precast.FastCast not found!') end
 			else warn('sets.Precast not found!') end
 		end
-		-- Check that proper ammo is available if the action requires it
-		if spell.skill == "Marksmanship" or spell.skill == "Archery" then
-			if	player.equipment.ammo ~= "" and player.equipment.ranged ~= "" then
-				do_bullet_checks(spell, built_set)
-			end
-		end
+
 		-- Weapon Checks for precast
 		-- If it set to unlocked it will not swap the weapons even if defined in the built_set job lua
-		if state.WeaponMode.value ~= "Unlocked" then
+		if state.WeaponMode.value ~= "Unlocked" and not spell.type == 'CorsairRoll' and not spell.name == 'Double-Up' then
+			log('Update Weapons')
 			if state.WeaponMode.value == "Locked" then
 				built_set = set_combine(built_set, { main = player.equipment.main, sub = player.equipment.sub, range = player.equipment.range})
 			else
@@ -975,7 +1028,7 @@ do
 								built_set = set_combine(built_set, sets.Weapons.Shield)
 							else warn('sets.Weapons.Shield not found!') end
 						end
-					else warn('sets.Weapons['..state.WeaponMode.value..'] not found!') end
+					else warn('sets.Weapons.'..state.WeaponMode.value..' not found!') end
 				else warn('sets.Weapons not found!') end
 			end
 		end
@@ -1011,11 +1064,23 @@ do
 	-------------------------------------------------------------------------------------------------------------------
 
 	function midcastequip(spell)
-		-- WeaponSkill
-		if spell.type == 'WeaponSkill' then return end
-		if spell.type == 'Item' then return end
-		if spell.type == 'JobAbility' then return end
-		if pet.isvalid and pet_midaction() then return end
+
+		if spell.type == 'WeaponSkill' then log('abort midcast') return {}
+		elseif spell.type == 'JobAbility' then log('abort midcast') return {}
+		elseif spell.type == 'Item' then log('abort midcast') return {}
+		elseif spell.type == 'Scholar' then log('abort midcast') return {}
+		elseif spell.type == 'Ward' then log('abort midcast') return {}
+		elseif spell.type == 'Rune' then log('abort midcast') return {}
+		elseif spell.type == 'Effusion' then log('abort midcast') return {}
+		elseif spell.type == 'CorsairRoll' then log('abort midcast') return {}
+		elseif spell.type == 'CorsairShot' then log('abort midcast') return {}
+		elseif spell.type == 'Waltz' then log('abort midcast') return {}
+		elseif spell.type == 'Jig' then log('abort midcast') return {}
+		elseif spell.type == 'Samba' then log('abort midcast') return {}
+		elseif spell.type == 'Step' then log('abort midcast') return {}
+		elseif spell.type == 'Flourish1' or spell.type == 'Flourish2' or spell.type == 'Flourish3' then log('abort midcast') return {} end
+		
+		if pet.isvalid and pet_midaction() then return {} end
 		--Default gearset
 		local built_set = {}
 		-- Merge the Idle incase a midcast is not set
@@ -1025,16 +1090,18 @@ do
 			built_set = set_combine(built_set, sets.Midcast)
 			-- Spell interruption Down for the rest of the actions
 			if sets.Midcast.SIRD and spell.action_type ~= 'Ranged Attack' then built_set = set_combine(built_set, sets.Midcast.SIRD) end
+
 			-- Ranged Attack
 			if spell.action_type == 'Ranged Attack' then
 				if sets.Midcast.RA then 
-					built_set = set_combine(built_set, sets.Midcast.RA)
-					-- Generic
 					local message = ''
-					if state.OffenseMode.value ~= 'TP' and sets.Midcast[state.OffenseMode.value] and sets.sets.Midcast[state.OffenseMode.value].RA then
-						built_set = set_combine(built_set, sets.sets.Midcast[state.OffenseMode.value].RA)
+					built_set = set_combine(built_set, sets.Midcast.RA)
+
+					-- Augment based off Mode
+					if state.OffenseMode.value ~= 'TP' and sets.Midcast.RA[state.OffenseMode.value] then
+						built_set = set_combine(built_set, sets.Midcast.RA[state.OffenseMode.value])
 						if state.OffenseMode.value == 'ACC' then
-							message = 'Ranged Attack with Accuracy '
+							message = 'Ranged Attack with Accuracy'
 						elseif state.OffenseMode.value == 'PDL' then
 							message = 'Ranged Attack with Physical Damage Limit'
 						elseif state.OffenseMode.value == 'SB' then
@@ -1051,6 +1118,22 @@ do
 							message = 'Ranged Attack with True Shot'
 						end
 					else message = 'Ranged Attack Set' end
+
+					-- Check if Aftermath is active
+					if buffactive['Aftermath: Lv.3'] and sets.Midcast.RA.AM3 and sets.Midcast.RA.AM3[state.WeaponMode.value] then
+						built_set = set_combine(built_set, sets.Midcast.RA.AM3[state.WeaponMode.value])
+						message = message.. ' and with Aftermath 3 ['..state.WeaponMode.value..']'
+					elseif buffactive['Aftermath: Lv.2'] and sets.Midcast.RA.AM2 and sets.Midcast.RA.AM2[state.WeaponMode.value] then
+						built_set = set_combine(built_set, sets.Midcast.RA.AM2[state.WeaponMode.value])
+						message = message.. ' and with Aftermath 2 ['..state.WeaponMode.value..']'
+					elseif buffactive['Aftermath: Lv.1'] and sets.Midcast.RA.AM1 and sets.Midcast.RA.AM1[state.WeaponMode.value] then
+						built_set = set_combine(built_set, sets.Midcast.RA.AM1[state.WeaponMode.value])
+						message = message.. ' and with Aftermath 1 ['..state.WeaponMode.value..']'
+					elseif buffactive['Aftermath'] and sets.Midcast.RA.AM and sets.Midcast.RA.AM[state.WeaponMode.value] then
+						built_set = set_combine(built_set, sets.Midcast.RA.AM[state.WeaponMode.value])
+						message = message.. ' and with Aftermath ['..state.WeaponMode.value..']'
+					end
+
 					-- Buffs
 					if buffactive['Triple Shot'] and sets.Midcast.RA.TripleShot then 
 						built_set = set_combine(built_set, sets.Midcast.RA.TripleShot)
@@ -1062,20 +1145,11 @@ do
 						built_set = set_combine(built_set, sets.Midcast.RA.Barrage)
 						message = 'Using Barrage Set'
 					end
-					-- Check if Aftermath is active
-					if buffactive['Aftermath: Lv.3'] and sets.Midcast.AM3 and sets.Midcast.AM3.RA and sets.Midcast.AM3.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.Midcast.AM3.RA[state.WeaponMode.value])
-						message = '['..spell.english..'] Set with Aftermath 3 (Ranged)'
-					elseif buffactive['Aftermath: Lv.2'] and sets.Midcast.AM2 and sets.Midcast.AM2.RA and sets.Midcast.AM2.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.Midcast.AM2.RA[state.WeaponMode.value])
-						message = '['..spell.english..'] Set with Aftermath 2 (Ranged)'
-					elseif buffactive['Aftermath: Lv.1'] and sets.Midcast.AM1 and sets.Midcast.AM1.RA and sets.Midcast.AM1.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.Midcast.AM1.RA[state.WeaponMode.value])
-						message = '['..spell.english..'] Set with Aftermath 1 (Ranged)'
-					elseif buffactive['Aftermath'] and sets.Midcast.AM and sets.Midcast.AM.RA and sets.Midcast.AM.RA[state.WeaponMode.value] then
-						built_set = set_combine(built_set, sets.Midcast.AM.RA[state.WeaponMode.value])
-						message = '['..spell.english..'] Set with Aftermath (Ranged)'
-					end
+
+					-- Variable Ammo
+					if Ammo[state.OffenseMode.value] then built_set = set_combine(built_set, { ammo = Ammo[state.OffenseMode.value] }) end
+
+					message = message..' ['..available_bullets..'x]'
 					info(message)
 				else warn('sets.Midcast.RA not found!') end
 			-- Ninjutsu
@@ -1240,6 +1314,8 @@ do
 				-- Defined Gear Set
 				if sets.Midcast[spell.english] then
 					built_set = set_combine(built_set, sets.Midcast[spell.english])
+					-- Check for an elemental set
+					if spell.skill == 'Elemental Magic' and not spell.name:contains('helix') then built_set = elemental_check(spell, built_set) end
 					info( '['..spell.english..'] Set')
 				-- Aspir Gear
 				elseif spell.name:contains('Aspir') then
@@ -1331,7 +1407,7 @@ do
 						else warn('sets.Midcast.Enfeebling.MACC not found!') end
 					else warn('sets.Midcast.Enfeebling not found!') end
 				-- Standard Offensive Spells
-				else
+				elseif spell.skill == 'Elemental Magic' then
 					local element = res.spells[spell.id].element
 					local element_name = res.elements[element].en
 					if spell.target.id == last_skillchain_id and os.clock() - last_skillchain_time < 8 and last_skillchain_elements[element_name] then
@@ -1379,8 +1455,6 @@ do
 					built_set = set_combine(built_set, {range=Instrument.Count})
 				-- Potency / Instruments
 				else
-					-- Augment the specific Song
-					built_set = set_combine(built_set, equip_song_gear(spell))
 					-- Defined Gear Set
 					if sets.Midcast[spell.english] then
 						built_set = set_combine(built_set, sets.Midcast[spell.english])
@@ -1412,41 +1486,45 @@ do
 						info( '['..spell.english..'] Set (Potency)')
 						built_set = set_combine(built_set, {range=Instrument.Potency})
 					end
+					-- Augment the specific Song if set
+					built_set = set_combine(built_set, equip_song_gear(spell, built_set['range']))
 				end
 			-- BlueMagic
 			elseif spell.type == 'BlueMagic' then
 				-- Defined Set
 				if sets.Midcast[spell.english] then
 					built_set = set_combine(built_set, sets.Midcast[spell.english])
+					-- Check for an elemental set
+					if BlueNuke:contains(spell.english) then built_set = elemental_check(spell, built_set) end
 					info( '['..spell.english..'] Set')
 				-- Defined Blue Nukes
 				elseif BlueNuke:contains(spell.english) then
-					if sets.Midcast.Nuke then
-						built_set = set_combine(built_set, sets.Midcast.Nuke)
+					if sets.Midcast.BlueMagic.Nuke then
+						built_set = set_combine(built_set, sets.Midcast.BlueMagic.Nuke)
 						info('Blue Nuke set')
-					else warn('sets.Midcast.Nuke not found!') end
+					else warn('sets.Midcast.BlueMagic.Nuke not found!') end
 					built_set = elemental_check(spell, built_set)
 				-- Spells that benifit from Blue Magic Skill
 				elseif BlueSkill:contains(spell.english) then
-					if sets.Midcast.Skill then
-						built_set = set_combine(built_set, sets.Midcast.Skill)
+					if sets.Midcast.BlueMagic.Skill then
+						built_set = set_combine(built_set, sets.Midcast.BlueMagic.Skill)
 						info('Blue Skill set')
-					else warn('sets.Midcast.Skill not found!') end
+					else warn('sets.Midcast.BlueMagic.Skill not found!') end
 				elseif BlueTank:contains(spell.english) then
-					if sets.Enmity then
-						built_set = set_combine(built_set, sets.Enmity)
+					if sets.Midcast.BlueMagic.Enmity then
+						built_set = set_combine(built_set, sets.Midcast.BlueMagic.Enmity)
 						info('Blue Enmity set')
-					else warn('sets.Enmity not found!') end
+					else warn('sets.Midcast.BlueMagic.Enmity not found!') end
 				elseif BlueHealing:contains(spell.english) then
-					if sets.Midcast.Cure then
-						built_set = set_combine(built_set, sets.Midcast.Cure)
+					if sets.Midcast.BlueMagic.Healing then
+						built_set = set_combine(built_set, sets.Midcast.BlueMagic.Healing)
 						info('Blue Cure set')
-					else warn('sets.Midcast.Cure not found!') end
+					else warn('sets.Midcast.BlueMagic.Healing not found!') end
 				elseif BlueACC:contains(spell.english) then
-					if sets.Midcast.ACC then
-						built_set = set_combine(built_set, sets.Midcast.ACC)
+					if sets.Midcast.BlueMagic.ACC then
+						built_set = set_combine(built_set, sets.Midcast.BlueMagic.ACC)
 						info('Blue Magic Accuracy set')
-					else warn('sets.Midcast.ACC not found!') end
+					else warn('sets.Midcast.BlueMagic.ACC not found!') end
 				-- Default Spell set
 				else info('Midcast not set') end
 				if buffactive["Diffusion"] then
@@ -1552,7 +1630,7 @@ do
 				if sets.Weapons then
 					if sets.Weapons[state.WeaponMode.value] then
 						built_set = set_combine(built_set, sets.Weapons[state.WeaponMode.value])
-					else warn('sets.Weapons['..state.WeaponMode.value..'] not found!') end
+					else warn('sets.Weapons.'..state.WeaponMode.value..' not found!') end
 					if not TwoHand and not DualWield then
 						if sets.Weapons.Shield then
 							built_set = set_combine(built_set, sets.Weapons.Shield)
@@ -1563,6 +1641,7 @@ do
 		end
 		--Swap in bard song weapons no matter the mode
 		if spell.type == 'BardSong' and spell.target.type ~= 'MONSTER' then
+			-- Weapons
 			if sets.Weapons.Songs then
 				built_set = set_combine(built_set, sets.Weapons.Songs)
 				if sets.Weapons.Songs.Midcast then
@@ -1574,6 +1653,23 @@ do
 					end
 				else warn('sets.Weapons.Songs.Midcast not found!') end
 			else warn('sets.Weapons.Songs not found!') end
+			-- Instruments
+			if spell.target.type ~= 'SELF' and spell.name ~= "Honor March" and spell.name ~= "Aria of Passion" and not SongCount:contains(spell.name) then
+				if Instrument then
+					--Check for pianissimo Weapons
+					if Instrument.Pianissimo then
+						built_set = set_combine(built_set, {range=Instrument.Pianissimo})
+					else warn('Instrument.Pianissimo not found!') end
+					--Check for Ballad Weapon
+					if spell.name:contains('Ballad') then
+						if Instrument then
+							if Instrument.Ballad then
+								built_set = set_combine(built_set, {range=Instrument.Ballad})
+							else warn('Instrument.Ballad not found!') end
+						else warn('Instrument not found!') end
+					end
+				else warn('Instrument not found!') end
+			end
 		end
 		-- If TH mode is on - check if new mob and then equip TH gear
 		if 	state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not th_info.tagged_mobs[spell.target.id] and sets.TreasureHunter then
@@ -1757,13 +1853,13 @@ do
 		if sets.Pet_Midcast then
 			local built_set = sets.Pet_Midcast
 			-- Specific sets are defined
-			if built_set[spell.english] then
-				built_set = set_combine(built_set, built_set[spell.english])
+			if sets.Pet_Midcast[spell.english] then
+				built_set = set_combine(built_set, sets.Pet_Midcast[spell.english])
 				info('['..spell.english..'] Set')
-			else
-				if pet_midcast_custom(spell) then
-					built_set = set_combine(built_set, pet_midcast_custom(spell))
-				end
+			end
+			-- User level commands
+			if pet_midcast_custom(spell) then
+				built_set = set_combine(built_set, pet_midcast_custom(spell))
 			end
 			-- Weapon Checks for precast
 			-- If it set to unlocked it will not swap the weapons even if defined in the built_set job lua
@@ -1831,6 +1927,7 @@ do
 				log('Ammo name is: '..bullet_name)
 				return
 			end
+
 			local bullet_min_count = 1
 			if spell.action_type == 'Ranged Attack' then
 				if buffactive['Triple Shot'] then
@@ -1841,11 +1938,23 @@ do
 					bullet_min_count = 8
 				end
 			end
-			local available_bullets = player.inventory[bullet_name] or player.wardrobe[bullet_name] or player.wardrobe2[bullet_name]
-			 or player.wardrobe3[bullet_name] or player.wardrobe4[bullet_name] or player.wardrobe5[bullet_name] 
-			 or player.wardrobe6[bullet_name] or player.wardrobe7[bullet_name] or player.wardrobe8[bullet_name]
-			-- If no ammo is available, give appropriate warning and end.
-			if not available_bullets then
+
+			available_bullets = 0
+
+			if player.inventory[bullet_name] then available_bullets = available_bullets + player.inventory[bullet_name].count end
+			if player.wardrobe[bullet_name] then available_bullets = available_bullets + player.wardrobe[bullet_name].count end
+			if player.wardrobe2[bullet_name] then available_bullets = available_bullets + player.wardrobe2[bullet_name].count end
+			if player.wardrobe3[bullet_name] then available_bullets = available_bullets + player.wardrobe3[bullet_name].count end
+			if player.wardrobe4[bullet_name] then available_bullets = available_bullets + player.wardrobe4[bullet_name].count end
+			if player.wardrobe5[bullet_name] then available_bullets = available_bullets + player.wardrobe5[bullet_name].count end
+			if player.wardrobe6[bullet_name] then available_bullets = available_bullets + player.wardrobe6[bullet_name].count end
+			if player.wardrobe7[bullet_name] then available_bullets = available_bullets + player.wardrobe7[bullet_name].count end
+			if player.wardrobe8[bullet_name] then available_bullets = available_bullets + player.wardrobe8[bullet_name].count end
+
+			log('Bullet Count ['..available_bullets..']')
+
+			if available_bullets == 0 then
+				-- If no ammo is available, give appropriate warning and end.
 				if spell.type == 'CorsairShot' and player.equipment.ammo ~= 'empty' then
 					add_to_chat(104, 'No Quick Draw ammo left.  Using what\'s currently equipped ('..player.equipment.ammo..').')
 					return
@@ -1858,15 +1967,17 @@ do
 					return
 				end
 			end
+
 			-- Don't allow shooting or weaponskilling with ammo reserved for quick draw.
-			if spell.type ~= 'CorsairShot' and bullet_name == Ammo.Bullet.QD and available_bullets.count <= bullet_min_count then
-				add_to_chat(104, 'No ammo will be left for Quick Draw.  Cancelling.')
+			if spell.type ~= 'CorsairShot' and available_bullets <= bullet_min_count then
+				add_to_chat(104, 'Not enough ammo.  Cancelling.')
 				cancel_spell()
 				return
 			end
+
 			-- Low ammo warning.
-			if spell.type ~= 'CorsairShot' and state.warned.value == false and available_bullets.count > 1 and available_bullets.count <= Ammo_Warning_Limit then
-				local msg = '*****  LOW AMMO WARNING: '..tostring(available_bullets.count)..'x '..bullet_name..' *****'
+			if spell.type ~= 'CorsairShot' and state.warned.value == false and available_bullets > 1 and available_bullets <= Ammo_Warning_Limit then
+				local msg = '*****  LOW AMMO WARNING: '..tostring(available_bullets)..'x '..bullet_name..' *****'
 				local border = ""
 				for i = 2, #msg do border = border .. "*" end
 				windower.send_command('send @others input /echo '..msg..'')
@@ -1874,7 +1985,7 @@ do
 				add_to_chat(167, msg)
 				add_to_chat(167, border)
 				state.warned:set()
-			elseif available_bullets.count > Ammo_Warning_Limit and state.warned then
+			elseif available_bullets > Ammo_Warning_Limit and state.warned then
 				state.warned:reset()
 			end
 		end
@@ -2094,6 +2205,7 @@ do
 						end
 						info('Weapon Mode: ['..state.WeaponMode.value..']')
 						display_box_update()
+						if self_command_custom then self_command_custom(command) end
 						coroutine.schedule(equip_set, .25)
 						coroutine.schedule(two_hand_check, .25)
 						return
@@ -2105,6 +2217,7 @@ do
 				state.WeaponMode:set(mode[2])
 				info('Weapon Mode: ['..state.WeaponMode.value..']')
 				display_box_update()
+				if self_command_custom then self_command_custom(command) end
 				coroutine.schedule(equip_set, .25)
 				coroutine.schedule(two_hand_check, .25)
 				return
@@ -2120,6 +2233,7 @@ do
 						end
 						info(UI_Name2..': ['..state.JobMode2.value..']')
 						display_box_update()
+						if self_command_custom then self_command_custom(command) end
 						coroutine.schedule(equip_set, .25)
 						return
 					end
@@ -2130,6 +2244,7 @@ do
 				state.JobMode2:set(mode[2])
 				info(UI_Name2..': ['..state.JobMode2.value..']')
 				display_box_update()
+				if self_command_custom then self_command_custom(command) end
 				coroutine.schedule(equip_set, .25)
 				return
 			end
@@ -2220,7 +2335,7 @@ do
 	end
 
 	-- Determines correct gear for the songs
-	function equip_song_gear(spell)
+	function equip_song_gear(spell, instruments)
 		local song_set = {}
 			if string.find(spell.english,'Finale') and sets.Midcast.Finale then song_set = sets.Midcast.Finale
 		elseif string.find(spell.english,'Lullaby') and sets.Midcast.Lullaby then song_set = sets.Midcast.Lullaby
@@ -2245,17 +2360,19 @@ do
 		else
 			info('['..spell.english..'] set not found!')
 		end
+		song_set['range'] = instruments
 		return song_set
 	end
 
 	function use_enchantment(item)
 		local SlotList = {"main","sub","range","ammo","head","body","hands","legs","feet","neck","waist","lear","rear","left_ring","right_ring","back"}
 		local item_table = res.items:with('enl',item) or res.items:with('en',item)
+		local slot =''
+
 		if item_table == nil or not item_table.targets:contains('Self') then
 			info("Invalid item.")
 			return
 		end
-		local slot =''
 		if item_table.slots:contains(0) then
 			slot = 'main'
 		else
@@ -2269,11 +2386,17 @@ do
 		enable(slot)
 		equip({[slot]=item_table.en})
 		disable(slot)
-		local delay = item_table.cast_delay + item_table.cast_time + .5
-		log(delay)
-		windower.send_command('wait '..item_table.cast_delay + 3 ..';input /item "'..item_table.en..'" <me>')
-		coroutine.schedule(Unlock, delay)
-		coroutine.schedule(choose_set, delay)
+		local delay_use = item_table.cast_delay + 3
+		local delay_unlock = delay_use + item_table.cast_time + 3
+		Use_Item_Command = item_table.en
+		coroutine.schedule(Use_Item, delay_use)
+		coroutine.schedule(Unlock, delay_unlock)
+		coroutine.schedule(equip_set, delay_unlock)
+	end
+
+	function Use_Item()
+		log('/item "'..Use_Item_Command..'" '..player.id)
+		windower.chat.input('/item "'..Use_Item_Command..'" <me>')
 	end
 
 	-- Unbind Keys when the file is unloaded
@@ -2458,10 +2581,12 @@ do
 	end
 
 	function Unlock()
+		log('Unlock Called')
 		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','waist','legs','feet')
 	end
 
 	function Lock()
+		log('Lock Called')
 		disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','waist','legs','feet')
 	end
 
@@ -2508,101 +2633,67 @@ do
 		gs_debug:text(lines:concat('\n'))
 	end
 
-	function log(msg)
-		if settings.debug then
-			if msg == nil then
-				windower.add_to_chat(80,'----Value is Nil----')
-			elseif type(msg) == "table" then
-				for index, value in pairs(msg) do
-					windower.add_to_chat(80,'----'..tostring(value)..'----')
-				end
-			elseif type(msg) == "number" then
-				windower.add_to_chat(80,'----'..tostring(msg)..'----')
-			elseif type(msg) == "string" then
-				windower.add_to_chat(80,'----'..msg..'----')
-			elseif type(msg) == "boolean" then
-				windower.add_to_chat(80,'----'..tostring(msg)..'----')
-			else
-				windower.add_to_chat(80,'----Unknown Debug Message----')
-			end
-		end
+	function log (msg)
+		if settings.debug then print(80, msg) end
 	end
 
-	function info(msg)
-		if settings.info then
-			if msg == nil then
-				windower.add_to_chat(8,'Value is Nil')
-			elseif type(msg) == "table" then
-				for index, value in pairs(msg) do
-					windower.add_to_chat(8,tostring(value))
-				end
-			elseif type(msg) == "number" then
-				windower.add_to_chat(8,tostring(msg))
-			elseif type(msg) == "string" then
-				windower.add_to_chat(8,msg)
-			elseif type(msg) == "boolean" then
-				windower.add_to_chat(8,tostring(msg))
-			else
-				windower.add_to_chat(8,'Unknown Debug Message')
-			end
-		end
+	function info (msg)
+		if settings.info then print(8, msg) end
 	end
 
-	function warn(msg)
-		if settings.warn then
-			if msg == nil then
-				windower.add_to_chat(12,'----Value is Nil----')
-			elseif type(msg) == "table" then
-				for index, value in pairs(msg) do
-					windower.add_to_chat(12,'----'..tostring(value)..'----')
+	function warn (msg)
+		if settings.warn then print(12, msg) end
+	end
+
+	function print(mode, msg)
+		if msg == nil then
+			windower.add_to_chat(mode,'Value is Nil')
+		elseif type(msg) == "table" then
+			for index, value in pairs(msg) do
+				if type(value) == "table" then
+					for index2, value2 in pairs(value) do
+						if type(value2) == "table" then
+							for index3, value3 in pairs(value2) do
+								if type(value3) == "table" then
+									for index4, value4 in pairs(value3) do
+										windower.add_to_chat(mode,'---- ['..tostring(index)..'] ['..tostring(index2)..'] ['..tostring(index3)..'] ['..tostring(index4)..'] '..tostring(value4)..' ----')
+									end
+								else
+									windower.add_to_chat(mode,'---- ['..tostring(index)..'] ['..tostring(index2)..'] ['..tostring(index3)..'] '..tostring(value3)..' ----')
+								end
+							end
+						else
+							windower.add_to_chat(mode,'---- ['..tostring(index)..'] ['..tostring(index2)..'] '..tostring(value2)..' ----')
+						end
+					end
+				else
+					windower.add_to_chat(mode,'---- ['..tostring(index)..'] '..tostring(value)..' ----')
 				end
-			elseif type(msg) == "number" then
-				windower.add_to_chat(12,'----'..tostring(msg)..'----')
-			elseif type(msg) == "string" then
-				windower.add_to_chat(12,'----'..msg..'----')
-			elseif type(msg) == "boolean" then
-				windower.add_to_chat(12,'----'..tostring(msg)..'----')
-			else
-				windower.add_to_chat(12,'----Unknown Debug Message----')
 			end
+		elseif type(msg) == "number" then
+			windower.add_to_chat(mode,tostring(msg))
+		elseif type(msg) == "string" then
+			windower.add_to_chat(mode,msg)
+		elseif type(msg) == "boolean" then
+			windower.add_to_chat(mode,tostring(msg))
+		else
+			windower.add_to_chat(mode,'Unknown Message')
 		end
 	end
 
 	function elemental_check(spell, built_set)
-		-- This function swaps in the Orpheus or Hachirin as needed
-		if Elemental_WS:contains(spell.name) or spell.type == 'BlackMagic' or spell.type == 'BlueMagic' then
-			local Osash = player.inventory["Orpheus's Sash"] or player.wardrobe["Orpheus's Sash"] or player.wardrobe2["Orpheus's Sash"]
-			or player.wardrobe3["Orpheus's Sash"] or player.wardrobe4["Orpheus's Sash"] or player.wardrobe5["Orpheus's Sash"] 
-			or player.wardrobe6["Orpheus's Sash"] or player.wardrobe7["Orpheus's Sash"] or player.wardrobe8["Orpheus's Sash"]
-			local Obi = player.inventory["Hachirin-no-Obi"] or player.wardrobe["Hachirin-no-Obi"] or player.wardrobe2["Hachirin-no-Obi"]
-			or player.wardrobe3["Hachirin-no-Obi"] or player.wardrobe4["Hachirin-no-Obi"] or player.wardrobe5["Hachirin-no-Obi"] 
-			or player.wardrobe6["Hachirin-no-Obi"] or player.wardrobe7["Hachirin-no-Obi"] or player.wardrobe8["Hachirin-no-Obi"]
-			-- Matching double weather (w/o day conflict).
-			if spell.element == world.weather_element and world.weather_intensity == 2 and Obi then
-				built_set = set_combine(built_set, {waist="Hachirin-no-Obi"})
-				windower.add_to_chat(8,'Weather is Double ['.. world.weather_element .. '] - using Hachirin-no-Obi')
-			-- Matching day and weather.
-			elseif spell.element == world.day_element and spell.element == world.weather_element and Obi then
-				built_set = set_combine(built_set, {waist="Hachirin-no-Obi"})
-				windower.add_to_chat(8,'[' ..world.day_element.. '] day and weather is ['.. world.weather_element .. '] - using Hachirin-no-Obi')
-			-- Target distance less than 6 yalms
-			elseif spell.target.distance < (6 + spell.target.model_size) and Osash then
-				built_set = set_combine(built_set, {waist="Orpheus's Sash"})
-				windower.add_to_chat(8,'Distance is ['.. round(spell.target.distance,2) .. '] using Orpheus Sash')
-			-- Match day or weather.
-			elseif spell.element == world.day_element or spell.element == world.weather_element and Obi then
-				built_set = set_combine(built_set, {waist="Hachirin-no-Obi"})
-				windower.add_to_chat(8,'[' ..world.day_element.. '] day and weather is ['.. world.weather_element .. '] - using Hachirin-no-Obi')
-			end
 		-- Rule for Cures
-		elseif spell.name:contains('Cure') or spell.name:contains('Cura') then
+		if spell.name:contains('Cure') or spell.name:contains('Cura') then
 			if world.weather_element == spell.element or spell.element == world.day_element then
+
+				-- Verify player has the gear
 				local Obi = player.inventory["Hachirin-no-Obi"] or player.wardrobe["Hachirin-no-Obi"] or player.wardrobe2["Hachirin-no-Obi"]
 				or player.wardrobe3["Hachirin-no-Obi"] or player.wardrobe4["Hachirin-no-Obi"] or player.wardrobe5["Hachirin-no-Obi"] 
 				or player.wardrobe6["Hachirin-no-Obi"] or player.wardrobe7["Hachirin-no-Obi"] or player.wardrobe8["Hachirin-no-Obi"]
 				local Staff = player.inventory["Chatoyant Staff"] or player.wardrobe["Chatoyant Staff"] or player.wardrobe2["Chatoyant Staff"]
 				or player.wardrobe3["Chatoyant Staff"] or player.wardrobe4["Chatoyant Staff"] or player.wardrobe5["Chatoyant Staff"] 
 				or player.wardrobe6["Chatoyant Staff"] or player.wardrobe7["Chatoyant Staff"] or player.wardrobe8["Chatoyant Staff"]
+
 				-- Check for bonus
 				if spell.element == world.day_element then
 					if Obi then built_set = set_combine(built_set, {waist="Hachirin-no-Obi"}) end
@@ -2614,6 +2705,35 @@ do
 					windower.add_to_chat(8,'Weather is ['.. world.weather_element .. '] - using Bonus Gear')
 				end
 			end
+		-- This function swaps in the Orpheus or Hachirin as needed
+		else
+
+			-- Check for player gear
+			local Osash = player.inventory["Orpheus's Sash"] or player.wardrobe["Orpheus's Sash"] or player.wardrobe2["Orpheus's Sash"]
+			or player.wardrobe3["Orpheus's Sash"] or player.wardrobe4["Orpheus's Sash"] or player.wardrobe5["Orpheus's Sash"] 
+			or player.wardrobe6["Orpheus's Sash"] or player.wardrobe7["Orpheus's Sash"] or player.wardrobe8["Orpheus's Sash"]
+			local Obi = player.inventory["Hachirin-no-Obi"] or player.wardrobe["Hachirin-no-Obi"] or player.wardrobe2["Hachirin-no-Obi"]
+			or player.wardrobe3["Hachirin-no-Obi"] or player.wardrobe4["Hachirin-no-Obi"] or player.wardrobe5["Hachirin-no-Obi"] 
+			or player.wardrobe6["Hachirin-no-Obi"] or player.wardrobe7["Hachirin-no-Obi"] or player.wardrobe8["Hachirin-no-Obi"]
+
+			-- Matching double weather (w/o day conflict).
+			if spell.element == world.weather_element and world.weather_intensity == 2 and Obi then
+				built_set = set_combine(built_set, {waist="Hachirin-no-Obi"})
+				info('Weather is Double ['.. world.weather_element .. '] - using Hachirin-no-Obi')
+			-- Matching day and weather.
+			elseif spell.element == world.day_element and spell.element == world.weather_element and Obi then
+				built_set = set_combine(built_set, {waist="Hachirin-no-Obi"})
+				info('[' ..world.day_element.. '] day and weather is ['.. world.weather_element .. '] - using Hachirin-no-Obi')
+			-- Target distance less than 6 yalms
+			elseif spell.target.distance < (6 + spell.target.model_size) and Osash then
+				built_set = set_combine(built_set, {waist="Orpheus's Sash"})
+				info('Distance is ['.. round(spell.target.distance,2) .. '] using Orpheus Sash')
+			-- Match day or weather.
+			elseif spell.element == world.day_element or spell.element == world.weather_element and Obi then
+				built_set = set_combine(built_set, {waist="Hachirin-no-Obi"})
+				info('[' ..world.day_element.. '] day and weather is ['.. world.weather_element .. '] - using Hachirin-no-Obi')
+			end
+
 		end
 		return built_set
 	end
@@ -2692,20 +2812,22 @@ do
 			Location.y = position.y
 			Location.z = position.z
 		end
+
 		if Require_Update and not is_busy then equip_set() Require_Update = false end
-		-- 60 second cycle timer
+
+		-- 30 second cycle timer
 		if now - UpdateTime1 > 30 then
 			dual_wield_check()
 			cleanup_tagged_mobs()
 			UpdateTime1 = now
 		end
+
 		-- function used for periodic updates - feature
-		if Cycle_Time then
-			if now - UpdateTime2 > Cycle_Time then
-				Cycle_Timer()
-				UpdateTime2 = now
-			end
+		if Cycle_Timer and now - UpdateTime2 > 2 and not is_busy then
+			Cycle_Timer()
+			UpdateTime2 = now
 		end
+
 		main_engine_time = os.clock()
 	end
 
@@ -2956,7 +3078,7 @@ do
 						if sets.Weapons then
 							if sets.Weapons[state.WeaponMode.value] then
 								built_set = set_combine(built_set, sets.Weapons[state.WeaponMode.value])
-							else warn('sets.Weapons['..state.WeaponMode.value..'] not found!') end
+							else warn('sets.Weapons.'..state.WeaponMode.value..' not found!') end
 						else warn('sets.Weapons not found!') end
 						-- Equip sub weapon based off mode
 						if not DualWield and not TwoHand then
@@ -2972,9 +3094,9 @@ do
 					-- Ranged Mode
 					if state.JobMode.value == "Ranged" then
 						log('Ranged Mode')
-						if sets.OffenseMode.Ranged then
-							built_set = set_combine(built_set, sets.OffenseMode.Ranged)
-						else warn('sets.OffenseMode.Ranged not found!') end
+						if sets.Idle and sets.Idle[state.OffenseMode.value] then
+							built_set = set_combine(built_set, sets.Idle[state.OffenseMode.value])
+						else warn('sets.Idle.'..state.OffenseMode.value..' not found!') end
 					end
 					-- Check if AM3 is active
 					if buffactive['Aftermath: Lv.3'] and sets.OffenseMode.AM3 and sets.OffenseMode.AM3[state.WeaponMode.value] then
@@ -3006,7 +3128,7 @@ do
 							end
 						else warn('sets.TreasureHunter not found!') end
 					end
-				else warn('sets.OffenseMode['..state.OffenseMode.value..'] not found!') end
+				else warn('sets.OffenseMode.'..state.OffenseMode.value..' not found!') end
 			else warn('sets.OffenseMode not found!') end
 		-- Idle sets
 		else
@@ -3015,7 +3137,7 @@ do
 				-- Idle state
 				if sets.Idle[state.OffenseMode.value] then
 					built_set = set_combine(built_set, sets.Idle[state.OffenseMode.value])
-				else warn('sets.Idle['..state.OffenseMode.value..'] not found!') end		
+				else warn('sets.Idle.'..state.OffenseMode.value..' not found!') end		
 				-- Resting condition
 				if player.status == "Resting" then
 					if sets.Idle.Resting then
@@ -3031,7 +3153,7 @@ do
 						if sets.Weapons then
 							if sets.Weapons[state.WeaponMode.value] then
 								built_set = set_combine(built_set, sets.Weapons[state.WeaponMode.value])
-							else warn('sets.Weapons['..state.WeaponMode.value..'] not found!') end
+							else warn('sets.Weapons.'..state.WeaponMode.value..' not found!') end
 							-- Check for sub weapon
 							if not TwoHand and not DualWield then
 								if sets.Weapons.Shield then
@@ -3061,6 +3183,10 @@ do
 				end
 			else warn('sets.Idle not found!') end
 		end
+
+		-- Variable Ammo
+		if Ammo and Ammo[state.OffenseMode.value] then built_set = set_combine(built_set, { ammo = Ammo[state.OffenseMode.value] }) end
+
 		return built_set
 	end
 

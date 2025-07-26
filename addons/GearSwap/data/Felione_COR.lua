@@ -5,8 +5,8 @@ include('Mirdain-Include')
 include('Global-Binds.lua')
 
 --Set to ingame lockstyle and Macro Book/Set
-LockStylePallet = "7"
-MacroBook = "18"  -- Sub Job macro pallets can be defined in the sub_job_change_custom function below
+LockStylePallet = "1"
+MacroBook = "1"  -- Sub Job macro pallets can be defined in the sub_job_change_custom function below
 MacroSet = "1"
 
 -- Use "gs c food" to use the specified food item 
@@ -46,6 +46,27 @@ jobsetup (LockStylePallet,MacroBook,MacroSet)
 Ammo_Warning_Limit = 99
 
 function get_sets()
+	
+    AF = {}
+    AF.Head="Laksa. Tricorne"
+    AF.Body="Laksa. Frac +3"
+    AF.Hands="Laksa. Gants"
+    AF.Legs="Laksa. Trews +2"
+    AF.Feet="Laksa. Bottes +1"
+
+    REL = {}
+    REL.Head="Lanun Tricorne"
+    REL.Body=""
+    REL.Hands=""
+    REL.Legs=""
+    REL.Feet="Lanun Bottes +3"
+
+    EMP = {}
+    EMP.Head=""
+    EMP.Body=""
+    EMP.Hands="Chasseur's Gants +3"
+    EMP.Legs="Chas. Culottes +2"
+    EMP.Feet=""
 
 	--Set the weapon options.  This is set below in job customization section
 
@@ -53,9 +74,8 @@ function get_sets()
 	sets.Weapons = {}
 
 	sets.Weapons['Savage Blade'] = {
-		main="Kaja Sword",
-		--main="Naegling",
-		sub="Tokko Knife", --{ name="Gleti's Knife", augments={'Path: A',}},
+		main="Naegling",
+		sub={ name="Gleti's Knife", augments={'Path: A',}},
 		range={ name="Anarchy +2", augments={'Delay:+60','TP Bonus +1000',}},
 	}
 
@@ -113,16 +133,16 @@ function get_sets()
 
 	-- Standard Idle set with -DT,Refresh,Regen with NO movement gear
 	sets.Idle = {
-		head="Mummu Bonnet",
-		body="Mummu Jacket +1",
-		hands="Mummu Wrists +1",
-		legs="Meg. Chausses +2",
-		feet="Mummu Gamash. +1",
-		neck="Sanctity Necklace",
+		head="Nyame Helm", -- 7
+		body="Nyame Mail", -- 9
+		hands="Nyame Gauntlets", -- 7
+		legs=EMP.Legs, -- 11
+		feet="Nyame Sollerets", -- 8
+		neck="Sanctity Necklace", -- 7
 		waist="Sailfi Belt +1",
 		left_ear="Eabani Earring",
 		left_ring="Mummu Ring",
-		right_ring="Warp Ring",
+		right_ring="Meghanada Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 		--[[ ammo = Ammo.Bullet.RA,
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -163,19 +183,19 @@ function get_sets()
 
 	--Base TP set to build off when melee'n
 	sets.OffenseMode.TP = {
-		main="Kaja Sword",
-		sub="Tokko Knife",
-		head="Mummu Bonnet",
+		main="Naegling",
+		sub="Gleti's Knife",
+		head="Malignance Chapeau",
 		body="Mummu Jacket +1",
 		hands="Mummu Wrists +1",
-		legs="Meg. Chausses +2",
-		feet="Mummu Gamash. +1",
+		legs=EMP.Legs,
+		feet="Malignance Boots",
 		neck="Sanctity Necklace",
 		waist="Sailfi Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Brutal Earring",
 		left_ring="Mummu Ring",
-		right_ring="Warp Ring",
+		right_ring="Meghanada Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 --[[ 		ammo = Ammo.Bullet.RA,
 		head="Malignance Chapeau",
@@ -194,8 +214,8 @@ function get_sets()
 
 	--This set is used when OffenseMode is DT and Enaged
 	sets.OffenseMode.DT = set_combine(sets.OffenseMode.TP, {
-	    legs="Chas. Culottes +3",
-		right_ear={ name="Odnowa Earring +1", augments={'Path: A',}, priority=2},
+	    legs=EMP.Legs,
+		--right_ear={ name="Odnowa Earring +1", augments={'Path: A',}, priority=2},
 	})
 
 	--This set is used when OffenseMode is PDL and Enaged
@@ -227,7 +247,7 @@ function get_sets()
 	--The following sets augment the base TP set above for Dual Wielding
 	sets.DualWield = {
 		waist="Reiki Yotai",
-		right_ear="Eabani Earring",
+		left_ear="Eabani Earring",
 	}
 
 	--This set is used when OffenseMode is ACC and Enaged (Augments the TP base set)
@@ -401,7 +421,7 @@ function get_sets()
 	-- Job Abilities
 	sets.JA = {}
 	sets.JA["Wild Card"] = {
-	    feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+	    feet=REL.Feet,
 	}
 	sets.JA["Phantom Roll"] = {}
 	sets.JA["Random Deal"] = {
@@ -419,15 +439,19 @@ function get_sets()
 	}
 
 	sets.Waltz = set_combine(sets.OffenseMode.DT, {
-		ammo="Yamarang", -- 5
-		hands="Slither Gloves +1", -- 5
+		--[[ ammo="Yamarang", -- 5
+		hands="Slither Gloves +1", -- 5 ]]
 		legs="Dashing Subligar", -- 10
 	}) -- 20% Potency
 
 	--Base Set used for all rolls
 	sets.PhantomRoll = {
-		hands="Chasseur's Gants +1",
-		left_ring = "Barataria Ring",
+		main={ name="Rostam", augments={'Path: C'}},
+		range="Compensator", -- 20 sec Duration
+		head=REL.Head,
+		hands=EMP.Hands,
+		right_ring="Luzaf's Ring", -- 16 yalm range
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 		--[[ main={ name="Rostam", augments={'Path: C'}, bag="Wardrobe 2", priority=1}, -- +8 Effect and 60 sec Duration
 		sub={ name="Nusku Shield", priority=2},
 		range="Compensator", -- 20 sec Duration
@@ -461,7 +485,7 @@ function get_sets()
 	sets.PhantomRoll["Bolter's Roll"] = sets.PhantomRoll
 	sets.PhantomRoll["Caster's Roll"] = set_combine(sets.PhantomRoll, {legs="Chas. Culottes +3",})
 	sets.PhantomRoll["Tactician's Roll"] = set_combine(sets.PhantomRoll, {body="Chasseur's Frac +3"})
-	sets.PhantomRoll["Allies' Roll"] = set_combine(sets.PhantomRoll, {hands="Chasseur's Gants +1"})
+	sets.PhantomRoll["Allies' Roll"] = set_combine(sets.PhantomRoll, {hands=EMP.Hands})
 	sets.PhantomRoll["Miser's Roll"] = sets.PhantomRoll
 	sets.PhantomRoll["Companion's Roll"] = sets.PhantomRoll
 	sets.PhantomRoll["Avenger's Roll"] = sets.PhantomRoll
@@ -472,6 +496,11 @@ function get_sets()
 	-- Melee Base set
 	sets.WS = {
 		ammo=Ammo.Bullet.WS,
+		head="Nyame Helm",
+		hands=EMP.Hands,
+		feet=REL.Feet,
+		left_ear="Ishvara Earring",
+		left_ring="Sroda Ring",
 		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 		--[[ ammo=Ammo.Bullet.WS,
 		head={ name="Nyame Helm", augments={'Path: B',}},
@@ -491,6 +520,7 @@ function get_sets()
 	-- Ranged Base Set (Augments the sets.WS)
 	sets.WS.RA = {
 		ammo=Ammo.Bullet.WS,
+		hands=EMP.Hands,
 		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
 		--[[ head={ name="Lanun Tricorne +3", augments={'Enhances "Winning Streak" effect',}},
 		body={ name="Ikenga's Vest", augments={'Path: A',}},
@@ -538,7 +568,7 @@ function get_sets()
 
 	sets.WS.MAB = set_combine(sets.WS, {
 		ammo=Ammo.Bullet.MAB,
-		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+		feet=REL.Feet,
 		waist="Eschan Stone",
 		left_ear="Friomisi Earring",
 		right_ear="Crematio Earring",

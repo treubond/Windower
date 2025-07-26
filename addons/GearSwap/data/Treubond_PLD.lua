@@ -692,11 +692,11 @@ end
 -------------------------------------------------------------------------------------------------------------------
  
 function job_pretarget(spell, action, spellMap, eventArgs)
-    if spell.type == "WeaponSkill" and player.status == 'Engaged' and spell.target.distance > target_distance then -- Cancel WS If You Are Out Of Range --
-       eventArgs.cancel=true
-       add_to_chat(123, spell.name..' Canceled: [Out of Range]')
-       return
-    end
+    --if spell.type == "WeaponSkill" and player.status == 'Engaged' and spell.target.distance > target_distance then -- Cancel WS If You Are Out Of Range --
+    --   eventArgs.cancel=true
+    --   add_to_chat(123, spell.name..' Canceled: [Out of Range]')
+    --   return
+    --end
 end
  
  

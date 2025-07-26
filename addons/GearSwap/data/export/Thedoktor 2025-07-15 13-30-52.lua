@@ -1,0 +1,17 @@
+sets.exported={
+    main="Kaja Knife",
+    sub={ name="Taming Sari", augments={'STR+5','DMG:+7',}},
+    ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+    head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+    body="Mummu Jacket +2",
+    hands="Meg. Gloves +2",
+    legs="Meg. Chausses +2",
+    feet="Malignance Boots",
+    neck="Sanctity Necklace",
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear="Ishvara Earring",
+    right_ear="Brutal Earring",
+    left_ring="Meghanada Ring",
+    right_ring="Mummu Ring",
+    back="Terebellum Mantle",
+}

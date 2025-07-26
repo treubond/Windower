@@ -378,7 +378,7 @@ do
     function start_augmentation()
         world = get_info()
         local zones = get_res_all_zones()
-        if world and zones and zones[world.zone].name == "Western Adoulin" then
+        if world and zones and zones[world.zone].en == "Western Adoulin" then
             -- get environmental variables
             get_npc_data_augmentation()
             -- Start the engine
@@ -434,11 +434,11 @@ do
         local base_item = get_item_res(settings.trade_item)
         local material_item = get_item_res(settings.trade_material)
 
-        if not base_item or not material_item then log('Unable to find items') enabled = false return end
+        if not base_item or not material_item then info('Unable to find items') enabled = false return end
 
         -- Grab the player inventory
         local inventory = get_items(0)
-        if not inventory then log('Unable to load inventory') enabled = false return end
+        if not inventory then info('Unable to load inventory') enabled = false return end
 
         local base_index = find_item(inventory, base_item.id)
         local material_index = find_item(inventory, material_item.id)
@@ -515,6 +515,7 @@ do
 
     function process_response(results, npc)
         local match = false
+        local number = 0
 
         local augment_1_results = check_augment(settings.augment_1, settings.watch_value_1, results)
         local augment_2_results = check_augment(settings.augment_2, settings.watch_value_2, results)
@@ -530,24 +531,26 @@ do
             end
         else
             -- Three Augments
-            if settings.watch_value_1 ~= "" and settings.watch_value_2 ~= "" and settings.watch_value_3 ~= "" then
+            if settings.watch_value_1 ~= nil and settings.watch_value_2 ~= nil and settings.watch_value_3 ~= nil then
+                log('3 Augments detected')
                 if augment_1_results and augment_2_results and augment_3_results then
                     match = true
+                    info('Conditions met!')
                 end
             -- Two Augments
-            elseif settings.watch_value_1 ~= "" and settings.watch_value_2 ~= "" then
+            elseif settings.watch_value_1 ~= nil and settings.watch_value_2 ~= nil then
+                log('2 Augments detected')
                 if augment_1_results and augment_2_results then
                     match = true
+                    info('Conditions met!')
                 end
             -- One Augments
-            elseif settings.watch_value_1 ~= "" then
+            elseif settings.watch_value_1 ~= nil then
+                log('1 Augments detected')
                 if augment_1_results then
                     match = true
+                    info('Conditions met!')
                 end
-            end
-
-            if augment_1_results or augment_2_results or augment_3_results then
-                info('Not all Augments satisfied')
             end
         end
 

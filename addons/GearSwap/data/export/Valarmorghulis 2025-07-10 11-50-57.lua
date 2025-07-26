@@ -1,0 +1,16 @@
+sets.exported={
+    main="Malignance Pole",
+    ammo="Hydrocera",
+    head={ name="Telchine Cap", augments={'Enh. Mag. eff. dur. +10',}},
+    body={ name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}},
+    hands={ name="Telchine Gloves", augments={'Enh. Mag. eff. dur. +10',}},
+    legs={ name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +9',}},
+    feet={ name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}},
+    neck="Sanctity Necklace",
+    waist="Refoccilation Stone",
+    left_ear="Lugalbanda Earring",
+    right_ear="Malignance Earring",
+    left_ring="Kishar Ring",
+    right_ring="Jhakri Ring",
+    back="Solemnity Cape",
+}
