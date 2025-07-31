@@ -65,7 +65,7 @@ function get_sets()
     EMP.Head=""
     EMP.Body=""
     EMP.Hands="Chasseur's Gants +3"
-    EMP.Legs="Chas. Culottes +2"
+    EMP.Legs="Chas. Culottes +3"
     EMP.Feet=""
 
 	--Set the weapon options.  This is set below in job customization section

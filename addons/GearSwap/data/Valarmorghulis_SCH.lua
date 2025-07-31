@@ -69,14 +69,14 @@ function get_sets()
 	sets.Weapons = {}
 
 	sets.Weapons['Musa'] ={
-		main={ name="Musa", augments={'Path: C',}},
-		sub="Tokko Grip",
+		main="Musa", --{ name="Musa", augments={'Path: C',}},
+		sub="Kaja Grip",
 		--sub="Enki Strap",
 	}
 
 	sets.Weapons['Mpaca'] ={
 		main={ name="Mpaca's Staff", augments={'Path: A',}},
-		sub="Tokko Grip",
+		sub="Kaja Grip",
 		--sub="Enki Strap",
 	}
 
@@ -132,7 +132,7 @@ function get_sets()
 	-- 'TP','PDL','ACC','DT','PDT','MEVA'
 	sets.Idle.TP = set_combine(sets.Idle, {})
 	sets.Idle.ACC = set_combine(sets.Idle, {})
-	sets.Idle.DT = set_combine(sets.Idle, {main="Malignance Pole", sub="Tokko Grip",})
+	sets.Idle.DT = set_combine(sets.Idle, {main="Malignance Pole", sub="Kaja Grip",})
 	sets.Idle.PDT = set_combine(sets.Idle, {})
 	sets.Idle.MEVA = set_combine(sets.Idle, {
 		--neck="Warder's Charm +1",
@@ -193,7 +193,7 @@ function get_sets()
 
 	sets.Precast.FastCast = {
 		main="Musa",
-		sub="Tokko Grip",
+		sub="Kaja Grip",
 		ammo="Hydrocera",
 		head="Jhakri Coronal +2",
 		body="Jhakri Robe +2",
@@ -313,7 +313,7 @@ function get_sets()
 	-- Enhancing Skill
 	sets.Midcast.Enhancing = {
 	    main="Musa",
-		sub="Tokko Grip",
+		sub="Kaja Grip",
 		ammo="Hydrocera",
 		head=Telchine.Head,
 		body=Telchine.Body,
